@@ -1,0 +1,13 @@
+Butaca is an application which allows the user to
+access movie information -such as title, cast,
+trailers, overview...-, check movie showtimes and
+check whether a movie has extras after and during
+the credits.
+.
+In order to achieve that, it queries the movie
+information from [1], the movie showtimes from [2]
+and the extras information from [3]:
+.
+1.- http://www.themoviedb.org
+2.- http://www.google.com/movies
+3.- http://whatsafterthecredits.com

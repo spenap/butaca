@@ -1,0 +1,8 @@
+include *.desktop
+include qml/*.qml
+include *.png
+include qml/images/*
+include butaca.longdesc
+include butaca.shortdesc
+include AUTHORS
+include COPYING
