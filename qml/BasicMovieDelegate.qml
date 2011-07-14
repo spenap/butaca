@@ -18,84 +18,81 @@
  **************************************************************************/
 
 import QtQuick 1.1
+import com.nokia.extras 1.0
 
 Item {
     id: movieDelegate
-    width: movieDelegate.ListView.view.width; height: image.height + 2
+    width: movieDelegate.ListView.view.width; height: 260
+
+    function getYear(date) {
+        /* This asumes a date in yyyy-mm-dd */
+        var dateParts = date.split('-');
+        return dateParts[0]
+    }
 
     DetailedMovieView { id: detailedMovieView }
 
-    /* Rectangle serving as a background */
     Rectangle {
-        id: backgroundRectangle
-        color: "black"; opacity: movieDelegate.ListView.index % 2 ? 0.2 : 0.3;
-        height: movieDelegate.height - 2; width: movieDelegate.width;
-        y: 1
+        anchors.fill: content
+        color: "black"; opacity: 0.3
+        radius: 10
     }
 
-    /* Movie poster */
-    Item {
-        id: image
-        width: 92
-        height: movieDescription.height < posterImage.height ? posterImage.height : movieDescription.height
-        smooth: true
-        y: movieDescription.height > posterImage.height ? (movieDescription.height - posterImage.height) / 2 : 0
+    Row {
+        id: content
+        spacing: 10
+        anchors.margins: 5
+        anchors.fill: parent
 
-        Loading {
-            width: 48; height: 48
-            x: (image.width / 2) - width / 2
-            y: (image.height / 2) - height / 2
-            visible: posterImage.status != Image.Ready
-        }
+        Item {
+            id: moviePoster
+            width: 140
+            height: 160
 
-        Image {
-            id: posterImage
-            source: poster
-            onStatusChanged: {
-                if(status==Image.Ready)
-                    image.state="loaded"
+            Image {
+                source: poster
+                anchors.centerIn: parent
             }
         }
-        states: State {
-            name: "loaded";
-            PropertyChanges { target: posterImage ; opacity:1 }
-        }
-        transitions: Transition { NumberAnimation { target: posterImage; property: "opacity"; duration: 200 } }
-    }
 
-    /* Movie description */
-    Column {
-        id: movieDescription
-        anchors.left: image.right; anchors.right: backgroundRectangle.right
-        anchors.leftMargin: 6; anchors.rightMargin: 6
-        spacing: 10
+        Column {
+            width: parent.width - moviePoster.width
+            height: parent.height
+            spacing: 10
+            anchors.margins: 10
 
-        Text {
-            id: titleText
-            width: parent.width
-            text: '<b>' + title + '</b>' + ' (' + released +')'
-            wrapMode: Text.WordWrap
-        }
+            Text {
+                id: titleText
+                width: parent.width
+                font.pixelSize: 26
+                text: '<b>' + title + '</b>' + ' (' + getYear(released) +')'
+                wrapMode: Text.WordWrap
+            }
 
-        Text {
-            id: ratingText
-            width: parent.width
-            text: '<b>Rating: </b>' + rating + ' (' + votes + ' votes )'
-            wrapMode: Text.WordWrap
-        }
+            RatingIndicator {
+                ratingValue: rating
+                maximumValue: 10
+                count: votes
+            }
 
-        Text {
-            id: overviewText
-            width: parent.width
-            text: '<b>Overview:</b><br />' + overview
-            wrapMode: Text.WordWrap
-        }
+            Text {
+                id: overviewText
+                width: parent.width - 5
+                font.pixelSize: 20
+                textFormat: Text.StyledText
+                text: '<b>Overview:</b><br />' + overview
+                wrapMode: Text.WordWrap
+                maximumLineCount: 6
+                elide: Text.ElideRight
+            }
 
-        Text {
-            id: detailsText
-            textFormat: Text.RichText
-            text: '<a href="#">view details</a>'
-            onLinkActivated: tabGroup.currentTab.push(detailedMovieView, { movieId: tmdbId })
+            Text {
+                id: detailsText
+                textFormat: Text.RichText
+                font.pixelSize: 20
+                text: '<a href="#">View Details</a>'
+                onLinkActivated: tabGroup.currentTab.push(detailedMovieView, { movieId: tmdbId })
+            }
         }
     }
 }
