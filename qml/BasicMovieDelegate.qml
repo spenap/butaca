@@ -22,7 +22,7 @@ import com.nokia.extras 1.0
 
 Item {
     id: movieDelegate
-    width: movieDelegate.ListView.view.width; height: 260
+    width: movieDelegate.ListView.view.width; height: 230
 
     function getYear(date) {
         /* This asumes a date in yyyy-mm-dd */
@@ -38,6 +38,11 @@ Item {
         radius: 10
     }
 
+    MouseArea {
+        anchors.fill: parent
+        onClicked: { tabGroup.currentTab.push(detailedMovieView, { movieId: tmdbId }) }
+    }
+
     Row {
         id: content
         spacing: 10
@@ -46,7 +51,7 @@ Item {
 
         Item {
             id: moviePoster
-            width: 140
+            width: 135
             height: 160
 
             Image {
@@ -56,10 +61,9 @@ Item {
         }
 
         Column {
-            width: parent.width - moviePoster.width
+            width: parent.width - moviePoster.width - viewDetails.width - 20
             height: parent.height
             spacing: 10
-            anchors.margins: 10
 
             Text {
                 id: titleText
@@ -80,18 +84,22 @@ Item {
                 width: parent.width - 5
                 font.pixelSize: 20
                 textFormat: Text.StyledText
-                text: '<b>Overview:</b><br />' + overview
+                text: '<i>' + overview + '</i>'
                 wrapMode: Text.WordWrap
-                maximumLineCount: 6
+                maximumLineCount: 5
                 elide: Text.ElideRight
             }
+        }
 
-            Text {
-                id: detailsText
-                textFormat: Text.RichText
-                font.pixelSize: 20
-                text: '<a href="#">View Details</a>'
-                onLinkActivated: tabGroup.currentTab.push(detailedMovieView, { movieId: tmdbId })
+        Item {
+            id: viewDetails
+            width: moreIndicator.width + 10
+            height: parent.height
+            anchors.verticalCenter: parent.verticalCenter
+
+            MoreIndicator {
+                id: moreIndicator
+                anchors.centerIn: parent
             }
         }
     }
