@@ -1,0 +1,22 @@
+Butaca is written by:
+
+Simon Pena <spena@igalia.com>
+
+The movie information is retrieved from:
+
+* The Movie Database - http://www.themoviedb.org
+* What's After The Credits http://whatsafterthecredits.com
+
+The movie showtimes are shown from:
+
+* Google Movies - http://www.google.com/movies
+
+The Clapperboard icon by Delphine Ménard has been fetched from
+http://commons.wikimedia.org/wiki/File:Clap_cinema.svg
+
+The background image is a derived work from Fauteuils by Boyan Drenec,
+available at
+http://www.flickr.com/photos/boyan_drenec/2084900516/
+
+The icon has been generated using the "Harmattan Icon Generator" by
+Javier De San Pedro Martin available at http://depot.javispedro.com/nit/hicg/
