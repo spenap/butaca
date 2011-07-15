@@ -28,6 +28,7 @@ Component {
         anchors.horizontalCenter: parent.horizontalCenter
 
         BasicMovieView { id: basicMovieView }
+        PeopleView { id: peopleView }
 
         Column {
             Row {
@@ -41,14 +42,28 @@ Component {
                     id: searchButton
                     text: 'Search'
                     width: 100
-                    onClicked: tabGroup.currentTab.push(basicMovieView, {searchTerm: searchInput.text})
+                    onClicked: {
+                        var searchView = searchCategory.checkedButton==movieSearch ? basicMovieView : peopleView
+                        tabGroup.currentTab.push(searchView, {searchTerm: searchInput.text})
+                    }
                 }
             }
 
             ButtonRow {
-                Button { text: 'Movies' }
-                Button { text: 'People' }
-                Button { text: 'Shows' }
+                id: searchCategory
+
+                Button {
+                    id: movieSearch
+                    text: 'Movies'
+                }
+                Button {
+                    id: peopleSearch
+                    text: 'People'
+                }
+                Button {
+                    id: showSearch
+                    text: 'Shows'
+                }
             }
         }
     }
