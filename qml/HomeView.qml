@@ -51,7 +51,7 @@ Page {
 
     WelcomeView { id: welcomeView }
     SearchView { id: searchView }
-    BasicMovieView { id: browseView }
+    BrowseGenresView { id: browseView }
     ShowtimesView { id: showtimesView }
 
     Component.onCompleted: {

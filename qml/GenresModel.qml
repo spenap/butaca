@@ -20,32 +20,19 @@
 import QtQuick 1.1
 import com.meego 1.0
 
-Component {
-    id: basicMovieView
+XmlListModel {
 
-    Page {
-        tools: commonTools
-        property string searchTerm: ''
-        property string genre: ''
-        property string browseCriteria: '?order_by=rating&order=desc&per_page=10' + (genre ? '&genres=' + genre : '')
+    property string apiKey: '249e1a42df9bee09fac5e92d3a51396b'
+    property string baseUrl: 'http://api.themoviedb.org/2.1/'
+    property string language: 'en'
+    property string format: 'xml'
+    property string apiMethod: 'Genres.getList'
 
-        BasicMovieModel {
-            id: moviesModel
-            apiMethod: searchTerm ? 'Movie.search' : 'Movie.browse'
-            params: searchTerm ? '/' + searchTerm : browseCriteria
-        }
+    source: baseUrl + apiMethod + '/' + language + '/' + format + '/'+ apiKey
+    query: '/OpenSearchDescription/genres/genre'
 
-        ListView {
-            id: list
-            width: parent.width; height: parent.height
-            model: moviesModel
-            delegate: BasicMovieDelegate {}
-        }
 
-        ScrollBar {
-            scrollArea: list;
-            height: list.height; width: 8;
-            anchors.right: parent.right
-        }
-    }
+    XmlRole { name: "genreName"; query: "@name/string()" }
+    XmlRole { name: "genreId"; query: "id/string()" }
+    XmlRole { name: "genreUrl"; query: "url/string()" }
 }

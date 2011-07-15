@@ -19,27 +19,23 @@
 
 import QtQuick 1.1
 import com.meego 1.0
+import com.nokia.extras 1.0
 
 Component {
-    id: basicMovieView
+    id: browseGenresView
 
     Page {
         tools: commonTools
-        property string searchTerm: ''
-        property string genre: ''
-        property string browseCriteria: '?order_by=rating&order=desc&per_page=10' + (genre ? '&genres=' + genre : '')
 
-        BasicMovieModel {
-            id: moviesModel
-            apiMethod: searchTerm ? 'Movie.search' : 'Movie.browse'
-            params: searchTerm ? '/' + searchTerm : browseCriteria
+        GenresModel {
+            id: genresModel
         }
 
         ListView {
             id: list
             width: parent.width; height: parent.height
-            model: moviesModel
-            delegate: BasicMovieDelegate {}
+            model: genresModel
+            delegate: GenresDelegate { }
         }
 
         ScrollBar {
@@ -49,3 +45,4 @@ Component {
         }
     }
 }
+
