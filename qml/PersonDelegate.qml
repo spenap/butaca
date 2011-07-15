@@ -21,46 +21,21 @@ import QtQuick 1.1
 import com.nokia.extras 1.0
 
 Item {
-    id: peopleDelegate
-    width: peopleDelegate.ListView.view.width; height: 80
+    id: personDelegate
+    width: personDelegate.ListView.view.width
+    height: personDelegate.ListView.view.height
 
-    PersonView { id: personView }
-
-    Rectangle {
-        anchors.fill: content
-        color: "black"; opacity: 0.3
-        radius: 10
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: { tabGroup.currentTab.push(personView, { person: personId })}
-    }
-
-    Item {
-        id: content
-        anchors.fill: parent
-        anchors.margins: 10
-
+    Column {
         Text {
-            id: titleText
-            font.pixelSize: 26
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
             text: personName
         }
 
-        Item {
-            id: viewDetails
-            width: moreIndicator.width + 10
-            height: parent.height
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
-
-            MoreIndicator {
-                id: moreIndicator
-                anchors.centerIn: parent
+        Row {
+            Image {
+                source: image
+            }
+            Text {
+                text: biography
             }
         }
     }
