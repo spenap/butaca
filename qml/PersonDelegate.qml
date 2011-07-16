@@ -25,17 +25,42 @@ Item {
     width: personDelegate.ListView.view.width
     height: personDelegate.ListView.view.height
 
-    Column {
+    Item {
+        anchors.fill: parent
+        anchors.margins: 10
+
         Text {
+            id: nameText
+            font.pixelSize: 26
             text: personName
+            wrapMode: Text.WordWrap
         }
 
-        Row {
-            Image {
-                source: image
-            }
-            Text {
-                text: biography
+        Flickable {
+            id: flick
+            width: parent.width
+            anchors.top: nameText.bottom; anchors.bottom: parent.bottom
+            contentHeight: biographyText.height
+            clip: true
+
+            Row {
+                spacing: 20
+                width: parent.width
+
+                Image {
+                    id: image
+                    width: 190
+                    height: 280
+                    source: profileImage
+                }
+
+                Text {
+                    id: biographyText
+                    width: parent.width - image.width - 20
+                    font.pixelSize: 20
+                    text: biography
+                    wrapMode: Text.WordWrap
+                }
             }
         }
     }

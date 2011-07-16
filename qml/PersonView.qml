@@ -35,6 +35,7 @@ Component {
             width: parent.width
             height: parent.height
             model: personModel
+            interactive: false
             delegate: PersonDelegate {}
         }
     }

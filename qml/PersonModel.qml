@@ -25,4 +25,6 @@ PeopleModel {
 
     apiMethod: 'Person.getInfo'
     params: '/' + person
+
+    XmlRole { name: "profileImage"; query: "images/image[@size='profile' and @type='profile'][1]/@url/string()" }
 }
