@@ -18,117 +18,96 @@
  **************************************************************************/
 
 import QtQuick 1.1
+import com.nokia.extras 1.0
 
 Item {
     id: movieDelegate
-    width: movieDelegate.ListView.view.width; height: image.height + 2
+    width: movieDelegate.ListView.view.width; height: movieDelegate.ListView.view.height
 
-    /* Rectangle serving as a background */
-    Rectangle {
-        id: backgroundRectangle
-        color: "black"; opacity: movieDelegate.ListView.index % 2 ? 0.2 : 0.3;
-        height: movieDelegate.height - 2; width: movieDelegate.width;
-        y: 1
+    function getYear(date) {
+        /* This asumes a date in yyyy-mm-dd */
+        var dateParts = date.split('-');
+        if (dateParts) {
+            return dateParts[0]
+        }
+        return ' - '
     }
 
+    /* Header: title (year), tagline and rating */
     Column {
-        id: movieInfo
-
-        /* Movie poster */
-        Item {
-            id: image
-            width: 185
-            height: movieDescription.height < posterImage.height ? posterImage.height : movieDescription.height
-            smooth: true
-            y: movieDescription.height > posterImage.height ? (movieDescription.height - posterImage.height) / 2 : 0
-
-            Loading {
-                width: 48; height: 48
-                x: (image.width / 2) - width / 2
-                y: (image.height / 2) - height / 2
-                visible: posterImage.status != Image.Ready
-            }
-
-            Image {
-                id: posterImage
-                source: poster
-                onStatusChanged: {
-                    if(status==Image.Ready)
-                        image.state="loaded"
-                }
-            }
-            states: State {
-                name: "loaded";
-                PropertyChanges { target: posterImage ; opacity:1 }
-            }
-            transitions: Transition { NumberAnimation { target: posterImage; property: "opacity"; duration: 200 } }
-        }
-
-        Text {
-            id: runtimeText
-            text: runtime
-        }
-
-        Text {
-            id: budgetText
-            text: budget
-        }
-
-        Text {
-            id: revenueText
-            text: revenue
-        }
-
-        Text {
-            id: webpageText
-            textFormat: Text.RichText
-            text: '<a href="' + homepage + '">Home page</a>'
-        }
-
-        Text {
-            id: trailerText
-            textFormat: Text.RichText
-            text: '<a href="' + trailer + '">Trailer</a>'
-        }
-
-        Text {
-            id: certificationText
-            text: certification
-        }
-    }
-
-    /* Movie description */
-    Column {
-        id: movieDescription
-        anchors.left: movieInfo.right; anchors.right: backgroundRectangle.right
-        anchors.leftMargin: 6; anchors.rightMargin: 6
-        spacing: 10
+        id: header
+        spacing: 20
+        width: parent.width
+        anchors {top: parent.top; left: parent.left; right: parent.right }
+        anchors.margins: 20
 
         Text {
             id: titleText
             width: parent.width
-            text: '<b>' + title + '</b>' + ' (' + released +')'
-            wrapMode: Text.WordWrap
-        }
-
-        Text {
-            id: ratingText
-            width: parent.width
-            text: '<b>Rating: </b>' + rating + ' (' + votes + ' votes )'
+            font.pixelSize: 26
+            text: '<b>' + title + '</b>' + ' (' + getYear(released) +')'
             wrapMode: Text.WordWrap
         }
 
         Text {
             id: taglineText
             width: parent.width
+            font.pixelSize: 24
             text: '<i>' + tagline + '</i>'
             wrapMode: Text.WordWrap
+            visible: text != ''
+        }
+
+        RatingIndicator {
+            ratingValue: rating
+            maximumValue: 10
+            count: votes
+        }
+    }
+
+    /* Variable content */
+    Flickable {
+        id: flick
+        width: parent.width
+        anchors.top: header.bottom; anchors.bottom: parent.bottom
+        anchors.margins: 20
+        contentHeight: row.height + overviewText.height + 40
+        clip: true
+
+        Row {
+            id: row
+            spacing: 20
+            width: parent.width
+
+            Image {
+                id: image
+                width: 190
+                height: 280
+                source: poster
+            }
+
+            Text {
+                id: movieFacts
+                width: parent.width - image.width
+                font.pixelSize: 22
+                wrapMode: Text.WordWrap
+                text: '<b>Also known as:</b> ' + alternativeName + '<br />' +
+                      '<b>Certification:</b> ' + certification + '<br />' +
+                      '<b>Release date:</b> ' + released + '<br />' +
+                      '<b>Budget:</b> ' + budget + '<br />' +
+                      '<b>Revenue:</b> ' + revenue + '<br />' +
+                      '<a href="' + homepage + '">Homepage</a>'
+            }
         }
 
         Text {
             id: overviewText
+            anchors.top: row.bottom
+            anchors.topMargin: 20
+
             width: parent.width
-            text: '<b>Overview:</b><br />' + overview
+            font.pixelSize: 20
+            text: overview
             wrapMode: Text.WordWrap
         }
     }
