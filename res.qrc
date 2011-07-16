@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/BaseMovieModel.qml</file>
+        <file>qml/BasicMovieDelegate.qml</file>
+        <file>qml/BasicMovieModel.qml</file>
+        <file>qml/BasicMovieView.qml</file>
+        <file>qml/BrowseGenresView.qml</file>
+        <file>qml/ButacaToolBar.qml</file>
+        <file>qml/DetailedMovieDelegate.qml</file>
+        <file>qml/DetailedMovieModel.qml</file>
+        <file>qml/DetailedMovieView.qml</file>
+        <file>qml/GenresDelegate.qml</file>
+        <file>qml/GenresModel.qml</file>
+        <file>qml/HomeView.qml</file>
+        <file>qml/Loading.qml</file>
+        <file>qml/PeopleDelegate.qml</file>
+        <file>qml/PeopleModel.qml</file>
+        <file>qml/PeopleView.qml</file>
+        <file>qml/PersonDelegate.qml</file>
+        <file>qml/PersonModel.qml</file>
+        <file>qml/PersonView.qml</file>
+        <file>qml/ScrollBar.qml</file>
+        <file>qml/SearchView.qml</file>
+        <file>qml/ShowtimesView.qml</file>
+        <file>qml/WelcomeView.qml</file>
+        <file>qml/images/butaca-bg.jpg</file>
+        <file>qml/images/loading.png</file>
+        <file>qml/images/scrollbar.png</file>
+    </qresource>
+</RCC>
