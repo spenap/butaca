@@ -33,6 +33,15 @@ Item {
         return ' - '
     }
 
+    function getTrailerThumbnail(trailerUrl) {
+        var idFirstIndex = trailerUrl.indexOf('=')
+        var idLastIndex = trailerUrl.lastIndexOf('&')
+        var videoId = idLastIndex > idFirstIndex ?
+                trailerUrl.substring(idFirstIndex + 1, idLastIndex) :
+                trailerUrl.substring(idFirstIndex + 1)
+        return 'http://img.youtube.com/vi/' + videoId + '/1.jpg'
+    }
+
     /* Header: title (year), tagline and rating */
     Column {
         id: header
@@ -71,7 +80,7 @@ Item {
         width: parent.width
         anchors.top: header.bottom; anchors.bottom: parent.bottom
         anchors.margins: 20
-        contentHeight: row.height + overviewText.height + 40
+        contentHeight: row.height + overviewText.height + trailerHeader.height + trailerImage.height + 60
         clip: true
 
         Row {
@@ -109,6 +118,30 @@ Item {
             font.pixelSize: 20
             text: overview
             wrapMode: Text.WordWrap
+        }
+
+        Text {
+            id: trailerHeader
+            anchors.top: overviewText.bottom
+            anchors.topMargin: 20
+            font.pixelSize: 26
+            text: '<b>Movie trailer</b>'
+        }
+
+        Image {
+            id: trailerImage
+            anchors.top: trailerHeader.bottom
+            anchors.topMargin: 10
+            anchors.leftMargin: 10
+            width: 120; height: 90
+            source: getTrailerThumbnail(trailer)
+
+            MouseArea {
+                anchors.fill: trailerImage
+                onClicked: {
+                    helper.openVideo(trailer)
+                }
+            }
         }
     }
 }
