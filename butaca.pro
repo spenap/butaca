@@ -41,6 +41,7 @@ CONFIG += qdeclarative-boostable
 QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
 QMAKE_LFLAGS += -pie -rdynamic
 
+LIBS += -lmdeclarativecache
 
 butacascript.files = butaca
 butacascript.path = /usr/bin/
