@@ -28,6 +28,7 @@ Component {
         tools: commonTools
         property string searchTerm: ''
         property string genre: ''
+        property string genreName:  ''
 
         MultipleMoviesModel {
             id: moviesModel
@@ -35,9 +36,22 @@ Component {
             params: searchTerm ? searchTerm : BUTACA.getBrowseCriteria(genre)
         }
 
+        Text {
+            id: header
+            anchors.top: parent.top
+            anchors.margins: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            font.pixelSize: 40
+            text: genreName
+        }
+
         ListView {
             id: list
-            width: parent.width; height: parent.height
+            anchors { top: header.bottom; left: parent.left; right: parent.right }
+            anchors.margins: 20
+            width: parent.width; height: parent.height - header.height - 40
+            clip: true
             model: moviesModel
             delegate: MultipleMoviesDelegate {}
         }
@@ -45,7 +59,7 @@ Component {
         ScrollBar {
             scrollArea: list;
             height: list.height; width: 8;
-            anchors.right: parent.right
+            anchors { top: list.top; right: list.right; bottom: list.bottom }
         }
     }
 }
