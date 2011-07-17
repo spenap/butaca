@@ -24,7 +24,7 @@ Item {
     id: genresDelegate
     width: genresDelegate.ListView.view.width; height: 80
 
-    BasicMovieView { id: basicMovieView }
+    MultipleMoviesView { id: multipleMovieView }
 
     Rectangle {
         anchors.fill: content
@@ -34,7 +34,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: { tabGroup.currentTab.push(basicMovieView, {genre: genreId}) }
+        onClicked: { tabGroup.currentTab.push(multipleMovieView , {genre: genreId}) }
     }
 
     Item {

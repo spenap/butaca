@@ -27,7 +27,7 @@ Component {
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
 
-        BasicMovieView { id: basicMovieView }
+        MultipleMoviesView { id: multipleMoviesView }
         PeopleView { id: peopleView }
 
         Column {
@@ -43,7 +43,7 @@ Component {
                     text: 'Search'
                     width: 100
                     onClicked: {
-                        var searchView = searchCategory.checkedButton==movieSearch ? basicMovieView : peopleView
+                        var searchView = searchCategory.checkedButton==movieSearch ? multipleMoviesView : peopleView
                         tabGroup.currentTab.push(searchView, {searchTerm: searchInput.text})
                     }
                 }

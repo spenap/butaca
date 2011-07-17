@@ -30,7 +30,7 @@ Item {
         return dateParts[0]
     }
 
-    DetailedMovieView { id: detailedMovieView }
+    SingleMovieView { id: singleMovieView }
 
     Rectangle {
         anchors.fill: content
@@ -40,7 +40,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: { tabGroup.currentTab.push(detailedMovieView, { movieId: tmdbId }) }
+        onClicked: { tabGroup.currentTab.push(singleMovieView, { movieId: tmdbId }) }
     }
 
     Row {

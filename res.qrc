@@ -1,14 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
-        <file>qml/BasicMovieDelegate.qml</file>
-        <file>qml/BasicMovieModel.qml</file>
-        <file>qml/BasicMovieView.qml</file>
+        <file>qml/MultipleMoviesDelegate.qml</file>
+        <file>qml/MultipleMoviesModel.qml</file>
+        <file>qml/MultipleMoviesView.qml</file>
         <file>qml/BrowseGenresView.qml</file>
         <file>qml/ButacaToolBar.qml</file>
-        <file>qml/DetailedMovieDelegate.qml</file>
-        <file>qml/DetailedMovieModel.qml</file>
-        <file>qml/DetailedMovieView.qml</file>
+        <file>qml/SingleMovieDelegate.qml</file>
+        <file>qml/SingleMovieModel.qml</file>
+        <file>qml/SingleMovieView.qml</file>
         <file>qml/GenresDelegate.qml</file>
         <file>qml/GenresModel.qml</file>
         <file>qml/HomeView.qml</file>

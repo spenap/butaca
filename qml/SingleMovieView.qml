@@ -19,33 +19,24 @@
 
 import QtQuick 1.1
 import com.meego 1.0
-import "butacautils.js" as BUTACA
 
 Component {
-    id: basicMovieView
+    id: singleMovieView
 
     Page {
+        property string movieId
         tools: commonTools
-        property string searchTerm: ''
-        property string genre: ''
+        width: parent.width; height: parent.height
 
-        BasicMovieModel {
-            id: moviesModel
-            apiMethod: searchTerm ? BUTACA.TMDB_MOVIE_SEARCH : BUTACA.TMDB_MOVIE_BROWSE
-            params: searchTerm ? searchTerm : BUTACA.getBrowseCriteria(genre)
-        }
+        SingleMovieModel { id: moviesModel; params: movieId }
 
         ListView {
             id: list
-            width: parent.width; height: parent.height
+            width: parent.width
+            height: parent.height
             model: moviesModel
-            delegate: BasicMovieDelegate {}
-        }
-
-        ScrollBar {
-            scrollArea: list;
-            height: list.height; width: 8;
-            anchors.right: parent.right
+            interactive: false
+            delegate: SingleMovieDelegate {}
         }
     }
 }

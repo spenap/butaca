@@ -22,14 +22,14 @@ OTHER_FILES += \
     qml/HomeView.qml \
     qml/GenresModel.qml \
     qml/GenresDelegate.qml \
-    qml/DetailedMovieView.qml \
-    qml/DetailedMovieModel.qml \
-    qml/DetailedMovieDelegate.qml \
+    qml/SingleMovieView.qml \
+    qml/SingleMovieModel.qml \
+    qml/SingleMovieDelegate.qml \
     qml/ButacaToolBar.qml \
     qml/BrowseGenresView.qml \
-    qml/BasicMovieView.qml \
-    qml/BasicMovieModel.qml \
-    qml/BasicMovieDelegate.qml \
+    qml/MultipleMoviesView.qml \
+    qml/MultipleMoviesModel.qml \
+    qml/MultipleMoviesDelegate.qml \
     butaca.desktop \
     butaca.png \
     qml/images/scrollbar.png \
