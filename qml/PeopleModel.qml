@@ -18,27 +18,23 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.meego 1.0
+import "butacautils.js" as BUTACA
 
+// See http://api.themoviedb.org/2.1/methods/Person.search
 XmlListModel {
 
-    property string apiKey: '249e1a42df9bee09fac5e92d3a51396b'
-    property string baseUrl: 'http://api.themoviedb.org/2.1/'
-    property string language: 'en'
-    property string format: 'xml'
-    property string apiMethod: 'Person.search'
     property string params: ''
 
-    source: baseUrl + apiMethod + '/' + language + '/' + format + '/'+ apiKey + params
-    query: '/OpenSearchDescription/people/person'
+    source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, params)
+    query: BUTACA.TMDB_PERSON_QUERY
 
-    XmlRole { name: "personId"; query: "id/string()" }
-    XmlRole { name: "personName"; query: "name/string()" }
-    XmlRole { name: "popularity"; query: "popularity/number()" }
     XmlRole { name: "score"; query: "score/number()" }
+    XmlRole { name: "popularity"; query: "popularity/number()" }
+    XmlRole { name: "personName"; query: "name/string()" }
+    XmlRole { name: "personId"; query: "id/string()" }
     XmlRole { name: "biography"; query: "biography/string()" }
     XmlRole { name: "url"; query: "url/string()" }
-    XmlRole { name: "version"; query: "version/number()" }
     XmlRole { name: "thumbImage"; query: "images/image[@size='thumb' and @type='profile'][1]/@url/string()" }
+    XmlRole { name: "version"; query: "version/number()" }
     XmlRole { name: "lastModified"; query: "last_modified_at/string()" }
 }

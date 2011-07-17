@@ -30,7 +30,7 @@ Component {
 
         PeopleModel {
             id: peopleModel
-            params: '/' + searchTerm
+            params: searchTerm
         }
 
         ListView {
