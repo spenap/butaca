@@ -31,17 +31,30 @@ Component {
             id: genresModel
         }
 
+        Text {
+            id: header
+            anchors.top: parent.top
+            anchors.margins: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            font.pixelSize: 40
+            text: 'Movie genres'
+        }
+
         ListView {
             id: list
-            width: parent.width; height: parent.height
+            anchors { top: header.bottom; left: parent.left; right: parent.right }
+            anchors.margins: 20
             model: genresModel
+            width: parent.width; height: parent.height - header.height - 40
+            clip: true
             delegate: GenresDelegate { }
         }
 
         ScrollBar {
             scrollArea: list;
             height: list.height; width: 8;
-            anchors.right: parent.right
+            anchors { top: list.top; right: list.right; bottom: list.bottom }
         }
     }
 }
