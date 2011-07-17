@@ -22,9 +22,11 @@ import com.meego 1.0
 
 ToolBarLayout {
     id: commonTools
+    visible: false
 
     ToolIcon {
         platformIconId: "toolbar-back";
+        visible: parent.visible;
         onClicked: {
             pageStack.pop()
         }

@@ -25,8 +25,6 @@ Component {
     id: welcomeView
 
     Page {
-        tools: commonTools
-
         orientationLock: PageOrientation.LockPortrait
 
         ButacaToolBar { id: commonTools }
