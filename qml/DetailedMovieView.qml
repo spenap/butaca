@@ -28,7 +28,7 @@ Component {
         tools: commonTools
         width: parent.width; height: parent.height
 
-        DetailedMovieModel { id: moviesModel }
+        DetailedMovieModel { id: moviesModel; params: movieId }
 
         ListView {
             id: list
