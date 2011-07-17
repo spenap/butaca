@@ -19,33 +19,92 @@
 
 import QtQuick 1.1
 import com.meego 1.0
-import QtWebKit 1.0
+import com.nokia.extras 1.0
 
 Component {
     id: welcomeView
 
     Page {
-        Column {
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.margins: 20
-            spacing: 10
+        tools: commonTools
 
-            Text {
-                text: '<b>Butaca</b>'
-                textFormat: Text.RichText
-                font.pointSize: 40
+        orientationLock: PageOrientation.LockPortrait
+
+        ButacaToolBar { id: commonTools }
+        BrowseGenresView { id: browseView }
+        SearchView { id: searchView }
+        ShowtimesView { id: showtimesView }
+
+
+        /* Model containing the actions: browse, search and shows */
+        ListModel {
+            id: menuModel
+
+            ListElement {
+                title: 'Movie genres'
+                subtitle: ''
+                action: 0
             }
-            Text {
-                text: '<i>And enjoy the show...</i>'
-                textFormat: Text.RichText
-                font.pointSize: 25
+
+            ListElement {
+                title: 'Cinemas'
+                subtitle: ''
+                action: 1
+            }
+
+            ListElement {
+                title: 'Search'
+                subtitle: ''
+                action: 2
             }
         }
 
-        Image {
-            anchors.bottom: parent.bottom
-            source: 'images/butaca-bg.jpg'
+        Text {
+            id: mainHeader
+            anchors.top: parent.top
+            anchors.margins: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            font.pixelSize: 40
+            text: 'Enjoy the show!'
+        }
+
+        ListView {
+            id: list
+            anchors {top: mainHeader.bottom; left: parent.left; right: parent.right }
+            anchors.margins: 20
+            width: parent.width; height: parent.height / 2
+            model: menuModel
+            interactive: false
+            delegate: ListDelegate {
+
+                /* More indicator */
+                Item {
+                    id: viewDetails
+                    width: moreIndicator.width + 10
+                    height: parent.height
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.right: parent.right
+
+                    MoreIndicator {
+                        id: moreIndicator
+                        anchors.centerIn: parent
+                    }
+                }
+
+                onClicked: {
+                    switch (action) {
+                    case 0:
+                        appWindow.pageStack.push(browseView)
+                        break;
+                    case 1:
+                        appWindow.pageStack.push(showtimesView)
+                        break;
+                    case 2:
+                        appWindow.pageStack.push(searchView)
+                        break;
+                    }
+                }
+            }
         }
     }
 }

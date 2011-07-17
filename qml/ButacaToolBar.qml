@@ -22,35 +22,11 @@ import com.meego 1.0
 
 ToolBarLayout {
     id: commonTools
-    visible: false
 
     ToolIcon {
         platformIconId: "toolbar-back";
-        enabled: (tabGroup.currentTab != undefined && tabGroup.currentTab.depth > 1) ? true : false
         onClicked: {
-            tabGroup.currentTab.pop()
-        }
-    }
-
-    ButtonRow {
-        TabButton {
-            text: "Home"
-            tab: homeTab
-        }
-
-        TabButton {
-            text: "Search"
-            tab: searchTab
-        }
-
-        TabButton {
-            text: "Browse"
-            tab: browseTab
-        }
-
-        TabButton {
-            text: "Shows"
-            tab: showtimesTab
+            pageStack.pop()
         }
     }
 }

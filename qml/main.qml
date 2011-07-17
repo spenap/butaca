@@ -25,5 +25,5 @@ PageStackWindow {
 
     initialPage: mainPage
 
-    HomeView { id: mainPage }
+    WelcomeView { id: mainPage }
 }

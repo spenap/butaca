@@ -34,7 +34,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: { tabGroup.currentTab.push(multipleMovieView , {genre: genreId}) }
+        onClicked: { pageStack.push(multipleMovieView , {genre: genreId}) }
     }
 
     Item {

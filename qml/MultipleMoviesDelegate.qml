@@ -35,7 +35,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: { tabGroup.currentTab.push(singleMovieView, { movieId: tmdbId }) }
+        onClicked: { pageStack.push(singleMovieView, { movieId: tmdbId }) }
     }
 
     Row {

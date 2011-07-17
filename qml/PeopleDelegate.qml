@@ -34,7 +34,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: { tabGroup.currentTab.push(personView, { person: personId })}
+        onClicked: { pageStack.push(personView, { person: personId })}
     }
 
     Item {

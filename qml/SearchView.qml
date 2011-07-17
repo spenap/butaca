@@ -27,6 +27,8 @@ Component {
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
 
+        tools: commonTools
+
         MultipleMoviesView { id: multipleMoviesView }
         PeopleView { id: peopleView }
 
@@ -44,7 +46,7 @@ Component {
                     width: 100
                     onClicked: {
                         var searchView = searchCategory.checkedButton==movieSearch ? multipleMoviesView : peopleView
-                        tabGroup.currentTab.push(searchView, {searchTerm: searchInput.text})
+                        pageStack.push(searchView, {searchTerm: searchInput.text})
                     }
                 }
             }
