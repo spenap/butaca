@@ -19,16 +19,11 @@
 
 import QtQuick 1.1
 import com.nokia.extras 1.0
+import "butacautils.js" as BUTACA
 
 Item {
     id: movieDelegate
     width: movieDelegate.ListView.view.width; height: 230
-
-    function getYear(date) {
-        /* This asumes a date in yyyy-mm-dd */
-        var dateParts = date.split('-');
-        return dateParts[0]
-    }
 
     SingleMovieView { id: singleMovieView }
 
@@ -69,7 +64,7 @@ Item {
                 id: titleText
                 width: parent.width
                 font.pixelSize: 26
-                text: '<b>' + title + '</b>' + ' (' + getYear(released) +')'
+                text: '<b>' + title + '</b>' + ' (' + BUTACA.getYearFromDate(released) +')'
                 wrapMode: Text.WordWrap
             }
 

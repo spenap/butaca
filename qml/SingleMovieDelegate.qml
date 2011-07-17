@@ -19,28 +19,11 @@
 
 import QtQuick 1.1
 import com.nokia.extras 1.0
+import "butacautils.js" as BUTACA
 
 Item {
     id: movieDelegate
     width: movieDelegate.ListView.view.width; height: movieDelegate.ListView.view.height
-
-    function getYear(date) {
-        /* This asumes a date in yyyy-mm-dd */
-        var dateParts = date.split('-');
-        if (dateParts) {
-            return dateParts[0]
-        }
-        return ' - '
-    }
-
-    function getTrailerThumbnail(trailerUrl) {
-        var idFirstIndex = trailerUrl.indexOf('=')
-        var idLastIndex = trailerUrl.lastIndexOf('&')
-        var videoId = idLastIndex > idFirstIndex ?
-                trailerUrl.substring(idFirstIndex + 1, idLastIndex) :
-                trailerUrl.substring(idFirstIndex + 1)
-        return 'http://img.youtube.com/vi/' + videoId + '/1.jpg'
-    }
 
     /* Header: title (year), tagline and rating */
     Column {
@@ -54,7 +37,7 @@ Item {
             id: titleText
             width: parent.width
             font.pixelSize: 26
-            text: '<b>' + title + '</b>' + ' (' + getYear(released) +')'
+            text: '<b>' + title + '</b>' + ' (' + BUTACA.getYearFromDate(released) +')'
             wrapMode: Text.WordWrap
         }
 
@@ -134,7 +117,7 @@ Item {
             anchors.topMargin: 10
             anchors.leftMargin: 10
             width: 120; height: 90
-            source: getTrailerThumbnail(trailer)
+            source: BUTACA.getTrailerThumbnail(trailer)
 
             MouseArea {
                 anchors.fill: trailerImage

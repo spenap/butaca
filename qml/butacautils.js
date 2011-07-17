@@ -88,8 +88,8 @@ function getBrowseCriteria(genreId) {
  */
 function getYearFromDate(date) {
     /* This asumes a date in yyyy-mm-dd */
-    var dateParts = date.split('-');
-    if (dateParts) {
+    if (date) {
+        var dateParts = date.split('-');
         return dateParts[0]
     }
     return ' - '
@@ -102,11 +102,14 @@ function getYearFromDate(date) {
  * @return {string} The url of the thumbnail for the trailer
  */
 function getTrailerThumbnail(trailerUrl) {
-    var THUMB_SIZE = '/1.jpg'
-    var idFirstIndex = trailerUrl.indexOf('=')
-    var idLastIndex = trailerUrl.lastIndexOf('&')
-    var videoId = idLastIndex > idFirstIndex ?
-            trailerUrl.substring(idFirstIndex + 1, idLastIndex) :
-            trailerUrl.substring(idFirstIndex + 1)
-    return 'http://img.youtube.com/vi/' + videoId + THUMB_SIZE
+    if (trailerUrl) {
+        var THUMB_SIZE = '/1.jpg'
+        var idFirstIndex = trailerUrl.indexOf('=')
+        var idLastIndex = trailerUrl.lastIndexOf('&')
+        var videoId = idLastIndex > idFirstIndex ?
+                trailerUrl.substring(idFirstIndex + 1, idLastIndex) :
+                trailerUrl.substring(idFirstIndex + 1)
+        return 'http://img.youtube.com/vi/' + videoId + THUMB_SIZE
+    }
+    return ''
 }
