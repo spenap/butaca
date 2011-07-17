@@ -19,6 +19,7 @@
 
 import QtQuick 1.1
 import com.meego 1.0
+import "butacautils.js" as BUTACA
 
 Component {
     id: basicMovieView
@@ -31,8 +32,8 @@ Component {
 
         BasicMovieModel {
             id: moviesModel
-            apiMethod: searchTerm ? 'Movie.search' : 'Movie.browse'
-            params: searchTerm ? '/' + searchTerm : browseCriteria
+            apiMethod: searchTerm ? BUTACA.TMDB_MOVIE_SEARCH : BUTACA.TMDB_MOVIE_BROWSE
+            params: searchTerm ? searchTerm : browseCriteria
         }
 
         ListView {
