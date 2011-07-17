@@ -64,12 +64,14 @@ Component {
                         moviesModel.reload()
                         movieList.visible = true
                         peopleList.visible = false
+                        scrollDecorator.flickableItem = movieList
                     } else if (searchCategory.checkedButton == peopleSearch) {
                         moviesModel.source = ''
                         peopleModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, searchTerm)
                         peopleModel.reload()
                         peopleList.visible = true
                         movieList.visible = false
+                        scrollDecorator.flickableItem = peopleList
                     }
                 }
             }
@@ -122,6 +124,10 @@ Component {
             clip: true
             model: peopleModel
             delegate: PeopleDelegate {}
+        }
+
+        ScrollDecorator {
+            id: scrollDecorator
         }
     }
 }

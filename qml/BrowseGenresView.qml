@@ -51,10 +51,8 @@ Component {
             delegate: GenresDelegate { }
         }
 
-        ScrollBar {
-            scrollArea: list;
-            height: list.height; width: 8;
-            anchors { top: list.top; right: list.right; bottom: list.bottom }
+        ScrollDecorator {
+            flickableItem: list
         }
     }
 }

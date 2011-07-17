@@ -11,14 +11,12 @@ OTHER_FILES += \
     qml/WelcomeView.qml \
     qml/ShowtimesView.qml \
     qml/SearchView.qml \
-    qml/ScrollBar.qml \
     qml/PersonView.qml \
     qml/PersonModel.qml \
     qml/PersonDelegate.qml \
     qml/PeopleView.qml \
     qml/PeopleModel.qml \
     qml/PeopleDelegate.qml \
-    qml/Loading.qml \
     qml/GenresModel.qml \
     qml/GenresDelegate.qml \
     qml/SingleMovieView.qml \
@@ -31,7 +29,6 @@ OTHER_FILES += \
     qml/MultipleMoviesDelegate.qml \
     butaca.desktop \
     butaca.png \
-    qml/images/scrollbar.png \
     qml/images/loading.png \
     qml/images/butaca-bg.jpg \
     qml/butacautils.js

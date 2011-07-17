@@ -11,20 +11,16 @@
         <file>qml/SingleMovieView.qml</file>
         <file>qml/GenresDelegate.qml</file>
         <file>qml/GenresModel.qml</file>
-        <file>qml/Loading.qml</file>
         <file>qml/PeopleDelegate.qml</file>
         <file>qml/PeopleModel.qml</file>
         <file>qml/PeopleView.qml</file>
         <file>qml/PersonDelegate.qml</file>
         <file>qml/PersonModel.qml</file>
         <file>qml/PersonView.qml</file>
-        <file>qml/ScrollBar.qml</file>
         <file>qml/SearchView.qml</file>
         <file>qml/ShowtimesView.qml</file>
         <file>qml/WelcomeView.qml</file>
         <file>qml/images/butaca-bg.jpg</file>
-        <file>qml/images/loading.png</file>
-        <file>qml/images/scrollbar.png</file>
         <file>qml/butacautils.js</file>
     </qresource>
 </RCC>

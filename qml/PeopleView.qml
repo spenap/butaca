@@ -40,10 +40,8 @@ Component {
             delegate: PeopleDelegate { }
         }
 
-        ScrollBar {
-            scrollArea: list;
-            height: list.height; width: 8;
-            anchors.right: parent.right
+        ScrollDecorator {
+            flickableItem: list
         }
     }
 }
