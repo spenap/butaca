@@ -18,19 +18,13 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.meego 1.0
+import "butacautils.js" as BUTACA
 
+// See http://api.themoviedb.org/2.1/methods/Genres.getList
 XmlListModel {
 
-    property string apiKey: '249e1a42df9bee09fac5e92d3a51396b'
-    property string baseUrl: 'http://api.themoviedb.org/2.1/'
-    property string language: 'en'
-    property string format: 'xml'
-    property string apiMethod: 'Genres.getList'
-
-    source: baseUrl + apiMethod + '/' + language + '/' + format + '/'+ apiKey
-    query: '/OpenSearchDescription/genres/genre'
-
+    source: BUTACA.getTMDbSource(BUTACA.TMDB_GENRES_GET_LIST, '')
+    query: BUTACA.TMDB_GENRES_QUERY
 
     XmlRole { name: "genreName"; query: "@name/string()" }
     XmlRole { name: "genreId"; query: "id/string()" }
