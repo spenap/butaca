@@ -19,54 +19,109 @@
 
 import QtQuick 1.1
 import com.meego 1.0
+import "butacautils.js" as BUTACA
 
 Component {
     id: searchView
 
     Page {
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-
         tools: commonTools
+
+        property alias searchTerm: searchInput.text
 
         MultipleMoviesView { id: multipleMoviesView }
         PeopleView { id: peopleView }
 
-        Column {
-            Row {
-                width: parent.width
-                TextField {
-                    id: searchInput
-                    placeholderText: "Search"
-                    width: parent.width - searchButton.width
-                }
-                Button {
-                    id: searchButton
-                    text: 'Search'
-                    width: 100
-                    onClicked: {
-                        var searchView = searchCategory.checkedButton==movieSearch ? multipleMoviesView : peopleView
-                        pageStack.push(searchView, {searchTerm: searchInput.text})
+        Text {
+            id: header
+            anchors.top: parent.top
+            anchors.margins: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            font.pixelSize: 40
+            text: 'Search'
+        }
+
+        Row {
+            id: searchArea
+            anchors { top: header.bottom; left: parent.left; right: parent.right }
+            anchors.margins: 20
+            spacing: 10
+
+            TextField {
+                id: searchInput
+                placeholderText: "Enter search terms"
+                width: parent.width - searchButton.width
+            }
+            Button {
+                id: searchButton
+                text: 'Search'
+                width: 100
+                onClicked: {
+                    if (searchCategory.checkedButton == movieSearch) {
+                        peopleModel.source = ''
+                        moviesModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, searchTerm)
+                        moviesModel.reload()
+                        movieList.visible = true
+                        peopleList.visible = false
+                    } else if (searchCategory.checkedButton == peopleSearch) {
+                        moviesModel.source = ''
+                        peopleModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, searchTerm)
+                        peopleModel.reload()
+                        peopleList.visible = true
+                        movieList.visible = false
                     }
                 }
             }
+        }
 
-            ButtonRow {
-                id: searchCategory
+        ButtonRow {
+            id: searchCategory
+            anchors { top: searchArea.bottom; left: parent.left; right: parent.right }
+            anchors.margins: 20
 
-                Button {
-                    id: movieSearch
-                    text: 'Movies'
-                }
-                Button {
-                    id: peopleSearch
-                    text: 'People'
-                }
-                Button {
-                    id: showSearch
-                    text: 'Shows'
-                }
+            Button {
+                id: movieSearch
+                text: 'Movies'
             }
+            Button {
+                id: peopleSearch
+                text: 'People'
+            }
+            Button {
+                id: showSearch
+                text: 'Shows'
+            }
+        }
+
+        MultipleMoviesModel {
+            id: moviesModel
+            source: ''
+        }
+
+        PeopleModel {
+            id: peopleModel
+            source: ''
+        }
+
+        ListView {
+            id: movieList
+            anchors { top: searchCategory.bottom; left: parent.left; right: parent.right }
+            anchors.margins: 20
+            width: parent.width; height: parent.height - header.height - 40
+            clip: true
+            model: moviesModel
+            delegate: MultipleMoviesDelegate {}
+        }
+
+        ListView {
+            id: peopleList
+            anchors { top: searchCategory.bottom; left: parent.left; right: parent.right }
+            anchors.margins: 20
+            width: parent.width; height: parent.height - header.height - 40
+            clip: true
+            model: peopleModel
+            delegate: PeopleDelegate {}
         }
     }
 }
