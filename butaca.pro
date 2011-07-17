@@ -35,7 +35,8 @@ OTHER_FILES += \
     butaca.png \
     qml/images/scrollbar.png \
     qml/images/loading.png \
-    qml/images/butaca-bg.jpg
+    qml/images/butaca-bg.jpg \
+    qml/butacautils.js
 
 RESOURCES += \
     res.qrc

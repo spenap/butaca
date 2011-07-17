@@ -27,5 +27,6 @@
         <file>qml/images/butaca-bg.jpg</file>
         <file>qml/images/loading.png</file>
         <file>qml/images/scrollbar.png</file>
+        <file>qml/butacautils.js</file>
     </qresource>
 </RCC>
