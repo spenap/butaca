@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
-        <file>qml/BaseMovieModel.qml</file>
         <file>qml/BasicMovieDelegate.qml</file>
         <file>qml/BasicMovieModel.qml</file>
         <file>qml/BasicMovieView.qml</file>

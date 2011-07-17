@@ -30,7 +30,6 @@ OTHER_FILES += \
     qml/BasicMovieView.qml \
     qml/BasicMovieModel.qml \
     qml/BasicMovieDelegate.qml \
-    qml/BaseMovieModel.qml \
     butaca.desktop \
     butaca.png \
     qml/images/scrollbar.png \
