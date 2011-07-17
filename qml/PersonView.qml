@@ -28,7 +28,7 @@ Component {
         tools: commonTools
         width: parent.width; height: parent.height
 
-        PersonModel { id: personModel }
+        PersonModel { id: personModel; params: person }
 
         ListView {
             id: list

@@ -18,13 +18,25 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.meego 1.0
+import "butacautils.js" as BUTACA
 
-PeopleModel {
-    id: personModel
+// See http://api.themoviedb.org/2.1/methods/Person.getInfo
+XmlListModel {
 
-    apiMethod: 'Person.getInfo'
-    params: '/' + person
+    property string params: ''
 
+    source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_GET_INFO, params)
+    query: BUTACA.TMDB_PERSON_QUERY
+
+    XmlRole { name: "popularity"; query: "popularity/number()" }
+    XmlRole { name: "personName"; query: "name/string()" }
+    XmlRole { name: "alsoKnownAs"; query: "also_known_as/string()" }
+    XmlRole { name: "personId"; query: "id/string()" }
+    XmlRole { name: "biography"; query: "biography/string()" }
+    XmlRole { name: "knownMovies"; query: "known_movies/number()" }
+    XmlRole { name: "birthday"; query: "birthday/string()" }
+    XmlRole { name: "url"; query: "url/string()" }
     XmlRole { name: "profileImage"; query: "images/image[@size='profile' and @type='profile'][1]/@url/string()" }
+    XmlRole { name: "version"; query: "version/number()" }
+    XmlRole { name: "lastModified"; query: "last_modified_at/string()" }
 }
