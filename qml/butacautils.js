@@ -40,6 +40,11 @@ var TMDB_PERSON_QUERY = '/OpenSearchDescription/people/person'
 var TMDB_GENRES_GET_LIST = 'Genres.getList'
 var TMDB_GENRES_QUERY = '/OpenSearchDescription/genres/genre'
 
+/* Basic browse parameters */
+var TMDB_BROWSE_ORDER_BY = 'rating'
+var TMDB_BROWSE_ORDER = 'desc'
+var TMDB_BROWSE_PER_PAGE = '10'
+
 /**
  * Builds the source for a model using TMDb services.
  *
@@ -59,6 +64,19 @@ function getTMDbSource(apiMethod, params) {
         source += (params.charAt(0) == '?' ? params : '/' + params)
     }
     return source
+}
+
+/**
+ * Gets the browse criteria given a genre
+ *
+ * @param {string} genre to use for browsing
+ * @return {string} browse criteria
+ */
+function getBrowseCriteria(genreId) {
+    return '?order_by=' + TMDB_BROWSE_ORDER_BY +
+            '&order=' + TMDB_BROWSE_ORDER +
+            '&per_page=' + TMDB_BROWSE_PER_PAGE +
+            '&genres=' + genreId
 }
 
 /**

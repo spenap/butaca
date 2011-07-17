@@ -28,12 +28,11 @@ Component {
         tools: commonTools
         property string searchTerm: ''
         property string genre: ''
-        property string browseCriteria: '?order_by=rating&order=desc&per_page=10' + (genre ? '&genres=' + genre : '')
 
         BasicMovieModel {
             id: moviesModel
             apiMethod: searchTerm ? BUTACA.TMDB_MOVIE_SEARCH : BUTACA.TMDB_MOVIE_BROWSE
-            params: searchTerm ? searchTerm : browseCriteria
+            params: searchTerm ? searchTerm : BUTACA.getBrowseCriteria(genre)
         }
 
         ListView {
