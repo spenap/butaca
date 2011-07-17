@@ -22,7 +22,7 @@ import com.meego 1.0
 import "butacautils.js" as BUTACA
 
 Component {
-    id: multipleMoviesView
+    id: multipleMoviesPage
 
     Page {
         tools: commonTools
@@ -30,14 +30,8 @@ Component {
         property string genre: ''
         property string genreName:  ''
 
-        MultipleMoviesModel {
-            id: moviesModel
-            apiMethod: searchTerm ? BUTACA.TMDB_MOVIE_SEARCH : BUTACA.TMDB_MOVIE_BROWSE
-            params: searchTerm ? searchTerm : BUTACA.getBrowseCriteria(genre)
-        }
-
         Text {
-            id: header
+            id: headerText
             anchors.top: parent.top
             anchors.margins: 20
             anchors.horizontalCenter: parent.horizontalCenter
@@ -46,18 +40,49 @@ Component {
             text: genreName
         }
 
-        ListView {
-            id: list
-            anchors { top: header.bottom; left: parent.left; right: parent.right }
+        Item {
+            id: moviesContent
+            anchors { top: headerText.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
             anchors.margins: 20
-            width: parent.width; height: parent.height - header.height - 40
-            clip: true
-            model: moviesModel
-            delegate: MultipleMoviesDelegate {}
-        }
 
-        ScrollDecorator {
-            flickableItem: list
+            MultipleMoviesModel {
+                id: moviesModel
+                apiMethod: searchTerm ? BUTACA.TMDB_MOVIE_SEARCH : BUTACA.TMDB_MOVIE_BROWSE
+                params: searchTerm ? searchTerm : BUTACA.getBrowseCriteria(genre)
+                onStatusChanged: {
+                    if (status == XmlListModel.Ready) {
+                        moviesContent.state = 'Ready'
+                    }
+                }
+            }
+
+            ListView {
+                id: list
+                anchors.fill: parent
+                clip: true
+                model: moviesModel
+                delegate: MultipleMoviesDelegate {}
+            }
+
+            BusyIndicator {
+                id: busyIndicator
+                visible: true
+                running: true
+                platformStyle: BusyIndicatorStyle { size: 'large' }
+                anchors.centerIn: parent
+            }
+
+            ScrollDecorator {
+                flickableItem: list
+            }
+
+            states: [
+                State {
+                    name: 'Ready'
+                    PropertyChanges  { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges  { target: list; visible: true }
+                }
+            ]
         }
     }
 }
