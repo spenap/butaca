@@ -1,7 +1,10 @@
 QT+= declarative
 
-SOURCES += main.cpp \
-    butacahelper.cpp
+SOURCES += src/main.cpp \
+    src/butacahelper.cpp
+
+HEADERS += \
+    src/butacahelper.h
 
 OTHER_FILES += \
     qml/main.qml \
@@ -54,6 +57,3 @@ icon.files = butaca.png
 icon.path  = /usr/share/icons/hicolor/64x64/apps/
 
 INSTALLS += butacascript desktop icon
-
-HEADERS += \
-    butacahelper.h
