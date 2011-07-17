@@ -27,10 +27,6 @@ Component {
     Page {
         tools: commonTools
 
-        GenresModel {
-            id: genresModel
-        }
-
         Text {
             id: header
             anchors.top: parent.top
@@ -41,18 +37,47 @@ Component {
             text: 'Movie genres'
         }
 
-        ListView {
-            id: list
-            anchors { top: header.bottom; left: parent.left; right: parent.right }
+        Item {
+            id: genresContent
+            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
             anchors.margins: 20
-            model: genresModel
-            width: parent.width; height: parent.height - header.height - 40
-            clip: true
-            delegate: GenresDelegate { }
-        }
 
-        ScrollDecorator {
-            flickableItem: list
+            GenresModel {
+                id: genresModel
+                onStatusChanged: {
+                    if (status == XmlListModel.Ready) {
+                        genresContent.state = 'Ready'
+                    }
+                }
+            }
+
+            ListView {
+                id: list
+                model: genresModel
+                anchors.fill: parent
+                clip: true
+                delegate: GenresDelegate { }
+            }
+
+            ScrollDecorator {
+                flickableItem: list
+            }
+
+            BusyIndicator {
+                id: busyIndicator
+                visible: true
+                running: true
+                platformStyle: BusyIndicatorStyle { size: 'large' }
+                anchors.centerIn: parent
+            }
+
+            states: [
+                State {
+                    name: 'Ready'
+                    PropertyChanges  { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges  { target: list; visible: true }
+                }
+            ]
         }
     }
 }
