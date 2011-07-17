@@ -59,19 +59,9 @@ Component {
                 width: 100
                 onClicked: {
                     if (searchCategory.checkedButton == movieSearch) {
-                        peopleModel.source = ''
-                        moviesModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, searchTerm)
-                        moviesModel.reload()
-                        movieList.visible = true
-                        peopleList.visible = false
-                        scrollDecorator.flickableItem = movieList
+                        searchResults.state = 'MovieSearch'
                     } else if (searchCategory.checkedButton == peopleSearch) {
-                        moviesModel.source = ''
-                        peopleModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, searchTerm)
-                        peopleModel.reload()
-                        peopleList.visible = true
-                        movieList.visible = false
-                        scrollDecorator.flickableItem = peopleList
+                        searchResults.state = 'PeopleSearch'
                     }
                 }
             }
@@ -96,38 +86,72 @@ Component {
             }
         }
 
-        MultipleMoviesModel {
-            id: moviesModel
-            source: ''
-        }
-
-        PeopleModel {
-            id: peopleModel
-            source: ''
-        }
-
-        ListView {
-            id: movieList
-            anchors { top: searchCategory.bottom; left: parent.left; right: parent.right }
+        Item {
+            id: searchResults
+            anchors { top: searchCategory.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
             anchors.margins: 20
-            width: parent.width; height: parent.height - header.height - 40
-            clip: true
-            model: moviesModel
-            delegate: MultipleMoviesDelegate {}
-        }
 
-        ListView {
-            id: peopleList
-            anchors { top: searchCategory.bottom; left: parent.left; right: parent.right }
-            anchors.margins: 20
-            width: parent.width; height: parent.height - header.height - 40
-            clip: true
-            model: peopleModel
-            delegate: PeopleDelegate {}
-        }
+            MultipleMoviesModel {
+                id: moviesModel
+                source: ''
+                onStatusChanged: {
+                    if (status == XmlListModel.Ready) {
+                        busyIndicator.visible = false
+                        busyIndicator.running = false
+                    }
+                }
+            }
 
-        ScrollDecorator {
-            id: scrollDecorator
+            PeopleModel {
+                id: peopleModel
+                source: ''
+                onStatusChanged: {
+                    if (status == XmlListModel.Ready) {
+                        busyIndicator.visible = false
+                        busyIndicator.running = false
+                    }
+                }
+            }
+
+            PeopleDelegate { id: peopleDelegate }
+            MultipleMoviesDelegate { id: moviesDelegate }
+
+            ListView {
+                id: resultList
+                anchors.fill: parent
+                clip: true
+                model: undefined
+            }
+
+            BusyIndicator {
+                id: busyIndicator
+                visible: true
+                running: true
+                platformStyle: BusyIndicatorStyle { size: 'large' }
+                anchors.centerIn: parent
+            }
+
+            ScrollDecorator {
+                id: scrollDecorator
+                flickableItem: resultList
+            }
+
+            states: [
+                State {
+                    name: 'PeopleSearch'
+                    PropertyChanges  { target: resultList; model: peopleModel; delegate: peopleDelegate }
+                    PropertyChanges { target: peopleModel; source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, searchTerm) }
+                    PropertyChanges  { target: moviesModel; source: '' }
+                    PropertyChanges { target: busyIndicator; visible: true; running: true }
+                },
+                State {
+                    name: 'MovieSearch'
+                    PropertyChanges  { target: resultList; model: moviesModel; delegate: moviesDelegate }
+                    PropertyChanges { target: moviesModel; source: BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, searchTerm) }
+                    PropertyChanges  { target: peopleModel; source: '' }
+                    PropertyChanges { target: busyIndicator; visible: true; running: true }
+                }
+            ]
         }
     }
 }

@@ -20,47 +20,49 @@
 import QtQuick 1.1
 import com.nokia.extras 1.0
 
-Item {
-    id: peopleDelegate
-    width: peopleDelegate.ListView.view.width; height: 80
-
-    PersonView { id: personView }
-
-    Rectangle {
-        anchors.fill: content
-        color: "black"; opacity: 0.3
-        radius: 10
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: { pageStack.push(personView, { person: personId })}
-    }
-
+Component {
     Item {
-        id: content
-        anchors.fill: parent
-        anchors.margins: 10
+        id: peopleDelegate
+        width: peopleDelegate.ListView.view.width; height: 80
 
-        Text {
-            id: titleText
-            font.pixelSize: 26
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            text: personName
+        PersonView { id: personView }
+
+        Rectangle {
+            anchors.fill: content
+            color: "black"; opacity: 0.3
+            radius: 10
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: { pageStack.push(personView, { person: personId })}
         }
 
         Item {
-            id: viewDetails
-            width: moreIndicator.width + 10
-            height: parent.height
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
+            id: content
+            anchors.fill: parent
+            anchors.margins: 10
 
-            MoreIndicator {
-                id: moreIndicator
-                anchors.centerIn: parent
+            Text {
+                id: titleText
+                font.pixelSize: 26
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                text: personName
+            }
+
+            Item {
+                id: viewDetails
+                width: moreIndicator.width + 10
+                height: parent.height
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+
+                MoreIndicator {
+                    id: moreIndicator
+                    anchors.centerIn: parent
+                }
             }
         }
     }

@@ -21,80 +21,82 @@ import QtQuick 1.1
 import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
 
-Item {
-    id: movieDelegate
-    width: movieDelegate.ListView.view.width; height: 230
+Component {
+    Item {
+        id: movieDelegate
+        width: movieDelegate.ListView.view.width; height: 230
 
-    SingleMovieView { id: singleMovieView }
+        SingleMovieView { id: singleMovieView }
 
-    Rectangle {
-        anchors.fill: content
-        color: "black"; opacity: 0.3
-        radius: 10
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: { pageStack.push(singleMovieView, { movieId: tmdbId }) }
-    }
-
-    Row {
-        id: content
-        spacing: 10
-        anchors.margins: 5
-        anchors.fill: parent
-
-        Item {
-            id: moviePoster
-            width: 135
-            height: 160
-
-            Image {
-                source: poster
-                anchors.centerIn: parent
-            }
+        Rectangle {
+            anchors.fill: content
+            color: "black"; opacity: 0.3
+            radius: 10
         }
 
-        Column {
-            width: parent.width - moviePoster.width - viewDetails.width - 20
-            height: parent.height
+        MouseArea {
+            anchors.fill: parent
+            onClicked: { pageStack.push(singleMovieView, { movieId: tmdbId }) }
+        }
+
+        Row {
+            id: content
             spacing: 10
+            anchors.margins: 5
+            anchors.fill: parent
 
-            Text {
-                id: titleText
-                width: parent.width
-                font.pixelSize: 26
-                text: '<b>' + title + '</b>' + ' (' + BUTACA.getYearFromDate(released) +')'
-                wrapMode: Text.WordWrap
+            Item {
+                id: moviePoster
+                width: 135
+                height: 160
+
+                Image {
+                    source: poster
+                    anchors.centerIn: parent
+                }
             }
 
-            RatingIndicator {
-                ratingValue: rating
-                maximumValue: 10
-                count: votes
+            Column {
+                width: parent.width - moviePoster.width - viewDetails.width - 20
+                height: parent.height
+                spacing: 10
+
+                Text {
+                    id: titleText
+                    width: parent.width
+                    font.pixelSize: 26
+                    text: '<b>' + title + '</b>' + ' (' + BUTACA.getYearFromDate(released) +')'
+                    wrapMode: Text.WordWrap
+                }
+
+                RatingIndicator {
+                    ratingValue: rating
+                    maximumValue: 10
+                    count: votes
+                }
+
+                Text {
+                    id: overviewText
+                    width: parent.width - 5
+                    font.pixelSize: 20
+                    textFormat: Text.StyledText
+                    text: '<i>' + overview + '</i>'
+                    wrapMode: Text.WordWrap
+                    maximumLineCount: 5
+                    elide: Text.ElideRight
+                }
             }
 
-            Text {
-                id: overviewText
-                width: parent.width - 5
-                font.pixelSize: 20
-                textFormat: Text.StyledText
-                text: '<i>' + overview + '</i>'
-                wrapMode: Text.WordWrap
-                maximumLineCount: 5
-                elide: Text.ElideRight
-            }
-        }
+            Item {
+                id: viewDetails
+                width: moreIndicator.width + 10
+                height: parent.height
+                anchors.verticalCenter: parent.verticalCenter
 
-        Item {
-            id: viewDetails
-            width: moreIndicator.width + 10
-            height: parent.height
-            anchors.verticalCenter: parent.verticalCenter
-
-            MoreIndicator {
-                id: moreIndicator
-                anchors.centerIn: parent
+                MoreIndicator {
+                    id: moreIndicator
+                    anchors.centerIn: parent
+                }
             }
         }
     }
