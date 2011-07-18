@@ -2,6 +2,9 @@ Butaca is written by:
 
 Simon Pena <spena@igalia.com>
 
+Butaca's UX is being designed by Felipe Erias
+http://blogs.igalia.com/femorandeira/
+
 The movie information is retrieved from:
 
 * The Movie Database - http://www.themoviedb.org
@@ -20,3 +23,6 @@ http://www.flickr.com/photos/boyan_drenec/2084900516/
 
 The icon has been generated using the "Harmattan Icon Generator" by
 Javier De San Pedro Martin available at http://depot.javispedro.com/nit/hicg/
+
+The placeholders for person and movie view have been contributed by
+Tuomas Siipola.
