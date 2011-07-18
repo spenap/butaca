@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
+import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Item {
     id: movieDelegate
@@ -36,7 +37,8 @@ Item {
         Text {
             id: titleText
             width: parent.width
-            font.pixelSize: 26
+            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+            font.pixelSize: UIConstants.FONT_SLARGE
             text: '<b>' + title + '</b>' + ' (' + BUTACA.getYearFromDate(released) +')'
             wrapMode: Text.WordWrap
         }
@@ -44,7 +46,8 @@ Item {
         Text {
             id: taglineText
             width: parent.width
-            font.pixelSize: 24
+            font.pixelSize: UIConstants.FONT_DEFAULT
+            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
             text: '<i>' + tagline + '</i>'
             wrapMode: Text.WordWrap
             visible: text != ''
@@ -82,7 +85,8 @@ Item {
             Text {
                 id: movieFacts
                 width: parent.width - image.width
-                font.pixelSize: 22
+                font.pixelSize: UIConstants.FONT_LSMALL
+                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                 wrapMode: Text.WordWrap
                 text: '<b>Also known as:</b> ' + alternativeName + '<br />' +
                       '<b>Certification:</b> ' + certification + '<br />' +
@@ -99,8 +103,9 @@ Item {
             anchors.topMargin: 20
 
             width: parent.width
-            font.pixelSize: 20
+            font.pixelSize: UIConstants.FONT_SMALL
             text: overview
+            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
             wrapMode: Text.WordWrap
         }
 
@@ -108,7 +113,8 @@ Item {
             id: trailerHeader
             anchors.top: overviewText.bottom
             anchors.topMargin: 20
-            font.pixelSize: 26
+            font.pixelSize: UIConstants.FONT_SLARGE
+            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
             text: '<b>Movie trailer</b>'
         }
 

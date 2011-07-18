@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.meego 1.0
 import com.nokia.extras 1.0
+import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Component {
     id: browseGenresView
@@ -40,7 +41,7 @@ Component {
         Item {
             id: genresContent
             anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
-            anchors.margins: 20
+            anchors.margins: UIConstants.DEFAULT_MARGIN
 
             GenresModel {
                 id: genresModel

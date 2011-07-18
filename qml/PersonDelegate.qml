@@ -19,6 +19,7 @@
 
 import QtQuick 1.1
 import com.nokia.extras 1.0
+import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Item {
     id: personDelegate
@@ -31,8 +32,9 @@ Item {
 
         Text {
             id: nameText
-            font.pixelSize: 26
+            font.pixelSize: UIConstants.FONT_SLARGE
             text: personName
+            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
             wrapMode: Text.WordWrap
         }
 
@@ -57,7 +59,8 @@ Item {
                 Text {
                     id: biographyText
                     width: parent.width - image.width - 20
-                    font.pixelSize: 20
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                     text: biography
                     wrapMode: Text.WordWrap
                 }
