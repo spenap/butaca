@@ -20,18 +20,19 @@
 import QtQuick 1.1
 import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
+import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as UIConstants
 
 Component {
     Item {
         id: movieDelegate
 
-        property int titleSize: BUTACA.LIST_TILE_SIZE
+        property int titleSize: UIConstants.LIST_TILE_SIZE
         property int titleWeight: Font.Bold
-        property color titleColor: theme.inverted ? BUTACA.LIST_TITLE_COLOR_INVERTED : BUTACA.LIST_TITLE_COLOR
+        property color titleColor: theme.inverted ? UIConstants.LIST_TITLE_COLOR_INVERTED : UIConstants.LIST_TITLE_COLOR
 
-        property int subtitleSize: BUTACA.LIST_SUBTILE_SIZE
+        property int subtitleSize: UIConstants.LIST_SUBTILE_SIZE
         property int subtitleWeight: Font.Light
-        property color subtitleColor: theme.inverted ? BUTACA.LIST_SUBTITLE_COLOR_INVERTED : BUTACA.LIST_SUBTITLE_COLOR
+        property color subtitleColor: theme.inverted ? UIConstants.LIST_SUBTITLE_COLOR_INVERTED : UIConstants.LIST_SUBTITLE_COLOR
 
         width: movieDelegate.ListView.view.width; height: 150
 
