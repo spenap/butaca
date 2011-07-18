@@ -22,5 +22,6 @@
         <file>qml/images/butaca-bg.jpg</file>
         <file>qml/butacautils.js</file>
         <file>qml/images/movie-placeholder.svg</file>
+        <file>qml/images/person-placeholder.svg</file>
     </qresource>
 </RCC>

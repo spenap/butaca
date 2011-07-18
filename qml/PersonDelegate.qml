@@ -51,7 +51,7 @@ Item {
                     id: image
                     width: 190
                     height: 280
-                    source: profileImage
+                    source: profileImage ? profileImage : 'images/person-placeholder.svg'
                 }
 
                 Text {

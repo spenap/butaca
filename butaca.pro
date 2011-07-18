@@ -30,7 +30,8 @@ OTHER_FILES += \
     butaca.png \
     qml/images/butaca-bg.jpg \
     qml/butacautils.js \
-    qml/images/movie-placeholder.svg
+    qml/images/movie-placeholder.svg \
+    qml/images/person-placeholder.svg
 
 RESOURCES += \
     res.qrc
