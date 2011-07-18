@@ -25,7 +25,21 @@ Component {
 
     Page {
         property string movieId
-        tools: commonTools
+        tools: ToolBarLayout {
+
+               ToolIcon {
+                   iconId: "toolbar-back"; onClicked: pageStack.pop();
+               }
+
+               ToolIcon {
+                   anchors.horizontalCenter: parent.horizontalCenter
+                   iconId: "toolbar-favorite-unmark"
+                   enabled: false
+                   onClicked: {
+                       iconId = iconId == "toolbar-favorite-mark" ? "toolbar-favorite-unmark" : "toolbar-favorite-mark"
+                   }
+               }
+        }
         width: parent.width; height: parent.height
 
         SingleMovieModel { id: moviesModel; params: movieId }
