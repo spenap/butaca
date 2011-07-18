@@ -24,35 +24,47 @@ import "butacautils.js" as BUTACA
 Component {
     Item {
         id: movieDelegate
-        width: movieDelegate.ListView.view.width; height: 230
+
+        property int titleSize: BUTACA.LIST_TILE_SIZE
+        property int titleWeight: Font.Bold
+        property color titleColor: theme.inverted ? BUTACA.LIST_TITLE_COLOR_INVERTED : BUTACA.LIST_TITLE_COLOR
+
+        property int subtitleSize: BUTACA.LIST_SUBTILE_SIZE
+        property int subtitleWeight: Font.Light
+        property color subtitleColor: theme.inverted ? BUTACA.LIST_SUBTITLE_COLOR_INVERTED : BUTACA.LIST_SUBTITLE_COLOR
+
+        width: movieDelegate.ListView.view.width; height: 150
 
         SingleMovieView { id: singleMovieView }
 
-        Rectangle {
-            anchors.fill: content
-            color: "black"; opacity: 0.3
-            radius: 10
+        BorderImage {
+            id: background
+            anchors.fill: parent
+            visible: mouseArea.pressed
+            source: "image://theme/meegotouch-list-background-pressed-center"
         }
 
         MouseArea {
+            id: mouseArea
             anchors.fill: parent
             onClicked: { pageStack.push(singleMovieView, { movieId: tmdbId }) }
         }
 
         Row {
             id: content
-            spacing: 10
+            spacing: 15
             anchors.margins: 5
             anchors.fill: parent
 
-            Item {
+            Image {
                 id: moviePoster
-                width: 135
-                height: 160
-
-                Image {
-                    source: poster
-                    anchors.centerIn: parent
+                width: 95
+                height: 140
+                source: poster ? poster : 'images/movie-placeholder.svg'
+                onStatusChanged: {
+                    if (moviePoster.status == Image.Error) {
+                        moviePoster.source = 'images/movie-placeholder.svg'
+                    }
                 }
             }
 
@@ -64,26 +76,29 @@ Component {
                 Text {
                     id: titleText
                     width: parent.width
-                    font.pixelSize: 26
-                    text: '<b>' + title + '</b>' + ' (' + BUTACA.getYearFromDate(released) +')'
+                    elide: Text.ElideRight
+                    textFormat: Text.StyledText
+                    font.weight: movieDelegate.titleWeight
+                    font.pixelSize: movieDelegate.titleSize
+                    color: movieDelegate.titleColor
+                    maximumLineCount: 3
                     wrapMode: Text.WordWrap
-                }
-
-                RatingIndicator {
-                    ratingValue: rating
-                    maximumValue: 10
-                    count: votes
+                    text: title
                 }
 
                 Text {
-                    id: overviewText
-                    width: parent.width - 5
-                    font.pixelSize: 20
-                    textFormat: Text.StyledText
-                    text: '<i>' + overview + '</i>'
-                    wrapMode: Text.WordWrap
-                    maximumLineCount: 5
-                    elide: Text.ElideRight
+                    id: yearText
+                    width: parent.width
+                    font.weight: movieDelegate.subtitleWeight
+                    font.pixelSize: movieDelegate.subtitleSize
+                    color: movieDelegate.subtitleColor
+                    text: '(' + BUTACA.getYearFromDate(released) +')'
+                }
+
+                RatingIndicator {
+                    ratingValue: rating / 2
+                    maximumValue: 5
+                    count: votes
                 }
             }
 

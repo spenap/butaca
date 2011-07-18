@@ -45,6 +45,14 @@ var TMDB_BROWSE_ORDER_BY = 'rating'
 var TMDB_BROWSE_ORDER = 'desc'
 var TMDB_BROWSE_PER_PAGE = '10'
 
+/* Some system constants from /usr/lib/qt4/imports/com/nokia/extras/constants.js */
+var LIST_TITLE_COLOR = "#282828"
+var LIST_TITLE_COLOR_INVERTED = "#ffffff"
+var LIST_SUBTITLE_COLOR = "#505050"
+var LIST_SUBTITLE_COLOR_INVERTED = "#d2d2d2"
+var LIST_TILE_SIZE = 26
+var LIST_SUBTILE_SIZE = 22
+
 /**
  * Builds the source for a model using TMDb services.
  *
