@@ -19,7 +19,6 @@
         <file>qml/SearchView.qml</file>
         <file>qml/ShowtimesView.qml</file>
         <file>qml/WelcomeView.qml</file>
-        <file>qml/images/butaca-bg.jpg</file>
         <file>qml/butacautils.js</file>
         <file>qml/images/movie-placeholder.svg</file>
         <file>qml/images/person-placeholder.svg</file>
