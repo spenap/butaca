@@ -22,6 +22,7 @@ import com.meego 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Text {
+    anchors.topMargin: appWindow.inPortrait ? UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT : UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
     font.pixelSize: UIConstants.FONT_XLARGE
     color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
 }
