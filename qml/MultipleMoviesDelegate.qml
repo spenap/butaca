@@ -99,6 +99,7 @@ Component {
                     ratingValue: rating / 2
                     maximumValue: 5
                     count: votes
+                    inverted: theme.inverted
                 }
             }
 

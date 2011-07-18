@@ -54,6 +54,7 @@ Item {
             ratingValue: rating
             maximumValue: 10
             count: votes
+            inverted: theme.inverted
         }
     }
 
