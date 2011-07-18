@@ -30,13 +30,11 @@ Component {
         property string genre: ''
         property string genreName:  ''
 
-        Text {
+        ButacaHeader {
             id: headerText
             anchors.top: parent.top
-            anchors.margins: 20
             anchors.horizontalCenter: parent.horizontalCenter
 
-            font.pixelSize: 40
             text: genreName
         }
 

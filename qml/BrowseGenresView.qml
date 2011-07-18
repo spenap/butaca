@@ -29,13 +29,11 @@ Component {
 
         MultipleMoviesView { id: multipleMovieView }
 
-        Text {
+        ButacaHeader {
             id: header
             anchors.top: parent.top
-            anchors.margins: 20
             anchors.horizontalCenter: parent.horizontalCenter
 
-            font.pixelSize: 40
             text: 'Movie genres'
         }
 

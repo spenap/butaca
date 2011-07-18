@@ -32,7 +32,6 @@ Component {
         SearchView { id: searchView }
         ShowtimesView { id: showtimesView }
 
-
         /* Model containing the actions: browse, search and shows */
         ListModel {
             id: menuModel
@@ -56,13 +55,11 @@ Component {
             }
         }
 
-        Text {
+        ButacaHeader {
             id: mainHeader
             anchors.top: parent.top
-            anchors.margins: 20
             anchors.horizontalCenter: parent.horizontalCenter
 
-            font.pixelSize: 40
             text: 'Enjoy the show!'
         }
 

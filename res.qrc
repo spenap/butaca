@@ -24,5 +24,6 @@
         <file>qml/images/movie-placeholder.svg</file>
         <file>qml/images/person-placeholder.svg</file>
         <file>qml/CustomMoreIndicator.qml</file>
+        <file>qml/ButacaHeader.qml</file>
     </qresource>
 </RCC>
