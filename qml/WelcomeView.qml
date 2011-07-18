@@ -26,6 +26,11 @@ Component {
     id: welcomeView
 
     Page {
+
+        Component.onCompleted: {
+            theme.inverted = true
+        }
+
         orientationLock: PageOrientation.LockPortrait
 
         ButacaToolBar { id: commonTools }
