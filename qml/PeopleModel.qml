@@ -30,7 +30,7 @@ XmlListModel {
 
     XmlRole { name: "score"; query: "score/number()" }
     XmlRole { name: "popularity"; query: "popularity/number()" }
-    XmlRole { name: "personName"; query: "name/string()" }
+    XmlRole { name: "title"; query: "name/string()" }
     XmlRole { name: "personId"; query: "id/string()" }
     XmlRole { name: "biography"; query: "biography/string()" }
     XmlRole { name: "url"; query: "url/string()" }
