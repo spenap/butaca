@@ -27,6 +27,8 @@ Component {
     Page {
         tools: commonTools
 
+        MultipleMoviesView { id: multipleMovieView }
+
         Text {
             id: header
             anchors.top: parent.top
@@ -56,7 +58,25 @@ Component {
                 model: genresModel
                 anchors.fill: parent
                 clip: true
-                delegate: GenresDelegate { }
+                delegate: ListDelegate {
+                    /* More indicator */
+                    Item {
+                        id: viewDetails
+                        width: moreIndicator.width + 10
+                        height: parent.height
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+
+                        MoreIndicator {
+                            id: moreIndicator
+                            anchors.centerIn: parent
+                        }
+                    }
+
+                    onClicked: {
+                        pageStack.push(multipleMovieView , {genre: genreId, genreName: title})
+                    }
+                }
             }
 
             ScrollDecorator {

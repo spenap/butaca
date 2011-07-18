@@ -18,7 +18,6 @@ OTHER_FILES += \
     qml/PeopleModel.qml \
     qml/PeopleDelegate.qml \
     qml/GenresModel.qml \
-    qml/GenresDelegate.qml \
     qml/SingleMovieView.qml \
     qml/SingleMovieModel.qml \
     qml/SingleMovieDelegate.qml \

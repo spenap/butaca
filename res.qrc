@@ -9,7 +9,6 @@
         <file>qml/SingleMovieDelegate.qml</file>
         <file>qml/SingleMovieModel.qml</file>
         <file>qml/SingleMovieView.qml</file>
-        <file>qml/GenresDelegate.qml</file>
         <file>qml/GenresModel.qml</file>
         <file>qml/PeopleDelegate.qml</file>
         <file>qml/PeopleModel.qml</file>

@@ -26,7 +26,7 @@ XmlListModel {
     source: BUTACA.getTMDbSource(BUTACA.TMDB_GENRES_GET_LIST, '')
     query: BUTACA.TMDB_GENRES_QUERY
 
-    XmlRole { name: "genreName"; query: "@name/string()" }
+    XmlRole { name: "title"; query: "@name/string()" }
     XmlRole { name: "genreId"; query: "id/string()" }
     XmlRole { name: "genreUrl"; query: "url/string()" }
 }
