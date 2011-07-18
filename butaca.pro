@@ -28,7 +28,6 @@ OTHER_FILES += \
     qml/MultipleMoviesDelegate.qml \
     butaca.desktop \
     butaca.png \
-    qml/images/loading.png \
     qml/images/butaca-bg.jpg \
     qml/butacautils.js
 
