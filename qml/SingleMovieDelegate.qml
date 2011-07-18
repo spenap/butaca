@@ -75,7 +75,7 @@ Item {
                 id: image
                 width: 190
                 height: 280
-                source: poster
+                source: poster ? poster : 'images/movie-placeholder.svg'
             }
 
             Text {
