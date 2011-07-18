@@ -31,7 +31,8 @@ OTHER_FILES += \
     qml/images/butaca-bg.jpg \
     qml/butacautils.js \
     qml/images/movie-placeholder.svg \
-    qml/images/person-placeholder.svg
+    qml/images/person-placeholder.svg \
+    qml/CustomMoreIndicator.qml
 
 RESOURCES += \
     res.qrc

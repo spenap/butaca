@@ -35,7 +35,7 @@ Component {
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
 
-            MoreIndicator {
+            CustomMoreIndicator {
                 id: moreIndicator
                 anchors.centerIn: parent
             }

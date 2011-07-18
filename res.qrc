@@ -23,5 +23,6 @@
         <file>qml/butacautils.js</file>
         <file>qml/images/movie-placeholder.svg</file>
         <file>qml/images/person-placeholder.svg</file>
+        <file>qml/CustomMoreIndicator.qml</file>
     </qresource>
 </RCC>

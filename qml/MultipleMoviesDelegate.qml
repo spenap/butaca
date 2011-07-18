@@ -108,7 +108,7 @@ Component {
                 height: parent.height
                 anchors.verticalCenter: parent.verticalCenter
 
-                MoreIndicator {
+                CustomMoreIndicator {
                     id: moreIndicator
                     anchors.centerIn: parent
                 }
