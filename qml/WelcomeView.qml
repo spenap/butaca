@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.meego 1.0
 import com.nokia.extras 1.0
+import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Component {
     id: welcomeView
@@ -63,15 +64,9 @@ Component {
             text: 'Enjoy the show!'
         }
 
-        ListView {
-            id: list
-            anchors {top: mainHeader.bottom; left: parent.left; right: parent.right }
-            anchors.margins: 20
-            width: parent.width; height: parent.height / 2
-            model: menuModel
-            interactive: false
-            delegate: ListDelegate {
-
+        Component {
+            id: menuDelegate
+            ListDelegate {
                 /* More indicator */
                 Item {
                     id: viewDetails
@@ -98,6 +93,74 @@ Component {
                         appWindow.pageStack.push(searchView)
                         break;
                     }
+                }
+            }
+        }
+
+        ListView {
+            id: list
+            anchors {top: mainHeader.bottom; left: parent.left; right: parent.right }
+            anchors.margins: 20
+            width: parent.width;
+            height: parent.height / 3
+            model: menuModel
+            interactive: false
+            delegate: menuDelegate
+        }
+
+        GridView {
+            id: view
+            anchors { top: list.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+            anchors.margins: 20
+            clip: true
+            cellWidth: 200
+            cellHeight: 200
+
+            model: ListModel {
+                ListElement {
+                    icon: 'images/person-placeholder.svg'
+                    title: 'Harrison Ford'
+                }
+                ListElement {
+                    icon: 'images/movie-placeholder.svg'
+                    title: 'The Dark Night'
+                }
+                ListElement {
+                    icon: 'images/person-placeholder.svg'
+                    title: 'Christopher Nolan'
+                }
+                ListElement {
+                    icon: 'images/movie-placeholder.svg'
+                    title: 'The Matrix'
+                }
+            }
+            delegate: favoriteDelegate
+        }
+
+        Component {
+            id: favoriteDelegate
+            Item {
+                width: 200
+                height: 200
+
+                Image {
+                    id: favoriteIcon
+                    source: icon
+                    width: 95; height: 140
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.top: parent.top
+                }
+
+                Text {
+                    anchors.top: favoriteIcon.bottom;
+                    anchors.topMargin: UIConstants.DEFAULT_MARGIN
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: title
+                    font.pixelSize: UIConstants.FONT_DEFAULT
+                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                    elide: Text.ElideRight
+                    maximumLineCount: 2
+                    wrapMode: Text.WordWrap
                 }
             }
         }
