@@ -62,6 +62,13 @@ Component {
                 delegate: MultipleMoviesDelegate {}
             }
 
+            NoContentItem {
+                id: noResults
+                anchors.fill: parent
+                text: 'No content found'
+                visible: false
+            }
+
             BusyIndicator {
                 id: busyIndicator
                 visible: true
@@ -79,6 +86,7 @@ Component {
                     name: 'Ready'
                     PropertyChanges  { target: busyIndicator; running: false; visible: false }
                     PropertyChanges  { target: list; visible: true }
+                    PropertyChanges  { target: noResults; visible: moviesModel.count == 0 }
                 }
             ]
         }

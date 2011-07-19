@@ -31,5 +31,5 @@ In no particular order:
   [ ] Check and change layouts when needed
 [ ] Error handling
   [ ] Handle input and network errors
-[ ] No results
-  [ ] Display system-aligned messages when there are no results
+[*] No results
+  [*] Display system-aligned messages when there are no results

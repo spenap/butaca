@@ -89,14 +89,15 @@ Component {
             id: searchResults
             anchors { top: searchCategory.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
             anchors.margins: 20
+            state: 'Waiting'
 
             MultipleMoviesModel {
                 id: moviesModel
                 source: ''
                 onStatusChanged: {
-                    if (status == XmlListModel.Ready) {
-                        busyIndicator.visible = false
-                        busyIndicator.running = false
+                    if (status == XmlListModel.Ready &&
+                            searchResults.state == 'MovieSearch') {
+                        searchResults.state = 'MovieSearchFinished'
                     }
                 }
             }
@@ -105,9 +106,9 @@ Component {
                 id: peopleModel
                 source: ''
                 onStatusChanged: {
-                    if (status == XmlListModel.Ready) {
-                        busyIndicator.visible = false
-                        busyIndicator.running = false
+                    if (status == XmlListModel.Ready &&
+                            searchResults.state == 'PeopleSearch') {
+                        searchResults.state = 'PeopleSearchFinished'
                     }
                 }
             }
@@ -122,10 +123,16 @@ Component {
                 model: undefined
             }
 
+            NoContentItem {
+                id: noResults
+                anchors.fill: parent
+                text: 'No results found'
+                visible: false
+            }
+
             BusyIndicator {
                 id: busyIndicator
-                visible: true
-                running: true
+                visible: false
                 platformStyle: BusyIndicatorStyle { size: 'large' }
                 anchors.centerIn: parent
             }
@@ -139,22 +146,38 @@ Component {
                 State {
                     name: 'Waiting'
                     when: searchInput.activeFocus
-                    PropertyChanges  { target: moviesModel; source: '' }
-                    PropertyChanges  { target: peopleModel; source: '' }
+                    PropertyChanges  { target: moviesModel; restoreEntryValues: false; source: '' }
+                    PropertyChanges  { target: peopleModel; restoreEntryValues: false; source: '' }
+                    PropertyChanges { target: noResults; restoreEntryValues: false; visible: false }
+                    PropertyChanges { target: busyIndicator; restoreEntryValues: false; visible: false; running: false }
                 },
                 State {
                     name: 'PeopleSearch'
-                    PropertyChanges  { target: resultList; model: peopleModel; delegate: peopleDelegate }
-                    PropertyChanges { target: peopleModel; source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, searchTerm) }
-                    PropertyChanges  { target: moviesModel; source: '' }
+                    PropertyChanges { target: peopleModel;
+                        restoreEntryValues: false;
+                        source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, searchTerm) }
+                    PropertyChanges  { target: resultList; restoreEntryValues: false;
+                        model: peopleModel; delegate: peopleDelegate }
+                    PropertyChanges  { target: moviesModel; restoreEntryValues: false; source: '' }
                     PropertyChanges { target: busyIndicator; visible: true; running: true }
                 },
                 State {
+                    name: 'PeopleSearchFinished'
+                    PropertyChanges { target: noResults; visible: peopleModel.count == 0 }
+                },
+                State {
                     name: 'MovieSearch'
-                    PropertyChanges  { target: resultList; model: moviesModel; delegate: moviesDelegate }
-                    PropertyChanges { target: moviesModel; source: BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, searchTerm) }
-                    PropertyChanges  { target: peopleModel; source: '' }
+                    PropertyChanges { target: moviesModel;
+                        restoreEntryValues: false;
+                        source: BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, searchTerm) }
+                    PropertyChanges  { target: resultList; restoreEntryValues: false;
+                        model: moviesModel; delegate: moviesDelegate }
+                    PropertyChanges  { target: peopleModel; restoreEntryValues: false; source: '' }
                     PropertyChanges { target: busyIndicator; visible: true; running: true }
+                },
+                State {
+                    name: 'MovieSearchFinished'
+                    PropertyChanges { target: noResults; visible: moviesModel.count == 0 }
                 }
             ]
         }

@@ -33,7 +33,8 @@ OTHER_FILES += \
     qml/images/movie-placeholder.svg \
     qml/images/person-placeholder.svg \
     qml/CustomMoreIndicator.qml \
-    qml/ButacaHeader.qml
+    qml/ButacaHeader.qml \
+    qml/NoContentItem.qml
 
 RESOURCES += \
     res.qrc
