@@ -10,8 +10,8 @@ In no particular order:
   [ ] Have the content appear on the Welcome View
   [ ] Cache name & thumbnail
   [ ] Keep favorite content available offline
-[ ] Fix search so it doesn't search all the time while typing
-  [ ] Reset the models' source to empty while typing
+[*] Fix search so it doesn't search all the time while typing
+  [*] Reset the models' source to empty while typing
 [ ] Movie delegate
   [ ] Provide placeholders for the missing data
   [ ] Make the trailer thumbnail feel clickable (when available)

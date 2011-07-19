@@ -51,6 +51,7 @@ Component {
                 placeholderText: "Enter search terms"
                 width: parent.width - searchButton.width
             }
+
             Button {
                 id: searchButton
                 text: 'Search'
@@ -135,6 +136,12 @@ Component {
             }
 
             states: [
+                State {
+                    name: 'Waiting'
+                    when: searchInput.activeFocus
+                    PropertyChanges  { target: moviesModel; source: '' }
+                    PropertyChanges  { target: peopleModel; source: '' }
+                },
                 State {
                     name: 'PeopleSearch'
                     PropertyChanges  { target: resultList; model: peopleModel; delegate: peopleDelegate }
