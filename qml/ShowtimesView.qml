@@ -27,9 +27,16 @@ Component {
     Page {
         tools: commonTools
 
-        WebView {
-             url: "http://www.google.com/movies"
-             anchors.fill: parent
+        Flickable {
+
+            anchors.fill: parent
+            contentWidth: Math.max(parent.width, webView.width)
+            contentHeight: Math.max(parent.height, webView.height)
+
+            WebView {
+                id: webView
+                url: "http://www.google.com/movies"
+            }
         }
     }
 }
