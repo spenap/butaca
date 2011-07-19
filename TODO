@@ -1,0 +1,35 @@
+In no particular order:
+[ ] Showtimes
+  [ ] General view where the user can just navigate in Google Movies
+  [ ] Open the page already searching for movies
+  [ ] Let the user pick a different showtime provider (if web-based), from an
+    already tested list.
+[ ] Integrate with WhatsAfterTheCredits
+[ ] Favorite content
+  [ ] Mark / unmark content as favorite
+  [ ] Have the content appear on the Welcome View
+  [ ] Cache name & thumbnail
+  [ ] Keep favorite content available offline
+[ ] Fix search so it doesn't search all the time while typing
+  [ ] Reset the models' source to empty while typing
+[ ] Movie delegate
+  [ ] Provide placeholders for the missing data
+  [ ] Make the trailer thumbnail feel clickable (when available)
+  [ ] Show the missing information: categories, studios, countries, images and
+    cast.
+[ ] Person delegate
+  [ ] Provide placeholders for the missing data
+  [ ] Show the missing information: known movies, birthday and birthplace,
+    filmography and images
+[ ] Search & browse criteria
+  [ ] Set a minimum number of votes to display content (which would led to
+    empty results), maybe make the sort order configurable
+[ ] Share on twitter / others
+  [ ] Check if it's possible to use the share-ui
+  [ ] Check the available services and the information needed for sharing
+[ ] Landscape mode
+  [ ] Check and change layouts when needed
+[ ] Error handling
+  [ ] Handle input and network errors
+[ ] No results
+  [ ] Display system-aligned messages when there are no results

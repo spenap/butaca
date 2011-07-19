@@ -28,6 +28,7 @@ OTHER_FILES += \
     qml/MultipleMoviesDelegate.qml \
     butaca.desktop \
     butaca.png \
+    TODO \
     qml/butacautils.js \
     qml/images/movie-placeholder.svg \
     qml/images/person-placeholder.svg \
