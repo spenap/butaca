@@ -92,7 +92,7 @@ Component {
                         appWindow.pageStack.push(browseView)
                         break;
                     case 1:
-                        appWindow.pageStack.push(showtimesView)
+                        helper.openUrl("http://www.google.com/movies")
                         break;
                     case 2:
                         appWindow.pageStack.push(searchView)

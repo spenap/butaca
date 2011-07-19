@@ -61,6 +61,8 @@ Component {
                         searchResults.state = 'MovieSearch'
                     } else if (searchCategory.checkedButton == peopleSearch) {
                         searchResults.state = 'PeopleSearch'
+                    } else {
+                        helper.openUrl('http://www.google.com/movies?q=' + searchInput.text)
                     }
                 }
             }
