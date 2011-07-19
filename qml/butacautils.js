@@ -44,6 +44,7 @@ var TMDB_GENRES_QUERY = '/OpenSearchDescription/genres/genre'
 var TMDB_BROWSE_ORDER_BY = 'rating'
 var TMDB_BROWSE_ORDER = 'desc'
 var TMDB_BROWSE_PER_PAGE = '10'
+var TMDB_BROWSE_MIN_VOTES = 0
 
 /**
  * Builds the source for a model using TMDb services.
@@ -79,6 +80,7 @@ function getBrowseCriteria(genreId) {
     return '?order_by=' + TMDB_BROWSE_ORDER_BY +
             '&order=' + TMDB_BROWSE_ORDER +
             '&per_page=' + TMDB_BROWSE_PER_PAGE +
+            '&min_votes=' + TMDB_BROWSE_MIN_VOTES +
             '&genres=' + genreId
 }
 
