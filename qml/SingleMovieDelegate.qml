@@ -129,7 +129,7 @@ Item {
             MouseArea {
                 anchors.fill: trailerImage
                 onClicked: {
-                    helper.openVideo(trailer)
+                    helper.openUrl(trailer)
                 }
             }
         }

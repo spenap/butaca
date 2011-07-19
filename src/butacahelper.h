@@ -29,7 +29,7 @@ public:
     explicit ButacaHelper(QObject *parent = 0);
 
 public slots:
-    void openVideo(QString url);
+    void openUrl(QString url);
 };
 
 #endif // BUTACAHELPER_H

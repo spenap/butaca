@@ -28,7 +28,7 @@ ButacaHelper::ButacaHelper(QObject *parent) :
 
 }
 
-void ButacaHelper::openVideo(QString url)
+void ButacaHelper::openUrl(QString url)
 {
     QUrl videoUrl(url);
     QDesktopServices::openUrl(videoUrl);
