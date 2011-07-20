@@ -25,6 +25,13 @@ Component {
 
     Page {
         property string person
+
+        function getContent() {
+            var itemTitle = list.model.get(list.currentIndex).personName
+            var itemIcon = list.model.get(list.currentIndex).profileImage
+            return {'title': itemTitle, 'icon': itemIcon}
+        }
+
         tools: ToolBarLayout {
 
             ToolIcon {
@@ -33,10 +40,17 @@ Component {
 
             ToolIcon {
                 anchors.horizontalCenter: parent.horizontalCenter
-                iconId: "toolbar-favorite-unmark"
-                enabled: false
+                iconId: welcomeView.isFavorite(getContent()) ? "toolbar-favorite-mark" : "toolbar-favorite-unmark"
                 onClicked: {
                     iconId = iconId == "toolbar-favorite-mark" ? "toolbar-favorite-unmark" : "toolbar-favorite-mark"
+
+                    var content = getContent()
+
+                    if (welcomeView.isFavorite(content)) {
+                        welcomeView.removeFavorite(content)
+                    } else {
+                        welcomeView.addFavorite(content)
+                    }
                 }
             }
         }

@@ -25,20 +25,34 @@ Component {
 
     Page {
         property string movieId
+
+        function getContent() {
+            var itemTitle = list.model.get(list.currentIndex).title
+            var itemIcon = list.model.get(list.currentIndex).poster
+            return {'title': itemTitle, 'icon': itemIcon}
+        }
+
         tools: ToolBarLayout {
 
-               ToolIcon {
-                   iconId: "toolbar-back"; onClicked: pageStack.pop();
-               }
+            ToolIcon {
+                iconId: "toolbar-back"; onClicked: pageStack.pop();
+            }
 
-               ToolIcon {
-                   anchors.horizontalCenter: parent.horizontalCenter
-                   iconId: "toolbar-favorite-unmark"
-                   enabled: false
-                   onClicked: {
-                       iconId = iconId == "toolbar-favorite-mark" ? "toolbar-favorite-unmark" : "toolbar-favorite-mark"
-                   }
-               }
+            ToolIcon {
+                anchors.horizontalCenter: parent.horizontalCenter
+                iconId: welcomeView.isFavorite(getContent()) ? "toolbar-favorite-mark" : "toolbar-favorite-unmark"
+                onClicked: {
+                    iconId = iconId == "toolbar-favorite-mark" ? "toolbar-favorite-unmark" : "toolbar-favorite-mark"
+
+                    var content = getContent()
+
+                    if (welcomeView.isFavorite(content)) {
+                        welcomeView.removeFavorite(content)
+                    } else {
+                        welcomeView.addFavorite(content)
+                    }
+                }
+            }
         }
         width: parent.width; height: parent.height
 
