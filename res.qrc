@@ -25,5 +25,7 @@
         <file>qml/CustomMoreIndicator.qml</file>
         <file>qml/ButacaHeader.qml</file>
         <file>qml/NoContentItem.qml</file>
+        <file>qml/CastView.qml</file>
+        <file>qml/CastModel.qml</file>
     </qresource>
 </RCC>

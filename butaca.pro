@@ -34,7 +34,9 @@ OTHER_FILES += \
     qml/images/person-placeholder.svg \
     qml/CustomMoreIndicator.qml \
     qml/ButacaHeader.qml \
-    qml/NoContentItem.qml
+    qml/NoContentItem.qml \
+    qml/CastModel.qml \
+    qml/CastView.qml
 
 RESOURCES += \
     res.qrc

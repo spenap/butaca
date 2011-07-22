@@ -26,6 +26,8 @@ Item {
     id: movieDelegate
     width: movieDelegate.ListView.view.width; height: movieDelegate.ListView.view.height
 
+    CastView { id: castView }
+
     /* Header: title (year), tagline and rating */
     Column {
         id: header
@@ -87,22 +89,40 @@ Item {
                 }
             }
 
-            Text {
-                id: movieFacts
+            Column {
                 width: parent.width - image.width
-                font.pixelSize: UIConstants.FONT_LSMALL
-                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                wrapMode: Text.WordWrap
-                text: '<b>Also known as:</b> ' + alternativeName + '<br />' +
-                      '<b>Certification:</b> ' + certification + '<br />' +
-                      '<b>Release date:</b> ' + released + '<br />' +
-                      '<b>Budget:</b> ' + budget + '<br />' +
-                      '<b>Revenue:</b> ' + revenue + '<br />' +
-                      '<a href="' + homepage + '">Homepage</a>' +
-                      '<br />' +
-                      '<b>Director:</b> ' + director + '<br />' +
-                      '<b>Cast:</b> ' + actor1 + ', ' + actor2 + ', ' + actor3 + '...'
-                onLinkActivated: helper.openUrl(homepage)
+
+                Text {
+                    id: movieFacts
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Also known as:</b> ' + alternativeName + '<br />' +
+                          '<b>Certification:</b> ' + certification + '<br />' +
+                          '<b>Release date:</b> ' + released + '<br />' +
+                          '<b>Budget:</b> ' + budget + '<br />' +
+                          '<b>Revenue:</b> ' + revenue + '<br />' +
+                          '<a href="' + homepage + '">Homepage</a>' + '<br />'
+                    onLinkActivated: helper.openUrl(homepage)
+                }
+
+                Text {
+                    id: cast
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Director:</b> ' + director + '<br />' +
+                          '<b>Cast:</b> ' + actor1 + ', ' + actor2 + ', ' + actor3 + '...'
+
+                    MouseArea {
+                        anchors.fill: cast
+                        onClicked: {
+                            appWindow.pageStack.push(castView, { movie: title })
+                        }
+                    }
+                }
             }
         }
 

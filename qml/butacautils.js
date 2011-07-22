@@ -30,6 +30,7 @@ var TMDB_MOVIE_SEARCH = 'Movie.search'
 var TMDB_MOVIE_BROWSE = 'Movie.browse'
 var TMDB_MOVIE_GET_INFO = 'Movie.getInfo'
 var TMDB_MOVIE_QUERY = '/OpenSearchDescription/movies/movie'
+var TMDB_MOVIE_CAST_QUERY = '/OpenSearchDescription/movies/movie/cast/person'
 
 /* Person API */
 var TMDB_PERSON_SEARCH = 'Person.search'
