@@ -56,6 +56,7 @@ Component {
                 id: searchButton
                 text: 'Search'
                 width: 100
+                enabled: searchInput.text !== ''
                 onClicked: {
                     if (searchCategory.checkedButton == movieSearch) {
                         searchResults.state = 'MovieSearch'
