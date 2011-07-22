@@ -38,9 +38,10 @@ Component {
             }
 
             ToolIcon {
+                id: favoriteIcon
                 anchors.horizontalCenter: parent.horizontalCenter
-                iconId: welcomeView.indexOf(BUTACA.favoriteFromPerson(currentItem())) >= 0 ?
-                            "toolbar-favorite-mark" : "toolbar-favorite-unmark"
+                iconId: 'toolbar-favorite-unmark'
+                enabled: false
                 onClicked: {
                     iconId = iconId == "toolbar-favorite-mark" ? "toolbar-favorite-unmark" : "toolbar-favorite-mark"
 
@@ -92,6 +93,11 @@ Component {
                     name: 'Ready'
                     PropertyChanges  { target: busyIndicator; running: false; visible: false }
                     PropertyChanges  { target: list; visible: true }
+                    PropertyChanges { target: favoriteIcon;
+                        iconId: welcomeView.indexOf(BUTACA.favoriteFromPerson(currentItem())) >= 0 ?
+                                    "toolbar-favorite-mark" : "toolbar-favorite-unmark"
+                        enabled: true;
+                    }
                 }
             ]
         }
