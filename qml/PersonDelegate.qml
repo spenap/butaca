@@ -30,22 +30,24 @@ Item {
         anchors.fill: parent
         anchors.margins: 10
 
-        Text {
+        ButacaHeader {
             id: nameText
-            font.pixelSize: UIConstants.FONT_SLARGE
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
+
             text: personName
-            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-            wrapMode: Text.WordWrap
         }
 
         Flickable {
             id: flick
             width: parent.width
             anchors.top: nameText.bottom; anchors.bottom: parent.bottom
+            anchors.margins: 20
             contentHeight: biographyText.height
             clip: true
 
             Row {
+                id: row
                 spacing: 20
                 width: parent.width
 
@@ -62,13 +64,27 @@ Item {
                 }
 
                 Text {
-                    id: biographyText
-                    width: parent.width - image.width - 20
+                    id: personFacts
+                    width: parent.width - image.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                    text: biography
                     wrapMode: Text.WordWrap
+                    text: '<b>Also known as:</b> ' + alternativeName + '<br />' +
+                          '<b>Birthday:</b> ' + birthday + '<br />' +
+                          '<b>Birthplace:</b> ' + birthplace + '<br />' +
+                          '<b>Known movies:</b> ' + knownMovies + '<br />'
                 }
+            }
+
+            Text {
+                id: biographyText
+                anchors.top: row.bottom
+                anchors.topMargin: 20
+                width: parent.width
+                font.pixelSize: UIConstants.FONT_SMALL
+                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                text: biography
+                wrapMode: Text.WordWrap
             }
         }
     }

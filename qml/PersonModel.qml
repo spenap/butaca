@@ -30,9 +30,10 @@ XmlListModel {
 
     XmlRole { name: "popularity"; query: "popularity/number()" }
     XmlRole { name: "personName"; query: "name/string()" }
-    XmlRole { name: "alsoKnownAs"; query: "also_known_as/string()" }
+    XmlRole { name: "alternativeName"; query: "also_known_as/string()" }
     XmlRole { name: "personId"; query: "id/string()" }
     XmlRole { name: "biography"; query: "biography/string()" }
+    XmlRole { name: "birthplace"; query: "birthplace/string()" }
     XmlRole { name: "knownMovies"; query: "known_movies/number()" }
     XmlRole { name: "birthday"; query: "birthday/string()" }
     XmlRole { name: "url"; query: "url/string()" }
