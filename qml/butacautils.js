@@ -36,6 +36,7 @@ var TMDB_MOVIE_CAST_QUERY = '/OpenSearchDescription/movies/movie/cast/person'
 var TMDB_PERSON_SEARCH = 'Person.search'
 var TMDB_PERSON_GET_INFO = 'Person.getInfo'
 var TMDB_PERSON_QUERY = '/OpenSearchDescription/people/person'
+var TMDB_PERSON_FILMOGRAPHY_QUERY = '/OpenSearchDescription/people/person/filmography/movie'
 
 /* Genres API */
 var TMDB_GENRES_GET_LIST = 'Genres.getList'

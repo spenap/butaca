@@ -26,6 +26,8 @@ Item {
     width: personDelegate.ListView.view.width
     height: personDelegate.ListView.view.height
 
+    FilmographyView { id: filmographyView }
+
     Item {
         anchors.fill: parent
         anchors.margins: 10
@@ -73,6 +75,13 @@ Item {
                           '<b>Birthday:</b> ' + birthday + '<br />' +
                           '<b>Birthplace:</b> ' + birthplace + '<br />' +
                           '<b>Known movies:</b> ' + knownMovies + '<br />'
+
+                    MouseArea {
+                        anchors.fill: personFacts
+                        onClicked: {
+                            appWindow.pageStack.push(filmographyView, { person: personName })
+                        }
+                    }
                 }
             }
 
