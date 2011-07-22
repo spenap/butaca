@@ -16,7 +16,7 @@ In no particular order:
 [ ] Movie delegate
   [*] Show the "busy" indicator while loading
   [ ] Provide placeholders for the missing data
-  [ ] Make the trailer thumbnail feel clickable (when available)
+  [*] Make the trailer thumbnail feel clickable (when available)
   [ ] Show the missing information: categories, studios, countries, images and
     cast.
 [ ] Person delegate

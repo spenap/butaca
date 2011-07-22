@@ -94,6 +94,7 @@ Item {
                       '<b>Budget:</b> ' + budget + '<br />' +
                       '<b>Revenue:</b> ' + revenue + '<br />' +
                       '<a href="' + homepage + '">Homepage</a>'
+                onLinkActivated: helper.openUrl(homepage)
             }
         }
 
@@ -125,6 +126,13 @@ Item {
             anchors.leftMargin: 10
             width: 120; height: 90
             source: BUTACA.getTrailerThumbnail(trailer)
+
+            Image {
+                id: playButton
+                anchors.centerIn: parent
+                source: 'image://theme/icon-s-music-video-play'
+                visible: trailerImage.source != ''
+            }
 
             MouseArea {
                 anchors.fill: trailerImage
