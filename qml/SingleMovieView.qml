@@ -19,6 +19,7 @@
 
 import QtQuick 1.1
 import com.meego 1.0
+import "butacautils.js" as BUTACA
 
 Component {
     id: singleMovieView
@@ -26,10 +27,8 @@ Component {
     Page {
         property string movieId
 
-        function getContent() {
-            var itemTitle = list.model.get(list.currentIndex).title
-            var itemIcon = list.model.get(list.currentIndex).poster
-            return {'title': itemTitle, 'icon': itemIcon}
+        function currentItem() {
+            return list.model.get(list.currentIndex)
         }
 
         tools: ToolBarLayout {
@@ -40,14 +39,16 @@ Component {
 
             ToolIcon {
                 anchors.horizontalCenter: parent.horizontalCenter
-                iconId: welcomeView.isFavorite(getContent()) ? "toolbar-favorite-mark" : "toolbar-favorite-unmark"
+                iconId: welcomeView.indexOf(BUTACA.favoriteFromMovie(currentItem())) >= 0 ?
+                            "toolbar-favorite-mark" : "toolbar-favorite-unmark"
                 onClicked: {
                     iconId = iconId == "toolbar-favorite-mark" ? "toolbar-favorite-unmark" : "toolbar-favorite-mark"
 
-                    var content = getContent()
+                    var content = BUTACA.favoriteFromMovie(currentItem())
+                    var idx = welcomeView.indexOf(content)
 
-                    if (welcomeView.isFavorite(content)) {
-                        welcomeView.removeFavorite(content)
+                    if (idx >= 0) {
+                        welcomeView.removeFavoriteAt(content, idx)
                     } else {
                         welcomeView.addFavorite(content)
                     }

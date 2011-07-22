@@ -21,6 +21,7 @@ import QtQuick 1.1
 import com.meego 1.0
 import com.nokia.extras 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
+import "butacautils.js" as BUTACA
 
 Page {
     id: welcomeView
@@ -34,6 +35,8 @@ Page {
     BrowseGenresView { id: browseView }
     SearchView { id: searchView }
     ShowtimesView { id: showtimesView }
+    SingleMovieView { id: singleMovieView }
+    PersonView { id: personView }
 
     /* Model containing the actions: browse, search and shows */
     ListModel {
@@ -112,87 +115,93 @@ Page {
 
     ListModel {
         id: favoritesModel
-        ListElement {
-            icon: 'images/person-placeholder.svg'
-            title: 'Harrison Ford'
-        }
-        ListElement {
-            icon: 'images/movie-placeholder.svg'
-            title: 'The Dark Night'
-        }
-        ListElement {
-            icon: 'images/person-placeholder.svg'
-            title: 'Christopher Nolan'
-        }
-        ListElement {
-            icon: 'images/movie-placeholder.svg'
-            title: 'The Matrix'
-        }
     }
 
-    GridView {
-        id: view
+    Item {
+        id: favorites
         anchors { top: list.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
         anchors.margins: 20
-        clip: true
-        cellWidth: 200
-        cellHeight: 200
 
-        model: favoritesModel
-        delegate: favoriteDelegate
-    }
+        GridView {
+            id: view
+            anchors.fill: parent
+            clip: true
+            cellWidth: 200
+            cellHeight: 200
 
-    Component {
-        id: favoriteDelegate
-        Item {
-            width: 200
-            height: 200
+            model: favoritesModel
+            delegate: favoriteDelegate
+        }
 
-            Image {
-                id: favoriteIcon
-                source: icon
-                width: 95; height: 140
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-            }
+        NoContentItem {
+            anchors.fill: parent
+            text: 'Mark content as favorite'
+            visible: favoritesModel.count == 0
+        }
 
-            Text {
-                anchors.top: favoriteIcon.bottom;
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: title
-                font.pixelSize: UIConstants.FONT_DEFAULT
-                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                elide: Text.ElideRight
-                maximumLineCount: 2
-                wrapMode: Text.WordWrap
+        Component {
+            id: favoriteDelegate
+            Item {
+                width: 200
+                height: 200
+
+                Image {
+                    id: favoriteIcon
+                    source: icon
+                    width: 95; height: 140
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.top: parent.top
+                }
+
+                Text {
+                    anchors.top: favoriteIcon.bottom;
+                    anchors.topMargin: UIConstants.DEFAULT_MARGIN
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: title
+                    font.pixelSize: UIConstants.FONT_DEFAULT
+                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                    elide: Text.ElideRight
+                    maximumLineCount: 2
+                    wrapMode: Text.WordWrap
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if (type == BUTACA.MOVIE) {
+                            appWindow.pageStack.push(singleMovieView, { movieId: id})
+                        } else {
+                            appWindow.pageStack.push(personView, { person: id })
+                        }
+                    }
+                }
             }
         }
     }
 
     function addFavorite(content) {
-        if (!isFavorite(content)) {
-            favoritesModel.append(content)
-        }
+        favoritesModel.append(content)
     }
 
     function removeFavorite(content) {
-        var idx = -1
-        for (var i = 0; i < favoritesModel.count; i ++) {
-            if (favoritesModel.get(i).title == content.title) {
-                idx = i
-                break
-            }
+        var idx = indexOf(content)
+        if (idx != -1) {
+            favoritesModel.remove(idx)
         }
-        favoritesModel.remove(idx)
     }
 
-    function isFavorite(content) {
+    function removeFavoriteAt(content, idx) {
+        if (idx != -1) {
+            favoritesModel.remove(idx)
+        }
+    }
+
+    function indexOf(content) {
         for (var i = 0; i < favoritesModel.count; i ++) {
             if (favoritesModel.get(i).title === content.title) {
-                return true
+                return i
             }
         }
-        return false
+        return -1
     }
 }

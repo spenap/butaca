@@ -46,6 +46,9 @@ var TMDB_BROWSE_ORDER = 'desc'
 var TMDB_BROWSE_PER_PAGE = '10'
 var TMDB_BROWSE_MIN_VOTES = 0
 
+var PERSON = 0
+var MOVIE = 1
+
 /**
  * Builds the source for a model using TMDb services.
  *
@@ -119,4 +122,29 @@ function getTrailerThumbnail(trailerUrl) {
         return 'http://img.youtube.com/vi/' + videoId + THUMB_SIZE
     }
     return ''
+}
+
+function favoriteFromPerson(personContent) {
+
+    var id = personContent.personId
+    var title = personContent.personName
+    var icon = personContent.profileImage
+
+    return {'id': id,
+            'title': title,
+            'icon': icon,
+            'type': PERSON
+    }
+}
+
+function favoriteFromMovie(movieContent) {
+    var id = movieContent.tmdbId
+    var title = movieContent.title
+    var icon = movieContent.poster
+
+    return {'id': id,
+            'title': title,
+            'icon': icon,
+            'type': MOVIE
+    }
 }

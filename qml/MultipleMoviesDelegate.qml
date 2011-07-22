@@ -36,8 +36,6 @@ Component {
 
         width: movieDelegate.ListView.view.width; height: 150
 
-        SingleMovieView { id: singleMovieView }
-
         BorderImage {
             id: background
             anchors.fill: parent

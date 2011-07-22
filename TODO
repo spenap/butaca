@@ -8,7 +8,7 @@ In no particular order:
 [ ] Favorite content
   [*] Mark / unmark content as favorite
   [*] Have the content appear on the Welcome View
-  [ ] Allow navigating from the Welcom View to the detailed view
+  [*] Allow navigating from the Welcom View to the detailed view
   [ ] Cache name & thumbnail
   [ ] Keep favorite content available offline
 [*] Fix search so it doesn't search all the time while typing
