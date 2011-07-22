@@ -56,15 +56,43 @@ Component {
         }
         width: parent.width; height: parent.height
 
-        PersonModel { id: personModel; params: person }
+        Item {
+            id: content
+            anchors.fill: parent
 
-        ListView {
-            id: list
-            width: parent.width
-            height: parent.height
-            model: personModel
-            interactive: false
-            delegate: PersonDelegate {}
+            PersonModel {
+                id: personModel
+                params: person
+                onStatusChanged: {
+                    if (status == XmlListModel.Ready) {
+                        content.state = 'Ready'
+                    }
+                }
+            }
+
+            ListView {
+                id: list
+                anchors.fill: parent
+                model: personModel
+                interactive: false
+                delegate: PersonDelegate {}
+            }
+
+            BusyIndicator {
+                id: busyIndicator
+                visible: true
+                running: true
+                platformStyle: BusyIndicatorStyle { size: 'large' }
+                anchors.centerIn: parent
+            }
+
+            states: [
+                State {
+                    name: 'Ready'
+                    PropertyChanges  { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges  { target: list; visible: true }
+                }
+            ]
         }
     }
 }

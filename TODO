@@ -14,13 +14,13 @@ In no particular order:
 [*] Fix search so it doesn't search all the time while typing
   [*] Reset the models' source to empty while typing
 [ ] Movie delegate
-  [ ] Show the "busy" indicator while loading
+  [*] Show the "busy" indicator while loading
   [ ] Provide placeholders for the missing data
   [ ] Make the trailer thumbnail feel clickable (when available)
   [ ] Show the missing information: categories, studios, countries, images and
     cast.
 [ ] Person delegate
-  [ ] Show the "busy" indicator while loading
+  [*] Show the "busy" indicator while loading
   [ ] Provide placeholders for the missing data
   [ ] Show the missing information: known movies, birthday and birthplace,
     filmography and images

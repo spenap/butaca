@@ -56,15 +56,43 @@ Component {
         }
         width: parent.width; height: parent.height
 
-        SingleMovieModel { id: moviesModel; params: movieId }
+        Item {
+            id: content
+            anchors.fill: parent
 
-        ListView {
-            id: list
-            width: parent.width
-            height: parent.height
-            model: moviesModel
-            interactive: false
-            delegate: SingleMovieDelegate {}
+            SingleMovieModel {
+                id: moviesModel
+                params: movieId
+                onStatusChanged: {
+                    if (status == XmlListModel.Ready) {
+                        content.state = 'Ready'
+                    }
+                }
+            }
+
+            ListView {
+                id: list
+                anchors.fill: parent
+                model:  moviesModel
+                interactive: false
+                delegate: SingleMovieDelegate {}
+            }
+
+            BusyIndicator {
+                id: busyIndicator
+                visible: true
+                running: true
+                platformStyle: BusyIndicatorStyle { size: 'large' }
+                anchors.centerIn: parent
+            }
+
+            states: [
+                State {
+                    name: 'Ready'
+                    PropertyChanges  { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges  { target: list; visible: true }
+                }
+            ]
         }
     }
 }
