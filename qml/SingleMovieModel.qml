@@ -51,4 +51,8 @@ XmlListModel {
     XmlRole { name: "homepage"; query: "homepage/string()" }
     XmlRole { name: "trailer"; query: "trailer/string()" }
     XmlRole { name: "poster"; query: "images/image[@size='cover' and @type='poster'][1]/@url/string()" }
+    XmlRole { name: "director"; query: "cast/person[@job='Director'][1]/@name/string()" }
+    XmlRole { name: "actor1"; query: "cast/person[@job='Actor' and @order='0'][1]/@name/string()" }
+    XmlRole { name: "actor2"; query: "cast/person[@job='Actor' and @order='1'][1]/@name/string()" }
+    XmlRole { name: "actor3"; query: "cast/person[@job='Actor' and @order='2'][1]/@name/string()" }
 }

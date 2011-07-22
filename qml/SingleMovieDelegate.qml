@@ -93,7 +93,10 @@ Item {
                       '<b>Release date:</b> ' + released + '<br />' +
                       '<b>Budget:</b> ' + budget + '<br />' +
                       '<b>Revenue:</b> ' + revenue + '<br />' +
-                      '<a href="' + homepage + '">Homepage</a>'
+                      '<a href="' + homepage + '">Homepage</a>' +
+                      '<br />' +
+                      '<b>Director:</b> ' + director + '<br />' +
+                      '<b>Cast:</b> ' + actor1 + ', ' + actor2 + ', ' + actor3 + '...'
                 onLinkActivated: helper.openUrl(homepage)
             }
         }
