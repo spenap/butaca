@@ -54,6 +54,11 @@ Item {
                     width: 190
                     height: 280
                     source: profileImage ? profileImage : 'images/person-placeholder.svg'
+                    onStatusChanged: {
+                        if (image.status == Image.Error) {
+                            image.source = 'images/person-placeholder.svg'
+                        }
+                    }
                 }
 
                 Text {

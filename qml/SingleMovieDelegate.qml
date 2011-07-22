@@ -80,6 +80,11 @@ Item {
                 width: 190
                 height: 280
                 source: poster ? poster : 'images/movie-placeholder.svg'
+                onStatusChanged: {
+                    if (image.status == Image.Error) {
+                        image.source = 'images/movie-placeholder.svg'
+                    }
+                }
             }
 
             Text {
