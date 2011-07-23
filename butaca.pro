@@ -38,7 +38,8 @@ OTHER_FILES += \
     qml/CastModel.qml \
     qml/CastView.qml \
     qml/FilmographyModel.qml \
-    qml/FilmographyView.qml
+    qml/FilmographyView.qml \
+    qml/storage.js
 
 RESOURCES += \
     res.qrc

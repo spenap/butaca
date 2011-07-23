@@ -49,7 +49,7 @@ Component {
                     var idx = welcomeView.indexOf(content)
 
                     if (idx >= 0) {
-                        welcomeView.removeFavoriteAt(content, idx)
+                        welcomeView.removeFavoriteAt(idx)
                     } else {
                         welcomeView.addFavorite(content)
                     }

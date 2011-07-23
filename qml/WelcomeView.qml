@@ -22,11 +22,18 @@ import com.meego 1.0
 import com.nokia.extras 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 import "butacautils.js" as BUTACA
+import "storage.js" as Storage
 
 Page {
     id: welcomeView
     Component.onCompleted: {
         theme.inverted = true
+
+        Storage.initialize()
+        var favorites = Storage.getFavorites()
+        for (var i = 0; i < favorites.length; i ++) {
+            favoritesModel.append(favorites[i])
+        }
     }
 
     orientationLock: PageOrientation.LockPortrait
@@ -191,25 +198,28 @@ Page {
     }
 
     function addFavorite(content) {
+        var insertId = Storage.saveFavorite(content)
+        content.rowId = insertId
         favoritesModel.append(content)
     }
 
     function removeFavorite(content) {
         var idx = indexOf(content)
-        if (idx != -1) {
-            favoritesModel.remove(idx)
-        }
+        removeFavoriteAt(idx)
     }
 
-    function removeFavoriteAt(content, idx) {
+    function removeFavoriteAt(idx) {
         if (idx != -1) {
+            var rowId = favoritesModel.get(idx).rowId
             favoritesModel.remove(idx)
+            Storage.removeFavorite(rowId)
         }
     }
 
     function indexOf(content) {
         for (var i = 0; i < favoritesModel.count; i ++) {
-            if (favoritesModel.get(i).title === content.title) {
+            if (favoritesModel.get(i).id == content.id &&
+                    favoritesModel.get(i).type == content.type) {
                 return i
             }
         }

@@ -8,8 +8,8 @@ In no particular order:
 [ ] Favorite content
   [*] Mark / unmark content as favorite
   [*] Have the content appear on the Welcome View
-  [*] Allow navigating from the Welcom View to the detailed view
-  [ ] Cache name & thumbnail
+  [*] Allow navigating from the Welcome View to the detailed view
+  [*] Make the list of favorite content persistent
   [ ] Keep favorite content available offline
 [*] Fix search so it doesn't search all the time while typing
   [*] Reset the models' source to empty while typing
