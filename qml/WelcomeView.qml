@@ -44,19 +44,19 @@ Page {
 
         ListElement {
             title: 'Movie genres'
-            subtitle: ''
+            subtitle: 'Explore movie genres'
             action: 0
         }
 
         ListElement {
             title: 'Cinemas'
-            subtitle: ''
+            subtitle: 'What\'s on cinemas near you'
             action: 1
         }
 
         ListElement {
             title: 'Search'
-            subtitle: ''
+            subtitle: 'Search people, movies and shows'
             action: 2
         }
     }
@@ -136,6 +136,7 @@ Page {
         NoContentItem {
             anchors.fill: parent
             text: 'Mark content as favorite'
+            opacity: 0.5
             visible: favoritesModel.count == 0
         }
 
