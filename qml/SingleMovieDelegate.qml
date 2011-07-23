@@ -119,7 +119,7 @@ Item {
                     MouseArea {
                         anchors.fill: cast
                         onClicked: {
-                            appWindow.pageStack.push(castView, { movie: title })
+                            appWindow.pageStack.push(castView, { movie: title, movieId: tmdbId })
                         }
                     }
                 }
