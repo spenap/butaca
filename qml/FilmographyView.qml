@@ -28,6 +28,7 @@ Component {
     Page {
         tools: commonTools
         property string person: ''
+        property string personId: ''
 
         ButacaHeader {
             id: header
@@ -44,7 +45,7 @@ Component {
 
             FilmographyModel {
                 id: filmographyModel
-                params: person
+                params: personId
             }
 
             ListView {

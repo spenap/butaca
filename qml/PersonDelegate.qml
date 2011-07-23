@@ -79,7 +79,7 @@ Item {
                     MouseArea {
                         anchors.fill: personFacts
                         onClicked: {
-                            appWindow.pageStack.push(filmographyView, { person: personName })
+                            appWindow.pageStack.push(filmographyView, { person: personName, personId: personId })
                         }
                     }
                 }
