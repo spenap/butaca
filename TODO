@@ -3,7 +3,7 @@ In no particular order:
   [ ] General view where the user can just navigate in Google Movies
   [ ] Open the page already searching for movies
   [ ] Let the user pick a different showtime provider (if web-based), from an
-    already tested list.
+      already tested list.
 [ ] Integrate with WhatsAfterTheCredits
 [ ] Favorite content
   [*] Mark / unmark content as favorite
@@ -17,13 +17,15 @@ In no particular order:
   [*] Show the "busy" indicator while loading
   [ ] Provide placeholders for the missing data
   [*] Make the trailer thumbnail feel clickable (when available)
-  [ ] Show the missing information: categories, studios, countries, images and
-    cast.
+  [ ] Show the missing information: categories, studios, countries and
+      images
+  [*] Show cast
 [ ] Person delegate
   [*] Show the "busy" indicator while loading
   [ ] Provide placeholders for the missing data
-  [ ] Show the missing information: known movies, birthday and birthplace,
-    filmography and images
+  [*] Show the missing information: known movies, birthday, birthplace
+      and filmography
+  [ ] Show images
 [-] Search & browse criteria
   [*] Update the query to require a minimum amount of votes (which sometimes
       leads to empty results, now handled)
@@ -35,6 +37,9 @@ In no particular order:
 [ ] Landscape mode
   [ ] Check and change layouts when needed
 [ ] Error handling
-  [ ] Handle input and network errors
+  [*] Disallow searching empty query terms
+  [ ] Handle network errors
+    [ ] In the search view
+    [ ] In all views
 [*] No results
   [*] Display system-aligned messages when there are no results
