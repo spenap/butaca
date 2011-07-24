@@ -8,8 +8,5 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/qmake.mk
 
-binary-aegisgen: binary-arch
-	aegis-deb-add -control debian/butaca/DEBIAN/control .. debian/butaca.aegis=_aegis
-
-binary: binary-indep binary-aegisgen
-.PHONY: binary-aegisgen
+binary: binary-indep
+.PHONY: binary-arch
