@@ -24,6 +24,7 @@ PageStackWindow {
     id: appWindow
 
     initialPage: mainPage
+    showStatusBar: appWindow.inPortrait
 
     WelcomeView { id: mainPage }
 
