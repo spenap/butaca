@@ -2,7 +2,8 @@ Source: butaca
 Section: user/network
 Priority: extra
 Maintainer: Simon Pena <spena@igalia.com>
-Build-Depends: debhelper (>= 7), applauncherd-dev
+Build-Depends: debhelper (>= 7), applauncherd-dev, cdbs,
+ libqt4-dev
 Standards-Version: 3.8.4
 Homepage: http://gitorious.org/butaca/butaca
 
