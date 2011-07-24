@@ -18,6 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
+import com.meego 1.0
 import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
@@ -116,12 +117,13 @@ Item {
                     text: '<b>Director:</b> ' + director + '<br />' +
                           '<b>Cast:</b> ' + actor1 + ', ' + actor2 + ', ' + actor3 + '...'
 
-                    MouseArea {
-                        anchors.fill: cast
-                        onClicked: {
-                            appWindow.pageStack.push(castView, { movie: title, movieId: tmdbId })
-                        }
-                    }
+                    /* Disable cast view temporarily */
+//                    MouseArea {
+//                        anchors.fill: cast
+//                        onClicked: {
+//                            appWindow.pageStack.push(castView, { movie: title, movieId: tmdbId })
+//                        }
+//                    }
                 }
             }
         }
@@ -169,5 +171,9 @@ Item {
                 }
             }
         }
+    }
+
+    ScrollDecorator {
+        flickableItem: flick
     }
 }

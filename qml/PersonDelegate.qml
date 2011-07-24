@@ -18,6 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
+import com.meego 1.0
 import com.nokia.extras 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
@@ -45,7 +46,7 @@ Item {
             width: parent.width
             anchors.top: nameText.bottom; anchors.bottom: parent.bottom
             anchors.margins: 20
-            contentHeight: biographyText.height
+            contentHeight: row.height + biographyText.height + 20
             clip: true
 
             Row {
@@ -76,12 +77,13 @@ Item {
                           '<b>Birthplace:</b> ' + birthplace + '<br />' +
                           '<b>Known movies:</b> ' + knownMovies + '<br />'
 
-                    MouseArea {
-                        anchors.fill: personFacts
-                        onClicked: {
-                            appWindow.pageStack.push(filmographyView, { person: personName, personId: personId })
-                        }
-                    }
+                    /* Disable filmography temporarily */
+//                    MouseArea {
+//                        anchors.fill: personFacts
+//                        onClicked: {
+//                            appWindow.pageStack.push(filmographyView, { person: personName, personId: personId })
+//                        }
+//                    }
                 }
             }
 
@@ -95,6 +97,10 @@ Item {
                 text: biography
                 wrapMode: Text.WordWrap
             }
+        }
+
+        ScrollDecorator {
+            flickableItem: flick
         }
     }
 }
