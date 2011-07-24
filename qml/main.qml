@@ -26,4 +26,8 @@ PageStackWindow {
     initialPage: mainPage
 
     WelcomeView { id: mainPage }
+
+    platformStyle: PageStackWindowStyle {
+        background: 'image://theme/meegotouch-video-background'
+    }
 }
