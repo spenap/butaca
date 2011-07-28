@@ -3,9 +3,14 @@ Section: user/network
 Priority: extra
 Maintainer: Simon Pena <spena@igalia.com>
 Build-Depends: debhelper (>= 7), applauncherd-dev, cdbs,
- libqt4-dev
+ libqt4-dev, maemo-meegotouch-interfaces-dev, libmdatauri-dev
 Standards-Version: 3.8.4
-Homepage: http://gitorious.org/butaca/butaca
+XB-Maemo-Flags: visible
+XB-Homepage: http://gitorious.org/butaca/butaca
+XB-Bugtracker: https://projects.developer.nokia.com/butaca/query
+XB-Maemo-Upgrade-Description: Added sharing support
+ * Sharing content (people and movies) is now possible using
+   the share-ui
 
 Package: butaca
 Architecture: any

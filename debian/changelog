@@ -1,3 +1,9 @@
+butaca (0.2) unstable; urgency=low
+
+  * Added sharing support using the share-ui
+
+ -- Simon Pena <spena@igalia.com>  Thu, 28 Jul 2011 23:10:38 +0300
+
 butaca (0.1) unstable; urgency=low
 
   * Initial Release.
