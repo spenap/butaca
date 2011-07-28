@@ -31,9 +31,9 @@ In no particular order:
       leads to empty results, now handled)
   [ ] Make the number of votes configurable
   [ ] Make the sort order configurable
-[ ] Share on twitter / others
-  [ ] Check if it's possible to use the share-ui
-  [ ] Check the available services and the information needed for sharing
+[*] Share on twitter / others
+  [*] Check if it's possible to use the share-ui
+  [*] Check the available services and the information needed for sharing
 [ ] Landscape mode
   [ ] Check and change layouts when needed
 [ ] Error handling

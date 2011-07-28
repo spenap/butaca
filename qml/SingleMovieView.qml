@@ -55,6 +55,17 @@ Component {
                     }
                 }
             }
+
+
+            ToolIcon {
+                id: shareIcon
+                anchors.right: parent.right
+                iconId: 'toolbar-share'
+                enabled: false
+                onClicked: {
+                    helper.share(currentItem().title, currentItem().url)
+                }
+            }
         }
         width: parent.width; height: parent.height
 
@@ -91,8 +102,9 @@ Component {
             states: [
                 State {
                     name: 'Ready'
-                    PropertyChanges  { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges  { target: list; visible: true }
+                    PropertyChanges { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges { target: list; visible: true }
+                    PropertyChanges { target: shareIcon; enabled: true }
                     PropertyChanges { target: favoriteIcon;
                         iconId: welcomeView.indexOf(BUTACA.favoriteFromMovie(currentItem())) >= 0 ?
                                                   "toolbar-favorite-mark" : "toolbar-favorite-unmark";
