@@ -31,7 +31,7 @@ Item {
 
     Item {
         anchors.fill: parent
-        anchors.margins: 10
+        anchors.margins: UIConstants.DEFAULT_MARGIN
 
         ButacaHeader {
             id: nameText
