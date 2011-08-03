@@ -135,7 +135,8 @@ function favoriteFromPerson(personContent) {
     return {'id': id,
             'title': title,
             'icon': icon,
-            'type': PERSON
+            'type': PERSON,
+            'url': personContent.url
     }
 }
 
@@ -147,6 +148,7 @@ function favoriteFromMovie(movieContent) {
     return {'id': id,
             'title': title,
             'icon': icon,
-            'type': MOVIE
+            'type': MOVIE,
+            'url' : movieContent.url
     }
 }

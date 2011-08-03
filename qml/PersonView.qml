@@ -31,41 +31,7 @@ Component {
             return list.model.get(list.currentIndex)
         }
 
-        tools: ToolBarLayout {
-
-            ToolIcon {
-                iconId: "toolbar-back"; onClicked: pageStack.pop();
-            }
-
-            ToolIcon {
-                id: favoriteIcon
-                anchors.horizontalCenter: parent.horizontalCenter
-                iconId: 'toolbar-favorite-unmark'
-                enabled: false
-                onClicked: {
-                    iconId = iconId == "toolbar-favorite-mark" ? "toolbar-favorite-unmark" : "toolbar-favorite-mark"
-
-                    var content = BUTACA.favoriteFromPerson(currentItem())
-                    var idx = welcomeView.indexOf(content)
-
-                    if (idx >= 0) {
-                        welcomeView.removeFavoriteAt(idx)
-                    } else {
-                        welcomeView.addFavorite(content)
-                    }
-                }
-            }
-
-            ToolIcon {
-                id: shareIcon
-                anchors.right: parent.right
-                iconId: 'toolbar-share'
-                enabled: false
-                onClicked: {
-                    helper.share(currentItem().personName, currentItem().url)
-                }
-            }
-        }
+        tools: ButacaToolBar { id: toolBar; state: 'ContentNotReady' }
         width: parent.width; height: parent.height
 
         Item {
@@ -103,11 +69,9 @@ Component {
                     name: 'Ready'
                     PropertyChanges { target: busyIndicator; running: false; visible: false }
                     PropertyChanges { target: list; visible: true }
-                    PropertyChanges { target: shareIcon; enabled: true }
-                    PropertyChanges { target: favoriteIcon;
-                        iconId: welcomeView.indexOf(BUTACA.favoriteFromPerson(currentItem())) >= 0 ?
-                                    "toolbar-favorite-mark" : "toolbar-favorite-unmark"
-                        enabled: true;
+                    PropertyChanges {
+                        target: toolBar
+                        content: BUTACA.favoriteFromPerson(currentItem())
                     }
                 }
             ]

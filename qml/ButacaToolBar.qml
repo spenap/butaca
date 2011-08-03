@@ -19,16 +19,84 @@
 
 import QtQuick 1.1
 import com.meego 1.0
+import "butacautils.js" as BUTACA
 
 ToolBarLayout {
     id: commonTools
     visible: false
 
+    property variant content: undefined
+
     ToolIcon {
-        platformIconId: "toolbar-back";
-        visible: parent.visible;
+        id: backIcon
+        iconId: 'toolbar-back'
+        anchors.left: parent.left
+        onClicked: pageStack.pop()
+    }
+
+    ToolIcon {
+        id: favoriteIcon
+        iconId: 'toolbar-favorite-unmark'
+        anchors.horizontalCenter: parent.horizontalCenter
+        visible: false
         onClicked: {
-            pageStack.pop()
+            iconId = iconId == 'toolbar-favorite-mark' ?
+                        'toolbar-favorite-unmark' : 'toolbar-favorite-mark'
+
+            var idx = welcomeView.indexOf(content)
+
+            if (idx >= 0) {
+                welcomeView.removeFavoriteAt(idx)
+            } else {
+                welcomeView.addFavorite(content)
+            }
         }
     }
+
+    ToolIcon {
+        id: shareIcon
+        iconId: 'toolbar-share'
+        anchors.right: parent.right
+        visible: false
+        onClicked: helper.share(content.title, content.url)
+    }
+
+    /*
+     * Besides the implicit initial state, with all icons
+     * hidden but the 'back' one, there are 'ContentReady',
+     * used when the content displayed is available, and
+     * 'ContentNotReady', used when we expect content but it's
+     * yet unavailable
+     */
+    states: [
+        State {
+            name: 'ContentReady'
+            when: content !== undefined
+            PropertyChanges {
+                target: shareIcon
+                enabled: true
+                visible: true
+            }
+            PropertyChanges {
+                target: favoriteIcon;
+                iconId: welcomeView.indexOf(content) >= 0 ?
+                                          'toolbar-favorite-mark' : 'toolbar-favorite-unmark'
+                enabled: true
+                visible: true
+            }
+        },
+        State {
+            name: 'ContentNotReady'
+            PropertyChanges {
+                target: shareIcon
+                enabled: false
+                visible: true
+            }
+            PropertyChanges {
+                target: favoriteIcon
+                enabled: false
+                visible: true
+            }
+        }
+    ]
 }
