@@ -133,8 +133,6 @@ Item {
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
                         text: '<b>Revenue:</b> ' + revenue
-//                              + '<a href="' + homepage + '">Homepage</a>' + '<br />'
-//                        onLinkActivated: helper.openUrl(homepage)
                     }
 
                     RatingIndicator {

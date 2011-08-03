@@ -149,6 +149,7 @@ function favoriteFromMovie(movieContent) {
             'title': title,
             'icon': icon,
             'type': MOVIE,
-            'url' : movieContent.url
+            'url' : movieContent.url,
+            'homepage' : movieContent.homepage
     }
 }

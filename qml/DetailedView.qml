@@ -34,7 +34,24 @@ Component {
             return list.model.get(list.currentIndex)
         }
 
-        tools: ButacaToolBar { id: toolBar; state: 'ContentNotReady' }
+        Menu {
+            id: detailedViewMenu
+            MenuLayout {
+                MenuItem {
+                    id: homepageEntry
+                    text: 'Open homepage'
+                    onClicked: helper.openUrl(currentItem().homepage)
+                    visible: false
+                }
+                MenuItem {
+                    id: tmdbEntry
+                    text: 'View in The Movie Database'
+                    onClicked: helper.openUrl(currentItem().url)
+                }
+            }
+        }
+        tools: ButacaToolBar { id: toolBar; state: 'ContentNotReady'; menu: detailedViewMenu }
+
         width: parent.width; height: parent.height
 
         Item {

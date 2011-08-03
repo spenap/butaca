@@ -26,18 +26,20 @@ ToolBarLayout {
     visible: false
 
     property variant content: undefined
+    property variant menu: undefined
 
     ToolIcon {
         id: backIcon
         iconId: 'toolbar-back'
-        anchors.left: parent.left
-        onClicked: pageStack.pop()
+        onClicked: {
+            if (menu) menu.close()
+            pageStack.pop()
+        }
     }
 
     ToolIcon {
         id: favoriteIcon
         iconId: 'toolbar-favorite-unmark'
-        anchors.horizontalCenter: parent.horizontalCenter
         visible: false
         onClicked: {
             iconId = iconId == 'toolbar-favorite-mark' ?
@@ -56,9 +58,16 @@ ToolBarLayout {
     ToolIcon {
         id: shareIcon
         iconId: 'toolbar-share'
-        anchors.right: parent.right
         visible: false
         onClicked: helper.share(content.title, content.url)
+    }
+
+    ToolIcon {
+        id: menuListIcon
+        iconId: 'toolbar-view-menu'
+        visible: false
+        onClicked: (menu.status == DialogStatus.Closed) ?
+                       menu.open() : menu.close()
     }
 
     /*
@@ -84,6 +93,15 @@ ToolBarLayout {
                 enabled: true
                 visible: true
             }
+            PropertyChanges {
+                target: menuListIcon
+                enabled: true
+                visible: true && (menu !== undefined)
+            }
+            PropertyChanges {
+                target: homepageEntry
+                visible: content.type == BUTACA.MOVIE && content.homepage
+            }
         },
         State {
             name: 'ContentNotReady'
@@ -96,6 +114,11 @@ ToolBarLayout {
                 target: favoriteIcon
                 enabled: false
                 visible: true
+            }
+            PropertyChanges {
+                target: menuListIcon
+                enabled: false
+                visible: true && (menu !== undefined)
             }
         }
     ]
