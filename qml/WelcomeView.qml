@@ -142,7 +142,6 @@ Page {
         NoContentItem {
             anchors.fill: parent
             text: 'Mark content as favorite'
-            opacity: 0.5
             visible: favoritesModel.count == 0
         }
 

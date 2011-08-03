@@ -9,5 +9,6 @@ Item {
         anchors.centerIn: parent
         font.pixelSize: UIConstants.FONT_XLARGE
         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+        opacity: 0.5
     }
 }
