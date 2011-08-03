@@ -25,155 +25,193 @@ import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Item {
     id: movieDelegate
-    width: movieDelegate.ListView.view.width; height: movieDelegate.ListView.view.height
+    width: movieDelegate.ListView.view.width
+    height: movieDelegate.ListView.view.height
 
     CastView { id: castView }
 
-    /* Header: title (year), tagline and rating */
-    Column {
-        id: header
-        spacing: 20
-        width: parent.width
-        anchors {top: parent.top; left: parent.left; right: parent.right }
-        anchors.margins: 20
+    Item {
+        anchors.fill: parent
+        anchors.margins: UIConstants.DEFAULT_MARGIN
 
-        Text {
+        ButacaHeader {
             id: titleText
-            width: parent.width
-            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-            font.pixelSize: UIConstants.FONT_SLARGE
-            text: '<b>' + title + '</b>' + ' (' + BUTACA.getYearFromDate(released) +')'
-            wrapMode: Text.WordWrap
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            text: title + ' (' + BUTACA.getYearFromDate(released) + ')'
         }
 
         Text {
             id: taglineText
+            anchors.top: titleText.bottom
+            anchors.margins: 20
+
             width: parent.width
             font.pixelSize: UIConstants.FONT_DEFAULT
             color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
             text: '<i>' + tagline + '</i>'
             wrapMode: Text.WordWrap
-            visible: text != ''
+            visible: tagline
         }
 
-        RatingIndicator {
-            ratingValue: rating
-            maximumValue: 10
-            count: votes
-            inverted: theme.inverted
-        }
-    }
+        Flickable {
+            id: flick
+            anchors.top: tagline ? taglineText.bottom : titleText.bottom
+            anchors.bottom: parent.bottom
+            anchors.margins: 20
 
-    /* Variable content */
-    Flickable {
-        id: flick
-        width: parent.width
-        anchors.top: header.bottom; anchors.bottom: parent.bottom
-        anchors.margins: 20
-        contentHeight: row.height + overviewText.height + trailerHeader.height + trailerImage.height + 60
-        clip: true
-
-        Row {
-            id: row
-            spacing: 20
             width: parent.width
+            contentHeight: row.height + cast.height +
+                           overviewText.height + trailerHeader.height +
+                           trailerImage.height + 80
+            clip: true
 
-            Image {
-                id: image
-                width: 190
-                height: 280
-                source: poster ? poster : 'images/movie-placeholder.svg'
-                onStatusChanged: {
-                    if (image.status == Image.Error) {
-                        image.source = 'images/movie-placeholder.svg'
+            Row {
+                id: row
+                spacing: 20
+                width: parent.width
+
+                Image {
+                    id: image
+                    width: 190
+                    height: 280
+                    source: poster ? poster : 'images/movie-placeholder.svg'
+                    onStatusChanged: {
+                        if (image.status == Image.Error) {
+                            image.source = 'images/movie-placeholder.svg'
+                        }
+                    }
+                }
+
+                Column {
+                    width: parent.width - image.width
+                    spacing: 8
+
+                    Text {
+                        id: akaText
+                        width: parent.width
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        wrapMode: Text.WordWrap
+                        text: '<b>Also known as:</b><br />' + alternativeName
+                    }
+
+                    Text {
+                        id: certificationText
+                        width: parent.width
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        wrapMode: Text.WordWrap
+                        text: '<b>Certification</b>: ' + certification
+                    }
+
+                    Text {
+                        id: releasedText
+                        width: parent.width
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        wrapMode: Text.WordWrap
+                        text: '<b>Release date:</b><br /> ' + released
+                    }
+
+                    Text {
+                        id: budgetText
+                        width: parent.width
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        wrapMode: Text.WordWrap
+                        text: '<b>Budget:</b> ' + budget
+                    }
+
+                    Text {
+                        id: revenueText
+                        width: parent.width
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        wrapMode: Text.WordWrap
+                        text: '<b>Revenue:</b> ' + revenue
+//                              + '<a href="' + homepage + '">Homepage</a>' + '<br />'
+//                        onLinkActivated: helper.openUrl(homepage)
+                    }
+
+                    RatingIndicator {
+                        ratingValue: rating / 2
+                        maximumValue: 5
+                        count: votes
+                        inverted: theme.inverted
                     }
                 }
             }
 
-            Column {
-                width: parent.width - image.width
+            Text {
+                id: cast
+                anchors.top: row.bottom
+                anchors.topMargin: 20
 
-                Text {
-                    id: movieFacts
-                    width: parent.width
-                    font.pixelSize: UIConstants.FONT_LSMALL
-                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                    wrapMode: Text.WordWrap
-                    text: '<b>Also known as:</b> ' + alternativeName + '<br />' +
-                          '<b>Certification:</b> ' + certification + '<br />' +
-                          '<b>Release date:</b> ' + released + '<br />' +
-                          '<b>Budget:</b> ' + budget + '<br />' +
-                          '<b>Revenue:</b> ' + revenue + '<br />' +
-                          '<a href="' + homepage + '">Homepage</a>' + '<br />'
-                    onLinkActivated: helper.openUrl(homepage)
-                }
+                width: parent.width
+                font.pixelSize: UIConstants.FONT_LSMALL
+                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                wrapMode: Text.WordWrap
+                text: '<b>Director:</b> ' + director + '<br />' +
+                      '<b>Cast:</b> ' + actor1 + ', ' + actor2 + ', ' + actor3 + '...'
 
-                Text {
-                    id: cast
-                    width: parent.width
-                    font.pixelSize: UIConstants.FONT_LSMALL
-                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                    wrapMode: Text.WordWrap
-                    text: '<b>Director:</b> ' + director + '<br />' +
-                          '<b>Cast:</b> ' + actor1 + ', ' + actor2 + ', ' + actor3 + '...'
-
-                    /* Disable cast view temporarily */
+                /* Disable cast view temporarily */
 //                    MouseArea {
 //                        anchors.fill: cast
 //                        onClicked: {
 //                            appWindow.pageStack.push(castView, { movie: title, movieId: tmdbId })
 //                        }
 //                    }
-                }
             }
-        }
 
-        Text {
-            id: overviewText
-            anchors.top: row.bottom
-            anchors.topMargin: 20
+            Text {
+                id: overviewText
+                anchors.top: cast.bottom
+                anchors.topMargin: 20
 
-            width: parent.width
-            font.pixelSize: UIConstants.FONT_SMALL
-            text: overview
-            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-            wrapMode: Text.WordWrap
-        }
+                width: parent.width
+                font.pixelSize: UIConstants.FONT_SMALL
+                text: '<b>Overview:</b><br />' + overview
+                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                wrapMode: Text.WordWrap
+            }
 
-        Text {
-            id: trailerHeader
-            anchors.top: overviewText.bottom
-            anchors.topMargin: 20
-            font.pixelSize: UIConstants.FONT_SLARGE
-            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-            text: '<b>Movie trailer</b>'
-        }
-
-        Image {
-            id: trailerImage
-            anchors.top: trailerHeader.bottom
-            anchors.topMargin: 10
-            anchors.leftMargin: 10
-            width: 120; height: 90
-            source: BUTACA.getTrailerThumbnail(trailer)
+            Text {
+                id: trailerHeader
+                anchors.top: overviewText.bottom
+                anchors.topMargin: 20
+                font.pixelSize: UIConstants.FONT_SLARGE
+                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                text: '<b>Movie trailer</b>'
+            }
 
             Image {
-                id: playButton
-                anchors.centerIn: parent
-                source: 'image://theme/icon-s-music-video-play'
-                visible: trailerImage.source != ''
-            }
+                id: trailerImage
+                anchors.top: trailerHeader.bottom
+                anchors.topMargin: 10
+                anchors.leftMargin: 10
+                width: 120; height: 90
+                source: BUTACA.getTrailerThumbnail(trailer)
 
-            MouseArea {
-                anchors.fill: trailerImage
-                onClicked: {
-                    helper.openUrl(trailer)
+                Image {
+                    id: playButton
+                    anchors.centerIn: parent
+                    source: 'image://theme/icon-s-music-video-play'
+                    visible: trailerImage.source != ''
+                }
+
+                MouseArea {
+                    anchors.fill: trailerImage
+                    onClicked: {
+                        helper.openUrl(trailer)
+                    }
                 }
             }
         }
-    }
 
-    ScrollDecorator {
-        flickableItem: flick
+        ScrollDecorator {
+            flickableItem: flick
+        }
     }
 }
