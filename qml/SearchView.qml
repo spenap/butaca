@@ -29,9 +29,6 @@ Component {
 
         property alias searchTerm: searchInput.text
 
-        MultipleMoviesView { id: multipleMoviesView }
-        PeopleView { id: peopleView }
-
         ButacaHeader {
             id: header
             anchors.top: parent.top

@@ -14,7 +14,6 @@ OTHER_FILES += \
     qml/PersonView.qml \
     qml/PersonModel.qml \
     qml/PersonDelegate.qml \
-    qml/PeopleView.qml \
     qml/PeopleModel.qml \
     qml/PeopleDelegate.qml \
     qml/GenresModel.qml \

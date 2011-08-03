@@ -12,7 +12,6 @@
         <file>qml/GenresModel.qml</file>
         <file>qml/PeopleDelegate.qml</file>
         <file>qml/PeopleModel.qml</file>
-        <file>qml/PeopleView.qml</file>
         <file>qml/PersonDelegate.qml</file>
         <file>qml/PersonModel.qml</file>
         <file>qml/PersonView.qml</file>
