@@ -63,8 +63,10 @@ Item {
 
             width: parent.width
             contentHeight: row.height + cast.height +
-                           overviewText.height + trailerHeader.height +
-                           trailerImage.height + 80
+                           overviewText.height + 50 +
+                           (trailerHeader.visible ?
+                                trailerHeader.height + trailerImage.height + 30 :
+                                0)
             clip: true
 
             Row {
@@ -184,6 +186,7 @@ Item {
                 font.pixelSize: UIConstants.FONT_SLARGE
                 color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                 text: '<b>Movie trailer</b>'
+                visible: trailerImage.visible
             }
 
             Image {
@@ -193,6 +196,7 @@ Item {
                 anchors.leftMargin: 10
                 width: 120; height: 90
                 source: BUTACA.getTrailerThumbnail(trailer)
+                visible: playButton.visible
 
                 Image {
                     id: playButton
