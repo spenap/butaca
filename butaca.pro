@@ -11,13 +11,11 @@ OTHER_FILES += \
     qml/WelcomeView.qml \
     qml/ShowtimesView.qml \
     qml/SearchView.qml \
-    qml/PersonView.qml \
     qml/PersonModel.qml \
     qml/PersonDelegate.qml \
     qml/PeopleModel.qml \
     qml/PeopleDelegate.qml \
     qml/GenresModel.qml \
-    qml/SingleMovieView.qml \
     qml/SingleMovieModel.qml \
     qml/SingleMovieDelegate.qml \
     qml/ButacaToolBar.qml \
@@ -38,7 +36,8 @@ OTHER_FILES += \
     qml/CastView.qml \
     qml/FilmographyModel.qml \
     qml/FilmographyView.qml \
-    qml/storage.js
+    qml/storage.js \
+    qml/DetailedView.qml
 
 RESOURCES += \
     res.qrc

@@ -19,14 +19,15 @@
 
 import QtQuick 1.1
 import com.nokia.extras 1.0
+import "butacautils.js" as BUTACA
 
 Component {
     ListDelegate {
         id: peopleDelegate
 
-        PersonView { id: personView }
-
-        onClicked: { pageStack.push(personView, { person: personId })}
+        onClicked: { pageStack.push(detailedView,
+                                    { detailId: personId,
+                                      viewType: BUTACA.PERSON })}
 
         Item {
             id: viewDetails

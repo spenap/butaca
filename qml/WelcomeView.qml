@@ -42,8 +42,7 @@ Page {
     BrowseGenresView { id: browseView }
     SearchView { id: searchView }
     ShowtimesView { id: showtimesView }
-    SingleMovieView { id: singleMovieView }
-    PersonView { id: personView }
+    DetailedView { id: detailedView }
 
     /* Model containing the actions: browse, search and shows */
     ListModel {
@@ -187,9 +186,13 @@ Page {
                     anchors.fill: parent
                     onClicked: {
                         if (type == BUTACA.MOVIE) {
-                            appWindow.pageStack.push(singleMovieView, { movieId: id})
+                            appWindow.pageStack.push(detailedView,
+                                                     { detailId: id,
+                                                       viewType: BUTACA.MOVIE })
                         } else {
-                            appWindow.pageStack.push(personView, { person: id })
+                            appWindow.pageStack.push(detailedView,
+                                                     { detailId: id,
+                                                       viewType: BUTACA.PERSON })
                         }
                     }
                 }

@@ -8,13 +8,11 @@
         <file>qml/ButacaToolBar.qml</file>
         <file>qml/SingleMovieDelegate.qml</file>
         <file>qml/SingleMovieModel.qml</file>
-        <file>qml/SingleMovieView.qml</file>
         <file>qml/GenresModel.qml</file>
         <file>qml/PeopleDelegate.qml</file>
         <file>qml/PeopleModel.qml</file>
         <file>qml/PersonDelegate.qml</file>
         <file>qml/PersonModel.qml</file>
-        <file>qml/PersonView.qml</file>
         <file>qml/SearchView.qml</file>
         <file>qml/ShowtimesView.qml</file>
         <file>qml/WelcomeView.qml</file>
@@ -29,5 +27,6 @@
         <file>qml/FilmographyModel.qml</file>
         <file>qml/FilmographyView.qml</file>
         <file>qml/storage.js</file>
+        <file>qml/DetailedView.qml</file>
     </qresource>
 </RCC>

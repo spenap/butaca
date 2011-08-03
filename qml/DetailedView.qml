@@ -22,10 +22,13 @@ import com.meego 1.0
 import "butacautils.js" as BUTACA
 
 Component {
-    id: singleMovieView
+    id: detailedViewWrapper
 
     Page {
-        property string movieId
+        id: detailedView
+
+        property string detailId
+        property int viewType: -1
 
         function currentItem() {
             return list.model.get(list.currentIndex)
@@ -38,22 +41,33 @@ Component {
             id: content
             anchors.fill: parent
 
-            SingleMovieModel {
-                id: moviesModel
-                params: movieId
+            PersonModel {
+                id: personModel
                 onStatusChanged: {
-                    if (status == XmlListModel.Ready) {
+                    if (content.state == 'FetchingPerson' &&
+                            status == XmlListModel.Ready) {
                         content.state = 'Ready'
                     }
                 }
             }
 
+            SingleMovieModel {
+                id: movieModel
+                onStatusChanged: {
+                    if (content.state == 'FetchingMovie' &&
+                            status == XmlListModel.Ready) {
+                        content.state = 'Ready'
+                    }
+                }
+            }
+
+            Component { id: movieDelegateWrapper; SingleMovieDelegate { } }
+            Component { id: personDelegateWrapper; PersonDelegate { } }
+
             ListView {
                 id: list
                 anchors.fill: parent
-                model:  moviesModel
                 interactive: false
-                delegate: SingleMovieDelegate {}
             }
 
             BusyIndicator {
@@ -66,12 +80,33 @@ Component {
 
             states: [
                 State {
+                    name: 'FetchingMovie'
+                    when: viewType == BUTACA.MOVIE
+                    PropertyChanges {
+                        target: movieModel; restoreEntryValues: false;
+                        params: detailId }
+                    PropertyChanges {
+                        target: list; restoreEntryValues: false;
+                        model: movieModel; delegate: movieDelegateWrapper }
+                },
+                State {
+                    name: 'FetchingPerson'
+                    when: viewType == BUTACA.PERSON
+                    PropertyChanges {
+                        target: personModel; restoreEntryValues: false;
+                        params: detailId }
+                    PropertyChanges { target: list; restoreEntryValues: false;
+                        model: personModel; delegate: personDelegateWrapper }
+                },
+                State {
                     name: 'Ready'
                     PropertyChanges { target: busyIndicator; running: false; visible: false }
                     PropertyChanges { target: list; visible: true }
                     PropertyChanges {
                         target: toolBar
-                        content: BUTACA.favoriteFromMovie(currentItem())
+                        content: viewType == BUTACA.MOVIE ?
+                                     BUTACA.favoriteFromMovie(currentItem()) :
+                                     BUTACA.favoriteFromPerson(currentItem())
                     }
                 }
             ]
