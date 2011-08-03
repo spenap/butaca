@@ -97,7 +97,7 @@ Component {
                 onStatusChanged: {
                     if (status == XmlListModel.Ready &&
                             searchResults.state == 'MovieSearch') {
-                        searchResults.state = 'MovieSearchFinished'
+                        searchResults.state = 'SearchFinished'
                     }
                 }
             }
@@ -108,7 +108,7 @@ Component {
                 onStatusChanged: {
                     if (status == XmlListModel.Ready &&
                             searchResults.state == 'PeopleSearch') {
-                        searchResults.state = 'PeopleSearchFinished'
+                        searchResults.state = 'SearchFinished'
                     }
                 }
             }
@@ -162,10 +162,6 @@ Component {
                     PropertyChanges { target: busyIndicator; visible: true; running: true }
                 },
                 State {
-                    name: 'PeopleSearchFinished'
-                    PropertyChanges { target: noResults; visible: peopleModel.count == 0 }
-                },
-                State {
                     name: 'MovieSearch'
                     PropertyChanges { target: moviesModel;
                         restoreEntryValues: false;
@@ -176,8 +172,8 @@ Component {
                     PropertyChanges { target: busyIndicator; visible: true; running: true }
                 },
                 State {
-                    name: 'MovieSearchFinished'
-                    PropertyChanges { target: noResults; visible: moviesModel.count == 0 }
+                    name: 'SearchFinished'
+                    PropertyChanges { target: noResults; visible: resultList.model.count == 0 }
                 }
             ]
         }
