@@ -8,10 +8,8 @@ Standards-Version: 3.8.4
 XB-Maemo-Flags: visible
 XB-Homepage: http://gitorious.org/butaca/butaca
 XB-Bugtracker: https://projects.developer.nokia.com/butaca/query
-XB-Maemo-Upgrade-Description: Cast view and improvements
- * Added cast view
- * Added placeholders for missing data
- * Wrapped header in person and movie view
+XB-Maemo-Upgrade-Description: Improved cast view
+ * Improved cast view to display crew by sections
 
 Package: butaca
 Architecture: any

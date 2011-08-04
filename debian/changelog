@@ -1,3 +1,9 @@
+butaca (0.2.7) unstable; urgency=low
+
+  * Improved cast view to display crew by sections
+
+ -- Simon Pena <spena@igalia.com>  Fri, 05 Aug 2011 01:14:57 +0300
+
 butaca (0.2.6) unstable; urgency=low
 
   * Added cast view
