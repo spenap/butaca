@@ -30,6 +30,23 @@ Item {
 
     CastView { id: castView }
 
+    function formatMovieCast() {
+        var actors = [ actor1, actor2, actor3 ]
+        var output = '<b>Director: </b> ' + (director ? director : 'not found') +
+            '<br />' + '<b>Cast: </b> '
+        for (var i = 0; i < actors.length; i ++) {
+            if (actors[i]) {
+                output += actors[i]
+                if (i < actors.length - 1) {
+                    output += ', '
+                } else {
+                    output += '...'
+                }
+            }
+        }
+        return output
+    }
+
     Item {
         anchors.fill: parent
         anchors.margins: UIConstants.DEFAULT_MARGIN
@@ -100,7 +117,8 @@ Item {
                                    UIConstants.COLOR_FOREGROUND :
                                    UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
-                        text: '<b>Also known as:</b><br />' + alternativeName
+                        text: '<b>Also known as:</b><br />' +
+                              (alternativeName ? alternativeName : ' - ')
                     }
 
                     Text {
@@ -111,7 +129,8 @@ Item {
                                    UIConstants.COLOR_FOREGROUND :
                                    UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
-                        text: '<b>Certification</b>: ' + certification
+                        text: '<b>Certification</b>: ' +
+                              (certification ? certification : ' - ')
                     }
 
                     Text {
@@ -122,7 +141,8 @@ Item {
                                    UIConstants.COLOR_FOREGROUND :
                                    UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
-                        text: '<b>Release date:</b><br /> ' + released
+                        text: '<b>Release date:</b><br /> ' +
+                              (released ? released : ' - ')
                     }
 
                     Text {
@@ -133,7 +153,8 @@ Item {
                                    UIConstants.COLOR_FOREGROUND :
                                    UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
-                        text: '<b>Budget:</b> ' + budget
+                        text: '<b>Budget:</b> ' +
+                              (budget ? budget : ' - ')
                     }
 
                     Text {
@@ -144,7 +165,8 @@ Item {
                                    UIConstants.COLOR_FOREGROUND :
                                    UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
-                        text: '<b>Revenue:</b> ' + revenue
+                        text: '<b>Revenue:</b> ' +
+                              (revenue ? revenue : ' - ')
                     }
 
                     RatingIndicator {
@@ -167,8 +189,7 @@ Item {
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
                 wrapMode: Text.WordWrap
-                text: '<b>Director:</b> ' + director + '<br />' +
-                      '<b>Cast:</b> ' + actor1 + ', ' + actor2 + ', ' + actor3 + '...'
+                text: formatMovieCast()
                 opacity: castMouseArea.pressed ? 0.5 : 1
 
                 Image {
@@ -196,7 +217,8 @@ Item {
 
                 width: parent.width
                 font.pixelSize: UIConstants.FONT_SMALL
-                text: '<b>Overview:</b><br />' + overview
+                text: '<b>Overview:</b><br />' +
+                      (overview ? overview : 'Overview not found')
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
