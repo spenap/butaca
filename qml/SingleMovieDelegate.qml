@@ -37,7 +37,7 @@ Item {
         ButacaHeader {
             id: titleText
             anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width
 
             text: title + ' (' + BUTACA.getYearFromDate(released) + ')'
         }

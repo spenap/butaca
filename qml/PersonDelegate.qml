@@ -36,7 +36,7 @@ Item {
         ButacaHeader {
             id: nameText
             anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width
 
             text: personName
         }
