@@ -21,6 +21,7 @@ import QtQuick 1.1
 import com.meego 1.0
 import com.nokia.extras 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
+import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
 
 Component {
     id: peopleView
@@ -30,35 +31,73 @@ Component {
         property string movie: ''
         property string movieId:  ''
 
-        ButacaHeader {
-            id: header
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            text: 'Full cast in ' + movie
-        }
-
         Item {
-            id: castContent
-            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
+            anchors.fill: parent
             anchors.margins: UIConstants.DEFAULT_MARGIN
 
-            CastModel {
-                id: castModel
-                params: movieId
+            ButacaHeader {
+                id: header
+                anchors.top: parent.top
+                width: parent.width
+
+                text: 'Full cast in ' + movie
             }
 
-            ListView {
-                id: list
-                anchors.fill: parent
-                clip: true
+            Item {
+                id: castContent
+                anchors {
+                    top: header.bottom
+                    left: parent.left
+                    right: parent.right
+                    bottom:  parent.bottom
+                }
 
-                model: castModel
-                delegate: PeopleDelegate { }
-            }
+                CastModel {
+                    id: castModel
+                    params: movieId
+                }
 
-            ScrollDecorator {
-                flickableItem: list
+                ListView {
+                    id: list
+                    anchors.fill: parent
+                    clip: true
+
+                    model: castModel
+                    delegate: PeopleDelegate { }
+
+                    section.property: 'department'
+                    section.delegate: Component {
+                        id: sectionDelegateWrapper
+                        Item {
+                            id: sectionDelegate
+                            width: parent.width
+
+                            Rectangle {
+                                id: sectionDelegateDivider
+                                width: parent.width -
+                                       sectionDelegateText.width -
+                                       UIConstants.DEFAULT_MARGIN
+                                height: 1
+                                color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
+                                anchors.verticalCenter: sectionDelegateText.verticalCenter
+                            }
+
+                            Text {
+                                id: sectionDelegateText
+                                text: section
+                                color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
+                                font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
+                                font.weight: Font.Light
+                                anchors.left: sectionDelegateDivider.right
+                                anchors.leftMargin: UIConstants.DEFAULT_MARGIN
+                            }
+                        }
+                    }
+                }
+
+                ScrollDecorator {
+                    flickableItem: list
+                }
             }
         }
     }

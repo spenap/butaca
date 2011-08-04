@@ -30,9 +30,9 @@ XmlListModel {
 
     /* name */
     XmlRole { name: "title"; query: "@name/string()" }
-    XmlRole { name: "character"; query: "@character/string()"}
-    /* job */
-    XmlRole { name: "subtitle"; query: "@job/string()" }
+    /* character */
+    XmlRole { name: "subtitle"; query: "@character/string()"}
+    XmlRole { name: "job"; query: "@job/string()" }
     XmlRole { name: "personId"; query: "@id/string()" }
     /* thumb */
     XmlRole { name: "icon"; query: "@thumb/string()" }
