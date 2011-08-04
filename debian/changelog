@@ -1,3 +1,11 @@
+butaca (0.2.6) unstable; urgency=low
+
+  * Added cast view
+  * Added placeholders for missing data
+  * Wrapped header in person and movie view
+
+ -- Simon Pena <spena@igalia.com>  Thu, 04 Aug 2011 14:56:55 +0300
+
 butaca (0.2.5) unstable; urgency=low
 
   * Improved person and movie detailed view
