@@ -149,20 +149,28 @@ Item {
                 anchors.top: row.bottom
                 anchors.topMargin: 20
 
-                width: parent.width
+                width: parent.width - castDetails.width
                 font.pixelSize: UIConstants.FONT_LSMALL
                 color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                 wrapMode: Text.WordWrap
                 text: '<b>Director:</b> ' + director + '<br />' +
                       '<b>Cast:</b> ' + actor1 + ', ' + actor2 + ', ' + actor3 + '...'
+                opacity: castMouseArea.pressed ? 0.5 : 1
 
-                /* Disable cast view temporarily */
-//                    MouseArea {
-//                        anchors.fill: cast
-//                        onClicked: {
-//                            appWindow.pageStack.push(castView, { movie: title, movieId: tmdbId })
-//                        }
-//                    }
+                Image {
+                    id: castDetails
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    source: 'image://theme/icon-s-music-video-description'
+                }
+
+                MouseArea {
+                    id: castMouseArea
+                    anchors.fill: cast
+                    onClicked: {
+                        appWindow.pageStack.push(castView, { movie: title, movieId: tmdbId })
+                    }
+                }
             }
 
             Text {
