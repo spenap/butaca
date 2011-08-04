@@ -8,9 +8,11 @@ Standards-Version: 3.8.4
 XB-Maemo-Flags: visible
 XB-Homepage: http://gitorious.org/butaca/butaca
 XB-Bugtracker: https://projects.developer.nokia.com/butaca/query
-XB-Maemo-Upgrade-Description: Added sharing support
- * Sharing content (people and movies) is now possible using
-   the share-ui
+XB-Maemo-Upgrade-Description: Layout and code improvements
+ * Improved person and movie detailed view
+ * Layout improvements in movie delegate
+ * Added menu list for detailed view
+ * Code cleanup
 
 Package: butaca
 Architecture: any
