@@ -49,7 +49,9 @@ Item {
 
             width: parent.width
             font.pixelSize: UIConstants.FONT_DEFAULT
-            color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+            color: !theme.inverted ?
+                       UIConstants.COLOR_FOREGROUND :
+                       UIConstants.COLOR_INVERTED_FOREGROUND
             text: '<i>' + tagline + '</i>'
             wrapMode: Text.WordWrap
             visible: tagline
@@ -94,7 +96,9 @@ Item {
                         id: akaText
                         width: parent.width
                         font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
                         text: '<b>Also known as:</b><br />' + alternativeName
                     }
@@ -103,7 +107,9 @@ Item {
                         id: certificationText
                         width: parent.width
                         font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
                         text: '<b>Certification</b>: ' + certification
                     }
@@ -112,7 +118,9 @@ Item {
                         id: releasedText
                         width: parent.width
                         font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
                         text: '<b>Release date:</b><br /> ' + released
                     }
@@ -121,7 +129,9 @@ Item {
                         id: budgetText
                         width: parent.width
                         font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
                         text: '<b>Budget:</b> ' + budget
                     }
@@ -130,7 +140,9 @@ Item {
                         id: revenueText
                         width: parent.width
                         font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
                         text: '<b>Revenue:</b> ' + revenue
                     }
@@ -151,7 +163,9 @@ Item {
 
                 width: parent.width - castDetails.width
                 font.pixelSize: UIConstants.FONT_LSMALL
-                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                color: !theme.inverted ?
+                           UIConstants.COLOR_FOREGROUND :
+                           UIConstants.COLOR_INVERTED_FOREGROUND
                 wrapMode: Text.WordWrap
                 text: '<b>Director:</b> ' + director + '<br />' +
                       '<b>Cast:</b> ' + actor1 + ', ' + actor2 + ', ' + actor3 + '...'
@@ -168,7 +182,9 @@ Item {
                     id: castMouseArea
                     anchors.fill: cast
                     onClicked: {
-                        appWindow.pageStack.push(castView, { movie: title, movieId: tmdbId })
+                        appWindow.pageStack.push(castView,
+                                                 { movie: title,
+                                                   movieId: tmdbId })
                     }
                 }
             }
@@ -181,7 +197,9 @@ Item {
                 width: parent.width
                 font.pixelSize: UIConstants.FONT_SMALL
                 text: '<b>Overview:</b><br />' + overview
-                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                color: !theme.inverted ?
+                           UIConstants.COLOR_FOREGROUND :
+                           UIConstants.COLOR_INVERTED_FOREGROUND
                 wrapMode: Text.WordWrap
             }
 
@@ -190,7 +208,9 @@ Item {
                 anchors.top: overviewText.bottom
                 anchors.topMargin: 20
                 font.pixelSize: UIConstants.FONT_SLARGE
-                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                color: !theme.inverted ?
+                           UIConstants.COLOR_FOREGROUND :
+                           UIConstants.COLOR_INVERTED_FOREGROUND
                 text: '<b>Movie trailer</b>'
                 visible: trailerImage.visible
             }
