@@ -42,7 +42,8 @@ Page {
     BrowseGenresView { id: browseView }
     SearchView { id: searchView }
     ShowtimesView { id: showtimesView }
-    DetailedView { id: detailedView }
+    DetailedView { id: movieView }
+    DetailedView { id: personView }
 
     /* Model containing the actions: browse, search and shows */
     ListModel {
@@ -185,11 +186,11 @@ Page {
                     anchors.fill: parent
                     onClicked: {
                         if (type == BUTACA.MOVIE) {
-                            appWindow.pageStack.push(detailedView,
+                            appWindow.pageStack.push(movieView,
                                                      { detailId: id,
                                                        viewType: BUTACA.MOVIE })
                         } else {
-                            appWindow.pageStack.push(detailedView,
+                            appWindow.pageStack.push(personView,
                                                      { detailId: id,
                                                        viewType: BUTACA.PERSON })
                         }

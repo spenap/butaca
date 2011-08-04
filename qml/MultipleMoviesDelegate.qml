@@ -46,7 +46,7 @@ Component {
         MouseArea {
             id: mouseArea
             anchors.fill: parent
-            onClicked: { pageStack.push(detailedView,
+            onClicked: { pageStack.push(movieView,
                                         { detailId: tmdbId,
                                           viewType: BUTACA.MOVIE }) }
         }

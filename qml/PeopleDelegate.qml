@@ -25,7 +25,7 @@ Component {
     ListDelegate {
         id: peopleDelegate
 
-        onClicked: { pageStack.push(detailedView,
+        onClicked: { pageStack.push(personView,
                                     { detailId: personId,
                                       viewType: BUTACA.PERSON })}
 
