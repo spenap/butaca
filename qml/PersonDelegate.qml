@@ -43,9 +43,11 @@ Item {
 
         Flickable {
             id: flick
-            width: parent.width
-            anchors.top: nameText.bottom; anchors.bottom: parent.bottom
+            anchors.top: nameText.bottom
+            anchors.bottom: parent.bottom
             anchors.margins: 20
+
+            width: parent.width
             contentHeight: row.height + biographyText.height + 20
             clip: true
 
@@ -66,25 +68,65 @@ Item {
                     }
                 }
 
-                Text {
-                    id: personFacts
+                Column {
                     width: parent.width - image.width
-                    font.pixelSize: UIConstants.FONT_LSMALL
-                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                    wrapMode: Text.WordWrap
-                    text: '<b>Also known as:</b> ' + alternativeName + '<br />' +
-                          '<b>Birthday:</b> ' + birthday + '<br />' +
-                          '<b>Birthplace:</b> ' + birthplace + '<br />' +
-                          '<b>Known movies:</b> ' + knownMovies + '<br />'
+                    spacing: 8
 
-                    /* Disable filmography temporarily */
+                    Text {
+                        id: akaText
+                        width: parent.width
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
+                        wrapMode: Text.WordWrap
+                        text: '<b>Also known as:</b><br />' +
+                              (alternativeName ? alternativeName : ' - ')
+                    }
+                    Text {
+                        id: birthdayText
+                        width: parent.width
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
+                        wrapMode: Text.WordWrap
+                        text: '<b>Birthday:</b> ' +
+                              (birthday ? birthday : ' - ')
+                    }
+
+                    Text {
+                        id: birthplaceText
+                        width: parent.width
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
+                        wrapMode: Text.WordWrap
+                        text: '<b>Birthplace:</b><br />' +
+                              (birthplace ? birthplace : ' - ')
+                    }
+
+                    Text {
+                        id: knownMoviesText
+                        width: parent.width
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
+                        wrapMode: Text.WordWrap
+                        text: '<b>Known movies:</b> ' +
+                              (knownMovies ? knownMovies : ' - ')
+                    }
+                }
+
+                /* Disable filmography temporarily */
 //                    MouseArea {
 //                        anchors.fill: personFacts
 //                        onClicked: {
 //                            appWindow.pageStack.push(filmographyView, { person: personName, personId: personId })
 //                        }
 //                    }
-                }
             }
 
             Text {
@@ -93,8 +135,11 @@ Item {
                 anchors.topMargin: 20
                 width: parent.width
                 font.pixelSize: UIConstants.FONT_SMALL
-                color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                text: biography
+                color: !theme.inverted ?
+                           UIConstants.COLOR_FOREGROUND :
+                           UIConstants.COLOR_INVERTED_FOREGROUND
+                text: '<b>Biography:</b><br />' +
+                      (biography ? biography : 'Biography not found')
                 wrapMode: Text.WordWrap
             }
         }
