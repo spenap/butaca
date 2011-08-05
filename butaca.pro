@@ -37,7 +37,8 @@ OTHER_FILES += \
     qml/FilmographyModel.qml \
     qml/FilmographyView.qml \
     qml/storage.js \
-    qml/DetailedView.qml
+    qml/DetailedView.qml \
+    qml/ListSectionDelegate.qml
 
 RESOURCES += \
     res.qrc

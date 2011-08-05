@@ -28,5 +28,6 @@
         <file>qml/FilmographyView.qml</file>
         <file>qml/storage.js</file>
         <file>qml/DetailedView.qml</file>
+        <file>qml/ListSectionDelegate.qml</file>
     </qresource>
 </RCC>

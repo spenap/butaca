@@ -21,7 +21,6 @@ import QtQuick 1.1
 import com.meego 1.0
 import com.nokia.extras 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
-import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
 
 Component {
     id: peopleView
@@ -66,33 +65,7 @@ Component {
                     delegate: PeopleDelegate { }
 
                     section.property: 'department'
-                    section.delegate: Component {
-                        id: sectionDelegateWrapper
-                        Item {
-                            id: sectionDelegate
-                            width: parent.width
-
-                            Rectangle {
-                                id: sectionDelegateDivider
-                                width: parent.width -
-                                       sectionDelegateText.width -
-                                       UIConstants.DEFAULT_MARGIN
-                                height: 1
-                                color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
-                                anchors.verticalCenter: sectionDelegateText.verticalCenter
-                            }
-
-                            Text {
-                                id: sectionDelegateText
-                                text: section
-                                color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
-                                font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
-                                font.weight: Font.Light
-                                anchors.left: sectionDelegateDivider.right
-                                anchors.leftMargin: UIConstants.DEFAULT_MARGIN
-                            }
-                        }
-                    }
+                    section.delegate: ListSectionDelegate { }
                 }
 
                 ScrollDecorator {
