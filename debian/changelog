@@ -1,3 +1,14 @@
+butaca (0.2.8) unstable; urgency=low
+
+  * Added filmography view
+  * Improved person view
+  * Added busy indicator to cast and filmography view
+  * Added About dialog
+  * Improved search view
+  * Locked application to portrait mode
+
+ -- Simon Pena <spena@igalia.com>  Fri, 12 Aug 2011 00:59:57 +0300
+
 butaca (0.2.7) unstable; urgency=low
 
   * Improved cast view to display crew by sections
