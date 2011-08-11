@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="80" width="80">
+ <defs>
+  <linearGradient id="hicg_overlay_grad" gradientUnits="userSpaceOnUse" x1="39.9995" y1="5.1816" x2="39.9995" y2="58.8019">
+   <stop offset="0" style="stop-color: rgb(255, 255, 255);"/>
+   <stop offset="1" style="stop-color: rgb(0, 0, 0);"/>
+  </linearGradient>
+  <filter id="hicg_drop_shadow">
+    <feOffset in="SourceAlpha" dx="0" dy="4"/>
+    <feGaussianBlur stdDeviation="4"/>
+	<feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0" result="shadow"/>
+    <feBlend in="SourceGraphic" in2="shadow" mode="normal"/>
+  </filter>
+ </defs>
+ <g>
+  <path id="hicg_background" fill="#808080" d="M79,40c0,28.893-10.105,39-39,39S1,68.893,1,40C1,11.106,11.105,1,40,1S79,11.106,79,40z"/>
+  <path id="hicg_highlight" fill="#fff" opacity="0.25" d="M39.999,1C11.105,1,1,11.106,1,40c0,28.893,10.105,39,38.999,39   C68.896,79,79,68.893,79,40C79,11.106,68.896,1,39.999,1z M39.999,78.025C11.57,78.025,1.976,68.43,1.976,40   c0-28.429,9.595-38.024,38.023-38.024c28.43,0,38.024,9.596,38.024,38.024C78.023,68.43,68.429,78.025,39.999,78.025z"/>
+  <path id="hicg_overlay" opacity="0.4" fill="url(#hicg_overlay_grad)" d="M78.977,40c0,28.893-10.1,39-38.977,39S1.023,68.893,1.023,40c0-28.894,10.1-39,38.977-39S78.977,11.106,78.977,40z"/>
+ </g>
+<g xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" transform="translate(13.053, 12) scale(0.0957265)" filter="url(#hicg_drop_shadow)">
+  <sodipodi:namedview xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" inkscape:showpageshadow="false" inkscape:window-y="0" inkscape:window-x="30" inkscape:window-height="947" inkscape:window-width="1250" inkscape:document-units="px" inkscape:grid-bbox="true" showgrid="false" inkscape:current-layer="layer1" inkscape:cy="321.4682" inkscape:cx="-221.104" inkscape:zoom="1" inkscape:pageshadow="2" inkscape:pageopacity="0.0" borderopacity="0.14117647" bordercolor="#666666" pagecolor="#ffffff" id="base"/>
+  <defs xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink" id="defs3">
+    <linearGradient id="linearGradient4169">
+      <stop id="stop4171" style="stop-color: rgb(22, 22, 22); stop-opacity: 1;" offset="0"/>
+      <stop offset="0.25" style="stop-color: rgb(129, 129, 129); stop-opacity: 1;" id="stop4177"/>
+      <stop offset="0.5" style="stop-color: rgb(196, 196, 196); stop-opacity: 1;" id="stop4173"/>
+      <stop id="stop4175" style="stop-color: rgb(47, 47, 47); stop-opacity: 1;" offset="1"/>
+    </linearGradient>
+    <linearGradient id="linearGradient15076">
+      <stop offset="0" style="stop-color: rgb(230, 230, 230); stop-opacity: 1;" id="stop15078"/>
+      <stop offset="1" style="stop-color: rgb(230, 230, 230); stop-opacity: 0;" id="stop15080"/>
+    </linearGradient>
+    <linearGradient id="linearGradient3593">
+      <stop offset="0" style="stop-color: rgb(147, 147, 147); stop-opacity: 1;" id="stop3595"/>
+      <stop offset="1.0000000" style="stop-color: rgb(217, 217, 217); stop-opacity: 1;" id="stop3597"/>
+    </linearGradient>
+    <linearGradient id="linearGradient2601">
+      <stop offset="0.0000000" style="stop-color: rgb(93, 93, 93); stop-opacity: 1;" id="stop2603"/>
+      <stop offset="1.0000000" style="stop-color: rgb(68, 68, 68); stop-opacity: 1;" id="stop2605"/>
+    </linearGradient>
+    <linearGradient id="linearGradient2502">
+      <stop offset="0" style="stop-color: rgb(253, 253, 253); stop-opacity: 1;" id="stop2504"/>
+      <stop id="stop4167" style="stop-color: rgb(232, 232, 232); stop-opacity: 1;" offset="0.5"/>
+      <stop offset="1.0000000" style="stop-color: rgb(212, 212, 212); stop-opacity: 1;" id="stop2506"/>
+    </linearGradient>
+    <linearGradient x1="10.678571" gradientTransform="matrix(13.5781, 0, 0, 12.9744, -684.44, -695.178)" y1="15.928572" x2="7.9285712" inkscape:collect="always" gradientUnits="userSpaceOnUse" y2="11.107142" xlink:href="#linearGradient3593" id="linearGradient3599"/>
+    <linearGradient x1="2.7612331" gradientTransform="matrix(13.5482, -4.17231e-08, 4.34641e-08, 13.0056, -508.34, -835.508)" y1="6.1102505" x2="18.772917" inkscape:collect="always" gradientUnits="userSpaceOnUse" y2="18.693317" xlink:href="#linearGradient2502" id="linearGradient10171"/>
+    <radialGradient gradientTransform="matrix(1, 0, 0, 0.206773, 0, -27.3097)" inkscape:collect="always" r="24.181168" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient15076" cy="-34.42857" id="radialGradient15082" fx="-5.114923" cx="-5.114923" fy="-34.42857"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient4169" id="linearGradient4165" x1="-195.43011" y1="-241.80779" x2="-29.503973" y2="-241.80779" gradientUnits="userSpaceOnUse" gradientTransform="translate(188.709, -238.102)"/>
+  </defs>
+  <metadata xmlns="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" id="metadata4">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title>Multimedia Category</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Jakub Steiner</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:source>http://jimmac.musichall.cz</dc:source>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>video</rdf:li>
+            <rdf:li>multimedia</rdf:li>
+            <rdf:li>category</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title/>
+          </cc:Agent>
+        </dc:contributor>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/2.0/"/>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/by/2.0/">
+        <cc:permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+        <cc:permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+        <cc:requires rdf:resource="http://web.resource.org/cc/Notice"/>
+        <cc:requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+        <cc:permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
+        <cc:requires rdf:resource="http://web.resource.org/cc/ShareAlike"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" inkscape:label="Layer 1" id="layer1" inkscape:groupmode="layer" transform="translate(645.4, 691.105)">
+    <rect ry="14.863476" rx="15.483663" style="opacity: 1; color: rgb(0, 0, 0); fill: url(&quot;#linearGradient10171&quot;) rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; stroke: none; stroke-width: 1.37; stroke-linecap: butt; stroke-linejoin: miter; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" transform="matrix(0.976555, -0.215269, 0.234686, 0.972071, 0, 0)" y="-702.02832" x="-491.13211" height="90.27906" width="542.97681" id="rect10169"/>
+    <rect rx="15.515952" style="opacity: 1; color: rgb(0, 0, 0); fill: rgb(27, 27, 27); fill-opacity: 1; fill-rule: nonzero; stroke: rgb(59, 59, 59); stroke-width: 5.01243; stroke-linecap: butt; stroke-linejoin: miter; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" ry="15.19626" y="-480.14453" x="-610.69897" height="372.30823" width="517.84497" id="rect1440"/>
+    <rect transform="matrix(-0.999977, 0.00677356, 0.00814862, 0.999967, 0, 0)" rx="15.517737" style="color: rgb(0, 0, 0); fill: rgb(224, 224, 224); fill-opacity: 1; fill-rule: nonzero; stroke: none; stroke-width: 3.6723; stroke-linecap: butt; stroke-linejoin: miter; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" ry="14.148071" y="-493.63019" x="80.993851" height="80.575974" width="540.48657" id="rect6273"/>
+    <path style="fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: evenodd; stroke: none; stroke-width: 0.25pt; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;" d="M -155.87189,-494.06975 L -103.0936,-405.32438 L -169.40827,-407.71185 L -221.28643,-492.22571 L -155.87189,-494.06975 z " sodipodi:nodetypes="ccccc" id="path4364"/>
+    <path style="fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: evenodd; stroke: none; stroke-width: 0.25pt; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;" id="path4366" sodipodi:nodetypes="ccccc" d="M -283.15246,-493.69801 L -232.48599,-406.43349 L -298.35062,-406.70234 L -348.56702,-491.87337 L -283.15246,-493.69801 z "/>
+    <path style="fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: evenodd; stroke: none; stroke-width: 0.25pt; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;" d="M -416.54346,-490.81071 L -366.10201,-406.46652 L -431.96664,-406.72953 L -481.958,-489.02571 L -416.54346,-490.81071 z " sodipodi:nodetypes="ccccc" id="path4368"/>
+    <path style="color: rgb(0, 0, 0); fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; stroke: none; stroke-width: 1; stroke-linecap: butt; stroke-linejoin: miter; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" d="M -576.94459,-484.75275 C -579.47846,-481.91181 -581.09845,-478.55931 -581.06816,-474.39648 L -581.04759,-430.56749 L -565.19485,-405.92629 L -499.86683,-406.37529 L -550.02427,-484.75552 L -576.94459,-484.75275 z " sodipodi:nodetypes="ccccccc" id="path4370"/>
+    <path style="fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: evenodd; stroke: none; stroke-width: 0.25pt; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;" id="path2202" sodipodi:nodetypes="ccccc" d="M -546.71904,-595.66267 L -579.69441,-504.26958 L -515.68341,-522.15084 L -482.70805,-609.57031 L -546.71904,-595.66267 z "/>
+    <path style="fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: evenodd; stroke: none; stroke-width: 0.25pt; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;" d="M -420.63676,-623.89775 L -456.52173,-524.24441 L -392.51073,-540.51433 L -356.62578,-638.13393 L -420.63676,-623.89775 z " sodipodi:nodetypes="ccccc" id="path2204"/>
+    <path style="fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: evenodd; stroke: none; stroke-width: 0.25pt; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1;" id="path2206" sodipodi:nodetypes="ccccc" d="M -289.7052,-654.75042 L -324.6203,-553.2215 L -260.60931,-569.46614 L -225.69421,-668.96448 L -289.7052,-654.75042 z "/>
+    <path style="opacity: 1; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; stroke: none; stroke-width: 1; stroke-linecap: butt; stroke-linejoin: miter; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" id="rect2210" sodipodi:nodetypes="ccccccc" d="M -119.41804,-689.55971 C -116.11238,-687.21208 -113.62791,-684.0895 -112.65373,-679.68723 L -103.11928,-639.86155 L -118.70939,-597.95385 L -192.53698,-579.485 L -158.5866,-680.49315 L -119.41804,-689.55971 z "/>
+    <rect transform="matrix(-0.999975, 0.00709905, 0.00777502, 0.99997, 0, 0)" rx="15.517773" style="color: rgb(0, 0, 0); fill: none; fill-opacity: 1; fill-rule: nonzero; stroke: rgb(43, 43, 43); stroke-width: 4.9516; stroke-linecap: butt; stroke-linejoin: miter; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" ry="14.827904" y="-494.97458" x="81.018105" height="84.447739" width="540.48779" id="rect4362"/>
+    <rect ry="14.863476" rx="15.483663" style="opacity: 1; color: rgb(0, 0, 0); fill: none; fill-opacity: 1; fill-rule: nonzero; stroke: rgb(46, 46, 46); stroke-width: 4.95209; stroke-linecap: butt; stroke-linejoin: miter; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" transform="matrix(0.976555, -0.215269, 0.234686, 0.972071, 0, 0)" y="-700.42169" x="-493.19235" height="90.27906" width="542.97681" id="rect2200"/>
+    <path style="fill: url(&quot;#linearGradient3599&quot;) rgb(0, 0, 0); fill-opacity: 1; fill-rule: evenodd; stroke: rgb(27, 27, 27); stroke-width: 3.6143; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1;" id="path3583" sodipodi:nodetypes="ccccccc" d="M -595.69718,-553.85022 L -595.69718,-452.83535 C -595.69718,-446.81152 -590.36291,-441.25106 -584.0588,-440.7877 L -476.88889,-440.7877 C -465.16198,-440.7877 -459.59228,-457.15945 -468.64506,-465.80974 L -553.02317,-560.33741 C -566.11632,-578.40887 -595.69718,-569.60483 -595.69718,-553.85022 z "/>
+    <path style="opacity: 1; color: rgb(0, 0, 0); fill: rgb(255, 255, 255); fill-opacity: 1; fill-rule: nonzero; stroke: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" sodipodi:cx="8.5535717" sodipodi:cy="17.196428" sodipodi:type="arc" transform="matrix(13.5781, 0, 0, 12.9744, -685.41, -759.587)" d="M 9.0357146 17.196428 A 0.48214287 0.48214287 0 1 1  8.0714288,17.196428 A 0.48214287 0.48214287 0 1 1  9.0357146 17.196428 z" sodipodi:rx="0.48214287" id="path3587" sodipodi:ry="0.48214287"/>
+    <path style="opacity: 1; color: rgb(0, 0, 0); fill: rgb(255, 255, 255); fill-opacity: 1; fill-rule: nonzero; stroke: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" sodipodi:cx="8.5535717" sodipodi:cy="17.196428" sodipodi:type="arc" transform="matrix(13.5781, 0, 0, 12.9744, -685.41, -691.008)" d="M 9.0357146 17.196428 A 0.48214287 0.48214287 0 1 1  8.0714288,17.196428 A 0.48214287 0.48214287 0 1 1  9.0357146 17.196428 z" sodipodi:rx="0.48214287" id="path3589" sodipodi:ry="0.48214287"/>
+    <path style="opacity: 1; color: rgb(0, 0, 0); fill: rgb(255, 255, 255); fill-opacity: 1; fill-rule: nonzero; stroke: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; marker: none; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0pt; stroke-opacity: 1; visibility: visible; display: block;" sodipodi:cx="8.5535717" sodipodi:cy="17.196428" sodipodi:type="arc" transform="matrix(13.5781, 0, 0, 12.9744, -617.034, -691.008)" d="M 9.0357146 17.196428 A 0.48214287 0.48214287 0 1 1  8.0714288,17.196428 A 0.48214287 0.48214287 0 1 1  9.0357146 17.196428 z" sodipodi:rx="0.48214287" id="path3591" sodipodi:ry="0.48214287"/>
+    <rect style="fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1.37; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1;" y="-261.67792" x="-601.06671" height="3.3994901" width="496.5127" id="rect13092"/>
+    <rect style="fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1.37; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1;" y="-230.99231" x="-601.06671" height="3.3994901" width="242.97427" id="rect14063"/>
+    <rect style="fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1.37; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1;" y="-331.70047" x="-601.06671" height="3.3994901" width="496.5127" id="rect14065"/>
+    <text style="font-size: 36.143px; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; text-align: start; line-height: 125%; text-anchor: start; fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; font-family: DejaVu Sans;" y="-353.924" x="-590.87" sodipodi:linespacing="125%" id="text14067" xml:space="preserve" transform="scale(1.023, 0.977516)"><tspan sodipodi:role="line" id="tspan14069" y="-353.924" x="-590.87">PROD. n°</tspan></text>
+    <text style="font-size: 21.6858px; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; text-align: start; line-height: 125%; text-anchor: start; fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; font-family: DejaVu Sans;" y="-311.729" x="-589.109" sodipodi:linespacing="125%" id="text14071" xml:space="preserve" transform="scale(1.023, 0.977516)"><tspan sodipodi:role="line" id="tspan14073" y="-311.729" x="-589.109">SCENE</tspan></text>
+    <text style="font-size: 14.4572px; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; text-align: start; line-height: 125%; text-anchor: start; fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; font-family: DejaVu Sans;" y="-244.73" x="-588.88" sodipodi:linespacing="125%" id="text14075" xml:space="preserve" transform="scale(1.023, 0.977516)"><tspan sodipodi:role="line" id="tspan14077" y="-244.73" x="-588.88">DATE</tspan></text>
+    <rect style="fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1.37; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1;" transform="matrix(0, 1, -1, 0, 0, 0)" y="354.00729" x="-331.83304" height="3.5569327" width="133.24512" id="rect14081"/>
+    <text style="font-size: 21.6858px; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; text-align: start; line-height: 125%; text-anchor: start; fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; font-family: DejaVu Sans;" y="-314.017" x="-337.693" sodipodi:linespacing="125%" id="text14083" xml:space="preserve" transform="scale(1.023, 0.977516)"><tspan sodipodi:role="line" id="tspan14085" y="-314.017" x="-337.693">PRISE</tspan></text>
+    <rect style="fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1.37; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1;" y="-199.33888" x="-601.06671" height="3.3994901" width="496.5127" id="rect14087"/>
+    <text style="font-size: 21.6858px; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; text-align: start; line-height: 125%; text-anchor: start; fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; font-family: DejaVu Sans;" y="-172.069" x="-589.543" sodipodi:linespacing="125%" id="text14089" xml:space="preserve" transform="scale(1.023, 0.977516)"><tspan sodipodi:role="line" id="tspan14091" y="-172.069" x="-589.543">REALISATEUR</tspan></text>
+    <text style="font-size: 21.6858px; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; text-align: start; line-height: 125%; text-anchor: start; fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; font-family: DejaVu Sans;" y="-240.699" x="-337.259" sodipodi:linespacing="125%" id="text14093" xml:space="preserve" transform="scale(1.023, 0.977516)"><tspan sodipodi:role="line" id="tspan14095" y="-240.699" x="-337.259">SON</tspan></text>
+    <rect style="fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1.37; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1;" y="-157.89113" x="-601.06671" height="3.3994901" width="496.5127" id="rect14097"/>
+    <text style="font-size: 21.6858px; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; text-align: start; line-height: 125%; text-anchor: start; fill: rgb(255, 255, 255); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; font-family: DejaVu Sans;" y="-130.204" x="-588.633" sodipodi:linespacing="125%" id="text14099" xml:space="preserve" transform="scale(1.023, 0.977516)"><tspan sodipodi:role="line" id="tspan14101" y="-130.204" x="-588.633">CAMERAMAN</tspan></text>
+  </g>
+</g></svg>

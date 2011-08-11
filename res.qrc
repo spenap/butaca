@@ -29,5 +29,6 @@
         <file>qml/storage.js</file>
         <file>qml/DetailedView.qml</file>
         <file>qml/ListSectionDelegate.qml</file>
+        <file>butaca.svg</file>
     </qresource>
 </RCC>

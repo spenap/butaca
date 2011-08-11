@@ -66,6 +66,12 @@ Page {
             subtitle: 'Search people, movies and shows'
             action: 2
         }
+
+        ListElement {
+            title: 'About'
+            subtitle: 'About Butaca'
+            action: 3
+        }
     }
 
     ButacaHeader {
@@ -104,17 +110,45 @@ Page {
                 case 2:
                     appWindow.pageStack.push(searchView)
                     break;
+                case 3:
+                    query.open()
+                    break;
                 }
             }
         }
+    }
+
+    QueryDialog {
+        id: query
+
+        icon: 'qrc:/butaca.svg'
+        titleText: 'Butaca 0.2.7'
+        message: 'Copyright © 2011 Simon Pena <a href="mailto:spena@igalia.com">spena@igalia.com</a>' +
+                 '<br /><br />' +
+                 '<i>This program is free software: you can redistribute it and/or modify ' +
+                 'it under the terms of the GNU General Public License as published by ' +
+                 'the Free Software Foundation, either version 3 of the License, or ' +
+                 '(at your option) any later version.<br /><br />' +
+
+                 'This package is distributed in the hope that it will be useful, ' +
+                 'but WITHOUT ANY WARRANTY; without even the implied warranty of ' +
+                 'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the ' +
+                 'GNU General Public License for more details.<br /><br />' +
+
+                 'You should have received a copy of the GNU General Public License ' +
+                 'along with this program. If not, see ' +
+                 '<a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a></i><br /><br />' +
+
+                 'This product uses the TMDb API but is not endorsed or certified by TMDb.'
+        acceptButtonText: "OK"
     }
 
     ListView {
         id: list
         anchors {top: mainHeader.bottom; left: parent.left; right: parent.right }
         anchors.margins: 20
-        width: parent.width;
-        height: parent.height / 3
+        width: parent.width
+        height: 0.42 * parent.height
         model: menuModel
         interactive: false
         delegate: menuDelegate
@@ -138,6 +172,10 @@ Page {
 
             model: favoritesModel
             delegate: favoriteDelegate
+        }
+
+        ScrollDecorator {
+            flickableItem: view
         }
 
         NoContentItem {
