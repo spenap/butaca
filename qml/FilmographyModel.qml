@@ -28,14 +28,17 @@ XmlListModel {
     source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_GET_INFO, params)
     query: BUTACA.TMDB_PERSON_FILMOGRAPHY_QUERY
 
-    XmlRole { name: "title"; query: "@name/string()" }
+    XmlRole { name: "name"; query: "@name/string()" }
     XmlRole { name: "tmdbId"; query: "@id/string()" }
-    XmlRole { name: "job"; query: "@job/string()" }
-    XmlRole { name: "department"; query: "@deparment/string()" }
-    XmlRole { name: "character"; query: "@character/string()" }
+    /* job */
+    XmlRole { name: "title"; query: "@job/string()" }
+    XmlRole { name: "department"; query: "@department/string()" }
+    /* character */
+    XmlRole { name: "subtitle"; query: "@character/string()" }
     XmlRole { name: "url"; query: "@url/string()" }
     XmlRole { name: "castId"; query: "@cast_id/string()" }
-    XmlRole { name: "poster"; query: "@poster/string()" }
+    /* poster */
+    XmlRole { name: "icon"; query: "@poster/string()" }
     XmlRole { name: "adult"; query: "@adult/string()" }
     XmlRole { name: "released"; query: "@release/string()" }
 }

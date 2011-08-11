@@ -29,6 +29,30 @@ Item {
 
     FilmographyView { id: filmographyView }
 
+    function formatPersonFilmography() {
+        var movies = [ movie1 ]
+        var output = '<b>Filmography:</b><br />'
+
+        if (movies.indexOf(movie2) < 0) {
+            movies.push(movie2)
+        }
+        if (movies.indexOf(movie3) < 0) {
+            movies.push(movie3)
+        }
+
+        for (var i = 0; i < movies.length; i ++) {
+            if (movies[i]) {
+                output += movies[i]
+                if (i < movies.length - 1) {
+                    output += ', '
+                } else {
+                    output += '...'
+                }
+            }
+        }
+        return output
+    }
+
     Item {
         anchors.fill: parent
         anchors.margins: UIConstants.DEFAULT_MARGIN
@@ -48,7 +72,9 @@ Item {
             anchors.margins: 20
 
             width: parent.width
-            contentHeight: row.height + biographyText.height + 20
+            contentHeight: row.height +
+                           filmography.height +
+                           biographyText.height + 40
             clip: true
 
             Row {
@@ -119,19 +145,43 @@ Item {
                               (knownMovies ? knownMovies : ' - ')
                     }
                 }
+            }
 
-                /* Disable filmography temporarily */
-//                    MouseArea {
-//                        anchors.fill: personFacts
-//                        onClicked: {
-//                            appWindow.pageStack.push(filmographyView, { person: personName, personId: personId })
-//                        }
-//                    }
+            Text {
+                id: filmography
+                anchors.top: row.bottom
+                anchors.topMargin: 20
+
+                width: parent.width - filmographyDetails.width
+                font.pixelSize: UIConstants.FONT_LSMALL
+                color: !theme.inverted ?
+                           UIConstants.COLOR_FOREGROUND :
+                           UIConstants.COLOR_INVERTED_FOREGROUND
+                wrapMode: Text.WordWrap
+                text: formatPersonFilmography()
+                opacity: filmographyMouseArea.pressed ? 0.5 : 1
+
+                Image {
+                    id: filmographyDetails
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    source: 'image://theme/icon-s-music-video-description'
+                }
+
+                MouseArea {
+                    id: filmographyMouseArea
+                    anchors.fill: filmography
+                    onClicked: {
+                        appWindow.pageStack.push(filmographyView,
+                                                 { person: personName,
+                                                   personId: personId })
+                    }
+                }
             }
 
             Text {
                 id: biographyText
-                anchors.top: row.bottom
+                anchors.top: filmography.bottom
                 anchors.topMargin: 20
                 width: parent.width
                 font.pixelSize: UIConstants.FONT_SMALL

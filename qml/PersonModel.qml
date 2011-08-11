@@ -40,4 +40,7 @@ XmlListModel {
     XmlRole { name: "profileImage"; query: "images/image[@size='profile' and @type='profile'][1]/@url/string()" }
     XmlRole { name: "version"; query: "version/number()" }
     XmlRole { name: "lastModified"; query: "last_modified_at/string()" }
+    XmlRole { name: "movie1"; query: "filmography/movie[1]/@name/string()" }
+    XmlRole { name: "movie2"; query: "filmography/movie[2]/@name/string()" }
+    XmlRole { name: "movie3"; query: "filmography/movie[3]/@name/string()" }
 }

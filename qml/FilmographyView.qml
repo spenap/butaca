@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.meego 1.0
 import com.nokia.extras 1.0
+import "butacautils.js" as BUTACA
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Component {
@@ -39,7 +40,7 @@ Component {
         }
 
         Item {
-            id: castContent
+            id: filmographyContent
             anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
             anchors.margins: UIConstants.DEFAULT_MARGIN
 
@@ -54,7 +55,29 @@ Component {
                 clip: true
 
                 model: filmographyModel
-                delegate: MultipleMoviesDelegate { }
+                delegate: ListDelegate {
+                    id: filmographyDelegate
+
+                    onClicked: { pageStack.push(movieView,
+                                                { detailId: tmdbId,
+                                                  viewType: BUTACA.MOVIE })}
+
+                    Item {
+                        id: viewDetails
+                        width: moreIndicator.width + 10
+                        height: parent.height
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+
+                        CustomMoreIndicator {
+                            id: moreIndicator
+                            anchors.centerIn: parent
+                        }
+                    }
+                }
+
+                section.property: 'name'
+                section.delegate: ListSectionDelegate { }
             }
 
             ScrollDecorator {
