@@ -47,6 +47,19 @@ Component {
             FilmographyModel {
                 id: filmographyModel
                 params: personId
+                onStatusChanged: {
+                    if (status == XmlListModel.Ready) {
+                        filmographyContent.state = 'Ready'
+                    }
+                }
+            }
+
+            BusyIndicator {
+                id: busyIndicator
+                visible: true
+                running: true
+                platformStyle: BusyIndicatorStyle { size: 'large' }
+                anchors.centerIn: parent
             }
 
             ListView {
@@ -83,6 +96,14 @@ Component {
             ScrollDecorator {
                 flickableItem: list
             }
+
+            states: [
+                State {
+                    name: 'Ready'
+                    PropertyChanges { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges { target: list; visible: true }
+                }
+            ]
         }
     }
 }
