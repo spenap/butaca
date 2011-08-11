@@ -33,7 +33,7 @@ Item {
     function formatMovieCast() {
         var actors = [ actor1, actor2, actor3 ]
         var output = '<b>Director: </b> ' + (director ? director : 'not found') +
-            '<br />' + '<b>Cast: </b> '
+            '<br />' + '<b>Cast: </b><br />'
         for (var i = 0; i < actors.length; i ++) {
             if (actors[i]) {
                 output += actors[i]
