@@ -46,7 +46,25 @@ Component {
             TextField {
                 id: searchInput
                 placeholderText: "Enter search terms"
-                width: parent.width - searchButton.width
+                width: parent.width - searchButton.width - 10
+
+                Image {
+                    id: clearText
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    source: searchInput.text ?
+                                'image://theme/icon-m-input-clear' :
+                                'image://theme/icon-m-common-search'
+                }
+
+                MouseArea {
+                    id: searchInputMouseArea
+                    anchors.fill: clearText
+                    onClicked: {
+                        searchInput.text = ''
+                        searchResults.state = 'Waiting'
+                    }
+                }
             }
 
             Button {
