@@ -27,6 +27,8 @@ Component {
 
     Page {
         tools: commonTools
+        orientationLock: PageOrientation.LockPortrait
+
         property string movie: ''
         property string movieId:  ''
 

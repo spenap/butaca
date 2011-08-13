@@ -28,6 +28,8 @@ Component {
 
     Page {
         tools: commonTools
+        orientationLock: PageOrientation.LockPortrait
+
         property string person: ''
         property string personId: ''
 

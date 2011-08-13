@@ -27,6 +27,7 @@ Component {
 
     Page {
         tools: commonTools
+        orientationLock: PageOrientation.LockPortrait
 
         MultipleMoviesView { id: multipleMovieView }
 

@@ -26,6 +26,8 @@ Component {
 
     Page {
         tools: commonTools
+        orientationLock: PageOrientation.LockPortrait
+
         property string searchTerm: ''
         property string genre: ''
         property string genreName:  ''

@@ -26,6 +26,7 @@ Component {
 
     Page {
         tools: commonTools
+        orientationLock: PageOrientation.LockPortrait
 
         property alias searchTerm: searchInput.text
 

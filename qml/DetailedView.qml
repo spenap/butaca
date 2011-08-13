@@ -26,6 +26,7 @@ Component {
 
     Page {
         id: detailedView
+        orientationLock: PageOrientation.LockPortrait
 
         property string detailId
         property int viewType: -1
