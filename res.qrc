@@ -14,7 +14,6 @@
         <file>qml/PersonDelegate.qml</file>
         <file>qml/PersonModel.qml</file>
         <file>qml/SearchView.qml</file>
-        <file>qml/ShowtimesView.qml</file>
         <file>qml/WelcomeView.qml</file>
         <file>qml/butacautils.js</file>
         <file>qml/images/movie-placeholder.svg</file>

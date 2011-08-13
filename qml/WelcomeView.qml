@@ -41,7 +41,6 @@ Page {
     ButacaToolBar { id: commonTools }
     BrowseGenresView { id: browseView }
     SearchView { id: searchView }
-    ShowtimesView { id: showtimesView }
     DetailedView { id: movieView }
     DetailedView { id: personView }
 

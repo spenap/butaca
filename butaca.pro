@@ -9,7 +9,6 @@ HEADERS += \
 OTHER_FILES += \
     qml/main.qml \
     qml/WelcomeView.qml \
-    qml/ShowtimesView.qml \
     qml/SearchView.qml \
     qml/PersonModel.qml \
     qml/PersonDelegate.qml \
