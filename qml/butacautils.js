@@ -153,3 +153,14 @@ function favoriteFromMovie(movieContent) {
             'homepage' : movieContent.homepage
     }
 }
+
+/**
+ * Processes a text to remove undesirable HTML tags
+ * @param {string} text with the HTML tags
+ * @return {string} Text with only the newline tags respected
+ */
+function sanitizeText(text) {
+    // "Save" existing <br /> into &lt;br /&gt;, remove all tags
+    // and put the <br /> back there
+    return text.replace(/<br \/>/g, '&lt;br /&gt;').replace(/<.*?>/g, '').replace(/&lt;br \/&gt;/g, '<br />')
+}

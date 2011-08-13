@@ -218,7 +218,7 @@ Item {
                 width: parent.width
                 font.pixelSize: UIConstants.FONT_SMALL
                 text: '<b>Overview:</b><br />' +
-                      (overview ? overview : 'Overview not found')
+                      (overview ? BUTACA.sanitizeText(overview) : 'Overview not found')
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND

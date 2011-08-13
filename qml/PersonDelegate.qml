@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.meego 1.0
 import com.nokia.extras 1.0
+import "butacautils.js" as BUTACA
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Item {
@@ -189,7 +190,7 @@ Item {
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
                 text: '<b>Biography:</b><br />' +
-                      (biography ? biography : 'Biography not found')
+                      (biography ? BUTACA.sanitizeText(biography) : 'Biography not found')
                 wrapMode: Text.WordWrap
             }
         }
