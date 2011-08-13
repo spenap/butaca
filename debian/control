@@ -8,13 +8,8 @@ Standards-Version: 3.8.4
 XB-Maemo-Flags: visible
 XB-Homepage: http://gitorious.org/butaca/butaca
 XB-Bugtracker: https://projects.developer.nokia.com/butaca/query
-XB-Maemo-Upgrade-Description: Several improvements
- * Added filmography view
- * Improved person view
- * Added busy indicator to cast and filmography view
- * Added About dialog
- * Improved search view
- * Lock application to landscape
+XB-Maemo-Upgrade-Description: Sanitize texts
+ * Strip texts of HTML tags
 
 Package: butaca
 Architecture: any
