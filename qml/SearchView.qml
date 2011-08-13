@@ -144,8 +144,8 @@ Component {
             NoContentItem {
                 id: noResults
                 anchors.fill: parent
-                text: 'No results found'
-                visible: false
+                text: '«Shows» uses the web browser'
+                visible: true
             }
 
             BusyIndicator {
@@ -191,7 +191,10 @@ Component {
                 },
                 State {
                     name: 'SearchFinished'
-                    PropertyChanges { target: noResults; visible: resultList.model.count == 0 }
+                    PropertyChanges { target: noResults;
+                        visible: resultList.model.count == 0;
+                        text: 'No results found'
+                    }
                 }
             ]
         }
