@@ -30,5 +30,6 @@ PageStackWindow {
 
     platformStyle: PageStackWindowStyle {
         background: 'image://theme/meegotouch-video-background'
+        backgroundFillMode: Image.Stretch
     }
 }
