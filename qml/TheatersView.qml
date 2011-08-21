@@ -36,51 +36,59 @@ Component {
             }
         }
 
-        ButacaHeader {
-            id: header
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            text: 'On theaters'
-        }
-
         Item {
-            id: theatersContent
-            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
-            anchors.margins: UIConstants.DEFAULT_MARGIN
-
-            ListView {
-                id: list
-                anchors.fill: parent
-                model: theaterModel
-                clip: true
-                delegate: ListDelegate { }
-
-                section.property: 'theaterName'
-                section.delegate: ListSectionDelegate { sectionName: section }
+            anchors.fill: parent
+            anchors {
+                leftMargin: UIConstants.DEFAULT_MARGIN
+                rightMargin: UIConstants.DEFAULT_MARGIN
+                bottomMargin: UIConstants.DEFAULT_MARGIN
             }
 
-            ScrollDecorator {
-                flickableItem: list
+            ButacaHeader {
+                id: header
+                anchors.top: parent.top
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                text: 'On theaters'
             }
 
-            BusyIndicator {
-                id: busyIndicator
-                visible: true
-                running: true
-                platformStyle: BusyIndicatorStyle { size: 'large' }
-                anchors.centerIn: parent
-            }
+            Item {
+                id: theatersContent
+                anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
+                anchors.margins: UIConstants.DEFAULT_MARGIN
 
-            states: [
-                State {
-                    name: 'Ready'
-                    when: theaterModel !== undefined
-                    PropertyChanges  { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges  { target: list; visible: true }
+                ListView {
+                    id: list
+                    anchors.fill: parent
+                    model: theaterModel
+                    clip: true
+                    delegate: ListDelegate { }
+
+                    section.property: 'theaterName'
+                    section.delegate: ListSectionDelegate { sectionName: section }
                 }
-            ]
+
+                ScrollDecorator {
+                    flickableItem: list
+                }
+
+                BusyIndicator {
+                    id: busyIndicator
+                    visible: true
+                    running: true
+                    platformStyle: BusyIndicatorStyle { size: 'large' }
+                    anchors.centerIn: parent
+                }
+
+                states: [
+                    State {
+                        name: 'Ready'
+                        when: theaterModel !== undefined
+                        PropertyChanges  { target: busyIndicator; running: false; visible: false }
+                        PropertyChanges  { target: list; visible: true }
+                    }
+                ]
+            }
         }
     }
 }
-
