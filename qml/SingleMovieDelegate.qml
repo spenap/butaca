@@ -216,7 +216,7 @@ Item {
                 anchors.topMargin: 20
 
                 width: parent.width
-                font.pixelSize: UIConstants.FONT_SMALL
+                font.pixelSize: UIConstants.FONT_LSMALL
                 text: '<b>Overview:</b><br />' +
                       (overview ? BUTACA.sanitizeText(overview) : 'Overview not found')
                 color: !theme.inverted ?

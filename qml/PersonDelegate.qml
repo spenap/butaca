@@ -185,7 +185,7 @@ Item {
                 anchors.top: filmography.bottom
                 anchors.topMargin: 20
                 width: parent.width
-                font.pixelSize: UIConstants.FONT_SMALL
+                font.pixelSize: UIConstants.FONT_LSMALL
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
