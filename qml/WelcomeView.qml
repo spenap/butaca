@@ -56,8 +56,8 @@ Page {
         }
 
         ListElement {
-            title: 'What\'s on cinemas'
-            subtitle: 'Use web browser to explore it'
+            title: 'Cinemas'
+            subtitle: 'What\'s on cinemas near you'
             action: 1
         }
 
