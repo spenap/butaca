@@ -48,9 +48,9 @@ Component {
                 id: searchInput
                 placeholderText: "Enter search terms"
                 width: parent.width - searchButton.width - 10
-                onAccepted: {
-                    searchButton.clicked()
-                }
+//                onAccepted: {
+//                    searchButton.clicked()
+//                }
 
                 Image {
                     id: clearText

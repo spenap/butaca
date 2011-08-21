@@ -130,9 +130,9 @@ Component {
                         placeholderText: ''
                         width: parent.width - locationText.width - parent.spacing
                         text: Storage.getSetting('location')
-                        onAccepted: {
-                            Storage.setSetting('location', text)
-                        }
+//                        onAccepted: {
+//                            Storage.setSetting('location', text)
+//                        }
                     }
                 }
 
@@ -235,9 +235,9 @@ Component {
                         anchors.right: parent.right
                         text: Storage.getSetting('perPage')
                         width: 100
-                        onAccepted: {
-                            Storage.setSetting('perPage', text)
-                        }
+//                        onAccepted: {
+//                            Storage.setSetting('perPage', text)
+//                        }
                     }
                 }
 
@@ -262,9 +262,9 @@ Component {
                         anchors.right: parent.right
                         text: Storage.getSetting('minVotes')
                         width: 100
-                        onAccepted: {
-                            Storage.setSetting('minVotes', text)
-                        }
+//                        onAccepted: {
+//                            Storage.setSetting('minVotes', text)
+//                        }
                     }
                 }
             }
