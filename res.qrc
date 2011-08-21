@@ -30,5 +30,6 @@
         <file>qml/ListSectionDelegate.qml</file>
         <file>butaca.svg</file>
         <file>qml/TheatersView.qml</file>
+        <file>qml/SettingsView.qml</file>
     </qresource>
 </RCC>

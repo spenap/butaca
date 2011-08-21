@@ -36,6 +36,38 @@ Page {
         }
     }
 
+    Menu {
+        id: welcomeMenu
+        MenuLayout {
+            MenuItem {
+                id: settingsEntry
+                text: 'Settings'
+                onClicked: appWindow.pageStack.push(settingsView)
+            }
+            MenuItem {
+                id: aboutEntry
+                text: 'About'
+                onClicked: {
+                    query.open()
+                    welcomeMenu.close()
+                }
+            }
+        }
+    }
+    tools: ToolBarLayout {
+        ToolIcon {
+            id: backIcon
+            iconId: 'toolbar-back'
+            enabled: false
+        }
+        ToolIcon {
+            id: menuListIcon
+            iconId: 'toolbar-view-menu'
+            onClicked: (welcomeMenu.status == DialogStatus.Closed) ?
+                           welcomeMenu.open() : welcomeMenu.close()
+        }
+    }
+
     orientationLock: PageOrientation.LockPortrait
 
     ButacaToolBar { id: commonTools }
@@ -44,6 +76,7 @@ Page {
     DetailedView { id: movieView }
     DetailedView { id: personView }
     TheatersView { id: theatersView }
+    SettingsView { id: settingsView }
 
     /* Model containing the actions: browse, search and shows */
     ListModel {
@@ -65,12 +98,6 @@ Page {
             title: 'Search'
             subtitle: 'Search people, movies and shows'
             action: 2
-        }
-
-        ListElement {
-            title: 'About'
-            subtitle: 'About Butaca'
-            action: 3
         }
     }
 
@@ -110,9 +137,6 @@ Page {
                 case 2:
                     appWindow.pageStack.push(searchView)
                     break;
-                case 3:
-                    query.open()
-                    break;
                 }
             }
         }
@@ -148,7 +172,7 @@ Page {
         anchors {top: mainHeader.bottom; left: parent.left; right: parent.right }
         anchors.margins: 20
         width: parent.width
-        height: 0.42 * parent.height
+        height: 0.35 * parent.height
         model: menuModel
         interactive: false
         delegate: menuDelegate

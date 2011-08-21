@@ -44,7 +44,8 @@ OTHER_FILES += \
     qml/storage.js \
     qml/DetailedView.qml \
     qml/ListSectionDelegate.qml \
-    qml/TheatersView.qml
+    qml/TheatersView.qml \
+    qml/SettingsView.qml
 
 RESOURCES += \
     res.qrc
