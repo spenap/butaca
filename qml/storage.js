@@ -40,6 +40,10 @@ function initialize() {
             tx.executeSql('CREATE TABLE IF NOT EXISTS favorites' +
                           '(favoriteId TEXT, title TEXT, iconSource TEXT, favoriteType TINYINT)')
         })
+    db.transaction(
+        function(tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS settings(setting TEXT UNIQUE, value TEXT)')
+        })
 }
 
 /**
@@ -95,6 +99,41 @@ function getFavorites() {
                           'type': currentItem.favoriteType,
                           'rowId': currentItem.rowid})
             }
+        }
+    })
+    return res
+}
+
+/**
+ * Saves a setting into the database
+ * @param setting The setting to save
+ * @param value The value for the setting to save
+ *
+ * @return true if the operation is successfull, false otherwise
+ */
+function setSetting(setting, value) {
+    var db = getDatabase()
+    var success = false
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('INSERT OR REPLACE INTO settings VALUES (?,?);', [setting,value])
+        success = rs.rowsAffected > 0
+    })
+    return success
+}
+
+/**
+ * Retrieves a setting from the database
+ * @param setting The setting to retrieve
+ *
+ * @return The value for the setting
+ */
+function getSetting(setting) {
+    var db = getDatabase();
+    var res = ''
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('SELECT value FROM settings WHERE setting=?;', [setting]);
+        if (rs.rows.length > 0) {
+            res = rs.rows.item(0).value;
         }
     })
     return res

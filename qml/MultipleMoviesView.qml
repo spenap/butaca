@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import "butacautils.js" as BUTACA
+import "storage.js" as Storage
 
 Component {
     id: multipleMoviesPage
@@ -27,6 +28,10 @@ Component {
     Page {
         tools: commonTools
         orientationLock: PageOrientation.LockPortrait
+
+        Component.onCompleted: {
+            Storage.initialize()
+        }
 
         property string searchTerm: ''
         property string genre: ''
@@ -48,7 +53,14 @@ Component {
             MultipleMoviesModel {
                 id: moviesModel
                 apiMethod: searchTerm ? BUTACA.TMDB_MOVIE_SEARCH : BUTACA.TMDB_MOVIE_BROWSE
-                params: searchTerm ? searchTerm : BUTACA.getBrowseCriteria(genre)
+                params: searchTerm ?
+                            searchTerm :
+                            BUTACA.getBrowseCriteria(
+                                Storage.getSetting('orderBy'),
+                                Storage.getSetting('order'),
+                                Storage.getSetting('perPage'),
+                                Storage.getSetting('minVotes'),
+                                genre)
                 onStatusChanged: {
                     if (status == XmlListModel.Ready) {
                         moviesContent.state = 'Ready'

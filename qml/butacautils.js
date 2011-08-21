@@ -42,14 +42,6 @@ var TMDB_PERSON_FILMOGRAPHY_QUERY = '/OpenSearchDescription/people/person/filmog
 var TMDB_GENRES_GET_LIST = 'Genres.getList'
 var TMDB_GENRES_QUERY = '/OpenSearchDescription/genres/genre'
 
-/* Basic browse parameters */
-var TMDB_BROWSE_ORDER_BY = 'rating'
-var TMDB_BROWSE_ORDER = 'desc'
-var TMDB_BROWSE_PER_PAGE = '10'
-var TMDB_BROWSE_MIN_VOTES = 0
-
-var SHOWTIMES_LOCATION = ''
-
 var PERSON = 0
 var MOVIE = 1
 
@@ -80,14 +72,19 @@ function getTMDbSource(apiMethod, params) {
 /**
  * Gets the browse criteria given a genre
  *
+ * @param {string} order criteria (rating, title, release)
+ * @param {string} sort order (asc, desc)
+ * @param {string} results per page
+ * @param {string} minimum votes
  * @param {string} genre to use for browsing
+ *
  * @return {string} browse criteria
  */
-function getBrowseCriteria(genreId) {
-    return '?order_by=' + TMDB_BROWSE_ORDER_BY +
-            '&order=' + TMDB_BROWSE_ORDER +
-            '&per_page=' + TMDB_BROWSE_PER_PAGE +
-            '&min_votes=' + TMDB_BROWSE_MIN_VOTES +
+function getBrowseCriteria(orderBy, order, perPage, minVotes, genreId) {
+    return '?order_by=' + orderBy +
+            '&order=' + order +
+            '&per_page=' + perPage +
+            '&min_votes=' + minVotes +
             '&genres=' + genreId
 }
 

@@ -23,6 +23,7 @@ import com.nokia.extras 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
 import "butacautils.js" as BUTACA
+import "storage.js" as Storage
 
 Component {
     id: settingsView
@@ -30,6 +31,52 @@ Component {
     Page {
         tools: commonTools
         orientationLock: PageOrientation.LockPortrait
+
+        Component.onCompleted: {
+            Storage.initialize()
+            var orderBy = Storage.getSetting('orderBy')
+            var order = Storage.getSetting('order')
+            var perPage = Storage.getSetting('perPage')
+            var minVotes = Storage.getSetting('minVotes')
+
+            if (!perPage) {
+                resultsPerPageInput.text = '10'
+                Storage.setSetting('perPage', '10')
+            }
+
+            if (!minVotes) {
+                minVotesInput.text = '0'
+                Storage.setSetting('minVotes', '0')
+            }
+
+            if (!orderBy) {
+                Storage.setSetting('orderBy', 'rating')
+            }
+
+            if (!order) {
+                Storage.setSetting('order', 'desc')
+            }
+
+            if (orderBy == 'title') {
+                criteriaOptions.checkedButton = byTitle
+            } else if (orderBy == 'release') {
+                criteriaOptions.checkedButton = byRelease
+            } else {
+                criteriaOptions.checkedButton = byRating
+            }
+
+            if (order == 'asc') {
+                sortOrderOptions.checkedButton = sortAscending
+            } else {
+                sortOrderOptions.checkedButton = sortDescending
+            }
+        }
+
+        Component.onDestruction: {
+            Storage.setSetting('location', locationInput.text)
+            Storage.setSetting('minVotes', minVotesInput.text)
+            Storage.setSetting('perPage', resultsPerPageInput.text)
+        }
 
         Item {
             anchors.fill: parent
@@ -82,6 +129,10 @@ Component {
                         id: locationInput
                         placeholderText: ''
                         width: parent.width - locationText.width - parent.spacing
+                        text: Storage.getSetting('location')
+                        onAccepted: {
+                            Storage.setSetting('location', text)
+                        }
                     }
                 }
 
@@ -115,14 +166,17 @@ Component {
                         Button {
                             id: byRating
                             text: 'Rating'
+                            onClicked: Storage.setSetting('orderBy', 'rating')
                         }
                         Button {
                             id: byRelease
                             text: 'Release'
+                            onClicked: Storage.setSetting('orderBy', 'release')
                         }
                         Button {
                             id: byTitle
                             text: 'Title'
+                            onClicked: Storage.setSetting('orderBy', 'title')
                         }
                     }
                 }
@@ -150,10 +204,12 @@ Component {
                         Button {
                             id: sortAscending
                             text: 'Ascending'
+                            onClicked: Storage.setSetting('order', 'asc')
                         }
                         Button {
                             id: sortDescending
                             text: 'Descending'
+                            onClicked: Storage.setSetting('order', 'desc')
                         }
                     }
                 }
@@ -177,8 +233,11 @@ Component {
                     TextField {
                         id: resultsPerPageInput
                         anchors.right: parent.right
-                        text: '10'
+                        text: Storage.getSetting('perPage')
                         width: 100
+                        onAccepted: {
+                            Storage.setSetting('perPage', text)
+                        }
                     }
                 }
 
@@ -201,8 +260,11 @@ Component {
                     TextField {
                         id: minVotesInput
                         anchors.right: parent.right
-                        text: '0'
+                        text: Storage.getSetting('minVotes')
                         width: 100
+                        onAccepted: {
+                            Storage.setSetting('minVotes', text)
+                        }
                     }
                 }
             }

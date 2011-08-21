@@ -22,6 +22,7 @@ import com.nokia.meego 1.0
 import com.nokia.extras 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 import "butacautils.js" as BUTACA
+import "storage.js" as Storage
 
 Component {
     id: theatersView
@@ -31,8 +32,10 @@ Component {
         orientationLock: PageOrientation.LockPortrait
 
         Component.onCompleted: {
-            if (!list.model) {
-                controller.fetchTheaters(BUTACA.SHOWTIMES_LOCATION)
+            Storage.initialize()
+            var location = Storage.getSetting('location')
+            if (!list.model || location != controller.currentLocation()) {
+                controller.fetchTheaters(location)
             }
         }
 

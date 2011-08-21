@@ -25,7 +25,13 @@ ButacaController::~ButacaController()
 
 void ButacaController::fetchTheaters(QString location)
 {
-    m_butacaHelper->fetchTheaters(location);
+    m_location = location;
+    m_butacaHelper->fetchTheaters(m_location);
+}
+
+const QString &ButacaController::currentLocation() const
+{
+    return m_location;
 }
 
 void ButacaController::onTheatersFetched(TheaterListModel* theaterListModel)
