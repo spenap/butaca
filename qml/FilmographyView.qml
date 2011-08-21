@@ -33,80 +33,84 @@ Component {
         property string person: ''
         property string personId: ''
 
-        ButacaHeader {
-            id: header
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            text: person + "'s filmography"
-        }
-
         Item {
-            id: filmographyContent
-            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
+            anchors.fill: parent
             anchors.margins: UIConstants.DEFAULT_MARGIN
 
-            FilmographyModel {
-                id: filmographyModel
-                params: personId
-                onStatusChanged: {
-                    if (status == XmlListModel.Ready) {
-                        filmographyContent.state = 'Ready'
-                    }
-                }
+            ButacaHeader {
+                id: header
+                anchors.top: parent.top
+                width: parent.width
+
+                text: person + "'s filmography"
             }
 
-            BusyIndicator {
-                id: busyIndicator
-                visible: true
-                running: true
-                platformStyle: BusyIndicatorStyle { size: 'large' }
-                anchors.centerIn: parent
-            }
+            Item {
+                id: filmographyContent
+                anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
+                anchors.margins: UIConstants.DEFAULT_MARGIN
 
-            ListView {
-                id: list
-                anchors.fill: parent
-                clip: true
-
-                model: filmographyModel
-                delegate: ListDelegate {
-                    id: filmographyDelegate
-
-                    onClicked: { pageStack.push(movieView,
-                                                { detailId: tmdbId,
-                                                  viewType: BUTACA.MOVIE })}
-
-                    Item {
-                        id: viewDetails
-                        width: moreIndicator.width + 10
-                        height: parent.height
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-
-                        CustomMoreIndicator {
-                            id: moreIndicator
-                            anchors.centerIn: parent
+                FilmographyModel {
+                    id: filmographyModel
+                    params: personId
+                    onStatusChanged: {
+                        if (status == XmlListModel.Ready) {
+                            filmographyContent.state = 'Ready'
                         }
                     }
                 }
 
-                section.property: 'name'
-                section.delegate: ListSectionDelegate { }
-            }
-
-            ScrollDecorator {
-                flickableItem: list
-            }
-
-            states: [
-                State {
-                    name: 'Ready'
-                    PropertyChanges { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges { target: list; visible: true }
+                BusyIndicator {
+                    id: busyIndicator
+                    visible: true
+                    running: true
+                    platformStyle: BusyIndicatorStyle { size: 'large' }
+                    anchors.centerIn: parent
                 }
-            ]
+
+                ListView {
+                    id: list
+                    anchors.fill: parent
+                    clip: true
+
+                    model: filmographyModel
+                    delegate: ListDelegate {
+                        id: filmographyDelegate
+
+                        onClicked: { pageStack.push(movieView,
+                                                    { detailId: tmdbId,
+                                                      viewType: BUTACA.MOVIE })}
+
+                        Item {
+                            id: viewDetails
+                            width: moreIndicator.width + 10
+                            height: parent.height
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.right: parent.right
+
+                            CustomMoreIndicator {
+                                id: moreIndicator
+                                anchors.centerIn: parent
+                            }
+                        }
+                    }
+
+                    section.property: 'name'
+                    section.delegate: ListSectionDelegate { }
+                }
+
+                ScrollDecorator {
+                    flickableItem: list
+                }
+
+                states: [
+                    State {
+                        name: 'Ready'
+                        PropertyChanges { target: busyIndicator; running: false; visible: false }
+                        PropertyChanges { target: list; visible: true }
+                    }
+                ]
+            }
         }
     }
 }
-
