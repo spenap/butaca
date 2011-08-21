@@ -96,7 +96,7 @@ Component {
                     }
 
                     section.property: 'name'
-                    section.delegate: ListSectionDelegate { }
+                    section.delegate: ListSectionDelegate { sectionName: section }
                 }
 
                 ScrollDecorator {

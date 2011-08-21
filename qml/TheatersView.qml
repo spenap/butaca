@@ -57,7 +57,7 @@ Component {
                 delegate: ListDelegate { }
 
                 section.property: 'theaterName'
-                section.delegate: ListSectionDelegate { }
+                section.delegate: ListSectionDelegate { sectionName: section }
             }
 
             ScrollDecorator {

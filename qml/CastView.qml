@@ -80,7 +80,7 @@ Component {
                     delegate: PeopleDelegate { }
 
                     section.property: 'department'
-                    section.delegate: ListSectionDelegate { }
+                    section.delegate: ListSectionDelegate { sectionName: section }
                 }
 
                 ScrollDecorator {

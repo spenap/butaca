@@ -23,31 +23,31 @@ import com.nokia.extras 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
 
-Component {
-    Item {
-        id: sectionDelegate
-        width: parent.width
-        height: sectionDelegateText.height + UIConstants.DEFAULT_MARGIN
+Item {
 
-        Rectangle {
-            id: sectionDelegateDivider
-            width: parent.width -
-                   sectionDelegateText.width -
-                   UIConstants.DEFAULT_MARGIN
-            height: 1
-            color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
-            anchors.verticalCenter: parent.verticalCenter
-        }
+    property alias sectionName: sectionDelegateText.text
 
-        Text {
-            id: sectionDelegateText
-            text: section
-            color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
-            font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
-            font.weight: Font.Light
-            anchors.left: sectionDelegateDivider.right
-            anchors.leftMargin: UIConstants.DEFAULT_MARGIN
-            anchors.verticalCenter: sectionDelegateDivider.verticalCenter
-        }
+    id: sectionDelegate
+    width: parent.width
+    height: sectionDelegateText.height + UIConstants.DEFAULT_MARGIN
+
+    Rectangle {
+        id: sectionDelegateDivider
+        width: parent.width -
+               sectionDelegateText.width -
+               UIConstants.DEFAULT_MARGIN
+        height: 1
+        color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
+    Text {
+        id: sectionDelegateText
+        color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
+        font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
+        font.weight: Font.Light
+        anchors.left: sectionDelegateDivider.right
+        anchors.leftMargin: UIConstants.DEFAULT_MARGIN
+        anchors.verticalCenter: sectionDelegateDivider.verticalCenter
     }
 }
