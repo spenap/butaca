@@ -43,7 +43,7 @@ RESOURCES += \
     res.qrc
 
 # enable booster
-CONFIG += qdeclarative-boostable \
+CONFIG += qt-boostable qdeclarative-boostable \
           shareuiinterface-maemo-meegotouch \
           mdatauri
 QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
