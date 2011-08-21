@@ -70,8 +70,6 @@ function getTMDbSource(apiMethod, params) {
         source += (params.charAt(0) == '?' ? params : '/' + params)
     }
 
-    console.debug(source)
-
     return source
 }
 
@@ -114,13 +112,11 @@ function getYearFromDate(date) {
 function getTrailerThumbnail(trailerUrl) {
     if (trailerUrl) {
         var THUMB_SIZE = '/1.jpg'
-        console.debug('Trailer url: ' + trailerUrl)
         var idFirstIndex = trailerUrl.indexOf('=')
         var idLastIndex = trailerUrl.lastIndexOf('&')
         var videoId = idLastIndex > idFirstIndex ?
                 trailerUrl.substring(idFirstIndex + 1, idLastIndex) :
                 trailerUrl.substring(idFirstIndex + 1)
-        console.debug('Video id: ' + videoId)
         return 'http://img.youtube.com/vi/' + videoId + THUMB_SIZE
     }
     return ''
