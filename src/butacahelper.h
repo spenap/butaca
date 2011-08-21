@@ -45,6 +45,8 @@ public slots:
 
     void fetchTheaters();
 
+    QString formatCurrency(QString value);
+
 signals:
     void theatersFetched(TheaterListModel *model);
 

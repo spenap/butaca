@@ -154,7 +154,7 @@ Item {
                                    UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
                         text: '<b>Budget:</b> ' +
-                              (budget ? budget : ' - ')
+                              (budget ? helper.formatCurrency(budget) : ' - ')
                     }
 
                     Text {
@@ -166,7 +166,7 @@ Item {
                                    UIConstants.COLOR_INVERTED_FOREGROUND
                         wrapMode: Text.WordWrap
                         text: '<b>Revenue:</b> ' +
-                              (revenue ? revenue : ' - ')
+                              (revenue ? helper.formatCurrency(revenue) : ' - ')
                     }
 
                     RatingIndicator {

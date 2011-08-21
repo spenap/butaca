@@ -106,3 +106,9 @@ void ButacaHelper::onLoadFinished(bool ok)
         qCritical() << Q_FUNC_INFO << "Loading error";
     }
 }
+
+QString ButacaHelper::formatCurrency(QString value)
+{
+    double doubleValue = value.toDouble();
+    return QString("$%L1").arg(doubleValue, 0, 'f', 0);
+}
