@@ -48,6 +48,8 @@ var TMDB_BROWSE_ORDER = 'desc'
 var TMDB_BROWSE_PER_PAGE = '10'
 var TMDB_BROWSE_MIN_VOTES = 0
 
+var SHOWTIMES_LOCATION = ''
+
 var PERSON = 0
 var MOVIE = 1
 

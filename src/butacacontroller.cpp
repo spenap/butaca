@@ -11,17 +11,21 @@ ButacaController::ButacaController(QDeclarativeContext *context) :
     m_theaterListModel(0)
 {
     m_declarativeContext->setContextProperty("helper", m_butacaHelper);
+    m_declarativeContext->setContextProperty("controller", this);
 
     connect(m_butacaHelper, SIGNAL(theatersFetched(TheaterListModel*)),
             this, SLOT(onTheatersFetched(TheaterListModel*)));
-
-    m_butacaHelper->fetchTheaters();
 }
 
 ButacaController::~ButacaController()
 {
     delete m_butacaHelper;
     delete m_theaterListModel;
+}
+
+void ButacaController::fetchTheaters(QString location)
+{
+    m_butacaHelper->fetchTheaters(location);
 }
 
 void ButacaController::onTheatersFetched(TheaterListModel* theaterListModel)

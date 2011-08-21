@@ -43,7 +43,7 @@ public slots:
     //! \param url The URL of the content to be shared
     void share(QString title, QString url);
 
-    void fetchTheaters();
+    void fetchTheaters(QString location = QString());
 
     QString formatCurrency(QString value);
 

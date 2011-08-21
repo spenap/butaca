@@ -14,6 +14,9 @@ public:
     explicit ButacaController(QDeclarativeContext *context);
     ~ButacaController();
 
+public slots:
+    void fetchTheaters(QString location = QString());
+
 private slots:
     void onTheatersFetched(TheaterListModel* theaterListModel);
 

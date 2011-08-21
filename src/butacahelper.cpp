@@ -68,11 +68,16 @@ void ButacaHelper::share(QString title, QString url)
     }
 }
 
-void ButacaHelper::fetchTheaters()
+void ButacaHelper::fetchTheaters(QString location)
 {
+    QUrl showtimesUrl("http://www.google.com/movies");
+    if (!location.isEmpty()) {
+        showtimesUrl.addQueryItem("near", location);
+    }
+
     connect(m_webView, SIGNAL(loadFinished(bool)),
             this, SLOT(onLoadFinished(bool)));
-    m_webView->load(QUrl("http://www.google.com/movies"));
+    m_webView->load(showtimesUrl);
 }
 
 void ButacaHelper::onLoadFinished(bool ok)
