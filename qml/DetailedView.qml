@@ -59,8 +59,6 @@ Component {
         }
         tools: ButacaToolBar { id: toolBar; state: 'ContentNotReady'; menu: detailedViewMenu }
 
-        width: parent.width; height: parent.height
-
         Item {
             id: content
             anchors.fill: parent
