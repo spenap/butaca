@@ -17,31 +17,30 @@
  *
  **************************************************************************/
 
-#include "butacahelper.h"
+#include "butacacontroller.h"
 
 #include <QtGui/QApplication>
 #include <QtDeclarative>
 #include <QDeclarativeContext>
 #include <applauncherd/mdeclarativecache.h>
 
-static QApplication* app;
-static QDeclarativeView* view;
+static QApplication *app;
+static QDeclarativeView *view;
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     app = MDeclarativeCache::qApplication(argc, argv);
     view = MDeclarativeCache::qDeclarativeView();
-    QDeclarativeContext* context = view->rootContext();
-    ButacaHelper* butacaHelper = new ButacaHelper();
 
-    context->setContextProperty("helper", butacaHelper);
+    QDeclarativeContext *context = view->rootContext();
+    ButacaController *controller = new ButacaController(context);
 
     view->setSource(QUrl("qrc:/qml/main.qml"));
     view->showFullScreen();
 
     int result = app->exec();
 
-    delete butacaHelper;
+    delete controller;
 
     return result;
 }

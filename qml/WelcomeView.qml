@@ -43,6 +43,7 @@ Page {
     SearchView { id: searchView }
     DetailedView { id: movieView }
     DetailedView { id: personView }
+    TheatersView { id: theatersView }
 
     /* Model containing the actions: browse, search and shows */
     ListModel {
@@ -104,7 +105,7 @@ Page {
                     appWindow.pageStack.push(browseView)
                     break;
                 case 1:
-                    helper.openUrl("http://www.google.com/movies")
+                    appWindow.pageStack.push(theatersView)
                     break;
                 case 2:
                     appWindow.pageStack.push(searchView)

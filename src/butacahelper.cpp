@@ -18,6 +18,13 @@
  **************************************************************************/
 
 #include "butacahelper.h"
+#include "theaterlistmodel.h"
+#include "movie.h"
+
+#include <QWebView>
+#include <QWebPage>
+#include <QWebFrame>
+#include <QWebElement>
 
 #include <QDesktopServices>
 #include <QUrl>
@@ -25,9 +32,14 @@
 #include <MDataUri>
 
 ButacaHelper::ButacaHelper(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_webView(new QWebView)
 {
+}
 
+ButacaHelper::~ButacaHelper()
+{
+    delete m_webView;
 }
 
 void ButacaHelper::openUrl(QString url)
@@ -53,5 +65,44 @@ void ButacaHelper::share(QString title, QString url)
         shareIf.share(items);
     } else {
         qCritical() << "Invalid interface";
+    }
+}
+
+void ButacaHelper::fetchTheaters()
+{
+    connect(m_webView, SIGNAL(loadFinished(bool)),
+            this, SLOT(onLoadFinished(bool)));
+    m_webView->load(QUrl("http://www.google.com/movies"));
+}
+
+void ButacaHelper::onLoadFinished(bool ok)
+{
+    if (ok) {
+        TheaterListModel *theaterListModel = new TheaterListModel;
+
+        QWebElement document = m_webView->page()->mainFrame()->documentElement();
+
+        QWebElementCollection theaters = document.findAll("div.theater");
+
+        Q_FOREACH(QWebElement theaterElement, theaters) {
+
+            QString theaterName = theaterElement.findFirst("div.desc h2").toPlainText();
+            QString theaterInfo = theaterElement.findFirst("div.desc div").toPlainText();
+
+            Q_FOREACH(QWebElement movieElement, theaterElement.findAll("div.movie")) {
+
+                Movie *movie = new Movie();
+                movie->setMovieName(movieElement.findFirst("div.name a").toPlainText());
+                movie->setMovieTimes(movieElement.findFirst("div.times").toPlainText());
+                movie->setTheaterName(theaterName);
+                movie->setTheaterInfo(theaterInfo);
+
+                theaterListModel->addMovie(movie);
+            }
+        }
+
+        emit theatersFetched(theaterListModel);
+    } else {
+        qCritical() << Q_FUNC_INFO << "Loading error";
     }
 }

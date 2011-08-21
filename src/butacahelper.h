@@ -22,11 +22,15 @@
 
 #include <QObject>
 
+class QWebView;
+class TheaterListModel;
+
 class ButacaHelper : public QObject
 {
     Q_OBJECT
 public:
     explicit ButacaHelper(QObject *parent = 0);
+    ~ButacaHelper();
 
 public slots:
 
@@ -38,6 +42,17 @@ public slots:
     //! \param title The title of the content to be shared
     //! \param url The URL of the content to be shared
     void share(QString title, QString url);
+
+    void fetchTheaters();
+
+signals:
+    void theatersFetched(TheaterListModel *model);
+
+private slots:
+    void onLoadFinished(bool ok);
+
+private:
+    QWebView *m_webView;
 };
 
 #endif // BUTACAHELPER_H

@@ -1,10 +1,16 @@
-QT+= declarative
+QT+= declarative webkit
 
 SOURCES += src/main.cpp \
-    src/butacahelper.cpp
+    src/butacahelper.cpp \
+    src/theaterlistmodel.cpp \
+    src/butacacontroller.cpp \
+    src/movie.cpp
 
 HEADERS += \
-    src/butacahelper.h
+    src/butacahelper.h \
+    src/theaterlistmodel.h \
+    src/butacacontroller.h \
+    src/movie.h
 
 OTHER_FILES += \
     qml/main.qml \
@@ -37,7 +43,8 @@ OTHER_FILES += \
     qml/FilmographyView.qml \
     qml/storage.js \
     qml/DetailedView.qml \
-    qml/ListSectionDelegate.qml
+    qml/ListSectionDelegate.qml \
+    qml/TheatersView.qml
 
 RESOURCES += \
     res.qrc

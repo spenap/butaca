@@ -3,7 +3,8 @@ Section: user/network
 Priority: extra
 Maintainer: Simon Pena <spena@igalia.com>
 Build-Depends: debhelper (>= 7), applauncherd-dev, cdbs,
- libqt4-dev, maemo-meegotouch-interfaces-dev, libmdatauri-dev
+ libqt4-dev, maemo-meegotouch-interfaces-dev, libmdatauri-dev,
+ libqtwebkit-dev
 Standards-Version: 3.8.4
 XB-Maemo-Flags: visible
 XB-Homepage: http://gitorious.org/butaca/butaca

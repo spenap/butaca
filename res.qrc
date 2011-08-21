@@ -29,5 +29,6 @@
         <file>qml/DetailedView.qml</file>
         <file>qml/ListSectionDelegate.qml</file>
         <file>butaca.svg</file>
+        <file>qml/TheatersView.qml</file>
     </qresource>
 </RCC>
