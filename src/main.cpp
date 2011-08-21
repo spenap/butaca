@@ -41,7 +41,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     int result = app->exec();
 
-    delete context;
     delete butacaHelper;
 
     return result;
