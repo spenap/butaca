@@ -51,6 +51,8 @@ var TMDB_BROWSE_MIN_VOTES = 0
 var PERSON = 0
 var MOVIE = 1
 
+var IMDB_BASE_URL = 'http://www.imdb.com/title/'
+
 /**
  * Builds the source for a model using TMDb services.
  *
@@ -146,7 +148,8 @@ function favoriteFromMovie(movieContent) {
             'icon': icon,
             'type': MOVIE,
             'url' : movieContent.url,
-            'homepage' : movieContent.homepage
+            'homepage' : movieContent.homepage,
+            'imdbId' : movieContent.imdbId
     }
 }
 

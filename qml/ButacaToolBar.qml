@@ -96,11 +96,15 @@ ToolBarLayout {
             PropertyChanges {
                 target: menuListIcon
                 enabled: true
-                visible: true && (menu !== undefined)
+                visible: menu !== undefined
             }
             PropertyChanges {
                 target: homepageEntry
-                visible: content.type == BUTACA.MOVIE && content.homepage
+                visible: (content.type == BUTACA.MOVIE) && content.homepage
+            }
+            PropertyChanges {
+                target: imdbEntry
+                visible: (content.type == BUTACA.MOVIE) && content.imdbId
             }
         },
         State {

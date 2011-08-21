@@ -46,8 +46,14 @@ Component {
                 }
                 MenuItem {
                     id: tmdbEntry
-                    text: 'View in The Movie Database'
+                    text: 'View in TMDb'
                     onClicked: helper.openUrl(currentItem().url)
+                }
+                MenuItem {
+                    id: imdbEntry
+                    text: 'View in IMDb'
+                    onClicked: helper.openUrl(BUTACA.IMDB_BASE_URL + currentItem().imdbId)
+                    visible: false
                 }
             }
         }
