@@ -1,3 +1,17 @@
+butaca (0.3.0) unstable; urgency=low
+
+  * Added movie showtimes support
+  * Fixed #6: "Filmography header gets clipped for long names"
+  * Fixed #3: "Use same font size for biography / overview and cast
+    / filmography preview"
+  * Fixed #4: "Format money amounts"
+  * Added "Open in IMDb" option as part of issue #2: "Link content
+    with other services"
+  * Added Settings View
+  * Make showtimes location and browse options configurable
+
+ -- Simon Pena <spena@igalia.com>  Sun, 21 Aug 2011 17:53:06 +0300
+
 butaca (0.2.9) unstable; urgency=low
 
   * Sanitize biography and overview to strip HTML tags
