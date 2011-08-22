@@ -29,13 +29,24 @@ void ButacaController::fetchTheaters(QString location)
     m_butacaHelper->fetchTheaters(m_location);
 }
 
-const QString &ButacaController::currentLocation() const
+QString ButacaController::currentLocation()
 {
     return m_location;
 }
 
 void ButacaController::onTheatersFetched(TheaterListModel* theaterListModel)
 {
-    m_theaterListModel = theaterListModel;
-    m_declarativeContext->setContextProperty("theaterModel", m_theaterListModel);
+    if (m_theaterListModel) {
+        delete m_theaterListModel;
+        m_theaterListModel = 0;
+    }
+
+    if (theaterListModel) {
+        m_theaterListModel = theaterListModel;
+        m_declarativeContext->setContextProperty("theaterModel", m_theaterListModel);
+
+        emit theatersFetched(true);
+    } else {
+        emit theatersFetched(false);
+    }
 }

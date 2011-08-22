@@ -24,74 +24,109 @@ import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 import "butacautils.js" as BUTACA
 import "storage.js" as Storage
 
-Component {
-    id: theatersView
+Page {
+    tools: commonTools
+    orientationLock: PageOrientation.LockPortrait
 
-    Page {
-        tools: commonTools
-        orientationLock: PageOrientation.LockPortrait
+    property string location
 
-        Component.onCompleted: {
+    onStatusChanged: {
+        if (status == PageStatus.Active) {
             Storage.initialize()
-            var location = Storage.getSetting('location')
+            location = Storage.getSetting('location')
             if (!list.model || location != controller.currentLocation()) {
                 controller.fetchTheaters(location)
+                theatersContent.state = 'Loading'
             }
+        }
+    }
+
+    function handleTheatersFetched(ok) {
+        if (ok) {
+            theatersContent.state = 'Ready'
+        } else {
+            theatersContent.state = 'Failed'
+        }
+    }
+
+    Connections {
+        target: controller
+        onTheatersFetched: handleTheatersFetched(ok)
+    }
+
+    Item {
+        anchors.fill: parent
+        anchors {
+            leftMargin: UIConstants.DEFAULT_MARGIN
+            rightMargin: UIConstants.DEFAULT_MARGIN
+            bottomMargin: UIConstants.DEFAULT_MARGIN
+        }
+
+        ButacaHeader {
+            id: header
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            text: 'On theaters'
         }
 
         Item {
-            anchors.fill: parent
-            anchors {
-                leftMargin: UIConstants.DEFAULT_MARGIN
-                rightMargin: UIConstants.DEFAULT_MARGIN
-                bottomMargin: UIConstants.DEFAULT_MARGIN
+            id: theatersContent
+            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
+            anchors.margins: UIConstants.DEFAULT_MARGIN
+            state: 'Loading'
+
+            ListView {
+                id: list
+                anchors.fill: parent
+                model: theaterModel
+                clip: true
+                delegate: ListDelegate { }
+
+                section.property: 'theaterName'
+                section.delegate: ListSectionDelegate { sectionName: section }
             }
 
-            ButacaHeader {
-                id: header
-                anchors.top: parent.top
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                text: 'On theaters'
+            ScrollDecorator {
+                flickableItem: list
             }
 
-            Item {
-                id: theatersContent
-                anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
-                anchors.margins: UIConstants.DEFAULT_MARGIN
-
-                ListView {
-                    id: list
-                    anchors.fill: parent
-                    model: theaterModel
-                    clip: true
-                    delegate: ListDelegate { }
-
-                    section.property: 'theaterName'
-                    section.delegate: ListSectionDelegate { sectionName: section }
-                }
-
-                ScrollDecorator {
-                    flickableItem: list
-                }
-
-                BusyIndicator {
-                    id: busyIndicator
-                    visible: true
-                    running: true
-                    platformStyle: BusyIndicatorStyle { size: 'large' }
-                    anchors.centerIn: parent
-                }
-
-                states: [
-                    State {
-                        name: 'Ready'
-                        when: theaterModel !== undefined
-                        PropertyChanges  { target: busyIndicator; running: false; visible: false }
-                        PropertyChanges  { target: list; visible: true }
-                    }
-                ]
+            BusyIndicator {
+                id: busyIndicator
+                visible: true
+                running: true
+                platformStyle: BusyIndicatorStyle { size: 'large' }
+                anchors.centerIn: parent
             }
+
+            NoContentItem {
+                id: noTheaterResults
+                anchors.fill: parent
+                text: 'No results for ' + (location? + location : 'your location')
+                visible: list.model && list.model.count === 0
+            }
+
+            states: [
+                State {
+                    name: 'Ready'
+                    PropertyChanges { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges { target: list; visible: true }
+                    PropertyChanges { target: noTheaterResults; visible: false}
+                },
+                State {
+                    name: 'Loading'
+                    PropertyChanges { target: busyIndicator; running: true; visible: true }
+                    PropertyChanges { target: list; visible: false }
+                    PropertyChanges { target: noTheaterResults; visible: false }
+                },
+                State {
+                    name: 'Failed'
+                    PropertyChanges { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges { target: list; visible: false }
+                    PropertyChanges { target: noTheaterResults; visible: true }
+                }
+
+            ]
         }
     }
 }

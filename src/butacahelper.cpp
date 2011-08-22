@@ -83,32 +83,36 @@ void ButacaHelper::fetchTheaters(QString location)
 void ButacaHelper::onLoadFinished(bool ok)
 {
     if (ok) {
-        TheaterListModel *theaterListModel = new TheaterListModel;
+        TheaterListModel *theaterListModel = 0;
 
         QWebElement document = m_webView->page()->mainFrame()->documentElement();
 
         QWebElementCollection theaters = document.findAll("div.theater");
 
-        Q_FOREACH(QWebElement theaterElement, theaters) {
+        if (theaters.count() > 0) {
+            theaterListModel = new TheaterListModel;
 
-            QString theaterName = theaterElement.findFirst("div.desc h2").toPlainText();
-            QString theaterInfo = theaterElement.findFirst("div.desc div").toPlainText();
+            Q_FOREACH(QWebElement theaterElement, theaters) {
 
-            Q_FOREACH(QWebElement movieElement, theaterElement.findAll("div.movie")) {
+                QString theaterName = theaterElement.findFirst("div.desc h2").toPlainText();
+                QString theaterInfo = theaterElement.findFirst("div.desc div").toPlainText();
 
-                Movie *movie = new Movie();
-                movie->setMovieName(movieElement.findFirst("div.name a").toPlainText());
-                movie->setMovieTimes(movieElement.findFirst("div.times").toPlainText());
-                movie->setTheaterName(theaterName);
-                movie->setTheaterInfo(theaterInfo);
+                Q_FOREACH(QWebElement movieElement, theaterElement.findAll("div.movie")) {
 
-                theaterListModel->addMovie(movie);
+                    Movie *movie = new Movie();
+                    movie->setMovieName(movieElement.findFirst("div.name a").toPlainText());
+                    movie->setMovieTimes(movieElement.findFirst("div.times").toPlainText());
+                    movie->setTheaterName(theaterName);
+                    movie->setTheaterInfo(theaterInfo);
+
+                    theaterListModel->addMovie(movie);
+                }
             }
         }
-
         emit theatersFetched(theaterListModel);
     } else {
         qCritical() << Q_FUNC_INFO << "Loading error";
+        emit theatersFetched(0);
     }
 }
 

@@ -16,7 +16,10 @@ public:
 
 public slots:
     void fetchTheaters(QString location = QString());
-    const QString &currentLocation() const;
+    QString currentLocation();
+
+signals:
+    void theatersFetched(bool ok);
 
 private slots:
     void onTheatersFetched(TheaterListModel* theaterListModel);
