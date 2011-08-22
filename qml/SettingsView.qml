@@ -94,7 +94,7 @@ Component {
                 text: 'Settings'
             }
 
-            Item {
+            Flickable {
                 id: settingsContent
                 anchors {
                     top: header.bottom;
@@ -102,6 +102,9 @@ Component {
                     right: parent.right;
                     bottom:  parent.bottom
                 }
+                clip: true
+                width: parent.width
+                contentHeight: childrenRect.height
 
                 ListSectionDelegate {
                     id: showtimesSection
@@ -127,7 +130,7 @@ Component {
 
                     TextField {
                         id: locationInput
-                        placeholderText: ''
+                        placeholderText: 'Try automatically'
                         width: parent.width - locationText.width - parent.spacing
                         text: Storage.getSetting('location')
 //                        onAccepted: {
