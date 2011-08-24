@@ -1,16 +1,16 @@
 QT+= declarative webkit
 
 SOURCES += src/main.cpp \
-    src/butacahelper.cpp \
     src/theaterlistmodel.cpp \
     src/butacacontroller.cpp \
-    src/movie.cpp
+    src/movie.cpp \
+    src/theatershowtimesfetcher.cpp
 
 HEADERS += \
-    src/butacahelper.h \
     src/theaterlistmodel.h \
     src/butacacontroller.h \
-    src/movie.h
+    src/movie.h \
+    src/theatershowtimesfetcher.h
 
 OTHER_FILES += \
     qml/main.qml \

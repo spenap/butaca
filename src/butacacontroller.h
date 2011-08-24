@@ -4,7 +4,7 @@
 #include <QObject>
 
 class QDeclarativeContext;
-class ButacaHelper;
+class TheaterShowtimesFetcher;
 class TheaterListModel;
 
 class ButacaController : public QObject
@@ -44,7 +44,7 @@ private slots:
 
 private:
     QDeclarativeContext *m_declarativeContext;
-    ButacaHelper *m_butacaHelper;
+    TheaterShowtimesFetcher *m_showtimesFetcher;
     TheaterListModel *m_theaterListModel;
     QString m_location;
 };

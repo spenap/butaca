@@ -17,7 +17,7 @@
  *
  **************************************************************************/
 
-#include "butacahelper.h"
+#include "theatershowtimesfetcher.h"
 #include "theaterlistmodel.h"
 #include "movie.h"
 
@@ -29,18 +29,18 @@
 
 #include <QDebug>
 
-ButacaHelper::ButacaHelper(QObject *parent) :
+TheaterShowtimesFetcher::TheaterShowtimesFetcher(QObject *parent) :
     QObject(parent),
     m_webView(new QWebView)
 {
 }
 
-ButacaHelper::~ButacaHelper()
+TheaterShowtimesFetcher::~TheaterShowtimesFetcher()
 {
     delete m_webView;
 }
 
-void ButacaHelper::fetchTheaters(QString location)
+void TheaterShowtimesFetcher::fetchTheaters(QString location)
 {
     QUrl showtimesUrl("http://www.google.com/movies");
     if (!location.isEmpty()) {
@@ -52,7 +52,7 @@ void ButacaHelper::fetchTheaters(QString location)
     m_webView->load(showtimesUrl);
 }
 
-void ButacaHelper::onLoadFinished(bool ok)
+void TheaterShowtimesFetcher::onLoadFinished(bool ok)
 {
     if (ok) {
         TheaterListModel *theaterListModel = 0;

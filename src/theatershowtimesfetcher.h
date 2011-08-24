@@ -17,20 +17,20 @@
  *
  **************************************************************************/
 
-#ifndef BUTACAHELPER_H
-#define BUTACAHELPER_H
+#ifndef THEATERSHOWTIMESFETCHER_H
+#define THEATERSHOWTIMESFETCHER_H
 
 #include <QObject>
 
 class QWebView;
 class TheaterListModel;
 
-class ButacaHelper : public QObject
+class TheaterShowtimesFetcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit ButacaHelper(QObject *parent = 0);
-    ~ButacaHelper();
+    explicit TheaterShowtimesFetcher(QObject *parent = 0);
+    ~TheaterShowtimesFetcher();
 
 public slots:
     void fetchTheaters(QString location = QString());
@@ -45,4 +45,4 @@ private:
     QWebView *m_webView;
 };
 
-#endif // BUTACAHELPER_H
+#endif // THEATERSHOWTIMESFETCHER_H

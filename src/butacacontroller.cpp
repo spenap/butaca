@@ -1,5 +1,5 @@
 #include "butacacontroller.h"
-#include "butacahelper.h"
+#include "theatershowtimesfetcher.h"
 #include "theaterlistmodel.h"
 
 #include <QDeclarativeContext>
@@ -9,18 +9,18 @@
 ButacaController::ButacaController(QDeclarativeContext *context) :
     QObject(),
     m_declarativeContext(context),
-    m_butacaHelper(new ButacaHelper),
+    m_showtimesFetcher(new TheaterShowtimesFetcher),
     m_theaterListModel(0)
 {
     m_declarativeContext->setContextProperty("controller", this);
 
-    connect(m_butacaHelper, SIGNAL(theatersFetched(TheaterListModel*)),
+    connect(m_showtimesFetcher, SIGNAL(theatersFetched(TheaterListModel*)),
             this, SLOT(onTheatersFetched(TheaterListModel*)));
 }
 
 ButacaController::~ButacaController()
 {
-    delete m_butacaHelper;
+    delete m_showtimesFetcher;
     delete m_theaterListModel;
 }
 
@@ -47,7 +47,7 @@ void ButacaController::share(QString title, QString url)
 void ButacaController::fetchTheaters(QString location)
 {
     m_location = location;
-    m_butacaHelper->fetchTheaters(m_location);
+    m_showtimesFetcher->fetchTheaters(m_location);
 }
 
 QString ButacaController::currentLocation()
