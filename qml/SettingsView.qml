@@ -136,6 +136,20 @@ Component {
 //                        onAccepted: {
 //                            Storage.setSetting('location', text)
 //                        }
+
+                        Image {
+                            id: clearLocationText
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            source: 'image://theme/icon-m-input-clear'
+                            visible: locationInput.activeFocus && locationInput.text
+                        }
+
+                        MouseArea {
+                            id: locationInputMouseArea
+                            anchors.fill: clearLocationText
+                            onClicked: locationInput.text = ''
+                        }
                     }
                 }
 
