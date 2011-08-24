@@ -22,15 +22,12 @@
 #include <QtGui/QApplication>
 #include <QtDeclarative>
 #include <QDeclarativeContext>
-#include <applauncherd/mdeclarativecache.h>
-
-static QApplication *app;
-static QDeclarativeView *view;
+#include <MDeclarativeCache>
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    app = MDeclarativeCache::qApplication(argc, argv);
-    view = MDeclarativeCache::qDeclarativeView();
+    QApplication *app = MDeclarativeCache::qApplication(argc, argv);
+    QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
 
     QDeclarativeContext *context = view->rootContext();
     ButacaController *controller = new ButacaController(context);
@@ -41,6 +38,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     int result = app->exec();
 
     delete controller;
+    delete view;
+    delete app;
 
     return result;
 }
