@@ -18,6 +18,7 @@ public:
     };
 
     TheaterListModel(QObject *parent = 0);
+    ~TheaterListModel();
 
     QVariant data(const QModelIndex &index, int role) const;
 
@@ -25,10 +26,11 @@ public:
 
     void addMovie(Movie *movie);
 
+    void clear();
+
 private:
     Q_DISABLE_COPY(TheaterListModel)
     QList<Movie*> m_movies;
-
 };
 
 #endif // THEATERLISTMODEL_H

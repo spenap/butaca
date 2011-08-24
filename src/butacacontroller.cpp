@@ -9,13 +9,15 @@
 ButacaController::ButacaController(QDeclarativeContext *context) :
     QObject(),
     m_declarativeContext(context),
-    m_showtimesFetcher(new TheaterShowtimesFetcher),
-    m_theaterListModel(0)
+    m_showtimesFetcher(0),
+    m_theaterListModel(new TheaterListModel)
 {
     m_declarativeContext->setContextProperty("controller", this);
+    m_declarativeContext->setContextProperty("theaterModel", m_theaterListModel);
 
-    connect(m_showtimesFetcher, SIGNAL(theatersFetched(TheaterListModel*)),
-            this, SLOT(onTheatersFetched(TheaterListModel*)));
+    m_showtimesFetcher = new TheaterShowtimesFetcher(m_theaterListModel);
+    connect(m_showtimesFetcher, SIGNAL(theatersFetched(int)),
+            this, SLOT(onTheatersFetched(int)));
 }
 
 ButacaController::~ButacaController()
@@ -47,6 +49,7 @@ void ButacaController::share(QString title, QString url)
 void ButacaController::fetchTheaters(QString location)
 {
     m_location = location;
+    m_theaterListModel->clear();
     m_showtimesFetcher->fetchTheaters(m_location);
 }
 
@@ -55,21 +58,9 @@ QString ButacaController::currentLocation()
     return m_location;
 }
 
-void ButacaController::onTheatersFetched(TheaterListModel* theaterListModel)
+void ButacaController::onTheatersFetched(int count)
 {
-    if (m_theaterListModel) {
-        delete m_theaterListModel;
-        m_theaterListModel = 0;
-    }
-
-    if (theaterListModel) {
-        m_theaterListModel = theaterListModel;
-        m_declarativeContext->setContextProperty("theaterModel", m_theaterListModel);
-
-        emit theatersFetched(true);
-    } else {
-        emit theatersFetched(false);
-    }
+    emit theatersFetched(count > 0);
 }
 
 QString ButacaController::formatCurrency(QString value)

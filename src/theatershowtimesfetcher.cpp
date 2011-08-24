@@ -29,10 +29,12 @@
 
 #include <QDebug>
 
-TheaterShowtimesFetcher::TheaterShowtimesFetcher(QObject *parent) :
-    QObject(parent),
-    m_webView(new QWebView)
+TheaterShowtimesFetcher::TheaterShowtimesFetcher(TheaterListModel *model) :
+    m_webView(new QWebView),
+    m_theaterListModel(model)
 {
+    connect(m_webView, SIGNAL(loadFinished(bool)),
+            this, SLOT(onLoadFinished(bool)), Qt::UniqueConnection);
 }
 
 TheaterShowtimesFetcher::~TheaterShowtimesFetcher()
@@ -43,27 +45,22 @@ TheaterShowtimesFetcher::~TheaterShowtimesFetcher()
 void TheaterShowtimesFetcher::fetchTheaters(QString location)
 {
     QUrl showtimesUrl("http://www.google.com/movies");
+
     if (!location.isEmpty()) {
         showtimesUrl.addQueryItem("near", location);
     }
 
-    connect(m_webView, SIGNAL(loadFinished(bool)),
-            this, SLOT(onLoadFinished(bool)));
     m_webView->load(showtimesUrl);
 }
 
 void TheaterShowtimesFetcher::onLoadFinished(bool ok)
 {
     if (ok) {
-        TheaterListModel *theaterListModel = 0;
-
         QWebElement document = m_webView->page()->mainFrame()->documentElement();
 
         QWebElementCollection theaters = document.findAll("div.theater");
 
         if (theaters.count() > 0) {
-            theaterListModel = new TheaterListModel;
-
             Q_FOREACH(QWebElement theaterElement, theaters) {
 
                 QString theaterName = theaterElement.findFirst("div.desc h2").toPlainText();
@@ -77,11 +74,11 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
                     movie->setTheaterName(theaterName);
                     movie->setTheaterInfo(theaterInfo);
 
-                    theaterListModel->addMovie(movie);
+                    m_theaterListModel->addMovie(movie);
                 }
             }
         }
-        emit theatersFetched(theaterListModel);
+        emit theatersFetched(theaters.count());
     } else {
         qCritical() << Q_FUNC_INFO << "Loading error";
         emit theatersFetched(0);

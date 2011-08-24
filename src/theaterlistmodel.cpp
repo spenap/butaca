@@ -13,6 +13,11 @@ TheaterListModel::TheaterListModel(QObject *parent)
     setRoleNames(roles);
 }
 
+TheaterListModel::~TheaterListModel()
+{
+    clear();
+}
+
 int TheaterListModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
@@ -50,4 +55,10 @@ QVariant TheaterListModel::data(const QModelIndex &index, int role) const
 void TheaterListModel::addMovie(Movie *movie)
 {
     m_movies.append(movie);
+}
+
+void TheaterListModel::clear()
+{
+    qDeleteAll(m_movies.begin(), m_movies.end());
+    m_movies.clear();
 }

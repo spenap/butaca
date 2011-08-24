@@ -40,7 +40,7 @@ signals:
     void theatersFetched(bool ok);
 
 private slots:
-    void onTheatersFetched(TheaterListModel* theaterListModel);
+    void onTheatersFetched(int count);
 
 private:
     QDeclarativeContext *m_declarativeContext;

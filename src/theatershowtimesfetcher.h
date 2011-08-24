@@ -29,20 +29,21 @@ class TheaterShowtimesFetcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit TheaterShowtimesFetcher(QObject *parent = 0);
+    explicit TheaterShowtimesFetcher(TheaterListModel *model);
     ~TheaterShowtimesFetcher();
 
 public slots:
     void fetchTheaters(QString location = QString());
 
 signals:
-    void theatersFetched(TheaterListModel *model);
+    void theatersFetched(int count);
 
 private slots:
     void onLoadFinished(bool ok);
 
 private:
     QWebView *m_webView;
+    TheaterListModel *m_theaterListModel;
 };
 
 #endif // THEATERSHOWTIMESFETCHER_H
