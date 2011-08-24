@@ -82,7 +82,7 @@ Component {
                     } else if (searchCategory.checkedButton == peopleSearch) {
                         searchResults.state = 'PeopleSearch'
                     } else {
-                        helper.openUrl('http://www.google.com/movies?q=' + searchInput.text)
+                        Qt.openUrlExternally('http://www.google.com/movies?q=' + searchInput.text)
                     }
                 }
             }

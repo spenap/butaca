@@ -256,7 +256,7 @@ Item {
                 MouseArea {
                     anchors.fill: trailerImage
                     onClicked: {
-                        helper.openUrl(trailer)
+                        Qt.openUrlExternally(trailer)
                     }
                 }
             }

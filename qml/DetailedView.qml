@@ -41,18 +41,18 @@ Component {
                 MenuItem {
                     id: homepageEntry
                     text: 'Open homepage'
-                    onClicked: helper.openUrl(currentItem().homepage)
+                    onClicked: Qt.openUrlExternally(currentItem().homepage)
                     visible: false
                 }
                 MenuItem {
                     id: tmdbEntry
                     text: 'View in TMDb'
-                    onClicked: helper.openUrl(currentItem().url)
+                    onClicked: Qt.openUrlExternally(currentItem().url)
                 }
                 MenuItem {
                     id: imdbEntry
                     text: 'View in IMDb'
-                    onClicked: helper.openUrl(BUTACA.IMDB_BASE_URL + currentItem().imdbId)
+                    onClicked: Qt.openUrlExternally(BUTACA.IMDB_BASE_URL + currentItem().imdbId)
                     visible: false
                 }
             }

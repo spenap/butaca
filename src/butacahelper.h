@@ -34,10 +34,6 @@ public:
 
 public slots:
 
-    //! Opens an URL with the appropriate web browser
-    //! \param url The URL to open
-    void openUrl(QString url);
-
     //! Shares content with the share-ui interface
     //! \param title The title of the content to be shared
     //! \param url The URL of the content to be shared

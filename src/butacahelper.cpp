@@ -26,7 +26,6 @@
 #include <QWebFrame>
 #include <QWebElement>
 
-#include <QDesktopServices>
 #include <QUrl>
 #include <maemo-meegotouch-interfaces/shareuiinterface.h>
 #include <MDataUri>
@@ -40,12 +39,6 @@ ButacaHelper::ButacaHelper(QObject *parent) :
 ButacaHelper::~ButacaHelper()
 {
     delete m_webView;
-}
-
-void ButacaHelper::openUrl(QString url)
-{
-    QUrl videoUrl(url);
-    QDesktopServices::openUrl(videoUrl);
 }
 
 void ButacaHelper::share(QString title, QString url)
