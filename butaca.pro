@@ -13,6 +13,10 @@ HEADERS += \
     src/theatershowtimesfetcher.h
 
 OTHER_FILES += \
+    butaca.desktop \
+    butaca.png \
+    butaca-splash.jpg \
+    TODO \
     qml/main.qml \
     qml/WelcomeView.qml \
     qml/SearchView.qml \
@@ -28,9 +32,6 @@ OTHER_FILES += \
     qml/MultipleMoviesView.qml \
     qml/MultipleMoviesModel.qml \
     qml/MultipleMoviesDelegate.qml \
-    butaca.desktop \
-    butaca.png \
-    TODO \
     qml/butacautils.js \
     qml/images/movie-placeholder.svg \
     qml/images/person-placeholder.svg \
@@ -68,4 +69,7 @@ desktop.path = /usr/share/applications/
 icon.files = butaca.png
 icon.path  = /usr/share/icons/hicolor/64x64/apps/
 
-INSTALLS += butacascript desktop icon
+splash.files = butaca-splash.jpg
+splash.path = /usr/share/butaca/
+
+INSTALLS += butacascript desktop icon splash
