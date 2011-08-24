@@ -59,7 +59,7 @@ ToolBarLayout {
         id: shareIcon
         iconId: 'toolbar-share'
         visible: false
-        onClicked: helper.share(content.title, content.url)
+        onClicked: controller.share(content.title, content.url)
     }
 
     ToolIcon {

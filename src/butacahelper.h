@@ -33,15 +33,7 @@ public:
     ~ButacaHelper();
 
 public slots:
-
-    //! Shares content with the share-ui interface
-    //! \param title The title of the content to be shared
-    //! \param url The URL of the content to be shared
-    void share(QString title, QString url);
-
     void fetchTheaters(QString location = QString());
-
-    QString formatCurrency(QString value);
 
 signals:
     void theatersFetched(TheaterListModel *model);

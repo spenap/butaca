@@ -25,10 +25,9 @@
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
-
 #include <QUrl>
-#include <maemo-meegotouch-interfaces/shareuiinterface.h>
-#include <MDataUri>
+
+#include <QDebug>
 
 ButacaHelper::ButacaHelper(QObject *parent) :
     QObject(parent),
@@ -39,26 +38,6 @@ ButacaHelper::ButacaHelper(QObject *parent) :
 ButacaHelper::~ButacaHelper()
 {
     delete m_webView;
-}
-
-void ButacaHelper::share(QString title, QString url)
-{
-    // See https://meego.gitorious.org/meego-sharing-framework/share-ui/blobs/master/examples/link-share/page.cpp
-    // and http://forum.meego.com/showthread.php?t=3768
-    MDataUri dataUri;
-    dataUri.setMimeType("text/x-url");
-    dataUri.setTextData(url);
-    dataUri.setAttribute("title", title);
-    dataUri.setAttribute("description", "Shared with #Butaca");
-
-    QStringList items;
-    items << dataUri.toString();
-    ShareUiInterface shareIf("com.nokia.ShareUi");
-    if (shareIf.isValid()) {
-        shareIf.share(items);
-    } else {
-        qCritical() << "Invalid interface";
-    }
 }
 
 void ButacaHelper::fetchTheaters(QString location)
@@ -107,10 +86,4 @@ void ButacaHelper::onLoadFinished(bool ok)
         qCritical() << Q_FUNC_INFO << "Loading error";
         emit theatersFetched(0);
     }
-}
-
-QString ButacaHelper::formatCurrency(QString value)
-{
-    double doubleValue = value.toDouble();
-    return QString("$%L1").arg(doubleValue, 0, 'f', 0);
 }
