@@ -1,3 +1,11 @@
+butaca (0.3.1) unstable; urgency=low
+
+  * Fixed memory leak in showtimes view
+  * Added splash screen
+  * Minor code cleanup
+
+ -- Simon Pena <spena@igalia.com>  Wed, 24 Aug 2011 23:55:09 +0300
+
 butaca (0.3.0) unstable; urgency=low
 
   * Added movie showtimes support
