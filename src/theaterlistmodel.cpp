@@ -15,7 +15,6 @@ TheaterListModel::TheaterListModel(QObject *parent)
 
 TheaterListModel::~TheaterListModel()
 {
-    clear();
 }
 
 int TheaterListModel::rowCount(const QModelIndex &parent) const
@@ -52,13 +51,20 @@ QVariant TheaterListModel::data(const QModelIndex &index, int role) const
     }
 }
 
-void TheaterListModel::addMovie(Movie *movie)
+void TheaterListModel::setMovieShowtimes(QList<Movie*> movies)
 {
-    m_movies.append(movie);
-}
+    if (m_movies.count() > 0) {
+        beginRemoveRows(QModelIndex(), 0, m_movies.count() - 1);
+        qDeleteAll(m_movies.begin(), m_movies.end());
+        m_movies.clear();
+        endRemoveRows();
+    }
 
-void TheaterListModel::clear()
-{
-    qDeleteAll(m_movies.begin(), m_movies.end());
-    m_movies.clear();
+    if (movies.count() > 0) {
+        beginInsertRows(QModelIndex(), 0, movies.count() - 1);
+        m_movies << movies;
+        endInsertRows();
+    }
+
+    emit countChanged();
 }

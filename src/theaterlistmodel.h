@@ -8,6 +8,8 @@ class Movie;
 class TheaterListModel : public QAbstractListModel
 {
     Q_OBJECT
+
+    Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
 public:
     enum TheaterListRoles {
         MovieNameRole = Qt::UserRole + 1,
@@ -24,9 +26,10 @@ public:
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
 
-    void addMovie(Movie *movie);
+    void setMovieShowtimes(QList<Movie*> movies);
 
-    void clear();
+signals:
+    void countChanged();
 
 private:
     Q_DISABLE_COPY(TheaterListModel)

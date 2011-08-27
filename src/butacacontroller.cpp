@@ -49,7 +49,6 @@ void ButacaController::share(QString title, QString url)
 void ButacaController::fetchTheaters(QString location)
 {
     m_location = location;
-    m_theaterListModel->clear();
     m_showtimesFetcher->fetchTheaters(m_location);
 }
 

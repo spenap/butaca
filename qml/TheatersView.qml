@@ -34,7 +34,7 @@ Page {
         if (status == PageStatus.Active) {
             Storage.initialize()
             location = Storage.getSetting('location')
-            if (list.model === undefined ||
+            if (list.model.count === 0 ||
                     location != controller.currentLocation()) {
                 controller.fetchTheaters(location)
                 theatersContent.state = 'Loading'
@@ -81,6 +81,7 @@ Page {
                 id: list
                 anchors.fill: parent
                 clip: true
+                model: theaterModel
                 delegate: ListDelegate { }
 
                 section.property: 'theaterName'
@@ -103,26 +104,26 @@ Page {
                 id: noTheaterResults
                 anchors.fill: parent
                 text: 'No results for ' + (location ? location : 'your location')
-                visible: list.model !== undefined
+                visible: list.model.count === 0
             }
 
             states: [
                 State {
                     name: 'Ready'
                     PropertyChanges { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges { target: list; visible: true; model: theaterModel }
+                    PropertyChanges { target: list; visible: true }
                     PropertyChanges { target: noTheaterResults; visible: false}
                 },
                 State {
                     name: 'Loading'
                     PropertyChanges { target: busyIndicator; running: true; visible: true }
-                    PropertyChanges { target: list; visible: false; model: undefined }
+                    PropertyChanges { target: list; visible: false }
                     PropertyChanges { target: noTheaterResults; visible: false }
                 },
                 State {
                     name: 'Failed'
                     PropertyChanges { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges { target: list; visible: false; model: undefined }
+                    PropertyChanges { target: list; visible: false }
                     PropertyChanges { target: noTheaterResults; visible: true }
                 }
 

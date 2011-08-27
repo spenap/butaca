@@ -56,8 +56,8 @@ void TheaterShowtimesFetcher::fetchTheaters(QString location)
 void TheaterShowtimesFetcher::onLoadFinished(bool ok)
 {
     if (ok) {
+        QList<Movie*> movies;
         QWebElement document = m_webView->page()->mainFrame()->documentElement();
-
         QWebElementCollection theaters = document.findAll("div.theater");
 
         if (theaters.count() > 0) {
@@ -68,17 +68,20 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
 
                 Q_FOREACH(QWebElement movieElement, theaterElement.findAll("div.movie")) {
 
-                    Movie *movie = new Movie();
+                    Movie *movie = new Movie;
                     movie->setMovieName(movieElement.findFirst("div.name a").toPlainText());
                     movie->setMovieTimes(movieElement.findFirst("div.times").toPlainText());
                     movie->setTheaterName(theaterName);
                     movie->setTheaterInfo(theaterInfo);
 
-                    m_theaterListModel->addMovie(movie);
+                    movies << movie;
                 }
             }
         }
-        emit theatersFetched(theaters.count());
+
+        m_theaterListModel->setMovieShowtimes(movies);
+
+        emit theatersFetched(movies.count());
     } else {
         qCritical() << Q_FUNC_INFO << "Loading error";
         emit theatersFetched(0);
