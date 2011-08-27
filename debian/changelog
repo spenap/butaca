@@ -1,3 +1,10 @@
+butaca (0.3.2) unstable; urgency=low
+
+  * Improved showtimes model behaviour
+  * Improved text fields clear up
+
+ -- Simon Pena <spena@igalia.com>  Sat, 27 Aug 2011 15:07:16 +0300
+
 butaca (0.3.1) unstable; urgency=low
 
   * Fixed memory leak in showtimes view
