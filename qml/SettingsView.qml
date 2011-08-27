@@ -142,13 +142,16 @@ Component {
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
                             source: 'image://theme/icon-m-input-clear'
-                            visible: locationInput.activeFocus && locationInput.text
+                            visible: locationInput.activeFocus
                         }
 
                         MouseArea {
                             id: locationInputMouseArea
                             anchors.fill: clearLocationText
-                            onClicked: locationInput.text = ''
+                            onClicked: {
+                                inputContext.reset()
+                                locationInput.text = ''
+                            }
                         }
                     }
                 }

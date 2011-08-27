@@ -56,7 +56,7 @@ Component {
                     id: clearText
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
-                    source: searchInput.text ?
+                    source: searchInput.activeFocus ?
                                 'image://theme/icon-m-input-clear' :
                                 'image://theme/icon-m-common-search'
                 }
@@ -65,6 +65,7 @@ Component {
                     id: searchInputMouseArea
                     anchors.fill: clearText
                     onClicked: {
+                        inputContext.reset()
                         searchInput.text = ''
                         searchResults.state = 'Waiting'
                     }
