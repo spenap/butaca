@@ -56,15 +56,11 @@ Page {
     }
     tools: ToolBarLayout {
         ToolIcon {
-            id: backIcon
-            iconId: 'toolbar-back'
-            enabled: false
-        }
-        ToolIcon {
             id: menuListIcon
             iconId: 'toolbar-view-menu'
             onClicked: (welcomeMenu.status == DialogStatus.Closed) ?
                            welcomeMenu.open() : welcomeMenu.close()
+            anchors.right: parent.right
         }
     }
 
@@ -101,31 +97,9 @@ Page {
         }
     }
 
-    ButacaHeader {
-        id: mainHeader
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-
-        text: 'Enjoy the show!'
-    }
-
     Component {
         id: menuDelegate
-        ListDelegate {
-            /* More indicator */
-            Item {
-                id: viewDetails
-                width: moreIndicator.width + 10
-                height: parent.height
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-
-                CustomMoreIndicator {
-                    id: moreIndicator
-                    anchors.centerIn: parent
-                }
-            }
-
+        CustomListDelegate {
             onClicked: {
                 switch (action) {
                 case 0:
@@ -169,13 +143,18 @@ Page {
 
     ListView {
         id: list
-        anchors {top: mainHeader.bottom; left: parent.left; right: parent.right }
-        anchors.margins: 20
-        width: parent.width
-        height: 0.35 * parent.height
+        anchors { top: parent.top; left: parent.left; right: parent.right }
+        anchors.topMargin: appWindow.inPortrait?
+                               UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
+                               UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
+        height: 0.43 * parent.height
         model: menuModel
+        clip: true
         interactive: false
         delegate: menuDelegate
+        header: ButacaHeader {
+            text: 'Enjoy the show!'
+        }
     }
 
     ListModel {
@@ -185,14 +164,17 @@ Page {
     Item {
         id: favorites
         anchors { top: list.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-        anchors.margins: 20
+        anchors {
+            leftMargin: UIConstants.DEFAULT_MARGIN
+            rightMargin: UIConstants.DEFAULT_MARGIN
+        }
 
         GridView {
             id: view
             anchors.fill: parent
             clip: true
-            cellWidth: 200
-            cellHeight: 200
+            cellWidth: 220
+            cellHeight: 220
 
             model: favoritesModel
             delegate: favoriteDelegate
@@ -234,14 +216,13 @@ Page {
 
                 Text {
                     anchors.top: favoriteIcon.bottom;
-                    anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.topMargin: UIConstants.DEFAULT_MARGIN / 2
+                    anchors.horizontalCenter: favoriteIcon.horizontalCenter
                     text: title
                     font.pixelSize: UIConstants.FONT_DEFAULT
                     color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                     elide: Text.ElideRight
-                    maximumLineCount: 2
-                    wrapMode: Text.WordWrap
+                    width: parent.width
                 }
 
                 MouseArea {

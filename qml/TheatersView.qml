@@ -56,78 +56,67 @@ Page {
     }
 
     Item {
+        id: theatersContent
         anchors.fill: parent
-        anchors {
-            leftMargin: UIConstants.DEFAULT_MARGIN
-            rightMargin: UIConstants.DEFAULT_MARGIN
-            bottomMargin: UIConstants.DEFAULT_MARGIN
+        anchors.topMargin: appWindow.inPortrait?
+                               UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
+                               UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
+        state: 'Loading'
+
+        ListView {
+            id: list
+            anchors.fill: parent
+            flickableDirection: Flickable.VerticalFlick
+            model: theaterModel
+            header: ButacaHeader {
+                text: 'On theaters'
+                showDivider: false
+            }
+            delegate: CustomListDelegate { pressable: false }
+
+            section.property: 'theaterName'
+            section.delegate: ListSectionDelegate { sectionName: section }
         }
 
-        ButacaHeader {
-            id: header
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            text: 'On theaters'
+        ScrollDecorator {
+            flickableItem: list
         }
 
-        Item {
-            id: theatersContent
-            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
-            anchors.margins: UIConstants.DEFAULT_MARGIN
-            state: 'Loading'
-
-            ListView {
-                id: list
-                anchors.fill: parent
-                clip: true
-                model: theaterModel
-                delegate: ListDelegate { }
-
-                section.property: 'theaterName'
-                section.delegate: ListSectionDelegate { sectionName: section }
-            }
-
-            ScrollDecorator {
-                flickableItem: list
-            }
-
-            BusyIndicator {
-                id: busyIndicator
-                visible: true
-                running: true
-                platformStyle: BusyIndicatorStyle { size: 'large' }
-                anchors.centerIn: parent
-            }
-
-            NoContentItem {
-                id: noTheaterResults
-                anchors.fill: parent
-                text: 'No results for ' + (location ? location : 'your location')
-                visible: list.model.count === 0
-            }
-
-            states: [
-                State {
-                    name: 'Ready'
-                    PropertyChanges { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges { target: list; visible: true }
-                    PropertyChanges { target: noTheaterResults; visible: false}
-                },
-                State {
-                    name: 'Loading'
-                    PropertyChanges { target: busyIndicator; running: true; visible: true }
-                    PropertyChanges { target: list; visible: false }
-                    PropertyChanges { target: noTheaterResults; visible: false }
-                },
-                State {
-                    name: 'Failed'
-                    PropertyChanges { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges { target: list; visible: false }
-                    PropertyChanges { target: noTheaterResults; visible: true }
-                }
-
-            ]
+        BusyIndicator {
+            id: busyIndicator
+            visible: true
+            running: true
+            platformStyle: BusyIndicatorStyle { size: 'large' }
+            anchors.centerIn: parent
         }
+
+        NoContentItem {
+            id: noTheaterResults
+            anchors.fill: parent
+            text: 'No results for ' + (location ? location : 'your location')
+            visible: list.model.count === 0
+        }
+
+        states: [
+            State {
+                name: 'Ready'
+                PropertyChanges { target: busyIndicator; running: false; visible: false }
+                PropertyChanges { target: list; visible: true }
+                PropertyChanges { target: noTheaterResults; visible: false}
+            },
+            State {
+                name: 'Loading'
+                PropertyChanges { target: busyIndicator; running: true; visible: true }
+                PropertyChanges { target: list; visible: false }
+                PropertyChanges { target: noTheaterResults; visible: false }
+            },
+            State {
+                name: 'Failed'
+                PropertyChanges { target: busyIndicator; running: false; visible: false }
+                PropertyChanges { target: list; visible: false }
+                PropertyChanges { target: noTheaterResults; visible: true }
+            }
+
+        ]
     }
 }

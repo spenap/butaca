@@ -23,7 +23,6 @@ OTHER_FILES += \
     qml/PersonModel.qml \
     qml/PersonDelegate.qml \
     qml/PeopleModel.qml \
-    qml/PeopleDelegate.qml \
     qml/GenresModel.qml \
     qml/SingleMovieModel.qml \
     qml/SingleMovieDelegate.qml \
@@ -46,7 +45,8 @@ OTHER_FILES += \
     qml/DetailedView.qml \
     qml/ListSectionDelegate.qml \
     qml/TheatersView.qml \
-    qml/SettingsView.qml
+    qml/SettingsView.qml \
+    qml/CustomListDelegate.qml
 
 RESOURCES += \
     res.qrc

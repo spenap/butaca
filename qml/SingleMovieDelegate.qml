@@ -47,223 +47,210 @@ Item {
         return output
     }
 
-    Item {
+    Flickable {
+        id: movieFlickable
         anchors.fill: parent
-        anchors.margins: UIConstants.DEFAULT_MARGIN
+        anchors {
+            rightMargin: UIConstants.DEFAULT_MARGIN
+            leftMargin: UIConstants.DEFAULT_MARGIN
+        }
+        contentHeight: titleText.height +
+                       row.height +
+                       cast.height +
+                       overviewText.height +
+                       50 +
+                       (trailerHeader.visible ?
+                            trailerHeader.height +
+                            trailerImage.height +
+                            30 : 0)
 
         ButacaHeader {
             id: titleText
-            anchors.top: parent.top
-            width: parent.width
+            anchors.rightMargin: 0
+            anchors.leftMargin: 0
 
             text: title + ' (' + BUTACA.getYearFromDate(released) + ')'
+            tagline: tagline
+        }
+
+        Row {
+            id: row
+            spacing: 20
+            width: parent.width
+            anchors.top: titleText.bottom
+            anchors.topMargin: UIConstants.DEFAULT_MARGIN
+
+            Image {
+                id: image
+                width: 190
+                height: 280
+                source: poster ? poster : 'images/movie-placeholder.svg'
+                onStatusChanged: {
+                    if (image.status == Image.Error) {
+                        image.source = 'images/movie-placeholder.svg'
+                    }
+                }
+            }
+
+            Column {
+                width: parent.width - image.width
+                spacing: 8
+
+                Text {
+                    id: akaText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Also known as:</b><br />' +
+                          (alternativeName ? alternativeName : ' - ')
+                }
+
+                Text {
+                    id: certificationText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Certification</b>: ' +
+                          (certification ? certification : ' - ')
+                }
+
+                Text {
+                    id: releasedText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Release date:</b><br /> ' +
+                          (released ? released : ' - ')
+                }
+
+                Text {
+                    id: budgetText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Budget:</b> ' +
+                          (budget ? controller.formatCurrency(budget) : ' - ')
+                }
+
+                Text {
+                    id: revenueText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Revenue:</b> ' +
+                          (revenue ? controller.formatCurrency(revenue) : ' - ')
+                }
+
+                RatingIndicator {
+                    ratingValue: rating / 2
+                    maximumValue: 5
+                    count: votes
+                    inverted: theme.inverted
+                }
+            }
         }
 
         Text {
-            id: taglineText
-            anchors.top: titleText.bottom
-            anchors.margins: 20
+            id: cast
+            anchors.top: row.bottom
+            anchors.topMargin: 20
 
-            width: parent.width
-            font.pixelSize: UIConstants.FONT_DEFAULT
+            width: parent.width - castDetails.width
+            font.pixelSize: UIConstants.FONT_LSMALL
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND
-            text: '<i>' + tagline + '</i>'
             wrapMode: Text.WordWrap
-            visible: tagline
-        }
-
-        Flickable {
-            id: flick
-            anchors.top: tagline ? taglineText.bottom : titleText.bottom
-            anchors.bottom: parent.bottom
-            anchors.margins: 20
-
-            width: parent.width
-            contentHeight: row.height + cast.height +
-                           overviewText.height + 50 +
-                           (trailerHeader.visible ?
-                                trailerHeader.height + trailerImage.height + 30 :
-                                0)
-            clip: true
-
-            Row {
-                id: row
-                spacing: 20
-                width: parent.width
-
-                Image {
-                    id: image
-                    width: 190
-                    height: 280
-                    source: poster ? poster : 'images/movie-placeholder.svg'
-                    onStatusChanged: {
-                        if (image.status == Image.Error) {
-                            image.source = 'images/movie-placeholder.svg'
-                        }
-                    }
-                }
-
-                Column {
-                    width: parent.width - image.width
-                    spacing: 8
-
-                    Text {
-                        id: akaText
-                        width: parent.width
-                        font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ?
-                                   UIConstants.COLOR_FOREGROUND :
-                                   UIConstants.COLOR_INVERTED_FOREGROUND
-                        wrapMode: Text.WordWrap
-                        text: '<b>Also known as:</b><br />' +
-                              (alternativeName ? alternativeName : ' - ')
-                    }
-
-                    Text {
-                        id: certificationText
-                        width: parent.width
-                        font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ?
-                                   UIConstants.COLOR_FOREGROUND :
-                                   UIConstants.COLOR_INVERTED_FOREGROUND
-                        wrapMode: Text.WordWrap
-                        text: '<b>Certification</b>: ' +
-                              (certification ? certification : ' - ')
-                    }
-
-                    Text {
-                        id: releasedText
-                        width: parent.width
-                        font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ?
-                                   UIConstants.COLOR_FOREGROUND :
-                                   UIConstants.COLOR_INVERTED_FOREGROUND
-                        wrapMode: Text.WordWrap
-                        text: '<b>Release date:</b><br /> ' +
-                              (released ? released : ' - ')
-                    }
-
-                    Text {
-                        id: budgetText
-                        width: parent.width
-                        font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ?
-                                   UIConstants.COLOR_FOREGROUND :
-                                   UIConstants.COLOR_INVERTED_FOREGROUND
-                        wrapMode: Text.WordWrap
-                        text: '<b>Budget:</b> ' +
-                              (budget ? controller.formatCurrency(budget) : ' - ')
-                    }
-
-                    Text {
-                        id: revenueText
-                        width: parent.width
-                        font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ?
-                                   UIConstants.COLOR_FOREGROUND :
-                                   UIConstants.COLOR_INVERTED_FOREGROUND
-                        wrapMode: Text.WordWrap
-                        text: '<b>Revenue:</b> ' +
-                              (revenue ? controller.formatCurrency(revenue) : ' - ')
-                    }
-
-                    RatingIndicator {
-                        ratingValue: rating / 2
-                        maximumValue: 5
-                        count: votes
-                        inverted: theme.inverted
-                    }
-                }
-            }
-
-            Text {
-                id: cast
-                anchors.top: row.bottom
-                anchors.topMargin: 20
-
-                width: parent.width - castDetails.width
-                font.pixelSize: UIConstants.FONT_LSMALL
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-                wrapMode: Text.WordWrap
-                text: formatMovieCast()
-                opacity: castMouseArea.pressed ? 0.5 : 1
-
-                Image {
-                    id: castDetails
-                    anchors.top: parent.top
-                    anchors.right: parent.right
-                    source: 'image://theme/icon-s-music-video-description'
-                }
-
-                MouseArea {
-                    id: castMouseArea
-                    anchors.fill: cast
-                    onClicked: {
-                        appWindow.pageStack.push(castView,
-                                                 { movie: title,
-                                                   movieId: tmdbId })
-                    }
-                }
-            }
-
-            Text {
-                id: overviewText
-                anchors.top: cast.bottom
-                anchors.topMargin: 20
-
-                width: parent.width
-                font.pixelSize: UIConstants.FONT_LSMALL
-                text: '<b>Overview:</b><br />' +
-                      (overview ? BUTACA.sanitizeText(overview) : 'Overview not found')
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-                wrapMode: Text.WordWrap
-            }
-
-            Text {
-                id: trailerHeader
-                anchors.top: overviewText.bottom
-                anchors.topMargin: 20
-                font.pixelSize: UIConstants.FONT_SLARGE
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-                text: '<b>Movie trailer</b>'
-                visible: trailerImage.visible
-            }
+            text: formatMovieCast()
+            opacity: castMouseArea.pressed ? 0.5 : 1
 
             Image {
-                id: trailerImage
-                anchors.top: trailerHeader.bottom
-                anchors.topMargin: 10
-                anchors.leftMargin: 10
-                width: 120; height: 90
-                source: BUTACA.getTrailerThumbnail(trailer)
-                visible: playButton.visible
+                id: castDetails
+                anchors.top: parent.top
+                anchors.right: parent.right
+                source: 'image://theme/icon-s-music-video-description'
+            }
 
-                Image {
-                    id: playButton
-                    anchors.centerIn: parent
-                    source: 'image://theme/icon-s-music-video-play'
-                    visible: trailerImage.source != ''
-                }
-
-                MouseArea {
-                    anchors.fill: trailerImage
-                    onClicked: {
-                        Qt.openUrlExternally(trailer)
-                    }
+            MouseArea {
+                id: castMouseArea
+                anchors.fill: cast
+                onClicked: {
+                    appWindow.pageStack.push(castView,
+                                             { movie: title,
+                                               movieId: tmdbId })
                 }
             }
         }
 
-        ScrollDecorator {
-            flickableItem: flick
+        Text {
+            id: overviewText
+            anchors.top: cast.bottom
+            anchors.topMargin: 20
+
+            width: parent.width
+            font.pixelSize: UIConstants.FONT_LSMALL
+            text: '<b>Overview:</b><br />' +
+                  (overview ? BUTACA.sanitizeText(overview) : 'Overview not found')
+            color: !theme.inverted ?
+                       UIConstants.COLOR_FOREGROUND :
+                       UIConstants.COLOR_INVERTED_FOREGROUND
+            wrapMode: Text.WordWrap
         }
+
+        Text {
+            id: trailerHeader
+            anchors.top: overviewText.bottom
+            anchors.topMargin: 20
+            font.pixelSize: UIConstants.FONT_SLARGE
+            color: !theme.inverted ?
+                       UIConstants.COLOR_FOREGROUND :
+                       UIConstants.COLOR_INVERTED_FOREGROUND
+            text: '<b>Movie trailer</b>'
+            visible: trailerImage.visible
+        }
+
+        Image {
+            id: trailerImage
+            anchors.top: trailerHeader.bottom
+            anchors.topMargin: 10
+            anchors.leftMargin: 10
+            width: 120; height: 90
+            source: BUTACA.getTrailerThumbnail(trailer)
+            visible: playButton.visible
+
+            Image {
+                id: playButton
+                anchors.centerIn: parent
+                source: 'image://theme/icon-s-music-video-play'
+                visible: trailerImage.source != ''
+            }
+
+            MouseArea {
+                anchors.fill: trailerImage
+                onClicked: {
+                    Qt.openUrlExternally(trailer)
+                }
+            }
+        }
+    }
+
+    ScrollDecorator {
+        flickableItem: movieFlickable
+        anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
     }
 }

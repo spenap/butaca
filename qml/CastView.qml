@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import com.nokia.extras 1.0
+import "butacautils.js" as BUTACA
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Component {
@@ -33,69 +34,60 @@ Component {
         property string movieId:  ''
 
         Item {
+            id: castContent
             anchors.fill: parent
-            anchors.margins: UIConstants.DEFAULT_MARGIN
+            anchors.topMargin: appWindow.inPortrait?
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
 
-            ButacaHeader {
-                id: header
-                anchors.top: parent.top
-                width: parent.width
-
-                text: 'Full cast in ' + movie
-            }
-
-            Item {
-                id: castContent
-                anchors {
-                    top: header.bottom
-                    left: parent.left
-                    right: parent.right
-                    bottom:  parent.bottom
-                }
-
-                CastModel {
-                    id: castModel
-                    params: movieId
-                    onStatusChanged: {
-                        if (status == XmlListModel.Ready) {
-                            castContent.state = 'Ready'
-                        }
+            CastModel {
+                id: castModel
+                params: movieId
+                onStatusChanged: {
+                    if (status == XmlListModel.Ready) {
+                        castContent.state = 'Ready'
                     }
                 }
-
-                BusyIndicator {
-                    id: busyIndicator
-                    visible: true
-                    running: true
-                    platformStyle: BusyIndicatorStyle { size: 'large' }
-                    anchors.centerIn: parent
-                }
-
-                ListView {
-                    id: list
-                    anchors.fill: parent
-                    clip: true
-
-                    model: castModel
-                    delegate: PeopleDelegate { }
-
-                    section.property: 'department'
-                    section.delegate: ListSectionDelegate { sectionName: section }
-                }
-
-                ScrollDecorator {
-                    flickableItem: list
-                }
-
-                states: [
-                    State {
-                        name: 'Ready'
-                        PropertyChanges { target: busyIndicator; running: false; visible: false }
-                        PropertyChanges { target: list; visible: true }
-                    }
-                ]
             }
+
+            BusyIndicator {
+                id: busyIndicator
+                visible: true
+                running: true
+                platformStyle: BusyIndicatorStyle { size: 'large' }
+                anchors.centerIn: parent
+            }
+
+            ListView {
+                id: list
+                anchors.fill: parent
+                flickableDirection: Flickable.VerticalFlick
+                model: castModel
+                header: ButacaHeader {
+                    text: 'Full cast in ' + movie
+                    showDivider: false
+                }
+                delegate: CustomListDelegate {
+                    onClicked: { pageStack.push(personView,
+                                                { detailId: personId,
+                                                  viewType: BUTACA.PERSON })}
+                }
+
+                section.property: 'department'
+                section.delegate: ListSectionDelegate { sectionName: section }
+            }
+
+            ScrollDecorator {
+                flickableItem: list
+            }
+
+            states: [
+                State {
+                    name: 'Ready'
+                    PropertyChanges { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges { target: list; visible: true }
+                }
+            ]
         }
     }
 }
-

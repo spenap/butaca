@@ -20,10 +20,59 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
+import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
 
-Text {
-    anchors.topMargin: appWindow.inPortrait ? UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT : UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
-    font.pixelSize: UIConstants.FONT_XLARGE
-    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-    wrapMode: Text.WordWrap
+Item {
+    property alias text: headerText.text
+    property string tagline
+    property alias showDivider: headerDivider.visible
+
+    anchors { left: parent.left; right: parent.right }
+    anchors {
+        leftMargin: UIConstants.DEFAULT_MARGIN
+        rightMargin: UIConstants.DEFAULT_MARGIN
+    }
+
+    height: headerText.height +
+            (subheaderText.visible ? subheaderText.height : 0) +
+            (headerDivider.visible ?
+                 headerDivider.height + UIConstants.DEFAULT_MARGIN :
+                 UIConstants.DEFAULT_MARGIN / 2)
+
+    Text {
+        id: headerText
+        font.pixelSize: UIConstants.FONT_XLARGE
+        color: !theme.inverted ?
+                   UIConstants.COLOR_FOREGROUND :
+                   UIConstants.COLOR_INVERTED_FOREGROUND
+        width: parent.width
+        wrapMode: Text.WordWrap
+    }
+
+    Text {
+        id: subheaderText
+        anchors.top: headerText.bottom
+        anchors.topMargin: UIConstants.DEFAULT_MARGIN
+        font.pixelSize: UIConstants.FONT_DEFAULT
+        color: !theme.inverted ?
+                   UIConstants.COLOR_FOREGROUND :
+                   UIConstants.COLOR_INVERTED_FOREGROUND
+        text: '<i>' + tagline + '</i>'
+        wrapMode: Text.WordWrap
+        visible: tagline
+    }
+
+    Rectangle {
+        id: headerDivider
+        anchors {
+            top: subheaderText.visible ? subheaderText.bottom : headerText.bottom
+            left: parent.left
+            right: parent.right
+        }
+        anchors.topMargin: UIConstants.DEFAULT_MARGIN
+        height: 1
+        color: theme.inverted ?
+                   ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :
+                   ExtrasConstants.LIST_SUBTITLE_COLOR
+    }
 }

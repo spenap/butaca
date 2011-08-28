@@ -21,6 +21,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 import "butacautils.js" as BUTACA
 import "storage.js" as Storage
+import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Component {
     id: multipleMoviesPage
@@ -37,18 +38,12 @@ Component {
         property string genre: ''
         property string genreName:  ''
 
-        ButacaHeader {
-            id: headerText
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            text: genreName
-        }
-
         Item {
             id: moviesContent
-            anchors { top: headerText.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-            anchors.margins: 20
+            anchors.fill: parent
+            anchors.topMargin: appWindow.inPortrait?
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
 
             MultipleMoviesModel {
                 id: moviesModel
@@ -71,9 +66,18 @@ Component {
             ListView {
                 id: list
                 anchors.fill: parent
-                clip: true
+                flickableDirection: Flickable.VerticalFlick
                 model: moviesModel
-                delegate: MultipleMoviesDelegate {}
+                delegate: MultipleMoviesDelegate {
+                    onClicked: {
+                        pageStack.push(movieView,
+                                       { detailId: tmdbId,
+                                         viewType: BUTACA.MOVIE })
+                    }
+                }
+                header: ButacaHeader {
+                    text: genreName
+                }
             }
 
             NoContentItem {

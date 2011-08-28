@@ -19,7 +19,9 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
+import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
+import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Component {
     id: searchView
@@ -31,17 +33,18 @@ Component {
         property alias searchTerm: searchInput.text
 
         ButacaHeader {
-            id: header
             anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-
+            anchors.topMargin: appWindow.inPortrait?
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
+            id: header
             text: 'Search'
         }
 
         Row {
             id: searchArea
             anchors { top: header.bottom; left: parent.left; right: parent.right }
-            anchors.margins: 20
+            anchors.margins: UIConstants.DEFAULT_MARGIN
             spacing: 10
 
             TextField {
@@ -92,7 +95,7 @@ Component {
         ButtonRow {
             id: searchCategory
             anchors { top: searchArea.bottom; left: parent.left; right: parent.right }
-            anchors.margins: 20
+            anchors.margins: UIConstants.DEFAULT_MARGIN
 
             Button {
                 id: movieSearch
@@ -110,8 +113,13 @@ Component {
 
         Item {
             id: searchResults
-            anchors { top: searchCategory.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-            anchors.margins: 20
+            anchors {
+                top: searchCategory.bottom
+                bottom: parent.bottom
+                left: parent.left
+                right: parent.right
+            }
+            anchors.topMargin: UIConstants.DEFAULT_MARGIN
             state: 'Waiting'
 
             MultipleMoviesModel {
@@ -136,13 +144,30 @@ Component {
                 }
             }
 
-            PeopleDelegate { id: peopleDelegate }
-            MultipleMoviesDelegate { id: moviesDelegate }
+            Component {
+                id: peopleDelegate
+                CustomListDelegate {
+                    onClicked: { pageStack.push(personView,
+                                                { detailId: personId,
+                                                  viewType: BUTACA.PERSON })}
+                }
+            }
+            Component {
+                id: moviesDelegate
+                MultipleMoviesDelegate {
+                    onClicked: {
+                        pageStack.push(movieView,
+                                       { detailId: tmdbId,
+                                         viewType: BUTACA.MOVIE })
+                    }
+                }
+            }
 
             ListView {
                 id: resultList
                 anchors.fill: parent
                 clip: true
+                flickableDirection: Flickable.VerticalFlick
                 model: undefined
             }
 
@@ -169,8 +194,8 @@ Component {
                 State {
                     name: 'Waiting'
                     when: searchInput.activeFocus
-                    PropertyChanges  { target: moviesModel; restoreEntryValues: false; source: '' }
-                    PropertyChanges  { target: peopleModel; restoreEntryValues: false; source: '' }
+                    PropertyChanges { target: moviesModel; restoreEntryValues: false; source: '' }
+                    PropertyChanges { target: peopleModel; restoreEntryValues: false; source: '' }
                     PropertyChanges { target: noResults; restoreEntryValues: false; visible: false }
                     PropertyChanges { target: busyIndicator; restoreEntryValues: false; visible: false; running: false }
                 },

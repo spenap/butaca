@@ -20,42 +20,67 @@
 import QtQuick 1.1
 import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
-import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as UIConstants
+import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
+import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
 
-Component {
+Item {
+    id: movieDelegate
+
+    signal clicked
+
+    property int titleSize: ExtrasConstants.LIST_TILE_SIZE
+    property int titleWeight: Font.Bold
+    property color titleColor: theme.inverted ?
+                                   ExtrasConstants.LIST_TITLE_COLOR_INVERTED :
+                                   ExtrasConstants.LIST_TITLE_COLOR
+
+    property int subtitleSize: ExtrasConstants.LIST_SUBTILE_SIZE
+    property int subtitleWeight: Font.Light
+    property color subtitleColor: theme.inverted ?
+                                      ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :
+                                      ExtrasConstants.LIST_SUBTITLE_COLOR
+
+    width: movieDelegate.ListView.view.width
+    height: 140 + UIConstants.DEFAULT_MARGIN
+
     Item {
-        id: movieDelegate
-
-        property int titleSize: UIConstants.LIST_TILE_SIZE
-        property int titleWeight: Font.Bold
-        property color titleColor: theme.inverted ? UIConstants.LIST_TITLE_COLOR_INVERTED : UIConstants.LIST_TITLE_COLOR
-
-        property int subtitleSize: UIConstants.LIST_SUBTILE_SIZE
-        property int subtitleWeight: Font.Light
-        property color subtitleColor: theme.inverted ? UIConstants.LIST_SUBTITLE_COLOR_INVERTED : UIConstants.LIST_SUBTITLE_COLOR
-
-        width: movieDelegate.ListView.view.width; height: 150
+        anchors.fill: parent
+        anchors {
+            leftMargin: UIConstants.DEFAULT_MARGIN
+            rightMargin: UIConstants.DEFAULT_MARGIN
+        }
 
         BorderImage {
             id: background
             anchors.fill: parent
+            anchors.leftMargin: -ExtrasConstants.MARGIN_XLARGE
+            anchors.rightMargin: -ExtrasConstants.MARGIN_XLARGE
             visible: mouseArea.pressed
-            source: "image://theme/meegotouch-list-background-pressed-center"
+            source: theme.inverted ?
+                        'image://theme/meegotouch-list-inverted-background-pressed-vertical-center':
+                        'image://theme/meegotouch-list-background-pressed-vertical-center'
         }
 
         MouseArea {
             id: mouseArea
             anchors.fill: parent
-            onClicked: { pageStack.push(movieView,
-                                        { detailId: tmdbId,
-                                          viewType: BUTACA.MOVIE }) }
+            onClicked: movieDelegate.clicked()
         }
 
         Row {
             id: content
             spacing: 15
-            anchors.margins: 5
-            anchors.fill: parent
+            anchors {
+                topMargin: UIConstants.DEFAULT_MARGIN / 2
+                bottomMargin: UIConstants.DEFAULT_MARGIN / 2
+                rightMargin: UIConstants.DEFAULT_MARGIN
+            }
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+                left: parent.left
+                right: viewDetails.left
+            }
 
             Image {
                 id: moviePoster
@@ -70,7 +95,7 @@ Component {
             }
 
             Column {
-                width: parent.width - moviePoster.width - viewDetails.width - 20
+                width: parent.width - moviePoster.width - 15
                 height: parent.height
                 spacing: 10
 
@@ -103,18 +128,12 @@ Component {
                     inverted: theme.inverted
                 }
             }
+        }
 
-            Item {
-                id: viewDetails
-                width: moreIndicator.width + 10
-                height: parent.height
-                anchors.verticalCenter: parent.verticalCenter
-
-                CustomMoreIndicator {
-                    id: moreIndicator
-                    anchors.centerIn: parent
-                }
-            }
+        CustomMoreIndicator {
+            id: viewDetails
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right
         }
     }
 }

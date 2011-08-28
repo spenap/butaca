@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import "butacautils.js" as BUTACA
+import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Component {
     id: detailedViewWrapper
@@ -62,6 +63,9 @@ Component {
         Item {
             id: content
             anchors.fill: parent
+            anchors.topMargin: appWindow.inPortrait?
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
 
             PersonModel {
                 id: personModel

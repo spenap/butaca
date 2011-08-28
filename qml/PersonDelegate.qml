@@ -54,149 +54,148 @@ Item {
         return output
     }
 
-    Item {
+    Flickable {
+        id: flick
         anchors.fill: parent
-        anchors.margins: UIConstants.DEFAULT_MARGIN
+        anchors {
+            rightMargin: UIConstants.DEFAULT_MARGIN
+            leftMargin: UIConstants.DEFAULT_MARGIN
+        }
+
+        contentHeight: nameText.height +
+                       row.height +
+                       filmography.height +
+                       biographyText.height + 40
 
         ButacaHeader {
             id: nameText
-            anchors.top: parent.top
-            width: parent.width
+            anchors.rightMargin: 0
+            anchors.leftMargin: 0
 
             text: personName
         }
 
-        Flickable {
-            id: flick
-            anchors.top: nameText.bottom
-            anchors.bottom: parent.bottom
-            anchors.margins: 20
-
+        Row {
+            id: row
+            spacing: 20
             width: parent.width
-            contentHeight: row.height +
-                           filmography.height +
-                           biographyText.height + 40
-            clip: true
+            anchors.top: nameText.bottom
+            anchors.topMargin: UIConstants.DEFAULT_MARGIN
 
-            Row {
-                id: row
-                spacing: 20
-                width: parent.width
-
-                Image {
-                    id: image
-                    width: 190
-                    height: 280
-                    source: profileImage ? profileImage : 'images/person-placeholder.svg'
-                    onStatusChanged: {
-                        if (image.status == Image.Error) {
-                            image.source = 'images/person-placeholder.svg'
-                        }
-                    }
-                }
-
-                Column {
-                    width: parent.width - image.width
-                    spacing: 8
-
-                    Text {
-                        id: akaText
-                        width: parent.width
-                        font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ?
-                                   UIConstants.COLOR_FOREGROUND :
-                                   UIConstants.COLOR_INVERTED_FOREGROUND
-                        wrapMode: Text.WordWrap
-                        text: '<b>Also known as:</b><br />' +
-                              (alternativeName ? alternativeName : ' - ')
-                    }
-                    Text {
-                        id: birthdayText
-                        width: parent.width
-                        font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ?
-                                   UIConstants.COLOR_FOREGROUND :
-                                   UIConstants.COLOR_INVERTED_FOREGROUND
-                        wrapMode: Text.WordWrap
-                        text: '<b>Birthday:</b> ' +
-                              (birthday ? birthday : ' - ')
-                    }
-
-                    Text {
-                        id: birthplaceText
-                        width: parent.width
-                        font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ?
-                                   UIConstants.COLOR_FOREGROUND :
-                                   UIConstants.COLOR_INVERTED_FOREGROUND
-                        wrapMode: Text.WordWrap
-                        text: '<b>Birthplace:</b><br />' +
-                              (birthplace ? birthplace : ' - ')
-                    }
-
-                    Text {
-                        id: knownMoviesText
-                        width: parent.width
-                        font.pixelSize: UIConstants.FONT_LSMALL
-                        color: !theme.inverted ?
-                                   UIConstants.COLOR_FOREGROUND :
-                                   UIConstants.COLOR_INVERTED_FOREGROUND
-                        wrapMode: Text.WordWrap
-                        text: '<b>Known movies:</b> ' +
-                              (knownMovies ? knownMovies : ' - ')
+            Image {
+                id: image
+                width: 190
+                height: 280
+                source: profileImage ? profileImage : 'images/person-placeholder.svg'
+                onStatusChanged: {
+                    if (image.status == Image.Error) {
+                        image.source = 'images/person-placeholder.svg'
                     }
                 }
             }
 
-            Text {
-                id: filmography
-                anchors.top: row.bottom
-                anchors.topMargin: 20
+            Column {
+                width: parent.width - image.width
+                spacing: 8
 
-                width: parent.width - filmographyDetails.width
-                font.pixelSize: UIConstants.FONT_LSMALL
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-                wrapMode: Text.WordWrap
-                text: formatPersonFilmography()
-                opacity: filmographyMouseArea.pressed ? 0.5 : 1
-
-                Image {
-                    id: filmographyDetails
-                    anchors.top: parent.top
-                    anchors.right: parent.right
-                    source: 'image://theme/icon-s-music-video-description'
+                Text {
+                    id: akaText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Also known as:</b><br />' +
+                          (alternativeName ? alternativeName : ' - ')
+                }
+                Text {
+                    id: birthdayText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Birthday:</b> ' +
+                          (birthday ? birthday : ' - ')
                 }
 
-                MouseArea {
-                    id: filmographyMouseArea
-                    anchors.fill: filmography
-                    onClicked: {
-                        appWindow.pageStack.push(filmographyView,
-                                                 { person: personName,
-                                                   personId: personId })
-                    }
+                Text {
+                    id: birthplaceText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Birthplace:</b><br />' +
+                          (birthplace ? birthplace : ' - ')
                 }
-            }
 
-            Text {
-                id: biographyText
-                anchors.top: filmography.bottom
-                anchors.topMargin: 20
-                width: parent.width
-                font.pixelSize: UIConstants.FONT_LSMALL
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-                text: '<b>Biography:</b><br />' +
-                      (biography ? BUTACA.sanitizeText(biography) : 'Biography not found')
-                wrapMode: Text.WordWrap
+                Text {
+                    id: knownMoviesText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Known movies:</b> ' +
+                          (knownMovies ? knownMovies : ' - ')
+                }
             }
         }
 
-        ScrollDecorator {
-            flickableItem: flick
+        Text {
+            id: filmography
+            anchors.top: row.bottom
+            anchors.topMargin: 20
+
+            width: parent.width - filmographyDetails.width
+            font.pixelSize: UIConstants.FONT_LSMALL
+            color: !theme.inverted ?
+                       UIConstants.COLOR_FOREGROUND :
+                       UIConstants.COLOR_INVERTED_FOREGROUND
+            wrapMode: Text.WordWrap
+            text: formatPersonFilmography()
+            opacity: filmographyMouseArea.pressed ? 0.5 : 1
+
+            Image {
+                id: filmographyDetails
+                anchors.top: parent.top
+                anchors.right: parent.right
+                source: 'image://theme/icon-s-music-video-description'
+            }
+
+            MouseArea {
+                id: filmographyMouseArea
+                anchors.fill: filmography
+                onClicked: {
+                    appWindow.pageStack.push(filmographyView,
+                                             { person: personName,
+                                               personId: personId })
+                }
+            }
         }
+
+        Text {
+            id: biographyText
+            anchors.top: filmography.bottom
+            anchors.topMargin: 20
+            width: parent.width
+            font.pixelSize: UIConstants.FONT_LSMALL
+            color: !theme.inverted ?
+                       UIConstants.COLOR_FOREGROUND :
+                       UIConstants.COLOR_INVERTED_FOREGROUND
+            text: '<b>Biography:</b><br />' +
+                  (biography ? BUTACA.sanitizeText(biography) : 'Biography not found')
+            wrapMode: Text.WordWrap
+        }
+    }
+
+    ScrollDecorator {
+        flickableItem: flick
+        anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
     }
 }

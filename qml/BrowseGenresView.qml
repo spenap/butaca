@@ -31,18 +31,12 @@ Component {
 
         MultipleMoviesView { id: multipleMovieView }
 
-        ButacaHeader {
-            id: header
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            text: 'Movie genres'
-        }
-
         Item {
             id: genresContent
-            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
-            anchors.margins: UIConstants.DEFAULT_MARGIN
+            anchors.fill: parent
+            anchors.topMargin: appWindow.inPortrait?
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
 
             GenresModel {
                 id: genresModel
@@ -57,24 +51,14 @@ Component {
                 id: list
                 model: genresModel
                 anchors.fill: parent
-                clip: true
-                delegate: ListDelegate {
-                    /* More indicator */
-                    Item {
-                        id: viewDetails
-                        width: moreIndicator.width + 10
-                        height: parent.height
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-
-                        CustomMoreIndicator {
-                            id: moreIndicator
-                            anchors.centerIn: parent
-                        }
-                    }
-
+                flickableDirection: Flickable.VerticalFlick
+                header: ButacaHeader {
+                    text: 'Movie genres'
+                }
+                delegate: CustomListDelegate {
                     onClicked: {
-                        pageStack.push(multipleMovieView , {genre: genreId, genreName: title})
+                        pageStack.push(multipleMovieView ,
+                                       {genre: genreId, genreName: title})
                     }
                 }
             }

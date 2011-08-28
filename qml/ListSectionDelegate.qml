@@ -24,11 +24,16 @@ import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
 
 Item {
-
     property alias sectionName: sectionDelegateText.text
 
     id: sectionDelegate
-    width: parent.width
+
+    anchors { left: parent.left; right: parent.right }
+    anchors {
+        leftMargin: UIConstants.DEFAULT_MARGIN
+        rightMargin: UIConstants.DEFAULT_MARGIN
+    }
+
     height: sectionDelegateText.height + UIConstants.DEFAULT_MARGIN
 
     Rectangle {
@@ -37,17 +42,31 @@ Item {
                sectionDelegateText.width -
                UIConstants.DEFAULT_MARGIN
         height: 1
-        color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
+        color: theme.inverted ?
+                   ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :
+                   ExtrasConstants.LIST_SUBTITLE_COLOR
         anchors.verticalCenter: parent.verticalCenter
     }
 
     Text {
         id: sectionDelegateText
-        color: ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED
+        color: theme.inverted ?
+                   ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :
+                   ExtrasConstants.LIST_SUBTITLE_COLOR
         font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
         font.weight: Font.Light
         anchors.left: sectionDelegateDivider.right
         anchors.leftMargin: UIConstants.DEFAULT_MARGIN
         anchors.verticalCenter: sectionDelegateDivider.verticalCenter
+        width: Math.min(2 * parent.width / 3, helperText.width)
+        elide: Text.ElideRight
+    }
+
+    Text {
+        id: helperText
+        font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
+        font.weight: Font.Light
+        text: sectionDelegateText.text
+        visible: false
     }
 }

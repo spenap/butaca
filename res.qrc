@@ -9,9 +9,8 @@
         <file>qml/SingleMovieDelegate.qml</file>
         <file>qml/SingleMovieModel.qml</file>
         <file>qml/GenresModel.qml</file>
-        <file>qml/PeopleDelegate.qml</file>
-        <file>qml/PeopleModel.qml</file>
         <file>qml/PersonDelegate.qml</file>
+        <file>qml/PeopleModel.qml</file>
         <file>qml/PersonModel.qml</file>
         <file>qml/SearchView.qml</file>
         <file>qml/WelcomeView.qml</file>
@@ -31,5 +30,6 @@
         <file>butaca.svg</file>
         <file>qml/TheatersView.qml</file>
         <file>qml/SettingsView.qml</file>
+        <file>qml/CustomListDelegate.qml</file>
     </qresource>
 </RCC>

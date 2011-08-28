@@ -34,83 +34,60 @@ Component {
         property string personId: ''
 
         Item {
+            id: filmographyContent
             anchors.fill: parent
-            anchors.margins: UIConstants.DEFAULT_MARGIN
+            anchors.topMargin: appWindow.inPortrait?
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
+                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
 
-            ButacaHeader {
-                id: header
-                anchors.top: parent.top
-                width: parent.width
-
-                text: person + "'s filmography"
+            FilmographyModel {
+                id: filmographyModel
+                params: personId
+                onStatusChanged: {
+                    if (status == XmlListModel.Ready) {
+                        filmographyContent.state = 'Ready'
+                    }
+                }
             }
 
-            Item {
-                id: filmographyContent
-                anchors { top: header.bottom; left: parent.left; right: parent.right; bottom:  parent.bottom }
-                anchors.margins: UIConstants.DEFAULT_MARGIN
-
-                FilmographyModel {
-                    id: filmographyModel
-                    params: personId
-                    onStatusChanged: {
-                        if (status == XmlListModel.Ready) {
-                            filmographyContent.state = 'Ready'
-                        }
-                    }
-                }
-
-                BusyIndicator {
-                    id: busyIndicator
-                    visible: true
-                    running: true
-                    platformStyle: BusyIndicatorStyle { size: 'large' }
-                    anchors.centerIn: parent
-                }
-
-                ListView {
-                    id: list
-                    anchors.fill: parent
-                    clip: true
-
-                    model: filmographyModel
-                    delegate: ListDelegate {
-                        id: filmographyDelegate
-
-                        onClicked: { pageStack.push(movieView,
-                                                    { detailId: tmdbId,
-                                                      viewType: BUTACA.MOVIE })}
-
-                        Item {
-                            id: viewDetails
-                            width: moreIndicator.width + 10
-                            height: parent.height
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.right: parent.right
-
-                            CustomMoreIndicator {
-                                id: moreIndicator
-                                anchors.centerIn: parent
-                            }
-                        }
-                    }
-
-                    section.property: 'name'
-                    section.delegate: ListSectionDelegate { sectionName: section }
-                }
-
-                ScrollDecorator {
-                    flickableItem: list
-                }
-
-                states: [
-                    State {
-                        name: 'Ready'
-                        PropertyChanges { target: busyIndicator; running: false; visible: false }
-                        PropertyChanges { target: list; visible: true }
-                    }
-                ]
+            BusyIndicator {
+                id: busyIndicator
+                visible: true
+                running: true
+                platformStyle: BusyIndicatorStyle { size: 'large' }
+                anchors.centerIn: parent
             }
+
+            ListView {
+                id: list
+                anchors.fill: parent
+                flickableDirection: Flickable.VerticalFlick
+                model: filmographyModel
+                header: ButacaHeader {
+                    text: person + "'s filmography"
+                    showDivider: false
+                }
+                delegate: CustomListDelegate {
+                    onClicked: { pageStack.push(movieView,
+                                                { detailId: tmdbId,
+                                                  viewType: BUTACA.MOVIE })}
+                }
+
+                section.property: 'name'
+                section.delegate: ListSectionDelegate { sectionName: section }
+            }
+
+            ScrollDecorator {
+                flickableItem: list
+            }
+
+            states: [
+                State {
+                    name: 'Ready'
+                    PropertyChanges { target: busyIndicator; running: false; visible: false }
+                    PropertyChanges { target: list; visible: true }
+                }
+            ]
         }
     }
 }
