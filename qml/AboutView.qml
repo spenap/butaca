@@ -79,7 +79,7 @@ Component {
 
             Text {
                 id: aboutVersion
-                text: 'Butaca 0.3.3'
+                text: 'Butaca 0.3.4'
                 anchors.top: aboutImage.bottom
                 anchors.topMargin: UIConstants.DEFAULT_MARGIN
                 anchors.horizontalCenter: parent.horizontalCenter

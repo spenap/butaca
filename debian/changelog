@@ -1,3 +1,10 @@
+butaca (0.3.4) unstable; urgency=low
+
+  * Added About view
+  * Updated splash screen
+
+ -- Simon Pena <spena@igalia.com>  Sun, 28 Aug 2011 20:31:48 +0300
+
 butaca (0.3.3) unstable; urgency=low
 
   * Use list headers for most of the views
