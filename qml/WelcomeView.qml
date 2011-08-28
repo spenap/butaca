@@ -120,7 +120,7 @@ Page {
         id: query
 
         icon: 'qrc:/butaca.svg'
-        titleText: 'Butaca 0.3.1'
+        titleText: 'Butaca 0.3.3'
         message: 'Copyright © 2011 Simon Pena <a href="mailto:spena@igalia.com">spena@igalia.com</a>' +
                  '<br /><br />' +
                  '<i>This program is free software: you can redistribute it and/or modify ' +

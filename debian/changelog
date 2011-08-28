@@ -1,3 +1,12 @@
+butaca (0.3.3) unstable; urgency=low
+
+  * Use list headers for most of the views
+  * Show scrollbars in the rightmost location
+  * Use the right margins for all the views
+  * Fix clipping in list delegates and section delegates
+
+ -- Simon Pena <spena@igalia.com>  Sun, 28 Aug 2011 14:41:20 +0300
+
 butaca (0.3.2) unstable; urgency=low
 
   * Improved showtimes model behaviour
