@@ -89,200 +89,194 @@ Component {
                 rightMargin: UIConstants.DEFAULT_MARGIN
             }
             width: parent.width
-            contentHeight: childrenRect.height
+            contentHeight: settingsColumnContent.height
             flickableDirection: Flickable.VerticalFlick
 
-            ButacaHeader {
-                id: settingsHeader
-                anchors.rightMargin: 0
-                anchors.leftMargin: 0
-                text: 'Settings'
-                showDivider: false
-            }
-
-            ListSectionDelegate {
-                id: showtimesSection
-                anchors.top: settingsHeader.bottom
-                anchors.topMargin: 0
-                anchors.rightMargin: 0
-                anchors.leftMargin: 0
-                sectionName: 'Showtimes'
-            }
-
-            Row {
-                id: showtimesLocation
-                anchors.top: showtimesSection.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                spacing: UIConstants.DEFAULT_MARGIN
+            Column {
+                id: settingsColumnContent
                 width: parent.width
+                spacing: UIConstants.DEFAULT_MARGIN
 
-                Text {
-                    id: locationText
-                    text: 'Default location'
-                    font.pixelSize: UIConstants.FONT_DEFAULT
-                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                    anchors.verticalCenter: locationInput.verticalCenter
+                ButacaHeader {
+                    id: settingsHeader
+                    anchors.rightMargin: 0
+                    anchors.leftMargin: 0
+                    text: 'Settings'
+                    showDivider: false
                 }
 
-                TextField {
-                    id: locationInput
-                    placeholderText: 'Try automatically'
-                    width: parent.width - locationText.width - parent.spacing
-                    text: Storage.getSetting('location')
-//                        onAccepted: {
-//                            Storage.setSetting('location', text)
-//                        }
+                ListSectionDelegate {
+                    id: showtimesSection
+                    anchors.rightMargin: 0
+                    anchors.leftMargin: 0
+                    sectionName: 'Showtimes'
+                }
 
-                    Image {
-                        id: clearLocationText
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: 'image://theme/icon-m-input-clear'
-                        visible: locationInput.activeFocus
+                Row {
+                    id: showtimesLocation
+                    spacing: UIConstants.DEFAULT_MARGIN
+                    width: parent.width
+
+                    Text {
+                        id: locationText
+                        text: 'Default location'
+                        font.pixelSize: UIConstants.FONT_DEFAULT
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        anchors.verticalCenter: locationInput.verticalCenter
                     }
 
-                    MouseArea {
-                        id: locationInputMouseArea
-                        anchors.fill: clearLocationText
-                        onClicked: {
-                            inputContext.reset()
-                            locationInput.text = ''
+                    TextField {
+                        id: locationInput
+                        placeholderText: 'Try automatically'
+                        width: parent.width - locationText.width - parent.spacing
+                        text: Storage.getSetting('location')
+    //                        onAccepted: {
+    //                            Storage.setSetting('location', text)
+    //                        }
+
+                        Image {
+                            id: clearLocationText
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            source: 'image://theme/icon-m-input-clear'
+                            visible: locationInput.activeFocus
+                        }
+
+                        MouseArea {
+                            id: locationInputMouseArea
+                            anchors.fill: clearLocationText
+                            onClicked: {
+                                inputContext.reset()
+                                locationInput.text = ''
+                            }
                         }
                     }
                 }
-            }
 
-            ListSectionDelegate {
-                id: browsingSection
-                anchors.top: showtimesLocation.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                anchors.rightMargin: 0
-                anchors.leftMargin: 0
-                sectionName: 'Browsing'
-            }
-
-            Item {
-                id: orderCriteria
-                anchors.top: browsingSection.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN / 2
-                width: parent.width
-                height: childrenRect.height
-
-                Text {
-                    id: criteriaText
-                    anchors.top:  parent.top
-                    text: 'Order criteria'
-                    font.pixelSize: UIConstants.FONT_DEFAULT
-                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                ListSectionDelegate {
+                    id: browsingSection
+                    anchors.rightMargin: 0
+                    anchors.leftMargin: 0
+                    sectionName: 'Browsing'
                 }
 
-                ButtonColumn {
-                    id: criteriaOptions
-                    anchors { top: criteriaText.bottom; right: parent.right }
-                    anchors.topMargin: UIConstants.DEFAULT_MARGIN / 2
+                Item {
+                    id: orderCriteria
+                    width: parent.width
+                    height: childrenRect.height
 
-                    Button {
-                        id: byRating
-                        text: 'Rating'
-                        onClicked: Storage.setSetting('orderBy', 'rating')
+                    Text {
+                        id: criteriaText
+                        anchors.top:  parent.top
+                        text: 'Order criteria'
+                        font.pixelSize: UIConstants.FONT_DEFAULT
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                     }
-                    Button {
-                        id: byRelease
-                        text: 'Release'
-                        onClicked: Storage.setSetting('orderBy', 'release')
-                    }
-                    Button {
-                        id: byTitle
-                        text: 'Title'
-                        onClicked: Storage.setSetting('orderBy', 'title')
+
+                    ButtonColumn {
+                        id: criteriaOptions
+                        anchors { top: criteriaText.bottom; right: parent.right }
+                        anchors.topMargin: UIConstants.DEFAULT_MARGIN / 2
+
+                        Button {
+                            id: byRating
+                            text: 'Rating'
+                            onClicked: Storage.setSetting('orderBy', 'rating')
+                        }
+                        Button {
+                            id: byRelease
+                            text: 'Release'
+                            onClicked: Storage.setSetting('orderBy', 'release')
+                        }
+                        Button {
+                            id: byTitle
+                            text: 'Title'
+                            onClicked: Storage.setSetting('orderBy', 'title')
+                        }
                     }
                 }
-            }
 
-            Item {
-                id: sortOrder
-                anchors.top: orderCriteria.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                width: parent.width
-                height: childrenRect.height
+                Item {
+                    id: sortOrder
+                    width: parent.width
+                    height: childrenRect.height
 
-                Text {
-                    id: sortOrderText
-                    anchors.top:  parent.top
-                    text: 'Order criteria'
-                    font.pixelSize: UIConstants.FONT_DEFAULT
-                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                }
-
-                ButtonColumn {
-                    id: sortOrderOptions
-                    anchors { top: sortOrderText.bottom; right: parent.right }
-                    anchors.topMargin: UIConstants.DEFAULT_MARGIN / 2
-
-                    Button {
-                        id: sortAscending
-                        text: 'Ascending'
-                        onClicked: Storage.setSetting('order', 'asc')
+                    Text {
+                        id: sortOrderText
+                        anchors.top:  parent.top
+                        text: 'Order criteria'
+                        font.pixelSize: UIConstants.FONT_DEFAULT
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                     }
-                    Button {
-                        id: sortDescending
-                        text: 'Descending'
-                        onClicked: Storage.setSetting('order', 'desc')
+
+                    ButtonColumn {
+                        id: sortOrderOptions
+                        anchors { top: sortOrderText.bottom; right: parent.right }
+                        anchors.topMargin: UIConstants.DEFAULT_MARGIN / 2
+
+                        Button {
+                            id: sortAscending
+                            text: 'Ascending'
+                            onClicked: Storage.setSetting('order', 'asc')
+                        }
+                        Button {
+                            id: sortDescending
+                            text: 'Descending'
+                            onClicked: Storage.setSetting('order', 'desc')
+                        }
                     }
                 }
-            }
 
-            Item {
-                id: resultsPerPage
-                anchors.top: sortOrder.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                width: parent.width
-                height: childrenRect.height
+                Item {
+                    id: resultsPerPage
+                    width: parent.width
+                    height: childrenRect.height
 
-                Text {
-                    id: resultsPerPageText
-                    text: 'Results per page'
-                    font.pixelSize: UIConstants.FONT_DEFAULT
-                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                    anchors.verticalCenter: resultsPerPageInput.verticalCenter
-                    anchors.left: parent.left
+                    Text {
+                        id: resultsPerPageText
+                        text: 'Results per page'
+                        font.pixelSize: UIConstants.FONT_DEFAULT
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        anchors.verticalCenter: resultsPerPageInput.verticalCenter
+                        anchors.left: parent.left
+                    }
+
+                    TextField {
+                        id: resultsPerPageInput
+                        anchors.right: parent.right
+                        text: Storage.getSetting('perPage')
+                        width: 100
+                        inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
+    //                        onAccepted: {
+    //                            Storage.setSetting('perPage', text)
+    //                        }
+                    }
                 }
 
-                TextField {
-                    id: resultsPerPageInput
-                    anchors.right: parent.right
-                    text: Storage.getSetting('perPage')
-                    width: 100
-//                        onAccepted: {
-//                            Storage.setSetting('perPage', text)
-//                        }
-                }
-            }
+                Item {
+                    id: minVotes
+                    width: parent.width
+                    height: childrenRect.height
 
-            Item {
-                id: minVotes
-                anchors.top: resultsPerPage.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                width: parent.width
-                height: childrenRect.height
+                    Text {
+                        id: minVotesText
+                        text: 'Minimum votes'
+                        font.pixelSize: UIConstants.FONT_DEFAULT
+                        color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
+                        anchors.verticalCenter: minVotesInput.verticalCenter
+                        anchors.left: parent.left
+                    }
 
-                Text {
-                    id: minVotesText
-                    text: 'Minimum votes'
-                    font.pixelSize: UIConstants.FONT_DEFAULT
-                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                    anchors.verticalCenter: minVotesInput.verticalCenter
-                    anchors.left: parent.left
-                }
-
-                TextField {
-                    id: minVotesInput
-                    anchors.right: parent.right
-                    text: Storage.getSetting('minVotes')
-                    width: 100
-//                        onAccepted: {
-//                            Storage.setSetting('minVotes', text)
-//                        }
+                    TextField {
+                        id: minVotesInput
+                        anchors.right: parent.right
+                        text: Storage.getSetting('minVotes')
+                        width: 100
+                        inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
+    //                        onAccepted: {
+    //                            Storage.setSetting('minVotes', text)
+    //                        }
+                    }
                 }
             }
         }

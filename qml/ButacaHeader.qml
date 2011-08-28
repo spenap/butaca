@@ -37,7 +37,7 @@ Item {
             (subheaderText.visible ? subheaderText.height : 0) +
             (headerDivider.visible ?
                  headerDivider.height + UIConstants.DEFAULT_MARGIN :
-                 UIConstants.DEFAULT_MARGIN / 2)
+                 0)
 
     Text {
         id: headerText

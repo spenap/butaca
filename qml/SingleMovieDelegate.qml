@@ -58,7 +58,7 @@ Item {
                        row.height +
                        cast.height +
                        overviewText.height +
-                       50 +
+                       4 * UIConstants.DEFAULT_MARGIN +
                        (trailerHeader.visible ?
                             trailerHeader.height +
                             trailerImage.height +

@@ -65,7 +65,8 @@ Item {
         contentHeight: nameText.height +
                        row.height +
                        filmography.height +
-                       biographyText.height + 40
+                       biographyText.height +
+                       4 * UIConstants.DEFAULT_MARGIN
 
         ButacaHeader {
             id: nameText
