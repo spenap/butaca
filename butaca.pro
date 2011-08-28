@@ -16,6 +16,7 @@ OTHER_FILES += \
     butaca.desktop \
     butaca.png \
     butaca-splash.jpg \
+    tmdb-logo.png \
     TODO \
     qml/main.qml \
     qml/WelcomeView.qml \
@@ -46,7 +47,8 @@ OTHER_FILES += \
     qml/ListSectionDelegate.qml \
     qml/TheatersView.qml \
     qml/SettingsView.qml \
-    qml/CustomListDelegate.qml
+    qml/CustomListDelegate.qml \
+    qml/AboutView.qml
 
 RESOURCES += \
     res.qrc

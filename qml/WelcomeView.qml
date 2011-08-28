@@ -47,10 +47,7 @@ Page {
             MenuItem {
                 id: aboutEntry
                 text: 'About'
-                onClicked: {
-                    query.open()
-                    welcomeMenu.close()
-                }
+                onClicked: appWindow.pageStack.push(aboutView)
             }
         }
     }
@@ -73,6 +70,7 @@ Page {
     DetailedView { id: personView }
     TheatersView { id: theatersView }
     SettingsView { id: settingsView }
+    AboutView { id: aboutView }
 
     /* Model containing the actions: browse, search and shows */
     ListModel {
@@ -114,31 +112,6 @@ Page {
                 }
             }
         }
-    }
-
-    QueryDialog {
-        id: query
-
-        icon: 'qrc:/butaca.svg'
-        titleText: 'Butaca 0.3.3'
-        message: 'Copyright © 2011 Simon Pena <a href="mailto:spena@igalia.com">spena@igalia.com</a>' +
-                 '<br /><br />' +
-                 '<i>This program is free software: you can redistribute it and/or modify ' +
-                 'it under the terms of the GNU General Public License as published by ' +
-                 'the Free Software Foundation, either version 3 of the License, or ' +
-                 '(at your option) any later version.<br /><br />' +
-
-                 'This package is distributed in the hope that it will be useful, ' +
-                 'but WITHOUT ANY WARRANTY; without even the implied warranty of ' +
-                 'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the ' +
-                 'GNU General Public License for more details.<br /><br />' +
-
-                 'You should have received a copy of the GNU General Public License ' +
-                 'along with this program. If not, see ' +
-                 '<a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a></i><br /><br />' +
-
-                 'This product uses the TMDb API but is not endorsed or certified by TMDb.'
-        acceptButtonText: "OK"
     }
 
     ListView {

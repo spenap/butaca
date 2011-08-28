@@ -31,5 +31,7 @@
         <file>qml/TheatersView.qml</file>
         <file>qml/SettingsView.qml</file>
         <file>qml/CustomListDelegate.qml</file>
+        <file>qml/AboutView.qml</file>
+        <file>tmdb-logo.png</file>
     </qresource>
 </RCC>
