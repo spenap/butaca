@@ -39,24 +39,6 @@ Component {
             var perPage = Storage.getSetting('perPage')
             var minVotes = Storage.getSetting('minVotes')
 
-            if (!perPage) {
-                resultsPerPageInput.text = '10'
-                Storage.setSetting('perPage', '10')
-            }
-
-            if (!minVotes) {
-                minVotesInput.text = '0'
-                Storage.setSetting('minVotes', '0')
-            }
-
-            if (!orderBy) {
-                Storage.setSetting('orderBy', 'rating')
-            }
-
-            if (!order) {
-                Storage.setSetting('order', 'desc')
-            }
-
             if (orderBy == 'title') {
                 criteriaOptions.checkedButton = byTitle
             } else if (orderBy == 'release') {

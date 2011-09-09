@@ -31,6 +31,27 @@ Page {
 
         Storage.initialize()
         var favorites = Storage.getFavorites()
+        var orderBy = Storage.getSetting('orderBy')
+        var order = Storage.getSetting('order')
+        var perPage = Storage.getSetting('perPage')
+        var minVotes = Storage.getSetting('minVotes')
+
+        if (!perPage) {
+            Storage.setSetting('perPage', '10')
+        }
+
+        if (!minVotes) {
+            Storage.setSetting('minVotes', '0')
+        }
+
+        if (!orderBy) {
+            Storage.setSetting('orderBy', 'rating')
+        }
+
+        if (!order) {
+            Storage.setSetting('order', 'desc')
+        }
+
         for (var i = 0; i < favorites.length; i ++) {
             favoritesModel.append(favorites[i])
         }
