@@ -91,6 +91,7 @@ Item {
             id: viewDetails
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
+            visible: pressable
         }
     }
 }
