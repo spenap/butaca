@@ -4,13 +4,15 @@ SOURCES += src/main.cpp \
     src/theaterlistmodel.cpp \
     src/butacacontroller.cpp \
     src/movie.cpp \
-    src/theatershowtimesfetcher.cpp
+    src/theatershowtimesfetcher.cpp \
+    src/sortfiltermodel.cpp
 
 HEADERS += \
     src/theaterlistmodel.h \
     src/butacacontroller.h \
     src/movie.h \
-    src/theatershowtimesfetcher.h
+    src/theatershowtimesfetcher.h \
+    src/sortfiltermodel.h
 
 OTHER_FILES += \
     butaca.desktop \

@@ -1,6 +1,7 @@
 #include "butacacontroller.h"
 #include "theatershowtimesfetcher.h"
 #include "theaterlistmodel.h"
+#include "sortfiltermodel.h"
 
 #include <QDeclarativeContext>
 #include <maemo-meegotouch-interfaces/shareuiinterface.h>
@@ -10,19 +11,26 @@ ButacaController::ButacaController(QDeclarativeContext *context) :
     QObject(),
     m_declarativeContext(context),
     m_showtimesFetcher(0),
-    m_theaterListModel(new TheaterListModel)
+    m_theaterListModel(new TheaterListModel),
+    m_sortFilterModel(new SortFilterModel)
 {
+    m_sortFilterModel->setDynamicSortFilter(true);
+    m_sortFilterModel->setSourceModel(m_theaterListModel);
+    connect(m_theaterListModel, SIGNAL(countChanged()),
+            m_sortFilterModel, SIGNAL(countChanged()), Qt::UniqueConnection);
+
     m_declarativeContext->setContextProperty("controller", this);
-    m_declarativeContext->setContextProperty("theaterModel", m_theaterListModel);
+    m_declarativeContext->setContextProperty("theaterModel", m_sortFilterModel);
 
     m_showtimesFetcher = new TheaterShowtimesFetcher(m_theaterListModel);
     connect(m_showtimesFetcher, SIGNAL(theatersFetched(int)),
-            this, SLOT(onTheatersFetched(int)));
+            this, SLOT(onTheatersFetched(int)), Qt::UniqueConnection);
 }
 
 ButacaController::~ButacaController()
 {
     delete m_showtimesFetcher;
+    delete m_sortFilterModel;
     delete m_theaterListModel;
 }
 

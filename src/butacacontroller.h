@@ -6,6 +6,7 @@
 class QDeclarativeContext;
 class TheaterShowtimesFetcher;
 class TheaterListModel;
+class SortFilterModel;
 
 class ButacaController : public QObject
 {
@@ -46,6 +47,7 @@ private:
     QDeclarativeContext *m_declarativeContext;
     TheaterShowtimesFetcher *m_showtimesFetcher;
     TheaterListModel *m_theaterListModel;
+    SortFilterModel *m_sortFilterModel;
     QString m_location;
 };
 
