@@ -1,3 +1,11 @@
+butaca (0.3.6) unstable; urgency=low
+
+  * Reset filters on showtimes view
+  * Keep state on search view
+  * Update package description
+
+ -- Simon Pena <spena@igalia.com>  Sat, 10 Sep 2011 20:07:20 +0300
+
 butaca (0.3.5) unstable; urgency=low
 
   * Fixed #7: "No contents found when browsing genres"
