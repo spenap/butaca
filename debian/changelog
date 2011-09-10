@@ -1,3 +1,11 @@
+butaca (0.3.5) unstable; urgency=low
+
+  * Fixed #7: "No contents found when browsing genres"
+  * Fixed #8: "Showtimes view shows an unneeded 'more indicator'"
+  * Support searching movie showtimes from the search view
+
+ -- Simon Pena <spena@igalia.com>  Sat, 10 Sep 2011 10:35:36 +0300
+
 butaca (0.3.4) unstable; urgency=low
 
   * Added About view
