@@ -42,6 +42,10 @@ Page {
         if (status == PageStatus.Active) {
             Storage.initialize()
             location = Storage.getSetting('location')
+        } else if (status == PageStatus.Activating) {
+            if (searchCategory.checkedButton == showSearch) {
+                theaterModel.setFilterWildcard(searchInput.text)
+            }
         }
     }
 
