@@ -39,6 +39,8 @@ Page {
                 controller.fetchTheaters(location)
                 theatersContent.state = 'Loading'
             }
+        } else if (status == PageStatus.Activating) {
+            theaterModel.setFilterWildcard('')
         }
     }
 
