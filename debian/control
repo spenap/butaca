@@ -7,28 +7,23 @@ Build-Depends: debhelper (>= 7), applauncherd-dev, cdbs,
  libqtwebkit-dev
 Standards-Version: 3.8.4
 XB-Maemo-Flags: visible
-XB-Homepage: http://gitorious.org/butaca/butaca
+XB-Homepage: https://projects.developer.nokia.com/butaca/
 XB-Bugtracker: https://projects.developer.nokia.com/butaca/query
-XB-Maemo-Upgrade-Description: Sanitize texts
- * Strip texts of HTML tags
 
 Package: butaca
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Butaca is an application providing movie information
- Butaca is an application which allows the user to
- access movie information -such as title, cast,
- trailers, overview...-, check movie showtimes and
- check whether a movie has extras after and during
- the credits.
+Description: Butaca is an application providing cinema information
+ Butaca is an application which allows accessing a lot of
+ movie-related information. Using The Movie Database as a
+ backend, Butaca lets you search for a movie and get the title,
+ rating, release date, overview, cast... It can be used as
+ well to access information about the people in the movie
+ industry: from actors to writers, you'll get all their
+ details.
  .
- In order to achieve that, it queries the movie
- information from [1], the movie showtimes from [2]
- and the extras information from [3]:
- .
- 1.- http://www.themoviedb.org
- 2.- http://www.google.com/movies
- 3.- http://whatsafterthecredits.com
+ Butaca also uses Google Showtimes to let you find what's
+ going on on the theaters around you, or look for a given movie.
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAABmJLR0QA/wD/
  AP+gvaeTAAATiUlEQVR4nO1dfXBU1dn/3c/9zmY32QSSQIRKCMVYU5CvQqPE
