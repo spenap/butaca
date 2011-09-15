@@ -106,6 +106,7 @@ Item {
                     textFormat: Text.StyledText
                     font.weight: movieDelegate.titleWeight
                     font.pixelSize: movieDelegate.titleSize
+                    font.family: UIConstants.FONT_FAMILY
                     color: movieDelegate.titleColor
                     maximumLineCount: 3
                     wrapMode: Text.WordWrap
@@ -117,6 +118,7 @@ Item {
                     width: parent.width
                     font.weight: movieDelegate.subtitleWeight
                     font.pixelSize: movieDelegate.subtitleSize
+                    font.family: UIConstants.FONT_FAMILY
                     color: movieDelegate.subtitleColor
                     text: '(' + BUTACA.getYearFromDate(released) +')'
                 }

@@ -103,6 +103,7 @@ Component {
                         id: locationText
                         text: 'Default location'
                         font.pixelSize: UIConstants.FONT_DEFAULT
+                        font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                         anchors.verticalCenter: locationInput.verticalCenter
                     }
@@ -152,6 +153,7 @@ Component {
                         anchors.top:  parent.top
                         text: 'Order criteria'
                         font.pixelSize: UIConstants.FONT_DEFAULT
+                        font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                     }
 
@@ -188,6 +190,7 @@ Component {
                         anchors.top:  parent.top
                         text: 'Order criteria'
                         font.pixelSize: UIConstants.FONT_DEFAULT
+                        font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                     }
 
@@ -218,6 +221,7 @@ Component {
                         id: resultsPerPageText
                         text: 'Results per page'
                         font.pixelSize: UIConstants.FONT_DEFAULT
+                        font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                         anchors.verticalCenter: resultsPerPageInput.verticalCenter
                         anchors.left: parent.left
@@ -244,6 +248,7 @@ Component {
                         id: minVotesText
                         text: 'Minimum votes'
                         font.pixelSize: UIConstants.FONT_DEFAULT
+                        font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                         anchors.verticalCenter: minVotesInput.verticalCenter
                         anchors.left: parent.left

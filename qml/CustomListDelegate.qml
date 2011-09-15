@@ -64,7 +64,7 @@ Item {
             Text {
                 id: titleText
                 text: listTitle
-                font.weight: Font.Bold
+                font.family: UIConstants.FONT_FAMILY
                 font.pixelSize: ExtrasConstants.LIST_TILE_SIZE
                 color: theme.inverted ?
                            ExtrasConstants.LIST_TITLE_COLOR_INVERTED :
@@ -76,7 +76,7 @@ Item {
             Text {
                 id: subtitleText
                 text: listSubtitle
-                font.weight: Font.Light
+                font.family: UIConstants.FONT_FAMILY_LIGHT
                 font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
                 color: theme.inverted ?
                            ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :

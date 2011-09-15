@@ -214,6 +214,7 @@ Page {
                     anchors.horizontalCenter: favoriteIcon.horizontalCenter
                     text: title
                     font.pixelSize: UIConstants.FONT_DEFAULT
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
                     elide: Text.ElideRight
                     width: parent.width

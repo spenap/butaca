@@ -103,6 +103,7 @@ Item {
                     id: akaText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY_LIGHT
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -114,6 +115,7 @@ Item {
                     id: birthdayText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY_LIGHT
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -126,6 +128,7 @@ Item {
                     id: birthplaceText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY_LIGHT
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -138,6 +141,7 @@ Item {
                     id: knownMoviesText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY_LIGHT
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -155,6 +159,7 @@ Item {
 
             width: parent.width - filmographyDetails.width
             font.pixelSize: UIConstants.FONT_LSMALL
+            font.family: UIConstants.FONT_FAMILY
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND
@@ -186,6 +191,7 @@ Item {
             anchors.topMargin: 20
             width: parent.width
             font.pixelSize: UIConstants.FONT_LSMALL
+            font.family: UIConstants.FONT_FAMILY
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND

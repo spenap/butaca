@@ -100,6 +100,7 @@ Item {
                     id: akaText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -112,6 +113,7 @@ Item {
                     id: certificationText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -124,6 +126,7 @@ Item {
                     id: releasedText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -136,6 +139,7 @@ Item {
                     id: budgetText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -148,6 +152,7 @@ Item {
                     id: revenueText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -172,6 +177,7 @@ Item {
 
             width: parent.width - castDetails.width
             font.pixelSize: UIConstants.FONT_LSMALL
+            font.family: UIConstants.FONT_FAMILY
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND
@@ -204,6 +210,7 @@ Item {
 
             width: parent.width
             font.pixelSize: UIConstants.FONT_LSMALL
+            font.family: UIConstants.FONT_FAMILY
             text: '<b>Overview:</b><br />' +
                   (overview ? BUTACA.sanitizeText(overview) : 'Overview not found')
             color: !theme.inverted ?
@@ -217,6 +224,7 @@ Item {
             anchors.top: overviewText.bottom
             anchors.topMargin: 20
             font.pixelSize: UIConstants.FONT_SLARGE
+            font.family: UIConstants.FONT_FAMILY
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND

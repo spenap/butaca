@@ -26,7 +26,7 @@ Component {
     id: aboutView
 
     Page {
-        property string license: '<i>This program is free software: you can redistribute it and/or modify ' +
+        property string license: 'This program is free software: you can redistribute it and/or modify ' +
             'it under the terms of the GNU General Public License as published by ' +
             'the Free Software Foundation, either version 3 of the License, or ' +
             '(at your option) any later version.<br /><br />' +
@@ -38,7 +38,7 @@ Component {
 
             'You should have received a copy of the GNU General Public License ' +
             'along with this program. If not, see ' +
-            '<a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a></i><br /><br />'
+            '<a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a><br /><br />'
 
         tools: ToolBarLayout {
             ToolIcon {
@@ -84,6 +84,7 @@ Component {
                 anchors.topMargin: UIConstants.DEFAULT_MARGIN
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: UIConstants.FONT_XLARGE
+                font.family: UIConstants.FONT_FAMILY
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
@@ -96,6 +97,7 @@ Component {
                 anchors.topMargin: UIConstants.DEFAULT_MARGIN
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: UIConstants.FONT_XLARGE
+                font.family: UIConstants.FONT_FAMILY_LIGHT
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
@@ -107,6 +109,7 @@ Component {
                 anchors.topMargin: UIConstants.DEFAULT_MARGIN
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: UIConstants.FONT_LSMALL
+                font.family: UIConstants.FONT_FAMILY
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
@@ -132,6 +135,7 @@ Component {
                     id: aboutThemovieDbDisclaimer
                     anchors.top: aboutThemovieDbImage.bottom
                     font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -147,6 +151,7 @@ Component {
                 anchors.top: aboutThemovieDb.bottom
                 anchors.topMargin: UIConstants.DEFAULT_MARGIN
                 font.pixelSize: UIConstants.FONT_LSMALL
+                font.family: UIConstants.FONT_FAMILY
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
@@ -161,6 +166,7 @@ Component {
                 anchors.top: aboutAfterCreditsDisclaimer.bottom
                 anchors.topMargin: UIConstants.DEFAULT_MARGIN
                 font.pixelSize: UIConstants.FONT_LSMALL
+                font.family: UIConstants.FONT_FAMILY
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
@@ -175,6 +181,7 @@ Component {
                 anchors.top: aboutShowtimesDisclaimer.bottom
                 anchors.topMargin: UIConstants.DEFAULT_MARGIN
                 font.pixelSize: UIConstants.FONT_LSMALL
+                font.family: UIConstants.FONT_FAMILY_LIGHT
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
