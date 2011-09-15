@@ -12,7 +12,7 @@ XB-Bugtracker: https://projects.developer.nokia.com/butaca/query
 
 Package: butaca
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, qt-components
 Description: Butaca is an application providing cinema information
  Butaca is an application which allows accessing a lot of
  movie-related information. Using The Movie Database as a
