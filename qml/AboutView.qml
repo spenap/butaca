@@ -97,7 +97,7 @@ Component {
                 anchors.topMargin: UIConstants.DEFAULT_MARGIN
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: UIConstants.FONT_XLARGE
-                font.family: UIConstants.FONT_FAMILY_LIGHT
+                font.family: "Nokia Pure Text Light"
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND
@@ -181,7 +181,7 @@ Component {
                 anchors.top: aboutShowtimesDisclaimer.bottom
                 anchors.topMargin: UIConstants.DEFAULT_MARGIN
                 font.pixelSize: UIConstants.FONT_LSMALL
-                font.family: UIConstants.FONT_FAMILY_LIGHT
+                font.family: "Nokia Pure Text Light"
                 color: !theme.inverted ?
                            UIConstants.COLOR_FOREGROUND :
                            UIConstants.COLOR_INVERTED_FOREGROUND

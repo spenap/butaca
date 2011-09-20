@@ -76,7 +76,7 @@ Item {
             Text {
                 id: subtitleText
                 text: listSubtitle
-                font.family: UIConstants.FONT_FAMILY_LIGHT
+                font.family: "Nokia Pure Text Light"
                 font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
                 color: theme.inverted ?
                            ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :

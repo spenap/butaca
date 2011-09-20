@@ -54,7 +54,7 @@ Item {
                    ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :
                    ExtrasConstants.LIST_SUBTITLE_COLOR
         font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
-        font.family: UIConstants.FONT_FAMILY_LIGHT
+        font.family: "Nokia Pure Text Light"
         anchors.left: sectionDelegateDivider.right
         anchors.leftMargin: UIConstants.DEFAULT_MARGIN
         anchors.verticalCenter: sectionDelegateDivider.verticalCenter
@@ -65,7 +65,7 @@ Item {
     Text {
         id: helperText
         font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
-        font.family: UIConstants.FONT_FAMILY_LIGHT
+        font.family: "Nokia Pure Text Light"
         text: sectionDelegateText.text
         visible: false
     }

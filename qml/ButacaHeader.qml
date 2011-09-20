@@ -55,7 +55,7 @@ Item {
         anchors.top: headerText.bottom
         anchors.topMargin: UIConstants.DEFAULT_MARGIN
         font.pixelSize: UIConstants.FONT_DEFAULT
-        font.family: UIConstants.FONT_FAMILY_LIGHT
+        font.family: "Nokia Pure Text Light"
         color: !theme.inverted ?
                    UIConstants.COLOR_FOREGROUND :
                    UIConstants.COLOR_INVERTED_FOREGROUND
