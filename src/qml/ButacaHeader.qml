@@ -33,11 +33,15 @@ Item {
         rightMargin: UIConstants.DEFAULT_MARGIN
     }
 
-    height: headerText.height +
-            (subheaderText.visible ? subheaderText.height : 0) +
-            (headerDivider.visible ?
-                 headerDivider.height + UIConstants.DEFAULT_MARGIN :
-                 0)
+    height: visible ?
+                (headerText.height +
+                 (subheaderText.visible ?
+                      subheaderText.height :
+                      0) +
+                 (headerDivider.visible ?
+                      headerDivider.height + UIConstants.DEFAULT_MARGIN :
+                      0)) :
+                0
 
     Text {
         id: headerText
