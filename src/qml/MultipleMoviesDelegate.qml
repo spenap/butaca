@@ -86,10 +86,10 @@ Item {
                 id: moviePoster
                 width: 95
                 height: 140
-                source: poster ? poster : 'images/movie-placeholder.svg'
+                source: poster ? poster : 'qrc:/resources/movie-placeholder.svg'
                 onStatusChanged: {
                     if (moviePoster.status == Image.Error) {
-                        moviePoster.source = 'images/movie-placeholder.svg'
+                        moviePoster.source = 'qrc:/resources/movie-placeholder.svg'
                     }
                 }
             }

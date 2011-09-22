@@ -194,16 +194,16 @@ Page {
                     id: favoriteIcon
                     source: icon ? icon :
                                         (type == BUTACA.MOVIE ?
-                                             'images/movie-placeholder.svg' :
-                                             'images/person-placeholder.svg')
+                                             'qrc:/resources/movie-placeholder.svg' :
+                                             'qrc:/resources/person-placeholder.svg')
                     width: 95; height: 140
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: parent.top
                     onStatusChanged: {
                         if (favoriteIcon.status == Image.Error) {
                             favoriteIcon.source = (type == BUTACA.MOVIE ?
-                                                       'images/movie-placeholder.svg' :
-                                                       'images/person-placeholder.svg')
+                                                       'qrc:/resources/movie-placeholder.svg' :
+                                                       'qrc:/resources/person-placeholder.svg')
                         }
                     }
                 }

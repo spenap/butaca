@@ -24,27 +24,20 @@ import "butacautils.js" as BUTACA
 import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
 
 Item {
-    id: personDelegate
-    width: personDelegate.ListView.view.width
-    height: personDelegate.ListView.view.height
+    id: movieDelegate
+    width: movieDelegate.ListView.view.width
+    height: movieDelegate.ListView.view.height
 
-    FilmographyView { id: filmographyView }
+    CastView { id: castView }
 
-    function formatPersonFilmography() {
-        var movies = [ movie1 ]
-        var output = '<b>Filmography:</b><br />'
-
-        if (movies.indexOf(movie2) < 0) {
-            movies.push(movie2)
-        }
-        if (movies.indexOf(movie3) < 0) {
-            movies.push(movie3)
-        }
-
-        for (var i = 0; i < movies.length; i ++) {
-            if (movies[i]) {
-                output += movies[i]
-                if (i < movies.length - 1) {
+    function formatMovieCast() {
+        var actors = [ actor1, actor2, actor3 ]
+        var output = '<b>Director: </b> ' + (director ? director : 'not found') +
+            '<br />' + '<b>Cast: </b><br />'
+        for (var i = 0; i < actors.length; i ++) {
+            if (actors[i]) {
+                output += actors[i]
+                if (i < actors.length - 1) {
                     output += ', '
                 } else {
                     output += '...'
@@ -55,42 +48,46 @@ Item {
     }
 
     Flickable {
-        id: flick
+        id: movieFlickable
         anchors.fill: parent
         anchors {
             rightMargin: UIConstants.DEFAULT_MARGIN
             leftMargin: UIConstants.DEFAULT_MARGIN
         }
-
-        contentHeight: nameText.height +
+        contentHeight: titleText.height +
                        row.height +
-                       filmography.height +
-                       biographyText.height +
-                       4 * UIConstants.DEFAULT_MARGIN
+                       cast.height +
+                       overviewText.height +
+                       4 * UIConstants.DEFAULT_MARGIN +
+                       (trailerHeader.visible ?
+                            trailerHeader.height +
+                            trailerImage.height +
+                            30 : 0)
 
         ButacaHeader {
-            id: nameText
+            id: titleText
             anchors.rightMargin: 0
             anchors.leftMargin: 0
 
-            text: personName
+            text: title + ' (' + BUTACA.getYearFromDate(released) + ')'
+            tagline: tagline
         }
 
         Row {
             id: row
             spacing: 20
             width: parent.width
-            anchors.top: nameText.bottom
+            anchors.top: titleText.bottom
             anchors.topMargin: UIConstants.DEFAULT_MARGIN
 
             Image {
                 id: image
                 width: 190
                 height: 280
-                source: profileImage ? profileImage : 'images/person-placeholder.svg'
+                source: poster ? poster : 'qrc:/resources/movie-placeholder.svg'
                 onStatusChanged: {
                     if (image.status == Image.Error) {
-                        image.source = 'images/person-placeholder.svg'
+                        image.source = 'qrc:/resources/movie-placeholder.svg'
                     }
                 }
             }
@@ -103,7 +100,7 @@ Item {
                     id: akaText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
-                    font.family: "Nokia Pure Text Light"
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
@@ -111,98 +108,157 @@ Item {
                     text: '<b>Also known as:</b><br />' +
                           (alternativeName ? alternativeName : ' - ')
                 }
+
                 Text {
-                    id: birthdayText
+                    id: certificationText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
-                    font.family: "Nokia Pure Text Light"
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Birthday:</b> ' +
-                          (birthday ? birthday : ' - ')
+                    text: '<b>Certification</b>: ' +
+                          (certification ? certification : ' - ')
                 }
 
                 Text {
-                    id: birthplaceText
+                    id: releasedText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
-                    font.family: "Nokia Pure Text Light"
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Birthplace:</b><br />' +
-                          (birthplace ? birthplace : ' - ')
+                    text: '<b>Release date:</b><br /> ' +
+                          (released ? released : ' - ')
                 }
 
                 Text {
-                    id: knownMoviesText
+                    id: budgetText
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
-                    font.family: "Nokia Pure Text Light"
+                    font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Known movies:</b> ' +
-                          (knownMovies ? knownMovies : ' - ')
+                    text: '<b>Budget:</b> ' +
+                          (budget ? controller.formatCurrency(budget) : ' - ')
+                }
+
+                Text {
+                    id: revenueText
+                    width: parent.width
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    wrapMode: Text.WordWrap
+                    text: '<b>Revenue:</b> ' +
+                          (revenue ? controller.formatCurrency(revenue) : ' - ')
+                }
+
+                RatingIndicator {
+                    ratingValue: rating / 2
+                    maximumValue: 5
+                    count: votes
+                    inverted: theme.inverted
                 }
             }
         }
 
         Text {
-            id: filmography
+            id: cast
             anchors.top: row.bottom
             anchors.topMargin: 20
 
-            width: parent.width - filmographyDetails.width
+            width: parent.width - castDetails.width
             font.pixelSize: UIConstants.FONT_LSMALL
             font.family: UIConstants.FONT_FAMILY
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND
             wrapMode: Text.WordWrap
-            text: formatPersonFilmography()
-            opacity: filmographyMouseArea.pressed ? 0.5 : 1
+            text: formatMovieCast()
+            opacity: castMouseArea.pressed ? 0.5 : 1
 
             Image {
-                id: filmographyDetails
+                id: castDetails
                 anchors.top: parent.top
                 anchors.right: parent.right
                 source: 'image://theme/icon-s-music-video-description'
             }
 
             MouseArea {
-                id: filmographyMouseArea
-                anchors.fill: filmography
+                id: castMouseArea
+                anchors.fill: cast
                 onClicked: {
-                    appWindow.pageStack.push(filmographyView,
-                                             { person: personName,
-                                               personId: personId })
+                    appWindow.pageStack.push(castView,
+                                             { movie: title,
+                                               movieId: tmdbId })
                 }
             }
         }
 
         Text {
-            id: biographyText
-            anchors.top: filmography.bottom
+            id: overviewText
+            anchors.top: cast.bottom
             anchors.topMargin: 20
+
             width: parent.width
             font.pixelSize: UIConstants.FONT_LSMALL
+            font.family: UIConstants.FONT_FAMILY
+            text: '<b>Overview:</b><br />' +
+                  (overview ? BUTACA.sanitizeText(overview) : 'Overview not found')
+            color: !theme.inverted ?
+                       UIConstants.COLOR_FOREGROUND :
+                       UIConstants.COLOR_INVERTED_FOREGROUND
+            wrapMode: Text.WordWrap
+        }
+
+        Text {
+            id: trailerHeader
+            anchors.top: overviewText.bottom
+            anchors.topMargin: 20
+            font.pixelSize: UIConstants.FONT_SLARGE
             font.family: UIConstants.FONT_FAMILY
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND
-            text: '<b>Biography:</b><br />' +
-                  (biography ? BUTACA.sanitizeText(biography) : 'Biography not found')
-            wrapMode: Text.WordWrap
+            text: '<b>Movie trailer</b>'
+            visible: trailerImage.visible
+        }
+
+        Image {
+            id: trailerImage
+            anchors.top: trailerHeader.bottom
+            anchors.topMargin: 10
+            anchors.leftMargin: 10
+            width: 120; height: 90
+            source: BUTACA.getTrailerThumbnail(trailer)
+            visible: playButton.visible
+
+            Image {
+                id: playButton
+                anchors.centerIn: parent
+                source: 'image://theme/icon-s-music-video-play'
+                visible: trailerImage.source != ''
+            }
+
+            MouseArea {
+                anchors.fill: trailerImage
+                onClicked: {
+                    Qt.openUrlExternally(trailer)
+                }
+            }
         }
     }
 
     ScrollDecorator {
-        flickableItem: flick
+        flickableItem: movieFlickable
         anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
     }
 }

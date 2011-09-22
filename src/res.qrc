@@ -15,8 +15,6 @@
         <file>qml/SearchView.qml</file>
         <file>qml/WelcomeView.qml</file>
         <file>qml/butacautils.js</file>
-        <file>qml/images/movie-placeholder.svg</file>
-        <file>qml/images/person-placeholder.svg</file>
         <file>qml/CustomMoreIndicator.qml</file>
         <file>qml/ButacaHeader.qml</file>
         <file>qml/NoContentItem.qml</file>
@@ -27,11 +25,13 @@
         <file>qml/storage.js</file>
         <file>qml/DetailedView.qml</file>
         <file>qml/ListSectionDelegate.qml</file>
-        <file>butaca.svg</file>
         <file>qml/TheatersView.qml</file>
         <file>qml/SettingsView.qml</file>
         <file>qml/CustomListDelegate.qml</file>
         <file>qml/AboutView.qml</file>
-        <file>tmdb-logo.png</file>
+        <file>resources/movie-placeholder.svg</file>
+        <file>resources/person-placeholder.svg</file>
+        <file>resources/butaca.svg</file>
+        <file>resources/tmdb-logo.png</file>
     </qresource>
 </RCC>
