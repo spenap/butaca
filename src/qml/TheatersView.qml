@@ -29,6 +29,9 @@ Page {
     orientationLock: PageOrientation.LockPortrait
 
     property string location
+    property bool showShowtimesFilter
+    property real contentYPos: list.visibleArea.yPosition *
+                                   Math.max(list.height, list.contentHeight)
 
     onStatusChanged: {
         if (status == PageStatus.Active) {
@@ -70,14 +73,96 @@ Page {
             anchors.fill: parent
             flickableDirection: Flickable.VerticalFlick
             model: theaterModel
-            header: ButacaHeader {
-                text: 'On theaters'
-                showDivider: false
+            header: Item {
+                anchors { left: parent.left; right: parent.right }
+                anchors {
+                    leftMargin: UIConstants.DEFAULT_MARGIN
+                    rightMargin: UIConstants.DEFAULT_MARGIN
+                }
+                height: headerText.height +
+                        (showShowtimesFilter ? searchInput.height + UIConstants.PADDING_LARGE : 0)
+
+                Text {
+                    id: headerText
+                    font.pixelSize: UIConstants.FONT_XLARGE
+                    font.family: UIConstants.FONT_FAMILY
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    text: 'On theaters'
+                }
+
+                TextField {
+                    id: searchInput
+                    anchors.top: headerText.bottom
+                    anchors.topMargin: UIConstants.PADDING_LARGE
+                    placeholderText: 'Search'
+                    width: parent.width
+                    opacity: showShowtimesFilter ? 1 : 0
+                    inputMethodHints: Qt.ImhNoPredictiveText
+
+                    Behavior on opacity {
+                        NumberAnimation { from: 0; duration: 200 }
+                    }
+
+                    Image {
+                        id: clearText
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: searchInput.activeFocus ?
+                                    'image://theme/icon-m-input-clear' :
+                                    'image://theme/icon-m-common-search'
+                    }
+
+                    MouseArea {
+                        id: searchInputMouseArea
+                        anchors.fill: clearText
+                        onClicked: {
+                            inputContext.reset()
+                            searchInput.text = ''
+                        }
+                    }
+
+                    onTextChanged: {
+                        theaterModel.setFilterWildcard(text)
+                    }
+
+                    onActiveFocusChanged: {
+                        if (focus) {
+                            listTimer.stop()
+                        } else {
+                            listTimer.start()
+                        }
+                    }
+                }
+
             }
             delegate: CustomListDelegate { pressable: false }
 
             section.property: 'theaterName'
             section.delegate: ListSectionDelegate { sectionName: section }
+
+            Connections {
+                target: list.visibleArea
+                onYPositionChanged: {
+                    if (contentYPos < 0 &&
+                            !showShowtimesFilter &&
+                            (list.moving && !list.flicking)) {
+                        showShowtimesFilter = true
+                        listTimer.start()
+                    }
+                }
+            }
+
+            Timer {
+                id: listTimer
+                interval: 3000
+                onTriggered: {
+                    showShowtimesFilter = false
+                }
+            }
         }
 
         ScrollDecorator {
