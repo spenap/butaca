@@ -1,3 +1,12 @@
+butaca (0.3.7) unstable; urgency=low
+
+  * Fixed #11: Application does not use system fonts
+  * Enabled filtering in showtimes view
+  * Updated project structure
+  * Updated project dependencies
+
+ -- Simon Pena <spena@igalia.com>  Thu, 22 Sep 2011 23:22:58 +0300
+
 butaca (0.3.6) unstable; urgency=low
 
   * Reset filters on showtimes view
