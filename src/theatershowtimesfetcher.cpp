@@ -26,6 +26,7 @@
 #include <QWebFrame>
 #include <QWebElement>
 #include <QUrl>
+#include <QLocale>
 
 #include <QDebug>
 
@@ -45,6 +46,10 @@ TheaterShowtimesFetcher::~TheaterShowtimesFetcher()
 void TheaterShowtimesFetcher::fetchTheaters(QString location)
 {
     QUrl showtimesUrl("http://www.google.com/movies");
+    QString locale(QLocale::system().name());
+
+    // The country code is ignored by the movies API
+    showtimesUrl.addQueryItem("hl", locale.left(locale.indexOf("_")));
 
     if (!location.isEmpty()) {
         showtimesUrl.addQueryItem("near", location);
