@@ -97,3 +97,14 @@ unix {
     splash.path = $$DATADIR/$${TARGET}/
     splash.files += ../data/butaca-splash.jpg
 }
+
+# Rule for regenerating .qm files for translations (missing in qmake
+# default ruleset, ugh!)
+#
+updateqm.input = TRANSLATIONS
+updateqm.output = ${QMAKE_FILE_PATH}/${QMAKE_FILE_BASE}.qm
+updateqm.commands = lrelease ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
+updateqm.CONFIG += no_link
+QMAKE_EXTRA_COMPILERS += updateqm
+PRE_TARGETDEPS += compiler_updateqm_make_all
+
