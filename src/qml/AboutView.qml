@@ -74,7 +74,7 @@ Component {
                 id: aboutImage
                 anchors.top: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: 'qrc:/butaca.svg'
+                source: 'qrc:/resources/butaca.svg'
             }
 
             Text {
@@ -128,7 +128,7 @@ Component {
                 Image {
                     id: aboutThemovieDbImage
                     anchors.top: parent.top
-                    source: 'qrc:/tmdb-logo.png'
+                    source: 'qrc:/resources/tmdb-logo.png'
                 }
 
                 Text {
