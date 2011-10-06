@@ -129,6 +129,7 @@ Page {
             }
             flickableDirection: Flickable.VerticalFlick
             model: theaterModel
+            clip: true
             header: ButacaHeader {
                 text: 'On theaters'
                 showDivider: false
