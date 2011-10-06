@@ -25,7 +25,7 @@ XmlListModel {
 
     property string params: ''
 
-    source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_GET_INFO, params)
+    source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_GET_INFO, locale, params)
     query: BUTACA.TMDB_PERSON_FILMOGRAPHY_QUERY
 
     XmlRole { name: "name"; query: "@name/string()" }

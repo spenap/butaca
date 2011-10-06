@@ -25,7 +25,7 @@ XmlListModel {
 
     property string params: ''
 
-    source: params ? BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_GET_INFO, params) : ''
+    source: params ? BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_GET_INFO, locale, params) : ''
     query: BUTACA.TMDB_MOVIE_QUERY
 
     XmlRole { name: "popularity"; query: "popularity/number()" }

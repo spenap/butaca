@@ -44,6 +44,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
 
     QDeclarativeContext *context = view->rootContext();
+
+    // The Movie Database uses "-" as the divider between language and country code
+    context->setContextProperty("locale", locale.replace("_","-"));
     ButacaController *controller = new ButacaController(context);
 
     view->setSource(QUrl("qrc:/qml/main.qml"));

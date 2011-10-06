@@ -23,7 +23,7 @@ import "butacautils.js" as BUTACA
 // See http://api.themoviedb.org/2.1/methods/Genres.getList
 XmlListModel {
 
-    source: BUTACA.getTMDbSource(BUTACA.TMDB_GENRES_GET_LIST, '')
+    source: BUTACA.getTMDbSource(BUTACA.TMDB_GENRES_GET_LIST, locale, '')
     query: BUTACA.TMDB_GENRES_QUERY
 
     XmlRole { name: "title"; query: "@name/string()" }

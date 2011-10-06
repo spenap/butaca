@@ -51,15 +51,16 @@ var IMDB_BASE_URL = 'http://www.imdb.com/title/'
  * Builds the source for a model using TMDb services.
  *
  * @param {string} the api method of choice
+ * @param {string} the language to get the content in
  * @param {params} additional params to build the query
  * @return {string} the string with the source
  */
-function getTMDbSource(apiMethod, params) {
+function getTMDbSource(apiMethod, lang, params) {
 
     // BASE_URL + API_METHOD + LAN + FORMAT + API_KEY + PARAMS
 
     var source = TMDB_BASE_URL + '/' + apiMethod +
-        '/' + TMDB_LANGUAGE +
+        '/' + lang +
         '/' + TMDB_FORMAT +
         '/' + TMDB_API_KEY
     if (params !== '') {
