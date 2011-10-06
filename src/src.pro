@@ -72,6 +72,10 @@ OTHER_FILES += \
 RESOURCES += \
     res.qrc
 
+CODECFORTR = UTF-8
+TRANSLATIONS += \
+    l10n/es.ts
+
 unix {
     #VARIABLES
     isEmpty(PREFIX) {
