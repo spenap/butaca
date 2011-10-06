@@ -80,7 +80,7 @@ Page {
                leftMargin: UIConstants.DEFAULT_MARGIN
                rightMargin: UIConstants.DEFAULT_MARGIN
             }
-            placeholderText: 'Search'
+            placeholderText: qsTr('Search')
             opacity: showShowtimesFilter ? 1 : 0
             inputMethodHints: Qt.ImhNoPredictiveText
 
@@ -131,7 +131,7 @@ Page {
             model: theaterModel
             clip: true
             header: ButacaHeader {
-                text: 'On theaters'
+                text: qsTr('On theaters')
                 showDivider: false
                 visible: !showShowtimesFilter
             }
@@ -177,7 +177,7 @@ Page {
         NoContentItem {
             id: noTheaterResults
             anchors.fill: parent
-            text: 'No results for ' + (location ? location : 'your location')
+            text: qsTr('No results for %1').arg((location ? location : qsTr('your location')))
             visible: list.model.count === 0
         }
 

@@ -32,7 +32,7 @@ Item {
 
     function formatPersonFilmography() {
         var movies = [ movie1 ]
-        var output = '<b>Filmography:</b><br />'
+        var output = '<b>' + qsTr('Filmography:') + '</b><br />'
 
         if (movies.indexOf(movie2) < 0) {
             movies.push(movie2)
@@ -108,7 +108,7 @@ Item {
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Also known as:</b><br />' +
+                    text: '<b>' + qsTr('Also known as:') + '</b><br />' +
                           (alternativeName ? alternativeName : ' - ')
                 }
                 Text {
@@ -120,7 +120,7 @@ Item {
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Birthday:</b> ' +
+                    text: '<b>' + qsTr('Birthday:') + '</b>' +
                           (birthday ? birthday : ' - ')
                 }
 
@@ -133,7 +133,7 @@ Item {
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Birthplace:</b><br />' +
+                    text: '<b>' + qsTr('Birthplace:') + '</b><br />' +
                           (birthplace ? birthplace : ' - ')
                 }
 
@@ -146,7 +146,7 @@ Item {
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Known movies:</b> ' +
+                    text: '<b>' + qsTr('Known movies:') + '</b> ' +
                           (knownMovies ? knownMovies : ' - ')
                 }
             }
@@ -195,8 +195,8 @@ Item {
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND
-            text: '<b>Biography:</b><br />' +
-                  (biography ? BUTACA.sanitizeText(biography) : 'Biography not found')
+            text: '<b>' + qsTr('Biography:') + '</b><br />' +
+                  (biography ? BUTACA.sanitizeText(biography) : qsTr('Biography not found'))
             wrapMode: Text.WordWrap
         }
     }

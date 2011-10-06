@@ -55,6 +55,13 @@ Page {
         for (var i = 0; i < favorites.length; i ++) {
             favoritesModel.append(favorites[i])
         }
+
+        menuModel.get(0).title = qsTr('Movie genres')
+        menuModel.get(0).subtitle = qsTr('Explore movie genres')
+        menuModel.get(1).title = qsTr('Cinemas')
+        menuModel.get(1).subtitle = qsTr('What\'s on cinemas near you')
+        menuModel.get(2).title = qsTr('Search')
+        menuModel.get(2).subtitle = qsTr('Search people, movies and shows')
     }
 
     Menu {
@@ -62,12 +69,12 @@ Page {
         MenuLayout {
             MenuItem {
                 id: settingsEntry
-                text: 'Settings'
+                text: qsTr('Settings')
                 onClicked: appWindow.pageStack.push(settingsView)
             }
             MenuItem {
                 id: aboutEntry
-                text: 'About'
+                text: qsTr('About')
                 onClicked: appWindow.pageStack.push(aboutView)
             }
         }
@@ -147,7 +154,7 @@ Page {
         interactive: false
         delegate: menuDelegate
         header: ButacaHeader {
-            text: 'Enjoy the show!'
+            text: qsTr('Enjoy the show!')
         }
     }
 
@@ -180,7 +187,7 @@ Page {
 
         NoContentItem {
             anchors.fill: parent
-            text: 'Mark content as favorite'
+            text: qsTr('Mark content as favorite')
             visible: favoritesModel.count == 0
         }
 

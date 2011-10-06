@@ -60,7 +60,7 @@ Page {
                                UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
                                UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
         id: header
-        text: 'Search'
+        text: qsTr('Search')
     }
 
     Row {
@@ -71,7 +71,7 @@ Page {
 
         TextField {
             id: searchInput
-            placeholderText: "Enter search terms"
+            placeholderText: qsTr('Enter search terms')
             width: parent.width - searchButton.width - 10
 //                onAccepted: {
 //                    searchButton.clicked()
@@ -99,7 +99,7 @@ Page {
 
         Button {
             id: searchButton
-            text: 'Search'
+            text: qsTr('Search')
             width: 100
             enabled: searchInput.text !== ''
             onClicked: {
@@ -129,7 +129,7 @@ Page {
 
         Button {
             id: movieSearch
-            text: 'Movies'
+            text: qsTr('Movies')
             onClicked: {
                 if (currentListView != movieResultsList) {
                     currentListView = movieResultsList
@@ -139,7 +139,7 @@ Page {
         }
         Button {
             id: peopleSearch
-            text: 'People'
+            text: qsTr('People')
             onClicked: {
                 if (currentListView != peopleResultsList) {
                     currentListView = peopleResultsList
@@ -149,7 +149,7 @@ Page {
         }
         Button {
             id: showSearch
-            text: 'Shows'
+            text: qsTr('Shows')
             onClicked: {
                 if (currentListView != showtimesResultsList) {
                     currentListView = showtimesResultsList
@@ -292,7 +292,7 @@ Page {
                 PropertyChanges {
                     target: noResults
                     visible: currentListView ? currentListView.model.count === 0 : false
-                    text: 'No results found'
+                    text: qsTr('No results found')
                 }
                 PropertyChanges {
                     target: busyIndicator

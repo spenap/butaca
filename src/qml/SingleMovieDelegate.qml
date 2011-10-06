@@ -32,8 +32,9 @@ Item {
 
     function formatMovieCast() {
         var actors = [ actor1, actor2, actor3 ]
-        var output = '<b>Director: </b> ' + (director ? director : 'not found') +
-            '<br />' + '<b>Cast: </b><br />'
+        var output = '<b>' + qsTr('Director:') + '</b> ' +
+            (director ? director : qsTr('not found')) +
+            '<br /><b>' + qsTr('Cast:') + '</b><br />'
         for (var i = 0; i < actors.length; i ++) {
             if (actors[i]) {
                 output += actors[i]
@@ -105,7 +106,7 @@ Item {
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Also known as:</b><br />' +
+                    text: '<b>' + qsTr('Also known as:') + '</b><br />' +
                           (alternativeName ? alternativeName : ' - ')
                 }
 
@@ -118,7 +119,7 @@ Item {
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Certification</b>: ' +
+                    text: '<b>' + qsTr('Certification:') + '</b> ' +
                           (certification ? certification : ' - ')
                 }
 
@@ -131,7 +132,7 @@ Item {
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Release date:</b><br /> ' +
+                    text: '<b>' + qsTr('Release date:') + '</b><br /> ' +
                           (released ? released : ' - ')
                 }
 
@@ -144,7 +145,7 @@ Item {
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Budget:</b> ' +
+                    text: '<b>' + qsTr('Budget:') + '</b> ' +
                           (budget ? controller.formatCurrency(budget) : ' - ')
                 }
 
@@ -157,7 +158,7 @@ Item {
                                UIConstants.COLOR_FOREGROUND :
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     wrapMode: Text.WordWrap
-                    text: '<b>Revenue:</b> ' +
+                    text: '<b>' + qsTr('Revenue:') + '</b> ' +
                           (revenue ? controller.formatCurrency(revenue) : ' - ')
                 }
 
@@ -211,8 +212,8 @@ Item {
             width: parent.width
             font.pixelSize: UIConstants.FONT_LSMALL
             font.family: UIConstants.FONT_FAMILY
-            text: '<b>Overview:</b><br />' +
-                  (overview ? BUTACA.sanitizeText(overview) : 'Overview not found')
+            text: '<b>' + qsTr('Overview:') + '</b><br />' +
+                  (overview ? BUTACA.sanitizeText(overview) : qsTr('Overview not found'))
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND
@@ -228,7 +229,7 @@ Item {
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND
-            text: '<b>Movie trailer</b>'
+            text: '<b>' + qsTr('Movie trailer') + '</b>'
             visible: trailerImage.visible
         }
 

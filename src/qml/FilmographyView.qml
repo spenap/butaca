@@ -64,7 +64,7 @@ Component {
                 flickableDirection: Flickable.VerticalFlick
                 model: filmographyModel
                 header: ButacaHeader {
-                    text: person + "'s filmography"
+                    text: qsTr("%1's filmography").arg(person)
                     showDivider: false
                 }
                 delegate: CustomListDelegate {

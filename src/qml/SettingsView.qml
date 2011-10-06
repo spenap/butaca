@@ -83,7 +83,7 @@ Component {
                     id: settingsHeader
                     anchors.rightMargin: 0
                     anchors.leftMargin: 0
-                    text: 'Settings'
+                    text: qsTr('Settings')
                     showDivider: false
                 }
 
@@ -91,7 +91,7 @@ Component {
                     id: showtimesSection
                     anchors.rightMargin: 0
                     anchors.leftMargin: 0
-                    sectionName: 'Showtimes'
+                    sectionName: qsTr('Showtimes')
                 }
 
                 Row {
@@ -101,7 +101,7 @@ Component {
 
                     Text {
                         id: locationText
-                        text: 'Default location'
+                        text: qsTr('Default location')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
@@ -110,7 +110,7 @@ Component {
 
                     TextField {
                         id: locationInput
-                        placeholderText: 'Try automatically'
+                        placeholderText: qsTr('Try automatically')
                         width: parent.width - locationText.width - parent.spacing
                         text: Storage.getSetting('location')
     //                        onAccepted: {
@@ -140,7 +140,7 @@ Component {
                     id: browsingSection
                     anchors.rightMargin: 0
                     anchors.leftMargin: 0
-                    sectionName: 'Browsing'
+                    sectionName: qsTr('Browsing')
                 }
 
                 Item {
@@ -151,7 +151,7 @@ Component {
                     Text {
                         id: criteriaText
                         anchors.top:  parent.top
-                        text: 'Order criteria'
+                        text: qsTr('Order criteria')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
@@ -164,17 +164,17 @@ Component {
 
                         Button {
                             id: byRating
-                            text: 'Rating'
+                            text: qsTr('Rating')
                             onClicked: Storage.setSetting('orderBy', 'rating')
                         }
                         Button {
                             id: byRelease
-                            text: 'Release'
+                            text: qsTr('Release')
                             onClicked: Storage.setSetting('orderBy', 'release')
                         }
                         Button {
                             id: byTitle
-                            text: 'Title'
+                            text: qsTr('Title')
                             onClicked: Storage.setSetting('orderBy', 'title')
                         }
                     }
@@ -188,7 +188,7 @@ Component {
                     Text {
                         id: sortOrderText
                         anchors.top:  parent.top
-                        text: 'Order criteria'
+                        text: qsTr('Order criteria')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
@@ -201,12 +201,12 @@ Component {
 
                         Button {
                             id: sortAscending
-                            text: 'Ascending'
+                            text: qsTr('Ascending')
                             onClicked: Storage.setSetting('order', 'asc')
                         }
                         Button {
                             id: sortDescending
-                            text: 'Descending'
+                            text: qsTr('Descending')
                             onClicked: Storage.setSetting('order', 'desc')
                         }
                     }
@@ -219,7 +219,7 @@ Component {
 
                     Text {
                         id: resultsPerPageText
-                        text: 'Results per page'
+                        text: qsTr('Results per page')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
@@ -246,7 +246,7 @@ Component {
 
                     Text {
                         id: minVotesText
-                        text: 'Minimum votes'
+                        text: qsTr('Minimum votes')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND

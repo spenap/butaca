@@ -141,7 +141,7 @@ Component {
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    text: 'This product uses the <a href="http://www.themoviedb.org/">TMDb</a> API but is not endorsed or certified by TMDb.'
+                    text: qsTr('This product uses the <a href="http://www.themoviedb.org/">TMDb</a> API but is not endorsed or certified by TMDb.')
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
             }
@@ -157,7 +157,7 @@ Component {
                            UIConstants.COLOR_INVERTED_FOREGROUND
                 width: parent.width
                 wrapMode: Text.WordWrap
-                text: 'This product uses <a href="http://aftercredits.com/">What\'s After The Credits?</a> API but is not endorsed or certified by them.'
+                text: qsTr('This product uses <a href="http://aftercredits.com/">What\'s After The Credits?</a> API but is not endorsed or certified by them.')
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 
@@ -172,7 +172,7 @@ Component {
                            UIConstants.COLOR_INVERTED_FOREGROUND
                 width: parent.width
                 wrapMode: Text.WordWrap
-                text: 'This product presents showtimes from <a href="http://www.google.com/movies">Google Movies</a> but is not endorsed or certified by Google.'
+                text: qsTr('This product presents showtimes from <a href="http://www.google.com/movies">Google Movies</a> but is not endorsed or certified by Google.')
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 
