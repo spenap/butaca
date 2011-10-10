@@ -39,7 +39,7 @@ ToolBarLayout {
 
     ToolIcon {
         id: favoriteIcon
-        iconId: 'toolbar-favorite-unmark'
+        iconId: 'toolbar-favorite-unmark-dimmed'
         visible: false
         onClicked: {
             iconId = iconId == 'toolbar-favorite-mark' ?
@@ -57,14 +57,14 @@ ToolBarLayout {
 
     ToolIcon {
         id: shareIcon
-        iconId: 'toolbar-share'
+        iconId: enabled ? 'toolbar-share' : 'toolbar-share-dimmed'
         visible: false
         onClicked: controller.share(content.title, content.url)
     }
 
     ToolIcon {
         id: menuListIcon
-        iconId: 'toolbar-view-menu'
+        iconId: enabled ? 'toolbar-view-menu' : 'toolbar-view-menu-dimmed'
         visible: false
         onClicked: (menu.status == DialogStatus.Closed) ?
                        menu.open() : menu.close()
