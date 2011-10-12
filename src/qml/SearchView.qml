@@ -60,7 +60,8 @@ Page {
                                UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
                                UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
         id: header
-        text: qsTr('Search')
+        //: Search
+        text: qsTr('btc-search-header')
     }
 
     Row {
@@ -71,7 +72,8 @@ Page {
 
         TextField {
             id: searchInput
-            placeholderText: qsTr('Enter search terms')
+            //: Enter search terms
+            placeholderText: qsTr('btc-search-placeholder')
             width: parent.width - searchButton.width - 10
 //                onAccepted: {
 //                    searchButton.clicked()
@@ -99,7 +101,8 @@ Page {
 
         Button {
             id: searchButton
-            text: qsTr('Search')
+            //: Search
+            text: qsTr('btc-search-button')
             width: 100
             enabled: searchInput.text !== ''
             onClicked: {
@@ -129,7 +132,8 @@ Page {
 
         Button {
             id: movieSearch
-            text: qsTr('Movies')
+            //: Movies
+            text: qsTr('btc-movies')
             onClicked: {
                 if (currentListView != movieResultsList) {
                     currentListView = movieResultsList
@@ -139,7 +143,8 @@ Page {
         }
         Button {
             id: peopleSearch
-            text: qsTr('People')
+            //: People
+            text: qsTr('btc-people')
             onClicked: {
                 if (currentListView != peopleResultsList) {
                     currentListView = peopleResultsList
@@ -149,7 +154,8 @@ Page {
         }
         Button {
             id: showSearch
-            text: qsTr('Shows')
+            //: Shows
+            text: qsTr('btc-shows')
             onClicked: {
                 if (currentListView != showtimesResultsList) {
                     currentListView = showtimesResultsList
@@ -292,7 +298,8 @@ Page {
                 PropertyChanges {
                     target: noResults
                     visible: currentListView ? currentListView.model.count === 0 : false
-                    text: qsTr('No results found')
+                    //: No results found
+                    text: qsTr('btc-no-results')
                 }
                 PropertyChanges {
                     target: busyIndicator

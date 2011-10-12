@@ -53,7 +53,8 @@ Component {
                 anchors.fill: parent
                 flickableDirection: Flickable.VerticalFlick
                 header: ButacaHeader {
-                    text: qsTr('Movie genres')
+                    //: Movie genres
+                    text: qsTr('btc-browse-genres')
                 }
                 delegate: CustomListDelegate {
                     onClicked: {

@@ -83,7 +83,8 @@ Component {
                     id: settingsHeader
                     anchors.rightMargin: 0
                     anchors.leftMargin: 0
-                    text: qsTr('Settings')
+                    //: Settings
+                    text: qsTr('btc-settings')
                     showDivider: false
                 }
 
@@ -91,7 +92,8 @@ Component {
                     id: showtimesSection
                     anchors.rightMargin: 0
                     anchors.leftMargin: 0
-                    sectionName: qsTr('Showtimes')
+                    //: Showtimes
+                    sectionName: qsTr('btc-showtimes')
                 }
 
                 Row {
@@ -101,7 +103,8 @@ Component {
 
                     Text {
                         id: locationText
-                        text: qsTr('Default location')
+                        //: Default location
+                        text: qsTr('btc-default-location')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
@@ -110,7 +113,8 @@ Component {
 
                     TextField {
                         id: locationInput
-                        placeholderText: qsTr('Try automatically')
+                        //: Try automatically
+                        placeholderText: qsTr('btc-try-automatically')
                         width: parent.width - locationText.width - parent.spacing
                         text: Storage.getSetting('location')
     //                        onAccepted: {
@@ -140,7 +144,8 @@ Component {
                     id: browsingSection
                     anchors.rightMargin: 0
                     anchors.leftMargin: 0
-                    sectionName: qsTr('Browsing')
+                    //: Browsing
+                    sectionName: qsTr('btc-browsing')
                 }
 
                 Item {
@@ -151,7 +156,8 @@ Component {
                     Text {
                         id: criteriaText
                         anchors.top:  parent.top
-                        text: qsTr('Order criteria')
+                        //: Order criteria
+                        text: qsTr('btc-order-criteria')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
@@ -164,17 +170,20 @@ Component {
 
                         Button {
                             id: byRating
-                            text: qsTr('Rating')
+                            //: Rating
+                            text: qsTr('btc-order-by-rating')
                             onClicked: Storage.setSetting('orderBy', 'rating')
                         }
                         Button {
                             id: byRelease
-                            text: qsTr('Release')
+                            //: Release
+                            text: qsTr('btc-order-by-release')
                             onClicked: Storage.setSetting('orderBy', 'release')
                         }
                         Button {
                             id: byTitle
-                            text: qsTr('Title')
+                            //: Title
+                            text: qsTr('btc-order-by-title')
                             onClicked: Storage.setSetting('orderBy', 'title')
                         }
                     }
@@ -188,7 +197,8 @@ Component {
                     Text {
                         id: sortOrderText
                         anchors.top:  parent.top
-                        text: qsTr('Order criteria')
+                        //: Sort order
+                        text: qsTr('btc-sort-order')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
@@ -201,12 +211,14 @@ Component {
 
                         Button {
                             id: sortAscending
-                            text: qsTr('Ascending')
+                            //: Ascending
+                            text: qsTr('btc-sort-ascending')
                             onClicked: Storage.setSetting('order', 'asc')
                         }
                         Button {
                             id: sortDescending
-                            text: qsTr('Descending')
+                            //: Descending
+                            text: qsTr('btc-sort-descending')
                             onClicked: Storage.setSetting('order', 'desc')
                         }
                     }
@@ -219,7 +231,8 @@ Component {
 
                     Text {
                         id: resultsPerPageText
-                        text: qsTr('Results per page')
+                        //: Results per page
+                        text: qsTr('btc-results-per-page')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
@@ -246,7 +259,8 @@ Component {
 
                     Text {
                         id: minVotesText
-                        text: qsTr('Minimum votes')
+                        //: Minimum votes
+                        text: qsTr('btc-minimum-votes')
                         font.pixelSize: UIConstants.FONT_DEFAULT
                         font.family: UIConstants.FONT_FAMILY
                         color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND

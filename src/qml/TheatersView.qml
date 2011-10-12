@@ -80,7 +80,8 @@ Page {
                leftMargin: UIConstants.DEFAULT_MARGIN
                rightMargin: UIConstants.DEFAULT_MARGIN
             }
-            placeholderText: qsTr('Search')
+            //: Search
+            placeholderText: qsTr('btc-search')
             opacity: showShowtimesFilter ? 1 : 0
             inputMethodHints: Qt.ImhNoPredictiveText
 
@@ -131,7 +132,8 @@ Page {
             model: theaterModel
             clip: true
             header: ButacaHeader {
-                text: qsTr('On theaters')
+                //: On theaters
+                text: qsTr('btc-theaters')
                 showDivider: false
                 visible: !showShowtimesFilter
             }
@@ -177,7 +179,11 @@ Page {
         NoContentItem {
             id: noTheaterResults
             anchors.fill: parent
-            text: qsTr('No results for %1').arg((location ? location : qsTr('your location')))
+            text: (location ?
+                       //: No results for %1
+                       qsTr('btc-no-results-given-location').arg(location) :
+                       //: No results for your location
+                       qsTr('btc-no-results-automatic-location'))
             visible: list.model.count === 0
         }
 

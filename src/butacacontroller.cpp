@@ -42,7 +42,8 @@ void ButacaController::share(QString title, QString url)
     dataUri.setMimeType("text/x-url");
     dataUri.setTextData(url);
     dataUri.setAttribute("title", title);
-    dataUri.setAttribute("description", tr("Shared with #Butaca"));
+    //: Shared with #Butaca
+    dataUri.setAttribute("description", tr("btc-shared-with-butaca"));
 
     QStringList items;
     items << dataUri.toString();

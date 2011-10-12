@@ -41,18 +41,21 @@ Component {
             MenuLayout {
                 MenuItem {
                     id: homepageEntry
-                    text: qsTr('Open homepage')
+                    //: Open homepage
+                    text: qsTr('btc-open-homepage')
                     onClicked: Qt.openUrlExternally(currentItem().homepage)
                     visible: false
                 }
                 MenuItem {
                     id: tmdbEntry
-                    text: qsTr('View in TMDb')
+                    //: View in TMDb
+                    text: qsTr('btc-open-tmdb')
                     onClicked: Qt.openUrlExternally(currentItem().url)
                 }
                 MenuItem {
                     id: imdbEntry
-                    text: qsTr('View in IMDb')
+                    //: View in IMDb
+                    text: qsTr('btc-open-imdb')
                     onClicked: Qt.openUrlExternally(BUTACA.IMDB_BASE_URL + currentItem().imdbId)
                     visible: false
                 }

@@ -141,7 +141,8 @@ Component {
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    text: qsTr('This product uses the <a href="http://www.themoviedb.org/">TMDb</a> API but is not endorsed or certified by TMDb.')
+                    //: This product uses the <a href="http://www.themoviedb.org/">TMDb</a> API but is not endorsed or certified by TMDb.
+                    text: qsTr('btc-themoviedb-disclaimer')
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
             }
@@ -157,7 +158,8 @@ Component {
                            UIConstants.COLOR_INVERTED_FOREGROUND
                 width: parent.width
                 wrapMode: Text.WordWrap
-                text: qsTr('This product uses <a href="http://aftercredits.com/">What\'s After The Credits?</a> API but is not endorsed or certified by them.')
+                //: This product uses <a href="http://aftercredits.com/">What\'s After The Credits?</a> API but is not endorsed or certified by them.
+                text: qsTr('btc-aftercredits-disclaimer')
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 
@@ -172,7 +174,8 @@ Component {
                            UIConstants.COLOR_INVERTED_FOREGROUND
                 width: parent.width
                 wrapMode: Text.WordWrap
-                text: qsTr('This product presents showtimes from <a href="http://www.google.com/movies">Google Movies</a> but is not endorsed or certified by Google.')
+                //: This product presents showtimes from <a href="http://www.google.com/movies">Google Movies</a> but is not endorsed or certified by Google.
+                text: qsTr('btc-showtimes-disclaimer')
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 

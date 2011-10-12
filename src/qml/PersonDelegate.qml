@@ -32,7 +32,8 @@ Item {
 
     function formatPersonFilmography() {
         var movies = [ movie1 ]
-        var output = '<b>' + qsTr('Filmography:') + '</b><br />'
+        //: Filmography:
+        var output = '<b>' + qsTr('btc-filmography') + '</b><br />'
 
         if (movies.indexOf(movie2) < 0) {
             movies.push(movie2)
@@ -104,11 +105,12 @@ Item {
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: "Nokia Pure Text Light"
-                    color: !theme.inverted ?
+                    color: (!theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
+                               UIConstants.COLOR_INVERTED_FOREGROUND)
                     wrapMode: Text.WordWrap
-                    text: '<b>' + qsTr('Also known as:') + '</b><br />' +
+                    //: Also known as:
+                    text: '<b>' + qsTr('btc-also-known-as') + '</b><br />' +
                           (alternativeName ? alternativeName : ' - ')
                 }
                 Text {
@@ -116,11 +118,12 @@ Item {
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: "Nokia Pure Text Light"
-                    color: !theme.inverted ?
+                    color: (!theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
+                               UIConstants.COLOR_INVERTED_FOREGROUND)
                     wrapMode: Text.WordWrap
-                    text: '<b>' + qsTr('Birthday:') + '</b>' +
+                    //: Birthday:
+                    text: '<b>' + qsTr('btc-birthday') + '</b>' +
                           (birthday ? birthday : ' - ')
                 }
 
@@ -129,11 +132,12 @@ Item {
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: "Nokia Pure Text Light"
-                    color: !theme.inverted ?
+                    color: (!theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
+                               UIConstants.COLOR_INVERTED_FOREGROUND)
                     wrapMode: Text.WordWrap
-                    text: '<b>' + qsTr('Birthplace:') + '</b><br />' +
+                    //: Birthplace:
+                    text: '<b>' + qsTr('btc-birthplace') + '</b><br />' +
                           (birthplace ? birthplace : ' - ')
                 }
 
@@ -142,11 +146,12 @@ Item {
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: "Nokia Pure Text Light"
-                    color: !theme.inverted ?
+                    color: (!theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
+                               UIConstants.COLOR_INVERTED_FOREGROUND)
                     wrapMode: Text.WordWrap
-                    text: '<b>' + qsTr('Known movies:') + '</b> ' +
+                    //: Known movies:
+                    text: '<b>' + qsTr('btc-known-movies') + '</b> ' +
                           (knownMovies ? knownMovies : ' - ')
                 }
             }
@@ -192,11 +197,13 @@ Item {
             width: parent.width
             font.pixelSize: UIConstants.FONT_LSMALL
             font.family: UIConstants.FONT_FAMILY
-            color: !theme.inverted ?
+            color: (!theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
-                       UIConstants.COLOR_INVERTED_FOREGROUND
-            text: '<b>' + qsTr('Biography:') + '</b><br />' +
-                  (biography ? BUTACA.sanitizeText(biography) : qsTr('Biography not found'))
+                       UIConstants.COLOR_INVERTED_FOREGROUND)
+            //: Biography:
+            text: '<b>' + qsTr('btc-biography') + '</b><br />' +
+                  //: Biography not found
+                  (biography ? BUTACA.sanitizeText(biography) : qsTr('btc-biography-not-found'))
             wrapMode: Text.WordWrap
         }
     }

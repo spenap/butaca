@@ -32,9 +32,12 @@ Item {
 
     function formatMovieCast() {
         var actors = [ actor1, actor2, actor3 ]
-        var output = '<b>' + qsTr('Director:') + '</b> ' +
-            (director ? director : qsTr('not found')) +
-            '<br /><b>' + qsTr('Cast:') + '</b><br />'
+        //: Director:
+        var output = '<b>' + qsTr('btc-director') + '</b> ' +
+            //: not found
+            (director ? director : qsTr('btc-director-not-found')) +
+            //: Cast:
+            '<br /><b>' + qsTr('btc-cast-preview') + '</b><br />'
         for (var i = 0; i < actors.length; i ++) {
             if (actors[i]) {
                 output += actors[i]
@@ -102,11 +105,12 @@ Item {
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: UIConstants.FONT_FAMILY
-                    color: !theme.inverted ?
+                    color: (!theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
+                               UIConstants.COLOR_INVERTED_FOREGROUND)
                     wrapMode: Text.WordWrap
-                    text: '<b>' + qsTr('Also known as:') + '</b><br />' +
+                    //: Also known as:
+                    text: '<b>' + qsTr('btc-also-known-as') + '</b><br />' +
                           (alternativeName ? alternativeName : ' - ')
                 }
 
@@ -115,11 +119,12 @@ Item {
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: UIConstants.FONT_FAMILY
-                    color: !theme.inverted ?
+                    color: (!theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
+                               UIConstants.COLOR_INVERTED_FOREGROUND)
                     wrapMode: Text.WordWrap
-                    text: '<b>' + qsTr('Certification:') + '</b> ' +
+                    //: Certification:
+                    text: '<b>' + qsTr('btc-certification') + '</b> ' +
                           (certification ? certification : ' - ')
                 }
 
@@ -128,11 +133,12 @@ Item {
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: UIConstants.FONT_FAMILY
-                    color: !theme.inverted ?
+                    color: (!theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
+                               UIConstants.COLOR_INVERTED_FOREGROUND)
                     wrapMode: Text.WordWrap
-                    text: '<b>' + qsTr('Release date:') + '</b><br /> ' +
+                    //: Release date:
+                    text: '<b>' + qsTr('btc-release-date') + '</b><br /> ' +
                           (released ? released : ' - ')
                 }
 
@@ -141,11 +147,12 @@ Item {
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: UIConstants.FONT_FAMILY
-                    color: !theme.inverted ?
+                    color: (!theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
+                               UIConstants.COLOR_INVERTED_FOREGROUND)
                     wrapMode: Text.WordWrap
-                    text: '<b>' + qsTr('Budget:') + '</b> ' +
+                    //: Budget:
+                    text: '<b>' + qsTr('btc-budget') + '</b> ' +
                           (budget ? controller.formatCurrency(budget) : ' - ')
                 }
 
@@ -154,11 +161,12 @@ Item {
                     width: parent.width
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: UIConstants.FONT_FAMILY
-                    color: !theme.inverted ?
+                    color: (!theme.inverted ?
                                UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
+                               UIConstants.COLOR_INVERTED_FOREGROUND)
                     wrapMode: Text.WordWrap
-                    text: '<b>' + qsTr('Revenue:') + '</b> ' +
+                    //: Revenue:
+                    text: '<b>' + qsTr('btc-revenue') + '</b> ' +
                           (revenue ? controller.formatCurrency(revenue) : ' - ')
                 }
 
@@ -212,8 +220,10 @@ Item {
             width: parent.width
             font.pixelSize: UIConstants.FONT_LSMALL
             font.family: UIConstants.FONT_FAMILY
-            text: '<b>' + qsTr('Overview:') + '</b><br />' +
-                  (overview ? BUTACA.sanitizeText(overview) : qsTr('Overview not found'))
+            //: Overview:
+            text: '<b>' + qsTr('btc-overview') + '</b><br />' +
+                  //: Overview not found
+                  (overview ? BUTACA.sanitizeText(overview) : qsTr('btc-overview-not-found'))
             color: !theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
                        UIConstants.COLOR_INVERTED_FOREGROUND
@@ -226,10 +236,11 @@ Item {
             anchors.topMargin: 20
             font.pixelSize: UIConstants.FONT_SLARGE
             font.family: UIConstants.FONT_FAMILY
-            color: !theme.inverted ?
+            color: (!theme.inverted ?
                        UIConstants.COLOR_FOREGROUND :
-                       UIConstants.COLOR_INVERTED_FOREGROUND
-            text: '<b>' + qsTr('Movie trailer') + '</b>'
+                       UIConstants.COLOR_INVERTED_FOREGROUND)
+            //: Movie trailer
+            text: '<b>' + qsTr('btc-movie-trailer') + '</b>'
             visible: trailerImage.visible
         }
 

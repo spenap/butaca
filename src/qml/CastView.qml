@@ -64,7 +64,8 @@ Component {
                 flickableDirection: Flickable.VerticalFlick
                 model: castModel
                 header: ButacaHeader {
-                    text: qsTr('Full cast in %1' ).arg(movie)
+                    //: Full cast in %1
+                    text: qsTr('btc-full-cast' ).arg(movie)
                     showDivider: false
                 }
                 delegate: CustomListDelegate {
