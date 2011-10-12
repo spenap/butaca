@@ -24,6 +24,19 @@ Description: Butaca is an application providing cinema information
  .
  Butaca also uses Google Showtimes to let you find what's
  going on on the theaters around you, or look for a given movie.
+XB-Maemo-Display-Name: Butaca: cinema information
+XB-Maemo-Display-Name-es_ES: Butaca: informacion de cine
+XB-Description-es_ES: Butaca te proporciona informacion del mundo del cine
+ Butaca es una aplicacion que te permite acceder a un monton
+ de informacion del mundo del cine. Usando The Movie Database
+ como backend, Butaca te permite buscar una pelicula y obtener
+ su titulo, valoracion, fecha de estreno, sinopsis, reparto...
+ Tambien se puede usar para acceder a las personas en la industria
+ del cine: actores, directores... y consultar toda su informacion.
+ .
+ Butaca emplea Google Showtimes para recuperar informacion de
+ la cartelera a tu alrededor, y para permitirte buscar peliculas
+ en concreto.
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAABmJLR0QA/wD/
  AP+gvaeTAAATiUlEQVR4nO1dfXBU1dn/3c/9zmY32QSSQIRKCMVYU5CvQqPE
