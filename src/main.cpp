@@ -39,6 +39,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     if (translator.load("l10n/" + locale, ":/")) {
         app->installTranslator(&translator);
+    } else if (translator.load("l10n/en", ":/")) {
+        app->installTranslator(&translator);
     }
 
     QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
