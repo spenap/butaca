@@ -74,7 +74,8 @@ RESOURCES += \
 
 CODECFORTR = UTF-8
 TRANSLATIONS += \
-    l10n/es.ts
+    l10n/es.ts \
+    l10n/en.ts
 
 unix {
     #VARIABLES
