@@ -57,8 +57,8 @@ Item {
             anchors.rightMargin: -ExtrasConstants.MARGIN_XLARGE
             visible: mouseArea.pressed
             source: theme.inverted ?
-                        'image://theme/meegotouch-list-inverted-background-pressed-vertical-center':
-                        'image://theme/meegotouch-list-background-pressed-vertical-center'
+                        'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center' :
+                        'image://theme/meegotouch-list-fullwidth-background-pressed-vertical-center'
         }
 
         MouseArea {

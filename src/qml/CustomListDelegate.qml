@@ -40,8 +40,8 @@ Item {
         anchors.fill: parent
         visible: mouseArea.pressed && pressable
         source: theme.inverted ?
-                    'image://theme/meegotouch-list-inverted-background-pressed-vertical-center':
-                    'image://theme/meegotouch-list-background-pressed-vertical-center'
+                    'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center':
+                    'image://theme/meegotouch-list-fullwidth-background-pressed-vertical-center'
     }
 
     MouseArea {
