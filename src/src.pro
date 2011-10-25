@@ -78,7 +78,8 @@ TRANSLATIONS += \
     l10n/butaca.en.ts \
     l10n/butaca.de.ts \
     l10n/butaca.fi.ts \
-    l10n/butaca.fr_FR.ts
+    l10n/butaca.fr_FR.ts \
+    l10n/butaca.ro.ts
 
 unix {
     #VARIABLES
