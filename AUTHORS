@@ -2,8 +2,20 @@ Butaca is written by:
 
 Simon Pena <spena@igalia.com>
 
+with contributions from Adrian Perez <aperez@igalia.com>
+
 Butaca's UX is being designed by Felipe Erias
 http://blogs.igalia.com/femorandeira/
+
+L10n credits:
+ * Nik Rolls - English (en_GB) translation
+ * Christoph Keller - German (de) translation
+ * Janne Makinen - Finnish (fi) translation
+ * Alexandre Mazari - French (fr_FR) translation
+ * Petru Motrescu - Romanian (ro) translation
+ * Oytun Şengül, Ismail Coskuner, Aras Ergus and sengun95 - Turkish (tr)
+   translation
+
 
 The movie information is retrieved from:
 
