@@ -35,5 +35,6 @@
         <file>resources/tmdb-logo.png</file>
         <file>l10n/butaca.en.qm</file>
         <file>l10n/butaca.es.qm</file>
+        <file>l10n/butaca.de.qm</file>
     </qresource>
 </RCC>
