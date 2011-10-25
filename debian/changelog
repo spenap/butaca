@@ -1,3 +1,11 @@
+butaca (0.4.0-rc1) unstable; urgency=low
+
+  * Added L10n support by Adrian Perez
+  * Languages currently supported: English, Spanish, German, French,
+    Finnish, Romanian and Turkish
+
+ -- Simon Pena <spena@igalia.com>  Tue, 25 Oct 2011 20:08:02 +0300
+
 butaca (0.3.8) unstable; urgency=low
 
   * Improved stability when filtering showtimes view
