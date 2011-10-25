@@ -76,7 +76,8 @@ CODECFORTR = UTF-8
 TRANSLATIONS += \
     l10n/butaca.es.ts \
     l10n/butaca.en.ts \
-    l10n/butaca.de.ts
+    l10n/butaca.de.ts \
+    l10n/butaca.fi.ts
 
 unix {
     #VARIABLES
