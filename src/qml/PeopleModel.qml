@@ -25,7 +25,7 @@ XmlListModel {
 
     property string params: ''
 
-    source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, locale, params)
+    source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, appLocale, params)
     query: BUTACA.TMDB_PERSON_QUERY
 
     XmlRole { name: "score"; query: "score/number()" }

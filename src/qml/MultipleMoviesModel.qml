@@ -27,7 +27,7 @@ XmlListModel {
     property string apiMethod: ''
     property string params: ''
 
-    source: BUTACA.getTMDbSource(apiMethod, locale, params)
+    source: BUTACA.getTMDbSource(apiMethod, appLocale, params)
     query: BUTACA.TMDB_MOVIE_QUERY
 
     XmlRole { name: "tmdbId"; query: "id/string()" }

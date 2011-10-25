@@ -66,7 +66,6 @@ function getTMDbSource(apiMethod, lang, params) {
     if (params !== '') {
         source += (params.charAt(0) == '?' ? params : '/' + params)
     }
-
     return source
 }
 

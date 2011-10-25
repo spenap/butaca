@@ -274,8 +274,8 @@ Page {
                     target: currentListView.model
                     restoreEntryValues: false
                     source: currentListView.model === moviesModel ?
-                                BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, locale, searchTerm) :
-                                BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, locale, searchTerm)
+                                BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, appLocale, searchTerm) :
+                                BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, appLocale, searchTerm)
                 }
                 PropertyChanges  {
                     target: currentListView

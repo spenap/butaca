@@ -25,7 +25,7 @@ XmlListModel {
 
     property string params: ''
 
-    source: BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_GET_INFO, locale, params)
+    source: BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_GET_INFO, appLocale, params)
     query: BUTACA.TMDB_MOVIE_CAST_QUERY
 
     /* name */
