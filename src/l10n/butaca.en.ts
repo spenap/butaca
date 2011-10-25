@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="en_GB" version="2.0">
 <context>
     <name>AboutView</name>
     <message>
@@ -12,8 +10,8 @@
     <message>
         <location filename="../qml/AboutView.qml" line="162"/>
         <source>btc-aftercredits-disclaimer</source>
-        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
-        <translation>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</translation>
+        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What's After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
+        <translation>This product uses the &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="178"/>
@@ -46,7 +44,7 @@
         <location filename="../qml/CastView.qml" line="68"/>
         <source>btc-full-cast</source>
         <extracomment>Full cast in %1</extracomment>
-        <translation>Full cast in %1</translation>
+        <translation>Full cast of %1</translation>
     </message>
 </context>
 <context>
@@ -61,13 +59,13 @@
         <location filename="../qml/DetailedView.qml" line="52"/>
         <source>btc-open-tmdb</source>
         <extracomment>View in TMDb</extracomment>
-        <translation>View in TMDb</translation>
+        <translation>View on TMDb</translation>
     </message>
     <message>
         <location filename="../qml/DetailedView.qml" line="58"/>
         <source>btc-open-imdb</source>
         <extracomment>View in IMDb</extracomment>
-        <translation>View in IMDb</translation>
+        <translation>View on IMDb</translation>
     </message>
 </context>
 <context>
@@ -75,7 +73,7 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="68"/>
         <source>btc-person-filmography</source>
-        <extracomment>%1&apos;s filmography</extracomment>
+        <extracomment>%1's filmography</extracomment>
         <translation>%1&apos;s filmography</translation>
     </message>
 </context>
@@ -109,7 +107,7 @@
         <location filename="../qml/PersonDelegate.qml" line="154"/>
         <source>btc-known-movies</source>
         <extracomment>Known movies:</extracomment>
-        <translation>Known movies:</translation>
+        <translation>Known for:</translation>
     </message>
     <message>
         <location filename="../qml/PersonDelegate.qml" line="204"/>
@@ -205,7 +203,7 @@
         <location filename="../qml/SettingsView.qml" line="160"/>
         <source>btc-order-criteria</source>
         <extracomment>Order criteria</extracomment>
-        <translation>Order criteria</translation>
+        <translation>Order by</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="174"/>
@@ -268,7 +266,7 @@
         <location filename="../qml/SingleMovieDelegate.qml" line="38"/>
         <source>btc-director-not-found</source>
         <extracomment>not found</extracomment>
-        <translation>not found</translation>
+        <translation>Not found</translation>
     </message>
     <message>
         <location filename="../qml/SingleMovieDelegate.qml" line="40"/>
@@ -337,7 +335,7 @@
         <location filename="../qml/TheatersView.qml" line="136"/>
         <source>btc-theaters</source>
         <extracomment>On theaters</extracomment>
-        <translation>On theaters</translation>
+        <translation>In theaters</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="184"/>
@@ -375,8 +373,8 @@
     <message>
         <location filename="../qml/WelcomeView.qml" line="66"/>
         <source>btc-showtimes-description</source>
-        <extracomment>What&apos;s on cinemas near you</extracomment>
-        <translation>What&apos;s on cinemas near you</translation>
+        <extracomment>What's on cinemas near you</extracomment>
+        <translation>What&apos;s on in cinemas near you</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="68"/>

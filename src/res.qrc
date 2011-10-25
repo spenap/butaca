@@ -33,7 +33,7 @@
         <file>resources/person-placeholder.svg</file>
         <file>resources/butaca.svg</file>
         <file>resources/tmdb-logo.png</file>
-        <file>l10n/es.qm</file>
-        <file>l10n/en.qm</file>
+        <file>l10n/butaca.en.qm</file>
+        <file>l10n/butaca.es.qm</file>
     </qresource>
 </RCC>

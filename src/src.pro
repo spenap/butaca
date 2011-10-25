@@ -74,8 +74,8 @@ RESOURCES += \
 
 CODECFORTR = UTF-8
 TRANSLATIONS += \
-    l10n/es.ts \
-    l10n/en.ts
+    l10n/butaca.es.ts \
+    l10n/butaca.en.ts
 
 unix {
     #VARIABLES
