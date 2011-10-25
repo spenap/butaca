@@ -39,5 +39,6 @@
         <file>l10n/butaca.fi.qm</file>
         <file>l10n/butaca.fr_FR.qm</file>
         <file>l10n/butaca.ro.qm</file>
+        <file>l10n/butaca.tr.qm</file>
     </qresource>
 </RCC>
