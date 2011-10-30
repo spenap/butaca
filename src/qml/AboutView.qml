@@ -39,6 +39,15 @@ Component {
             'You should have received a copy of the GNU General Public License ' +
             'along with this program. If not, see ' +
             '<a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a><br /><br />'
+        property string credits: 'L10n credits:<br />' +
+                                      '<ul>'+
+                                      '<li>Nik Rolls - English (en_GB)</li>' +
+                                      '<li>Christoph Keller - German (de)</li>' +
+                                      '<li>Janne Makinen - Finnish (fi)</li>' +
+                                      '<li>Alexandre Mazari - French (fr_FR)</li>' +
+                                      '<li>Petru Motrescu - Romanian (ro)</li>' +
+                                      '<li>Oytun Şengül, Ismail Coskuner, Aras Ergus - Turkish (tr)</li>' +
+                                      '</ul>'
 
         tools: ToolBarLayout {
             ToolIcon {
@@ -163,17 +172,25 @@ Component {
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
 
-                Text {
-                    id: aboutLicense
-                    font.pixelSize: UIConstants.FONT_LSMALL
-                    font.family: "Nokia Pure Text Light"
-                    color: !theme.inverted ?
-                               UIConstants.COLOR_FOREGROUND :
-                               UIConstants.COLOR_INVERTED_FOREGROUND
-                    width: parent.width
-                    wrapMode: Text.WordWrap
-                    text: license
-                    onLinkActivated: Qt.openUrlExternally(link)
+
+                Button {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: qsTr('Credits')
+                    onClicked: {
+                        dialog.titleText = qsTr('Credits')
+                        dialog.message = credits
+                        dialog.open()
+                    }
+                }
+
+                Button {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: qsTr('License')
+                    onClicked: {
+                        dialog.titleText = qsTr('License')
+                        dialog.message = license
+                        dialog.open()
+                    }
                 }
             }
         }
@@ -181,6 +198,11 @@ Component {
         ScrollDecorator {
             flickableItem: flick
             anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
+        }
+
+        QueryDialog {
+            id: dialog
+            acceptButtonText: qsTr('OK')
         }
     }
 }
