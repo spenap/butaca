@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.0">
 <context>
     <name>AboutView</name>
     <message>
@@ -12,7 +10,7 @@
     <message>
         <location filename="../qml/AboutView.qml" line="162"/>
         <source>btc-aftercredits-disclaimer</source>
-        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What\&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
+        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What's After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
         <translation>Este producto utiliza el API de &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; pero no está promocionado o certificado por él.</translation>
     </message>
     <message>
@@ -33,10 +31,6 @@
 </context>
 <context>
     <name>ButacaController</name>
-    <message>
-        <source>Shared with #Butaca</source>
-        <translation type="obsolete">Compartido con #Butaca</translation>
-    </message>
     <message>
         <location filename="../butacacontroller.cpp" line="46"/>
         <source>btc-shared-with-butaca</source>
@@ -79,7 +73,7 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="68"/>
         <source>btc-person-filmography</source>
-        <extracomment>%1&apos;s filmography</extracomment>
+        <extracomment>%1's filmography</extracomment>
         <translation>Filmografía de %1</translation>
     </message>
 </context>
@@ -379,7 +373,7 @@
     <message>
         <location filename="../qml/WelcomeView.qml" line="66"/>
         <source>btc-showtimes-description</source>
-        <extracomment>What\&apos;s on cinemas near you</extracomment>
+        <extracomment>What's on cinemas near you</extracomment>
         <translation>Explorar qué hay ahora en el cine</translation>
     </message>
     <message>

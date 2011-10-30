@@ -26,7 +26,7 @@
         <location filename="../qml/BrowseGenresView.qml" line="57"/>
         <source>btc-browse-genres</source>
         <extracomment>Movie genres</extracomment>
-        <translation>Genres de film</translation>
+        <translation>Genres</translation>
     </message>
 </context>
 <context>
@@ -89,7 +89,7 @@
         <location filename="../qml/PersonDelegate.qml" line="113"/>
         <source>btc-also-known-as</source>
         <extracomment>Also known as:</extracomment>
-        <translation>Connu egalement comme:</translation>
+        <translation>Egalement connu comme:</translation>
     </message>
     <message>
         <location filename="../qml/PersonDelegate.qml" line="126"/>
@@ -152,19 +152,19 @@
         <location filename="../qml/SearchView.qml" line="147"/>
         <source>btc-people</source>
         <extracomment>People</extracomment>
-        <translation>Personnes</translation>
+        <translation>Equipe</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="158"/>
         <source>btc-shows</source>
         <extracomment>Shows</extracomment>
-        <translation>Series</translation>
+        <translation>Séances</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="302"/>
         <source>btc-no-results</source>
         <extracomment>No results found</extracomment>
-        <translation>Aucun resultat</translation>
+        <translation>Aucun résultat</translation>
     </message>
 </context>
 <context>
@@ -179,7 +179,7 @@
         <location filename="../qml/SettingsView.qml" line="96"/>
         <source>btc-showtimes</source>
         <extracomment>Showtimes</extracomment>
-        <translation>Heures de diffusion</translation>
+        <translation>Séances</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="107"/>
@@ -245,7 +245,7 @@
         <location filename="../qml/SettingsView.qml" line="235"/>
         <source>btc-results-per-page</source>
         <extracomment>Results per page</extracomment>
-        <translation>Resultat par page</translation>
+        <translation>Resultats par page</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="263"/>
@@ -341,13 +341,13 @@
         <location filename="../qml/TheatersView.qml" line="184"/>
         <source>btc-no-results-given-location</source>
         <extracomment>No results for %1</extracomment>
-        <translation>Pas de resultat pour %1</translation>
+        <translation>Pas de résultat pour %1</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="186"/>
         <source>btc-no-results-automatic-location</source>
         <extracomment>No results for your location</extracomment>
-        <translation>Pas de resultat pour votre position actuelle</translation>
+        <translation>Pas de résultat pour votre position actuelle</translation>
     </message>
 </context>
 <context>
@@ -356,19 +356,19 @@
         <location filename="../qml/WelcomeView.qml" line="60"/>
         <source>btc-browse-genres</source>
         <extracomment>Movie genres</extracomment>
-        <translation>Genres cinematographiques</translation>
+        <translation>Genres</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="62"/>
         <source>btc-browse-genres-description</source>
         <extracomment>Explore movie genres</extracomment>
-        <translation>Explorer les genre de films</translation>
+        <translation>Explorer les genres de films</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="64"/>
         <source>btc-showtimes</source>
         <extracomment>Showtimes</extracomment>
-        <translation>Programmes televisuels</translation>
+        <translation>Séances</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="66"/>
@@ -392,7 +392,7 @@
         <location filename="../qml/WelcomeView.qml" line="79"/>
         <source>btc-settings</source>
         <extracomment>Settings</extracomment>
-        <translation>Preferences</translation>
+        <translation>Préférences</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="85"/>
@@ -404,7 +404,7 @@
         <location filename="../qml/WelcomeView.qml" line="166"/>
         <source>btc-welcome-header</source>
         <extracomment>Enjoy the show!</extracomment>
-        <translation>Appreciez le spectacle!</translation>
+        <translation>Appréciez le spectacle!</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="200"/>

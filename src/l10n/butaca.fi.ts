@@ -89,7 +89,7 @@
         <location filename="../qml/PersonDelegate.qml" line="113"/>
         <source>btc-also-known-as</source>
         <extracomment>Also known as:</extracomment>
-        <translation>Tunnetaan myös nimellä:</translation>
+        <translation>Muita nimiä:</translation>
     </message>
     <message>
         <location filename="../qml/PersonDelegate.qml" line="126"/>
@@ -107,7 +107,7 @@
         <location filename="../qml/PersonDelegate.qml" line="154"/>
         <source>btc-known-movies</source>
         <extracomment>Known movies:</extracomment>
-        <translation>Tunnetut elokuvat:</translation>
+        <translation>Tunnettuja elokuvia:</translation>
     </message>
     <message>
         <location filename="../qml/PersonDelegate.qml" line="204"/>
@@ -140,7 +140,7 @@
         <location filename="../qml/SearchView.qml" line="105"/>
         <source>btc-search-button</source>
         <extracomment>Search</extracomment>
-        <translation>Haku</translation>
+        <translation>Hae</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="136"/>
@@ -284,7 +284,7 @@
         <location filename="../qml/SingleMovieDelegate.qml" line="127"/>
         <source>btc-certification</source>
         <extracomment>Certification:</extracomment>
-        <translation>Sertifiointi:</translation>
+        <translation>Ikäraja:</translation>
     </message>
     <message>
         <location filename="../qml/SingleMovieDelegate.qml" line="141"/>
