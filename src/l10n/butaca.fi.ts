@@ -2,22 +2,39 @@
 <context>
     <name>AboutView</name>
     <message>
-        <location filename="../qml/AboutView.qml" line="145"/>
+        <location filename="../qml/AboutView.qml" line="142"/>
         <source>btc-themoviedb-disclaimer</source>
         <extracomment>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</extracomment>
         <translation>Tämä tuote käyttää &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt;-palvelua, mutta ei ole TMDb:n virallisesti tukema tuote.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="162"/>
+        <location filename="../qml/AboutView.qml" line="157"/>
         <source>btc-aftercredits-disclaimer</source>
-        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What's After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
+        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What\'s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
         <translation>Tämä tuote käyttää &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt;-palvelua, mutta ei ole heidän virallisesti tukema tuote.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="178"/>
+        <location filename="../qml/AboutView.qml" line="171"/>
         <source>btc-showtimes-disclaimer</source>
         <extracomment>This product presents showtimes from &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; but is not endorsed or certified by Google.</extracomment>
         <translation>Tämä tuote käyttää &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt;-palvelua, mutta ei ole Googlen virallisesti tukema tuote.</translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="178"/>
+        <location filename="../qml/AboutView.qml" line="180"/>
+        <source>Credits</source>
+        <translation>Laajuus</translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="188"/>
+        <location filename="../qml/AboutView.qml" line="190"/>
+        <source>License</source>
+        <translation>Lupa</translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="205"/>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -373,7 +390,7 @@
     <message>
         <location filename="../qml/WelcomeView.qml" line="66"/>
         <source>btc-showtimes-description</source>
-        <extracomment>What's on cinemas near you</extracomment>
+        <extracomment>What\'s on cinemas near you</extracomment>
         <translation>Elokuvissa lähelläsi</translation>
     </message>
     <message>

@@ -2,22 +2,39 @@
 <context>
     <name>AboutView</name>
     <message>
-        <location filename="../qml/AboutView.qml" line="145"/>
+        <location filename="../qml/AboutView.qml" line="142"/>
         <source>btc-themoviedb-disclaimer</source>
         <extracomment>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</extracomment>
         <translation>Acest produs utilizează servicii &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; dar nu este sprijinit sau certificat de TMDb.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="162"/>
+        <location filename="../qml/AboutView.qml" line="157"/>
         <source>btc-aftercredits-disclaimer</source>
-        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What's After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
+        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What\'s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
         <translation>Acest produs utilizează servicii &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; dar nu este sprijinat sau certificat de What&apos;s After The Credits?</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="178"/>
+        <location filename="../qml/AboutView.qml" line="171"/>
         <source>btc-showtimes-disclaimer</source>
         <extracomment>This product presents showtimes from &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; but is not endorsed or certified by Google.</extracomment>
         <translation>Acest produs prezintă ore de difuzare din &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; dar nu este sprijinit sau certificat de Google.</translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="178"/>
+        <location filename="../qml/AboutView.qml" line="180"/>
+        <source>Credits</source>
+        <translation>Credite</translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="188"/>
+        <location filename="../qml/AboutView.qml" line="190"/>
+        <source>License</source>
+        <translation>Licenţă</translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="205"/>
+        <source>OK</source>
+        <translation>Bine</translation>
     </message>
 </context>
 <context>
@@ -373,7 +390,7 @@
     <message>
         <location filename="../qml/WelcomeView.qml" line="66"/>
         <source>btc-showtimes-description</source>
-        <extracomment>What's on cinemas near you</extracomment>
+        <extracomment>What\'s on cinemas near you</extracomment>
         <translation>Filme în cinematografele din vecinătate</translation>
     </message>
     <message>
