@@ -60,80 +60,83 @@ Component {
                 rightMargin: UIConstants.DEFAULT_MARGIN
             }
 
-            contentHeight: aboutImage.height +
-                           aboutVersion.height +
-                           aboutCopyright.height +
-                           aboutContact.height +
-                           aboutThemovieDb.height +
-                           aboutAfterCreditsDisclaimer.height +
-                           aboutShowtimesDisclaimer.height +
-                           aboutLicense.height +
-                           UIConstants.DEFAULT_MARGIN * 4
+            contentHeight: contentColumn.height
 
-            Image {
-                id: aboutImage
-                anchors.top: parent.top
-                anchors.horizontalCenter: parent.horizontalCenter
-                source: 'qrc:/resources/butaca.svg'
-            }
-
-            Text {
-                id: aboutVersion
-                text: 'Butaca 0.3.8'
-                anchors.top: aboutImage.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: UIConstants.FONT_XLARGE
-                font.family: UIConstants.FONT_FAMILY
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-            }
-
-            Text {
-                id: aboutCopyright
-                text: 'Copyright © 2011 Simon Pena'
-                anchors.top: aboutVersion.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: UIConstants.FONT_XLARGE
-                font.family: "Nokia Pure Text Light"
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-            }
-
-            Text {
-                id: aboutContact
-                anchors.top: aboutCopyright.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: UIConstants.FONT_LSMALL
-                font.family: UIConstants.FONT_FAMILY
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-                text: '<a href="mailto:spena@igalia.com">spena@igalia.com</a> | ' +
-                      '<a href="http://www.simonpena.com/?utm_source=harmattan&utm_medium=apps&utm_campaign=butaca">simonpena.com</a>'
-                onLinkActivated: Qt.openUrlExternally(link)
-            }
-
-            Item {
-                id: aboutThemovieDb
-                anchors.top: aboutContact.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
+            Column {
+                id: contentColumn
+                spacing: UIConstants.DEFAULT_MARGIN
                 width: parent.width
-                height: childrenRect.height
 
                 Image {
-                    id: aboutThemovieDbImage
-                    anchors.top: parent.top
-                    source: 'qrc:/resources/tmdb-logo.png'
+                    id: aboutImage
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    source: 'qrc:/resources/butaca.svg'
                 }
 
                 Text {
-                    id: aboutThemovieDbDisclaimer
-                    anchors.top: aboutThemovieDbImage.bottom
+                    id: aboutVersion
+                    text: 'Butaca 0.3.8'
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.pixelSize: UIConstants.FONT_XLARGE
+                    font.family: UIConstants.FONT_FAMILY
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                }
+
+                Text {
+                    id: aboutCopyright
+                    text: 'Copyright © 2011 Simon Pena'
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.pixelSize: UIConstants.FONT_XLARGE
+                    font.family: "Nokia Pure Text Light"
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                }
+
+                Text {
+                    id: aboutContact
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    text: '<a href="mailto:spena@igalia.com">spena@igalia.com</a> | ' +
+                          '<a href="http://www.simonpena.com/?utm_source=harmattan&utm_medium=apps&utm_campaign=butaca">simonpena.com</a>'
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+
+                Item {
+                    id: aboutThemovieDb
+                    width: parent.width
+                    height: childrenRect.height
+
+                    Image {
+                        id: aboutThemovieDbImage
+                        anchors.top: parent.top
+                        source: 'qrc:/resources/tmdb-logo.png'
+                    }
+
+                    Text {
+                        id: aboutThemovieDbDisclaimer
+                        anchors.top: aboutThemovieDbImage.bottom
+                        font.pixelSize: UIConstants.FONT_LSMALL
+                        font.family: UIConstants.FONT_FAMILY
+                        color: !theme.inverted ?
+                                   UIConstants.COLOR_FOREGROUND :
+                                   UIConstants.COLOR_INVERTED_FOREGROUND
+                        width: parent.width
+                        wrapMode: Text.WordWrap
+                        //: This product uses the <a href="http://www.themoviedb.org/">TMDb</a> API but is not endorsed or certified by TMDb.
+                        text: qsTr('btc-themoviedb-disclaimer')
+                        onLinkActivated: Qt.openUrlExternally(link)
+                    }
+                }
+
+                Text {
+                    id: aboutAfterCreditsDisclaimer
                     font.pixelSize: UIConstants.FONT_LSMALL
                     font.family: UIConstants.FONT_FAMILY
                     color: !theme.inverted ?
@@ -141,57 +144,37 @@ Component {
                                UIConstants.COLOR_INVERTED_FOREGROUND
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    //: This product uses the <a href="http://www.themoviedb.org/">TMDb</a> API but is not endorsed or certified by TMDb.
-                    text: qsTr('btc-themoviedb-disclaimer')
+                    //: This product uses <a href="http://aftercredits.com/">What\'s After The Credits?</a> API but is not endorsed or certified by them.
+                    text: qsTr('btc-aftercredits-disclaimer')
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
-            }
 
-            Text {
-                id: aboutAfterCreditsDisclaimer
-                anchors.top: aboutThemovieDb.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                font.pixelSize: UIConstants.FONT_LSMALL
-                font.family: UIConstants.FONT_FAMILY
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-                width: parent.width
-                wrapMode: Text.WordWrap
-                //: This product uses <a href="http://aftercredits.com/">What\'s After The Credits?</a> API but is not endorsed or certified by them.
-                text: qsTr('btc-aftercredits-disclaimer')
-                onLinkActivated: Qt.openUrlExternally(link)
-            }
+                Text {
+                    id: aboutShowtimesDisclaimer
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: UIConstants.FONT_FAMILY
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    //: This product presents showtimes from <a href="http://www.google.com/movies">Google Movies</a> but is not endorsed or certified by Google.
+                    text: qsTr('btc-showtimes-disclaimer')
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
 
-            Text {
-                id: aboutShowtimesDisclaimer
-                anchors.top: aboutAfterCreditsDisclaimer.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                font.pixelSize: UIConstants.FONT_LSMALL
-                font.family: UIConstants.FONT_FAMILY
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-                width: parent.width
-                wrapMode: Text.WordWrap
-                //: This product presents showtimes from <a href="http://www.google.com/movies">Google Movies</a> but is not endorsed or certified by Google.
-                text: qsTr('btc-showtimes-disclaimer')
-                onLinkActivated: Qt.openUrlExternally(link)
-            }
-
-            Text {
-                id: aboutLicense
-                anchors.top: aboutShowtimesDisclaimer.bottom
-                anchors.topMargin: UIConstants.DEFAULT_MARGIN
-                font.pixelSize: UIConstants.FONT_LSMALL
-                font.family: "Nokia Pure Text Light"
-                color: !theme.inverted ?
-                           UIConstants.COLOR_FOREGROUND :
-                           UIConstants.COLOR_INVERTED_FOREGROUND
-                width: parent.width
-                wrapMode: Text.WordWrap
-                text: license
-                onLinkActivated: Qt.openUrlExternally(link)
+                Text {
+                    id: aboutLicense
+                    font.pixelSize: UIConstants.FONT_LSMALL
+                    font.family: "Nokia Pure Text Light"
+                    color: !theme.inverted ?
+                               UIConstants.COLOR_FOREGROUND :
+                               UIConstants.COLOR_INVERTED_FOREGROUND
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    text: license
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
             }
         }
 
