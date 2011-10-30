@@ -1,3 +1,10 @@
+butaca (0.4.1) unstable; urgency=low
+
+  * Updated translations after rc1
+  * Added credits section to the About View
+
+ -- Simon Pena <spena@igalia.com>  Sun, 30 Oct 2011 15:18:06 +0200
+
 butaca (0.4.0-rc1) unstable; urgency=low
 
   * Added L10n support by Adrian Perez
