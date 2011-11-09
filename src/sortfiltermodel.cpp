@@ -18,11 +18,19 @@ bool SortFilterModel::filterAcceptsRow(int sourceRow,
 
     // We search on movie name and description and theater name.
     // Theater info and movie times are ignored when searching.
-    QModelIndex movieNameIndex = sourceModel()->index(sourceRow, 0);
-    QModelIndex movieDescriptionIndex = sourceModel()->index(sourceRow, 0);
-    QModelIndex theaterNameIndex = sourceModel()->index(sourceRow, 0);
+    const QModelIndex rowIndex = sourceModel()->index(sourceRow, 0);
 
-    return (sourceModel()->data(movieNameIndex, TheaterListModel::MovieNameRole).toString().contains(filterRegExp()) ||
-            sourceModel()->data(movieDescriptionIndex, TheaterListModel::MovieDescriptionRole).toString().contains(filterRegExp()) ||
-            sourceModel()->data(theaterNameIndex, TheaterListModel::TheaterNameRole).toString().contains(filterRegExp()));
+    const QString movieName =
+            sourceModel()->data(rowIndex,
+                                TheaterListModel::MovieNameRole).toString();
+    const QString movieDescription =
+            sourceModel()->data(rowIndex,
+                                TheaterListModel::MovieDescriptionRole).toString();
+    const QString theaterName =
+            sourceModel()->data(rowIndex,
+                                TheaterListModel::TheaterNameRole).toString();
+
+    return (movieName.contains(filterRegExp()) ||
+            movieDescription.contains(filterRegExp()) ||
+            theaterName.contains(filterRegExp()));
 }
