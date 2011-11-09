@@ -31,6 +31,9 @@
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     QApplication *app = MDeclarativeCache::qApplication(argc, argv);
+    app->setApplicationName("Butaca");
+    app->setOrganizationDomain("com.simonpena");
+    app->setOrganizationName("simonpena");
 
     // Assume that strings in source files are UTF-8
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
