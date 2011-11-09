@@ -15,6 +15,8 @@ public:
         MovieNameRole = Qt::UserRole + 1,
         MovieTimesRole,
         MovieDescriptionRole,
+        MovieIdRole,
+        MovieInfoRole,
         TheaterNameRole,
         TheaterInfoRole
     };

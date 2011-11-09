@@ -74,7 +74,11 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
                 Q_FOREACH(QWebElement movieElement, theaterElement.findAll("div.movie")) {
 
                     Movie movie;
-                    movie.setMovieName(movieElement.findFirst("div.name a").toPlainText());
+                    QWebElement movieAnchor = movieElement.findFirst("div.name a");
+                    QUrl anchorUrl(movieAnchor.attribute("href"));
+                    movie.setMovieId(anchorUrl.queryItemValue("mid"));
+                    movie.setMovieInfo(movieElement.findFirst("span.info").toPlainText());
+                    movie.setMovieName(movieAnchor.toPlainText());
                     movie.setMovieTimes(movieElement.findFirst("div.times").toPlainText());
                     movie.setTheaterName(theaterName);
                     movie.setTheaterInfo(theaterInfo);
