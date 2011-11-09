@@ -26,14 +26,14 @@ public:
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
 
-    void setMovieShowtimes(QList<Movie*> movies);
+    void setMovieShowtimes(QList<Movie> movies);
 
 signals:
     void countChanged();
 
 private:
     Q_DISABLE_COPY(TheaterListModel)
-    QList<Movie*> m_movies;
+    QList<Movie> m_movies;
 };
 
 #endif // THEATERLISTMODEL_H

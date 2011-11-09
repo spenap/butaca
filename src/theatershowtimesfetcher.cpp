@@ -61,7 +61,7 @@ void TheaterShowtimesFetcher::fetchTheaters(QString location)
 void TheaterShowtimesFetcher::onLoadFinished(bool ok)
 {
     if (ok) {
-        QList<Movie*> movies;
+        QList<Movie> movies;
         QWebElement document = m_webView->page()->mainFrame()->documentElement();
         QWebElementCollection theaters = document.findAll("div.theater");
 
@@ -73,11 +73,11 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
 
                 Q_FOREACH(QWebElement movieElement, theaterElement.findAll("div.movie")) {
 
-                    Movie *movie = new Movie;
-                    movie->setMovieName(movieElement.findFirst("div.name a").toPlainText());
-                    movie->setMovieTimes(movieElement.findFirst("div.times").toPlainText());
-                    movie->setTheaterName(theaterName);
-                    movie->setTheaterInfo(theaterInfo);
+                    Movie movie;
+                    movie.setMovieName(movieElement.findFirst("div.name a").toPlainText());
+                    movie.setMovieTimes(movieElement.findFirst("div.times").toPlainText());
+                    movie.setTheaterName(theaterName);
+                    movie.setTheaterInfo(theaterInfo);
 
                     movies << movie;
                 }

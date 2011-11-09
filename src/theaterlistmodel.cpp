@@ -33,29 +33,28 @@ QVariant TheaterListModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 
-    Movie *movie = m_movies.at(index.row());
+    const Movie& movie = m_movies.at(index.row());
 
     switch (role) {
     case MovieNameRole:
-        return QVariant::fromValue(movie->movieName());
+        return QVariant::fromValue(movie.movieName());
     case MovieTimesRole:
-        return QVariant::fromValue(movie->movieTimes());
+        return QVariant::fromValue(movie.movieTimes());
     case MovieDescriptionRole:
-        return QVariant::fromValue(movie->movieDescription());
+        return QVariant::fromValue(movie.movieDescription());
     case TheaterNameRole:
-        return QVariant::fromValue(movie->theaterName());
+        return QVariant::fromValue(movie.theaterName());
     case TheaterInfoRole:
-        return QVariant::fromValue(movie->theaterInfo());
+        return QVariant::fromValue(movie.theaterInfo());
     default:
         return QVariant();
     }
 }
 
-void TheaterListModel::setMovieShowtimes(QList<Movie*> movies)
+void TheaterListModel::setMovieShowtimes(QList<Movie> movies)
 {
     if (m_movies.count() > 0) {
         beginRemoveRows(QModelIndex(), 0, m_movies.count() - 1);
-        qDeleteAll(m_movies.begin(), m_movies.end());
         m_movies.clear();
         endRemoveRows();
     }

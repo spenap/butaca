@@ -1,30 +1,26 @@
 #include "movie.h"
 
-Movie::Movie()
-{
-}
-
-const QString &Movie::movieName() const
+const QString Movie::movieName() const
 {
     return m_movieName;
 }
 
-const QString &Movie::movieTimes() const
+const QString Movie::movieTimes() const
 {
     return m_movieTimes;
 }
 
-const QString &Movie::movieDescription() const
+const QString Movie::movieDescription() const
 {
     return m_movieDescription;
 }
 
-const QString &Movie::theaterName() const
+const QString Movie::theaterName() const
 {
     return m_theaterName;
 }
 
-const QString &Movie::theaterInfo() const
+const QString Movie::theaterInfo() const
 {
     return m_theaterInfo;
 }
