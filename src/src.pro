@@ -25,14 +25,16 @@ SOURCES += main.cpp \
     butacacontroller.cpp \
     movie.cpp \
     theatershowtimesfetcher.cpp \
-    sortfiltermodel.cpp
+    sortfiltermodel.cpp \
+    customnetworkaccessmanagerfactory.cpp
 
 HEADERS += \
     theaterlistmodel.h \
     butacacontroller.h \
     movie.h \
     theatershowtimesfetcher.h \
-    sortfiltermodel.h
+    sortfiltermodel.h \
+    customnetworkaccessmanagerfactory.h
 
 OTHER_FILES += \
     qml/main.qml \
@@ -118,4 +120,3 @@ updateqm.commands = lrelease ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
 updateqm.CONFIG += no_link
 QMAKE_EXTRA_COMPILERS += updateqm
 PRE_TARGETDEPS += compiler_updateqm_make_all
-

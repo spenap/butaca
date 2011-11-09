@@ -18,6 +18,7 @@
  **************************************************************************/
 
 #include "butacacontroller.h"
+#include "customnetworkaccessmanagerfactory.h"
 
 #include <QtGui/QApplication>
 #include <QtDeclarative>
@@ -52,6 +53,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     context->setContextProperty("appLocale", locale.replace("_","-"));
     ButacaController *controller = new ButacaController(context);
 
+    view->engine()->setNetworkAccessManagerFactory(new CustomNetworkAccessManagerFactory);
     view->setSource(QUrl("qrc:/qml/main.qml"));
     view->showFullScreen();
 
