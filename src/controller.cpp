@@ -1,4 +1,4 @@
-#include "butacacontroller.h"
+#include "controller.h"
 #include "theatershowtimesfetcher.h"
 #include "theaterlistmodel.h"
 #include "sortfiltermodel.h"
@@ -7,7 +7,7 @@
 #include <maemo-meegotouch-interfaces/shareuiinterface.h>
 #include <MDataUri>
 
-ButacaController::ButacaController(QDeclarativeContext *context) :
+Controller::Controller(QDeclarativeContext *context) :
     QObject(),
     m_declarativeContext(context),
     m_showtimesFetcher(0),
@@ -27,14 +27,14 @@ ButacaController::ButacaController(QDeclarativeContext *context) :
             this, SLOT(onTheatersFetched(int)), Qt::UniqueConnection);
 }
 
-ButacaController::~ButacaController()
+Controller::~Controller()
 {
     delete m_showtimesFetcher;
     delete m_sortFilterModel;
     delete m_theaterListModel;
 }
 
-void ButacaController::share(QString title, QString url)
+void Controller::share(QString title, QString url)
 {
     // See https://meego.gitorious.org/meego-sharing-framework/share-ui/blobs/master/examples/link-share/page.cpp
     // and http://forum.meego.com/showthread.php?t=3768
@@ -55,23 +55,23 @@ void ButacaController::share(QString title, QString url)
     }
 }
 
-void ButacaController::fetchTheaters(QString location)
+void Controller::fetchTheaters(QString location)
 {
     m_location = location;
     m_showtimesFetcher->fetchTheaters(m_location);
 }
 
-QString ButacaController::currentLocation()
+QString Controller::currentLocation()
 {
     return m_location;
 }
 
-void ButacaController::onTheatersFetched(int count)
+void Controller::onTheatersFetched(int count)
 {
     emit theatersFetched(count > 0);
 }
 
-QString ButacaController::formatCurrency(QString value)
+QString Controller::formatCurrency(QString value)
 {
     double doubleValue = value.toDouble();
     return QString("$%L1").arg(doubleValue, 0, 'f', 0);

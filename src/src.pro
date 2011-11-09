@@ -22,19 +22,19 @@ LIBS += -lmdeclarativecache
 
 SOURCES += main.cpp \
     theaterlistmodel.cpp \
-    butacacontroller.cpp \
     movie.cpp \
     theatershowtimesfetcher.cpp \
     sortfiltermodel.cpp \
-    customnetworkaccessmanagerfactory.cpp
+    customnetworkaccessmanagerfactory.cpp \
+    controller.cpp
 
 HEADERS += \
     theaterlistmodel.h \
-    butacacontroller.h \
     movie.h \
     theatershowtimesfetcher.h \
     sortfiltermodel.h \
-    customnetworkaccessmanagerfactory.h
+    customnetworkaccessmanagerfactory.h \
+    controller.h
 
 OTHER_FILES += \
     qml/main.qml \

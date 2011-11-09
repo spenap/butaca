@@ -1,5 +1,5 @@
-#ifndef BUTACACONTROLLER_H
-#define BUTACACONTROLLER_H
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 
 #include <QObject>
 
@@ -8,12 +8,12 @@ class TheaterShowtimesFetcher;
 class TheaterListModel;
 class SortFilterModel;
 
-class ButacaController : public QObject
+class Controller : public QObject
 {
     Q_OBJECT
 public:
-    explicit ButacaController(QDeclarativeContext *context);
-    ~ButacaController();
+    explicit Controller(QDeclarativeContext *context);
+    ~Controller();
 
 public slots:
     //! Shares content with the share-ui interface
@@ -51,4 +51,4 @@ private:
     QString m_location;
 };
 
-#endif // BUTACACONTROLLER_H
+#endif // CONTROLLER_H

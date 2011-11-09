@@ -17,7 +17,7 @@
  *
  **************************************************************************/
 
-#include "butacacontroller.h"
+#include "controller.h"
 #include "customnetworkaccessmanagerfactory.h"
 
 #include <QtGui/QApplication>
@@ -51,7 +51,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     // The Movie Database uses "-" as the divider between language and country code
     context->setContextProperty("appLocale", locale.replace("_","-"));
-    ButacaController *controller = new ButacaController(context);
+    Controller *controller = new Controller(context);
 
     view->engine()->setNetworkAccessManagerFactory(new CustomNetworkAccessManagerFactory);
     view->setSource(QUrl("qrc:/qml/main.qml"));
