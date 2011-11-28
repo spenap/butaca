@@ -47,6 +47,7 @@ Component {
                                       '<li>Alexandre Mazari - French (fr_FR)</li>' +
                                       '<li>Petru Motrescu - Romanian (ro)</li>' +
                                       '<li>Oytun Şengül, Ismail Coskuner, Aras Ergus - Turkish (tr)</li>' +
+                                      '<li>Joaquim Rocha - Portuguese (pt)</li>' +
                                       '</ul>'
 
         tools: ToolBarLayout {
