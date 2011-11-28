@@ -39,6 +39,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     if (translator.load("l10n/butaca." + locale, ":/")) {
         app->installTranslator(&translator);
+    } else {
+        translator.load("l10n/butaca.en.qm", ":/");
+        app->installTranslator(&translator);
     }
 
     QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
