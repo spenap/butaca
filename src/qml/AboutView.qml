@@ -85,7 +85,7 @@ Component {
 
                 Text {
                     id: aboutVersion
-                    text: 'Butaca 0.4.1'
+                    text: 'Butaca 0.4.2'
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: UIConstants.FONT_XLARGE
                     font.family: UIConstants.FONT_FAMILY
