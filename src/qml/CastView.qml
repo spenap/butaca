@@ -65,7 +65,7 @@ Component {
                 model: castModel
                 header: ButacaHeader {
                     //: Full cast in %1
-                    text: qsTr('btc-full-cast' ).arg(movie)
+                    text: qsTr('btc-full-cast').arg(movie)
                     showDivider: false
                 }
                 delegate: CustomListDelegate {
@@ -75,7 +75,10 @@ Component {
                 }
 
                 section.property: 'department'
-                section.delegate: ListSectionDelegate { sectionName: section }
+                section.delegate: ListSectionDelegate {
+                    // Translate the section name. See CastModel.qml for translations
+                    sectionName: qsTranslate("CastModel", section)
+                }
             }
 
             ScrollDecorator {

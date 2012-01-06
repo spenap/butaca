@@ -1,38 +1,40 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="de">
 <context>
     <name>AboutView</name>
     <message>
-        <location filename="../qml/AboutView.qml" line="142"/>
+        <location filename="../qml/AboutView.qml" line="143"/>
         <source>btc-themoviedb-disclaimer</source>
         <extracomment>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</extracomment>
         <translation>Dieses Produkt verwendet die &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API Schnittstelle, ist jedoch von TMDb weder bestätigt noch gebilligt.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="157"/>
+        <location filename="../qml/AboutView.qml" line="158"/>
         <source>btc-aftercredits-disclaimer</source>
-        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What\'s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
+        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What\&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
         <translation>Dieses Produkt verwendet die &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API Schnittstelle, ist jedoch von ihnen weder bestätigt noch gebilligt.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="171"/>
+        <location filename="../qml/AboutView.qml" line="172"/>
         <source>btc-showtimes-disclaimer</source>
         <extracomment>This product presents showtimes from &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; but is not endorsed or certified by Google.</extracomment>
         <translation>Dieses Produkt zeigt die Vorstellungszeiten von &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt;, ist jedoch von Google weder bestätigt noch gebilligt.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="178"/>
-        <location filename="../qml/AboutView.qml" line="180"/>
+        <location filename="../qml/AboutView.qml" line="179"/>
+        <location filename="../qml/AboutView.qml" line="181"/>
         <source>Credits</source>
         <translation>Credits</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="188"/>
-        <location filename="../qml/AboutView.qml" line="190"/>
+        <location filename="../qml/AboutView.qml" line="189"/>
+        <location filename="../qml/AboutView.qml" line="191"/>
         <source>License</source>
         <translation>Lizenz</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="205"/>
+        <location filename="../qml/AboutView.qml" line="206"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -53,6 +55,64 @@
         <source>btc-shared-with-butaca</source>
         <extracomment>Shared with #Butaca</extracomment>
         <translation>Geteilt mit #Butaca</translation>
+    </message>
+</context>
+<context>
+    <name>CastModel</name>
+    <message>
+        <location filename="../qml/CastModel.qml" line="30"/>
+        <source>Camera</source>
+        <translation>Kamera</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="31"/>
+        <source>Crew</source>
+        <translation>Crew</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="32"/>
+        <source>Sound</source>
+        <translation>Ton</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="33"/>
+        <source>Directing</source>
+        <translation>Regie</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="34"/>
+        <source>Writing</source>
+        <translation>Drehbuch</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="35"/>
+        <source>Production</source>
+        <translation>Produktion</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="36"/>
+        <source>Actors</source>
+        <translation>Schauspieler</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="37"/>
+        <source>Editing</source>
+        <translation>Schnitt</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="38"/>
+        <source>Art</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="39"/>
+        <source>Costume &amp; Make-Up</source>
+        <translation>Kostüm &amp; Make-Up</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="40"/>
+        <source>Visual Effects</source>
+        <translation>Visuelle Effekte</translation>
     </message>
 </context>
 <context>
@@ -90,7 +150,7 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="68"/>
         <source>btc-person-filmography</source>
-        <extracomment>%1's filmography</extracomment>
+        <extracomment>%1&apos;s filmography</extracomment>
         <translation>Filmografie von %1</translation>
     </message>
 </context>
@@ -390,7 +450,7 @@
     <message>
         <location filename="../qml/WelcomeView.qml" line="66"/>
         <source>btc-showtimes-description</source>
-        <extracomment>What\'s on cinemas near you</extracomment>
+        <extracomment>What\&apos;s on cinemas near you</extracomment>
         <translation>Das kommt in Kinos in deiner Nähe</translation>
     </message>
     <message>

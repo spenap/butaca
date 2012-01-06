@@ -25,6 +25,21 @@ XmlListModel {
 
     property string params: ''
 
+    // Dummy function for translations (found no other way to add them to the file)
+    function dummy() {
+        qsTr('Camera');
+        qsTr("Crew");
+        qsTr("Sound");
+        qsTr("Directing");
+        qsTr("Writing");
+        qsTr("Production");
+        qsTr("Actors");
+        qsTr("Editing");
+        qsTr("Art");
+        qsTr("Costume & Make-Up");
+        qsTr("Visual Effects");
+    }
+
     source: BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_GET_INFO, appLocale, params)
     query: BUTACA.TMDB_MOVIE_CAST_QUERY
 
