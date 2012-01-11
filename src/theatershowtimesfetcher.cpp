@@ -19,13 +19,11 @@
 
 #include "theatershowtimesfetcher.h"
 #include "theaterlistmodel.h"
-#include "movie.h"
 
 #include <QWebView>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
-#include <QUrl>
 #include <QLocale>
 
 #include <QDebug>
@@ -45,24 +43,39 @@ TheaterShowtimesFetcher::~TheaterShowtimesFetcher()
 
 void TheaterShowtimesFetcher::fetchTheaters(QString location)
 {
-    QUrl showtimesUrl("http://www.google.com/movies");
-    QString locale(QLocale::system().name());
+    m_showtimesBaseUrl = QUrl("http://www.google.com/movies");
+    m_movies.clear();
+    m_parsedPages = 0;
 
+    QString locale(QLocale::system().name());
     // The country code is ignored by the movies API
-    showtimesUrl.addQueryItem("hl", locale.left(locale.indexOf("_")));
+    m_showtimesBaseUrl.addQueryItem("hl", locale.left(locale.indexOf("_")));
 
     if (!location.isEmpty()) {
-        showtimesUrl.addQueryItem("near", location);
+        m_showtimesBaseUrl.addQueryItem("near", location);
     }
 
-    m_webView->load(showtimesUrl);
+    m_webView->load(m_showtimesBaseUrl);
 }
+
 
 void TheaterShowtimesFetcher::onLoadFinished(bool ok)
 {
     if (ok) {
-        QList<Movie> movies;
+        m_parsedPages ++;
         QWebElement document = m_webView->page()->mainFrame()->documentElement();
+
+        // in case we need more pages loaded. "div.n" is the navigation bar. if it's present
+        // we know there's more than 1 page. only need to do this once
+        if (m_parsedPages == 1)
+        {
+            if (document.findAll("div.n").count() == 1) {
+                m_numPages = document.findAll("div.n a").count() ;
+            } else {
+                m_numPages = 1;
+            }
+        }
+
         QWebElementCollection theaters = document.findAll("div.theater");
 
         if (theaters.count() > 0) {
@@ -83,14 +96,22 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
                     movie.setTheaterName(theaterName);
                     movie.setTheaterInfo(theaterInfo);
 
-                    movies << movie;
+                    m_movies << movie;
                 }
             }
         }
 
-        m_theaterListModel->setMovieShowtimes(movies);
+        if (m_numPages == m_parsedPages) {
+            m_theaterListModel->setMovieShowtimes(m_movies);
+            emit theatersFetched(m_movies.count());
+        } else {
+            if (m_showtimesBaseUrl.hasQueryItem("start"))
+                m_showtimesBaseUrl.removeQueryItem("start");
+            // tell google to load page with offset numcalled * 10. this loads numcalled+1th page
+            m_showtimesBaseUrl.addQueryItem("start", QString::number((m_parsedPages) * 10));
+            m_webView->load(m_showtimesBaseUrl);
+        }
 
-        emit theatersFetched(movies.count());
     } else {
         qCritical() << Q_FUNC_INFO << "Loading error";
         emit theatersFetched(0);

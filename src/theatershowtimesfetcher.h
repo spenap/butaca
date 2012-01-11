@@ -21,6 +21,8 @@
 #define THEATERSHOWTIMESFETCHER_H
 
 #include <QObject>
+#include <QUrl>
+#include "movie.h"
 
 class QWebView;
 class TheaterListModel;
@@ -44,6 +46,10 @@ private slots:
 private:
     QWebView *m_webView;
     TheaterListModel *m_theaterListModel;
+    QUrl m_showtimesBaseUrl;
+    int m_numPages;
+    int m_parsedPages;
+    QList<Movie> m_movies;
 };
 
 #endif // THEATERSHOWTIMESFETCHER_H
