@@ -1,38 +1,40 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="tr">
 <context>
     <name>AboutView</name>
     <message>
-        <location filename="../qml/AboutView.qml" line="142"/>
+        <location filename="../qml/AboutView.qml" line="143"/>
         <source>btc-themoviedb-disclaimer</source>
         <extracomment>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</extracomment>
         <translation>Bu ürün &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API&apos;sini kullanmaktadır, ancak TMDb tarafından onaylanmış veya sertifikalanmış değildir.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="157"/>
+        <location filename="../qml/AboutView.qml" line="158"/>
         <source>btc-aftercredits-disclaimer</source>
-        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What\'s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
+        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What\&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
         <translation>Bu ürün &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API&apos;sini kullanmaktadır, ancak What&apos;s After The Credits? tarafından onaylanmış veya sertifikalanmış değildir.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="171"/>
+        <location filename="../qml/AboutView.qml" line="172"/>
         <source>btc-showtimes-disclaimer</source>
         <extracomment>This product presents showtimes from &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; but is not endorsed or certified by Google.</extracomment>
         <translation>Bu ürün  gösterim zamanlarını &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt;&apos;den almaktadır, ancak Google tarafından onaylanmış veya sertifikalanmış değildir.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="178"/>
-        <location filename="../qml/AboutView.qml" line="180"/>
+        <location filename="../qml/AboutView.qml" line="179"/>
+        <location filename="../qml/AboutView.qml" line="181"/>
         <source>Credits</source>
         <translation>Kredi</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="188"/>
-        <location filename="../qml/AboutView.qml" line="190"/>
+        <location filename="../qml/AboutView.qml" line="189"/>
+        <location filename="../qml/AboutView.qml" line="191"/>
         <source>License</source>
         <translation>Lisans</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="205"/>
+        <location filename="../qml/AboutView.qml" line="206"/>
         <source>OK</source>
         <translation>Tamam</translation>
     </message>
@@ -47,12 +49,61 @@
     </message>
 </context>
 <context>
-    <name>ButacaController</name>
+    <name>CastModel</name>
     <message>
-        <location filename="../butacacontroller.cpp" line="46"/>
-        <source>btc-shared-with-butaca</source>
-        <extracomment>Shared with #Butaca</extracomment>
-        <translation>#Butaca ile paylaşıldı</translation>
+        <location filename="../qml/CastModel.qml" line="30"/>
+        <source>Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="31"/>
+        <source>Crew</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="32"/>
+        <source>Sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="33"/>
+        <source>Directing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="34"/>
+        <source>Writing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="35"/>
+        <source>Production</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="36"/>
+        <source>Actors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="37"/>
+        <source>Editing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="38"/>
+        <source>Art</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="39"/>
+        <source>Costume &amp; Make-Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CastModel.qml" line="40"/>
+        <source>Visual Effects</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -62,6 +113,15 @@
         <source>btc-full-cast</source>
         <extracomment>Full cast in %1</extracomment>
         <translation>Tüm kast %1</translation>
+    </message>
+</context>
+<context>
+    <name>Controller</name>
+    <message>
+        <location filename="../controller.cpp" line="46"/>
+        <source>btc-shared-with-butaca</source>
+        <extracomment>Shared with #Butaca</extracomment>
+        <translation>#Butaca ile paylaşıldı</translation>
     </message>
 </context>
 <context>
@@ -90,7 +150,7 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="68"/>
         <source>btc-person-filmography</source>
-        <extracomment>%1's filmography</extracomment>
+        <extracomment>%1&apos;s filmography</extracomment>
         <translation>%1&apos;in filmografisi</translation>
     </message>
 </context>
@@ -149,37 +209,36 @@
 </translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="76"/>
+        <location filename="../qml/SearchView.qml" line="70"/>
         <source>btc-search-placeholder</source>
         <extracomment>Enter search terms</extracomment>
         <translation>Aranacak terimleri girin</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="105"/>
         <source>btc-search-button</source>
         <extracomment>Search</extracomment>
-        <translation>Ara</translation>
+        <translation type="obsolete">Ara</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="136"/>
+        <location filename="../qml/SearchView.qml" line="126"/>
         <source>btc-movies</source>
         <extracomment>Movies</extracomment>
         <translation>Filmler</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="147"/>
+        <location filename="../qml/SearchView.qml" line="137"/>
         <source>btc-people</source>
         <extracomment>People</extracomment>
         <translation>Kişiler</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="158"/>
+        <location filename="../qml/SearchView.qml" line="148"/>
         <source>btc-shows</source>
         <extracomment>Shows</extracomment>
         <translation>Gösterimler</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="302"/>
+        <location filename="../qml/SearchView.qml" line="292"/>
         <source>btc-no-results</source>
         <extracomment>No results found</extracomment>
         <translation>Hiçbir sonuç bulunamadı</translation>
@@ -392,7 +451,7 @@
     <message>
         <location filename="../qml/WelcomeView.qml" line="66"/>
         <source>btc-showtimes-description</source>
-        <extracomment>What\'s on cinemas near you</extracomment>
+        <extracomment>What\&apos;s on cinemas near you</extracomment>
         <translation>Size yakın sinemalarda olan biten</translation>
     </message>
     <message>

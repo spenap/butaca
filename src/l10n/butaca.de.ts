@@ -49,15 +49,6 @@
     </message>
 </context>
 <context>
-    <name>ButacaController</name>
-    <message>
-        <location filename="../butacacontroller.cpp" line="46"/>
-        <source>btc-shared-with-butaca</source>
-        <extracomment>Shared with #Butaca</extracomment>
-        <translation>Geteilt mit #Butaca</translation>
-    </message>
-</context>
-<context>
     <name>CastModel</name>
     <message>
         <location filename="../qml/CastModel.qml" line="30"/>
@@ -122,6 +113,15 @@
         <source>btc-full-cast</source>
         <extracomment>Full cast in %1</extracomment>
         <translation>Gesamte Besetzung von %1</translation>
+    </message>
+</context>
+<context>
+    <name>Controller</name>
+    <message>
+        <location filename="../controller.cpp" line="46"/>
+        <source>btc-shared-with-butaca</source>
+        <extracomment>Shared with #Butaca</extracomment>
+        <translation>Geteilt mit #Butaca</translation>
     </message>
 </context>
 <context>
@@ -208,37 +208,36 @@
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="76"/>
+        <location filename="../qml/SearchView.qml" line="70"/>
         <source>btc-search-placeholder</source>
         <extracomment>Enter search terms</extracomment>
         <translation>Suchbegriffe eingeben</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="105"/>
         <source>btc-search-button</source>
         <extracomment>Search</extracomment>
-        <translation>Suchen</translation>
+        <translation type="obsolete">Suchen</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="136"/>
+        <location filename="../qml/SearchView.qml" line="126"/>
         <source>btc-movies</source>
         <extracomment>Movies</extracomment>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="147"/>
+        <location filename="../qml/SearchView.qml" line="137"/>
         <source>btc-people</source>
         <extracomment>People</extracomment>
         <translation>Leute</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="158"/>
+        <location filename="../qml/SearchView.qml" line="148"/>
         <source>btc-shows</source>
         <extracomment>Shows</extracomment>
         <translation>Shows</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="302"/>
+        <location filename="../qml/SearchView.qml" line="292"/>
         <source>btc-no-results</source>
         <extracomment>No results found</extracomment>
         <translation>Keine Ergebnisse gefunden</translation>
