@@ -64,70 +64,60 @@ Page {
         text: qsTr('btc-search-header')
     }
 
-    Row {
-        id: searchArea
-        anchors { top: header.bottom; left: parent.left; right: parent.right }
+    TextField {
+        id: searchInput
+        //: Enter search terms
+        placeholderText: qsTr('btc-search-placeholder')
+
+        anchors  { top: header.bottom; left: parent.left; right: parent.right }
         anchors.margins: UIConstants.DEFAULT_MARGIN
-        spacing: 10
 
-        TextField {
-            id: searchInput
-            //: Enter search terms
-            placeholderText: qsTr('btc-search-placeholder')
-            width: parent.width - searchButton.width - 10
-//                onAccepted: {
-//                    searchButton.clicked()
-//                }
+        platformSipAttributes: SipAttributes {
+            actionKeyIcon: '/usr/share/themes/blanco/meegotouch/icons/icon-m-toolbar-search-selected.png'
+            actionKeyEnabled: searchInput.text
+        }
 
-            Image {
-                id: clearText
-                anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter
-                source: searchInput.activeFocus ?
-                            'image://theme/icon-m-input-clear' :
-                            'image://theme/icon-m-common-search'
-            }
-
-            MouseArea {
-                id: searchInputMouseArea
-                anchors.fill: clearText
-                onClicked: {
-                    inputContext.reset()
-                    searchInput.text = ''
-                    searchResults.state = 'Waiting'
+        Keys.onReturnPressed: {
+            if (searchCategory.checkedButton == movieSearch) {
+                searchResults.state = 'XmlModelSearch'
+            } else if (searchCategory.checkedButton == peopleSearch) {
+                searchResults.state = 'XmlModelSearch'
+            } else {
+                theaterModel.setFilterWildcard(searchInput.text)
+                if (theaterModel.count === 0 ||
+                        location != controller.currentLocation()) {
+                    controller.fetchTheaters(location)
+                    searchResults.state = 'AbstractModelSearch'
+                } else {
+                    currentListView.visible = true
+                    searchResults.state = 'SearchFinished'
                 }
             }
         }
 
-        Button {
-            id: searchButton
-            //: Search
-            text: qsTr('btc-search-button')
-            width: 100
-            enabled: searchInput.text !== ''
+        Image {
+            id: clearText
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            source: searchInput.text ?
+                        'image://theme/icon-m-input-clear' :
+                        ''
+        }
+
+        MouseArea {
+            id: searchInputMouseArea
+            anchors.fill: clearText
             onClicked: {
-                if (searchCategory.checkedButton == movieSearch) {
-                    searchResults.state = 'XmlModelSearch'
-                } else if (searchCategory.checkedButton == peopleSearch) {
-                    searchResults.state = 'XmlModelSearch'
-                } else {
-                    theaterModel.setFilterWildcard(searchInput.text)
-                    if (theaterModel.count === 0 ||
-                            location != controller.currentLocation()) {
-                        controller.fetchTheaters(location)
-                        searchResults.state = 'AbstractModelSearch'
-                    } else {
-                        currentListView.visible = true
-                        searchResults.state = 'SearchFinished'
-                    }
-                }
+                inputContext.reset()
+                searchInput.text = ''
+                searchResults.state = 'Waiting'
             }
         }
     }
 
     ButtonRow {
         id: searchCategory
-        anchors { top: searchArea.bottom; left: parent.left; right: parent.right }
+        anchors { top: searchInput.bottom; left: parent.left; right: parent.right }
         anchors.margins: UIConstants.DEFAULT_MARGIN
 
         Button {
