@@ -23,14 +23,21 @@
 #include <QtGui/QApplication>
 #include <QtDeclarative>
 #include <QDeclarativeContext>
-#include <MDeclarativeCache>
+#ifndef QT_SIMULATOR
+    #include <MDeclarativeCache>
+#endif
 #include <QTranslator>
 #include <QTextCodec>
 #include <QLocale>
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QApplication *app = MDeclarativeCache::qApplication(argc, argv);
+    QApplication *app;
+#ifdef QT_SIMULATOR
+    app = new QApplication(argc, argv);
+#else
+    app = MDeclarativeCache::qApplication(argc, argv);
+#endif
     app->setApplicationName("Butaca");
     app->setOrganizationDomain("com.simonpena");
     app->setOrganizationName("simonpena");
@@ -48,7 +55,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         app->installTranslator(&translator);
     }
 
-    QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
+    QDeclarativeView *view;
+#ifdef QT_SIMULATOR
+    view = new QDeclarativeView();
+#else
+    view = MDeclarativeCache::qDeclarativeView();
+#endif
 
     QDeclarativeContext *context = view->rootContext();
 

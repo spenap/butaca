@@ -18,7 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.extras 1.0
+import com.nokia.extras 1.1
 import "butacautils.js" as BUTACA
 import 'constants.js' as UIConstants
 

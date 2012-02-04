@@ -4,8 +4,10 @@
 #include "sortfiltermodel.h"
 
 #include <QDeclarativeContext>
-#include <maemo-meegotouch-interfaces/shareuiinterface.h>
-#include <MDataUri>
+#ifndef QT_SIMULATOR
+    #include <maemo-meegotouch-interfaces/shareuiinterface.h>
+    #include <MDataUri>
+#endif
 
 Controller::Controller(QDeclarativeContext *context) :
     QObject(),
@@ -36,6 +38,7 @@ Controller::~Controller()
 
 void Controller::share(QString title, QString url)
 {
+#ifndef QT_SIMULATOR
     // See https://meego.gitorious.org/meego-sharing-framework/share-ui/blobs/master/examples/link-share/page.cpp
     // and http://forum.meego.com/showthread.php?t=3768
     MDataUri dataUri;
@@ -53,6 +56,10 @@ void Controller::share(QString title, QString url)
     } else {
         qCritical() << "Invalid interface";
     }
+#else
+    Q_UNUSED(title)
+    Q_UNUSED(url)
+#endif
 }
 
 void Controller::fetchTheaters(QString location)

@@ -18,7 +18,9 @@ QMAKE_LFLAGS += -pie -rdynamic
 # # Use share-ui interface
 CONFIG += shareuiinterface-maemo-meegotouch mdatauri
 
-LIBS += -lmdeclarativecache
+!simulator {
+    LIBS += -lmdeclarativecache
+}
 
 SOURCES += main.cpp \
     theaterlistmodel.cpp \
