@@ -19,8 +19,7 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
-import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
+import 'constants.js' as UIConstants
 
 Item {
     property alias text: headerText.text
@@ -77,8 +76,6 @@ Item {
         }
         anchors.topMargin: UIConstants.DEFAULT_MARGIN
         height: 1
-        color: theme.inverted ?
-                   ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :
-                   ExtrasConstants.LIST_SUBTITLE_COLOR
+        color: UIConstants.COLOR_SECONDARY_FOREGROUND
     }
 }

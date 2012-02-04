@@ -21,7 +21,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
-import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
+import 'constants.js' as UIConstants
 
 Item {
     id: movieDelegate

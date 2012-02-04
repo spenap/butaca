@@ -1,5 +1,5 @@
 import QtQuick 1.0
-import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
+import 'constants.js' as UIConstants
 
 Item {
     property alias text: noContentText.text

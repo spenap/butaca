@@ -51,7 +51,6 @@ OTHER_FILES += \
     qml/MultipleMoviesView.qml \
     qml/MultipleMoviesModel.qml \
     qml/MultipleMoviesDelegate.qml \
-    qml/butacautils.js \
     qml/CustomMoreIndicator.qml \
     qml/ButacaHeader.qml \
     qml/NoContentItem.qml \
@@ -59,13 +58,15 @@ OTHER_FILES += \
     qml/CastView.qml \
     qml/FilmographyModel.qml \
     qml/FilmographyView.qml \
-    qml/storage.js \
     qml/DetailedView.qml \
     qml/ListSectionDelegate.qml \
     qml/TheatersView.qml \
     qml/SettingsView.qml \
     qml/CustomListDelegate.qml \
     qml/AboutView.qml \
+    qml/storage.js \
+    qml/butacautils.js \
+    qml/constants.js \
     resources/movie-placeholder.svg \
     resources/person-placeholder.svg \
     resources/butaca.svg \

@@ -19,8 +19,7 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
-import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
+import 'constants.js' as UIConstants
 
 Component {
     id: aboutView

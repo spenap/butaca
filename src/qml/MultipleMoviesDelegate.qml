@@ -20,25 +20,22 @@
 import QtQuick 1.1
 import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
-import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
-import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
+import 'constants.js' as UIConstants
 
 Item {
     id: movieDelegate
 
     signal clicked
 
-    property int titleSize: ExtrasConstants.LIST_TILE_SIZE
+    property int titleSize: UIConstants.FONT_SLARGE
     property int titleWeight: Font.Bold
     property color titleColor: theme.inverted ?
-                                   ExtrasConstants.LIST_TITLE_COLOR_INVERTED :
-                                   ExtrasConstants.LIST_TITLE_COLOR
+                                   UIConstants.COLOR_INVERTED_FOREGROUND :
+                                   UIConstants.COLOR_FOREGROUND
 
-    property int subtitleSize: ExtrasConstants.LIST_SUBTILE_SIZE
+    property int subtitleSize: UIConstants.FONT_LSMALL
     property int subtitleWeight: Font.Light
-    property color subtitleColor: theme.inverted ?
-                                      ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :
-                                      ExtrasConstants.LIST_SUBTITLE_COLOR
+    property color subtitleColor: UIConstants.COLOR_SECONDARY_FOREGROUND
 
     width: movieDelegate.ListView.view.width
     height: 140 + UIConstants.DEFAULT_MARGIN
@@ -53,8 +50,8 @@ Item {
         BorderImage {
             id: background
             anchors.fill: parent
-            anchors.leftMargin: -ExtrasConstants.MARGIN_XLARGE
-            anchors.rightMargin: -ExtrasConstants.MARGIN_XLARGE
+            anchors.leftMargin: -UIConstants.DEFAULT_MARGIN
+            anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
             visible: mouseArea.pressed
             source: theme.inverted ?
                         'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center' :

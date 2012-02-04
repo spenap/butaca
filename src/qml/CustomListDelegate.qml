@@ -21,8 +21,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
-import "file:///usr/lib/qt4/imports/com/meego/UIConstants.js" as UIConstants
-import "file:///usr/lib/qt4/imports/com/nokia/extras/constants.js" as ExtrasConstants
+import 'constants.js' as UIConstants
 
 Item {
     id: customListDelegate
@@ -34,7 +33,7 @@ Item {
     property bool pressable: true
 
     width: parent.width
-    height: ExtrasConstants.LIST_ITEM_HEIGHT
+    height: UIConstants.LIST_ITEM_HEIGHT_DEFAULT
 
     BorderImage {
         anchors.fill: parent
@@ -59,16 +58,16 @@ Item {
 
         Column {
             anchors.verticalCenter: parent.verticalCenter
-            width: parent.width - viewDetails.width - ExtrasConstants.LIST_ITEM_SPACING
+            width: parent.width - viewDetails.width - UIConstants.DEFAULT_MARGIN
 
             Text {
                 id: titleText
                 text: listTitle
                 font.family: UIConstants.FONT_FAMILY
-                font.pixelSize: ExtrasConstants.LIST_TILE_SIZE
+                font.pixelSize: UIConstants.FONT_SLARGE
                 color: theme.inverted ?
-                           ExtrasConstants.LIST_TITLE_COLOR_INVERTED :
-                           ExtrasConstants.LIST_TITLE_COLOR
+                           UIConstants.COLOR_INVERTED_FOREGROUND :
+                           UIConstants.COLOR_FOREGROUND
                 width: parent.width
                 elide: Text.ElideRight
             }
@@ -77,10 +76,8 @@ Item {
                 id: subtitleText
                 text: listSubtitle
                 font.family: "Nokia Pure Text Light"
-                font.pixelSize: ExtrasConstants.LIST_SUBTILE_SIZE
-                color: theme.inverted ?
-                           ExtrasConstants.LIST_SUBTITLE_COLOR_INVERTED :
-                           ExtrasConstants.LIST_SUBTITLE_COLOR
+                font.pixelSize: UIConstants.FONT_LSMALL
+                color: UIConstants.COLOR_SECONDARY_FOREGROUND
                 visible: listSubtitle
                 width: parent.width
                 elide: Text.ElideRight
