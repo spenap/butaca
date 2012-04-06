@@ -68,7 +68,7 @@ Item {
                             trailerImage.height +
                             30 : 0)
 
-        ButacaHeader {
+        Header {
             id: titleText
             anchors.rightMargin: 0
             anchors.leftMargin: 0

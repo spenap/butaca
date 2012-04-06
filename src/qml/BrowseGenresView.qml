@@ -52,7 +52,7 @@ Component {
                 model: genresModel
                 anchors.fill: parent
                 flickableDirection: Flickable.VerticalFlick
-                header: ButacaHeader {
+                header: Header {
                     //: Movie genres
                     text: qsTr('btc-browse-genres')
                 }

@@ -63,7 +63,7 @@ Component {
                 anchors.fill: parent
                 flickableDirection: Flickable.VerticalFlick
                 model: castModel
-                header: ButacaHeader {
+                header: Header {
                     //: Full cast in %1
                     text: qsTr('btc-full-cast').arg(movie)
                     showDivider: false

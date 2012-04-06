@@ -54,7 +54,7 @@ OTHER_FILES += \
     qml/MultipleMoviesModel.qml \
     qml/MultipleMoviesDelegate.qml \
     qml/CustomMoreIndicator.qml \
-    qml/ButacaHeader.qml \
+    qml/Header.qml \
     qml/NoContentItem.qml \
     qml/CastModel.qml \
     qml/CastView.qml \

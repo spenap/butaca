@@ -69,7 +69,7 @@ Item {
                        biographyText.height +
                        4 * UIConstants.DEFAULT_MARGIN
 
-        ButacaHeader {
+        Header {
             id: nameText
             anchors.rightMargin: 0
             anchors.leftMargin: 0

@@ -63,7 +63,7 @@ Component {
                 anchors.fill: parent
                 flickableDirection: Flickable.VerticalFlick
                 model: filmographyModel
-                header: ButacaHeader {
+                header: Header {
                     //: %1's filmography
                     text: qsTr('btc-person-filmography').arg(person)
                     showDivider: false

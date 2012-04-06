@@ -75,7 +75,7 @@ Component {
                                          viewType: BUTACA.MOVIE })
                     }
                 }
-                header: ButacaHeader {
+                header: Header {
                     text: genreName
                 }
             }

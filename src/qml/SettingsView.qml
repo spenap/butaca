@@ -78,7 +78,7 @@ Component {
                 width: parent.width
                 spacing: UIConstants.DEFAULT_MARGIN
 
-                ButacaHeader {
+                Header {
                     id: settingsHeader
                     anchors.rightMargin: 0
                     anchors.leftMargin: 0

@@ -131,7 +131,7 @@ Page {
             flickableDirection: Flickable.VerticalFlick
             model: theaterModel
             clip: true
-            header: ButacaHeader {
+            header: Header {
                 //: On theaters
                 text: qsTr('btc-theaters')
                 showDivider: false

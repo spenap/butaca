@@ -161,7 +161,7 @@ Page {
         clip: true
         interactive: false
         delegate: menuDelegate
-        header: ButacaHeader {
+        header: Header {
             //: Enjoy the show!
             text: qsTr('btc-welcome-header')
         }

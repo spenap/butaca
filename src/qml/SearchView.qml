@@ -54,7 +54,7 @@ Page {
         onTheatersFetched: handleTheatersFetched(ok)
     }
 
-    ButacaHeader {
+    Header {
         anchors.top: parent.top
         anchors.topMargin: appWindow.inPortrait?
                                UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
