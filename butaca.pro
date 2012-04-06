@@ -6,3 +6,10 @@ error("Use the qmake include with Qt4.4 or greater, on Debian that is qmake-qt4"
 
 TEMPLATE = subdirs
 SUBDIRS  = src
+
+OTHER_FILES += \
+    qtc_packaging/debian_harmattan/rules \
+    qtc_packaging/debian_harmattan/copyright \
+    qtc_packaging/debian_harmattan/control \
+    qtc_packaging/debian_harmattan/compat \
+    qtc_packaging/debian_harmattan/changelog
