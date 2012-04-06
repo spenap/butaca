@@ -183,11 +183,28 @@ Page {
             id: view
             anchors.fill: parent
             clip: true
-            cellWidth: 220
-            cellHeight: 220
+            cellWidth: 140
+            cellHeight: 210
 
             model: favoritesModel
-            delegate: favoriteDelegate
+            delegate: FavoriteDelegate {
+                source: icon ? icon :
+                               (type == BUTACA.MOVIE ?
+                                    'qrc:/resources/movie-placeholder.svg' :
+                                    'qrc:/resources/person-placeholder.svg')
+                text: title
+                onClicked: {
+                    if (type == BUTACA.MOVIE) {
+                               appWindow.pageStack.push(movieView,
+                                                        { detailId: id,
+                                                          viewType: BUTACA.MOVIE })
+                           } else {
+                               appWindow.pageStack.push(personView,
+                                                        { detailId: id,
+                                                          viewType: BUTACA.PERSON })
+                           }
+                }
+            }
         }
 
         ScrollDecorator {
@@ -199,59 +216,6 @@ Page {
             //: Mark content as favorite
             text: qsTr('btc-mark-favorite')
             visible: favoritesModel.count == 0
-        }
-
-        Component {
-            id: favoriteDelegate
-            Item {
-                width: 200
-                height: 200
-
-                Image {
-                    id: favoriteIcon
-                    source: icon ? icon :
-                                        (type == BUTACA.MOVIE ?
-                                             'qrc:/resources/movie-placeholder.svg' :
-                                             'qrc:/resources/person-placeholder.svg')
-                    width: 95; height: 140
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.top: parent.top
-                    onStatusChanged: {
-                        if (favoriteIcon.status == Image.Error) {
-                            favoriteIcon.source = (type == BUTACA.MOVIE ?
-                                                       'qrc:/resources/movie-placeholder.svg' :
-                                                       'qrc:/resources/person-placeholder.svg')
-                        }
-                    }
-                }
-
-                Text {
-                    anchors.top: favoriteIcon.bottom;
-                    anchors.topMargin: UIConstants.DEFAULT_MARGIN / 2
-                    anchors.horizontalCenter: favoriteIcon.horizontalCenter
-                    text: title
-                    font.pixelSize: UIConstants.FONT_DEFAULT
-                    font.family: UIConstants.FONT_FAMILY
-                    color: !theme.inverted ? UIConstants.COLOR_FOREGROUND : UIConstants.COLOR_INVERTED_FOREGROUND
-                    elide: Text.ElideRight
-                    width: parent.width
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        if (type == BUTACA.MOVIE) {
-                            appWindow.pageStack.push(movieView,
-                                                     { detailId: id,
-                                                       viewType: BUTACA.MOVIE })
-                        } else {
-                            appWindow.pageStack.push(personView,
-                                                     { detailId: id,
-                                                       viewType: BUTACA.PERSON })
-                        }
-                    }
-                }
-            }
         }
     }
 

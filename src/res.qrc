@@ -27,6 +27,7 @@
         <file>qml/SettingsView.qml</file>
         <file>qml/CustomListDelegate.qml</file>
         <file>qml/AboutView.qml</file>
+        <file>qml/FavoriteDelegate.qml</file>
         <file>qml/butacautils.js</file>
         <file>qml/storage.js</file>
         <file>qml/constants.js</file>

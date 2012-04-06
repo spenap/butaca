@@ -66,6 +66,7 @@ OTHER_FILES += \
     qml/SettingsView.qml \
     qml/CustomListDelegate.qml \
     qml/AboutView.qml \
+    qml/FavoriteDelegate.qml \
     qml/storage.js \
     qml/butacautils.js \
     qml/constants.js \
