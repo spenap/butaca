@@ -34,21 +34,18 @@ Page {
     }
     orientationLock: PageOrientation.LockPortrait
 
-    property string searchTerm: ''
     property string genre: ''
     property string genreName:  ''
 
     MultipleMoviesModel {
         id: moviesModel
-        apiMethod: searchTerm ? BUTACA.TMDB_MOVIE_SEARCH : BUTACA.TMDB_MOVIE_BROWSE
-        params: searchTerm ?
-                    searchTerm :
-                    BUTACA.getBrowseCriteria(
-                        Storage.getSetting('orderBy', 'rating'),
-                        Storage.getSetting('order', 'desc'),
-                        Storage.getSetting('perPage', 10),
-                        Storage.getSetting('minVotes', 0),
-                        genre)
+        apiMethod: BUTACA.TMDB_MOVIE_BROWSE
+        params: BUTACA.getBrowseCriteria(
+                    Storage.getSetting('orderBy', 'rating'),
+                    Storage.getSetting('order', 'desc'),
+                    Storage.getSetting('perPage', 10),
+                    Storage.getSetting('minVotes', 0),
+                    genre)
     }
 
     ListView {
