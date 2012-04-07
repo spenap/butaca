@@ -67,13 +67,15 @@ OTHER_FILES += \
     qml/CustomListDelegate.qml \
     qml/AboutView.qml \
     qml/FavoriteDelegate.qml \
+    qml/MyRatingIndicator.qml \
     qml/storage.js \
     qml/butacautils.js \
     qml/constants.js \
     resources/movie-placeholder.svg \
     resources/person-placeholder.svg \
     resources/butaca.svg \
-    resources/tmdb-logo.png
+    resources/tmdb-logo.png \
+    resources/indicator-rating-inverted-star.svg
 
 RESOURCES += \
     res.qrc

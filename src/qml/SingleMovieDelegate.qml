@@ -170,7 +170,7 @@ Item {
                           (revenue ? controller.formatCurrency(revenue) : ' - ')
                 }
 
-                RatingIndicator {
+                MyRatingIndicator {
                     ratingValue: rating / 2
                     maximumValue: 5
                     count: votes

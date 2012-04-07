@@ -28,6 +28,7 @@
         <file>qml/CustomListDelegate.qml</file>
         <file>qml/AboutView.qml</file>
         <file>qml/FavoriteDelegate.qml</file>
+        <file>qml/MyRatingIndicator.qml</file>
         <file>qml/butacautils.js</file>
         <file>qml/storage.js</file>
         <file>qml/constants.js</file>
@@ -35,6 +36,7 @@
         <file>resources/person-placeholder.svg</file>
         <file>resources/butaca.svg</file>
         <file>resources/tmdb-logo.png</file>
+        <file>resources/indicator-rating-inverted-star.svg</file>
         <file>l10n/butaca.en.qm</file>
         <file>l10n/butaca.es.qm</file>
         <file>l10n/butaca.de.qm</file>

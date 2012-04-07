@@ -120,7 +120,7 @@ Item {
                     text: '(' + BUTACA.getYearFromDate(released) +')'
                 }
 
-                RatingIndicator {
+                MyRatingIndicator {
                     ratingValue: rating / 2
                     maximumValue: 5
                     count: votes
