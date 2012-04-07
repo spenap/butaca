@@ -21,40 +21,23 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
-import "butacautils.js" as BUTACA
-import "storage.js" as Storage
+import 'butacautils.js' as BUTACA
+import 'storage.js' as Storage
 
 Page {
     id: welcomeView
-    Component.onCompleted: {
-        theme.inverted = true
 
+    orientationLock: PageOrientation.LockPortrait
+
+    Component.onCompleted: {
         Storage.initialize()
         var favorites = Storage.getFavorites()
-        var orderBy = Storage.getSetting('orderBy')
-        var order = Storage.getSetting('order')
-        var perPage = Storage.getSetting('perPage')
-        var minVotes = Storage.getSetting('minVotes')
-
-        if (!perPage) {
-            Storage.setSetting('perPage', '10')
-        }
-
-        if (!minVotes) {
-            Storage.setSetting('minVotes', '0')
-        }
-
-        if (!orderBy) {
-            Storage.setSetting('orderBy', 'rating')
-        }
-
-        if (!order) {
-            Storage.setSetting('order', 'desc')
-        }
-
         for (var i = 0; i < favorites.length; i ++) {
             favoritesModel.append(favorites[i])
         }
+
+        // Due to a limitation in the ListModel, translating its elements
+        // must be done this way
 
         //: Movie genres
         menuModel.get(0).title = qsTr('btc-browse-genres')
@@ -68,6 +51,16 @@ Page {
         menuModel.get(2).title = qsTr('btc-search')
         //: Search people, movies and shows
         menuModel.get(2).subtitle = qsTr('btc-search-description')
+    }
+
+    tools: ToolBarLayout {
+        ToolIcon {
+            id: menuListIcon
+            iconId: 'toolbar-view-menu'
+            onClicked: (welcomeMenu.status === DialogStatus.Closed) ?
+                           welcomeMenu.open() : welcomeMenu.close()
+            anchors.right: parent.right
+        }
     }
 
     Menu {
@@ -87,32 +80,21 @@ Page {
             }
         }
     }
-    tools: ToolBarLayout {
-        ToolIcon {
-            id: menuListIcon
-            iconId: 'toolbar-view-menu'
-            onClicked: (welcomeMenu.status == DialogStatus.Closed) ?
-                           welcomeMenu.open() : welcomeMenu.close()
-            anchors.right: parent.right
-        }
-    }
-
-    orientationLock: PageOrientation.LockPortrait
 
     Component { id: browseView; BrowseView { } }
 
-    Component { id: settingsView; SettingsView {  } }
+    Component { id: searchView; SearchView { } }
 
-    ButacaToolBar { id: commonTools }
-    SearchView { id: searchView }
-    TheatersView { id: theatersView }
+    Component { id: showtimesView; TheatersView { } }
+
+    Component { id: settingsView; SettingsView { } }
+
     Component { id: movieView; DetailedView { } }
 
     Component { id: personView; DetailedView { } }
 
     Component { id: aboutView; AboutView { } }
 
-    /* Model containing the actions: browse, search and shows */
     ListModel {
         id: menuModel
 
@@ -133,46 +115,50 @@ Page {
             subtitle: 'Search people, movies and shows'
             action: 2
         }
+
+        ListElement {
+            title: 'Lists'
+            subtitle: 'Favorites, watchlists and others'
+            action: 3
+        }
     }
 
-    Component {
-        id: menuDelegate
-        CustomListDelegate {
+    ListView {
+        id: list
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        height: (appWindow.inPortrait ?
+                     UIConstants.HEADER_DEFAULT_HEIGHT_PORTRAIT :
+                     UIConstants.HEADER_DEFAULT_HEIGHT_LANDSCAPE) +
+                    menuModel.count * UIConstants.LIST_ITEM_HEIGHT_DEFAULT
+        model: menuModel
+        clip: true
+        interactive: false
+        delegate: CustomListDelegate {
             onClicked: {
                 switch (action) {
                 case 0:
                     appWindow.pageStack.push(browseView)
                     break;
                 case 1:
-                    appWindow.pageStack.push(theatersView)
+                    appWindow.pageStack.push(showtimesView)
                     break;
                 case 2:
                     appWindow.pageStack.push(searchView)
                     break;
+                default:
+                    console.debug('Action not available')
+                    break
                 }
             }
         }
-    }
-
-    ListView {
-        id: list
-        anchors { top: parent.top; left: parent.left; right: parent.right }
-        anchors.topMargin: appWindow.inPortrait?
-                               UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
-                               UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
-        height: 0.43 * parent.height
-        model: menuModel
-        clip: true
-        interactive: false
-        delegate: menuDelegate
         header: Header {
             //: Enjoy the show!
             text: qsTr('btc-welcome-header')
         }
-    }
-
-    ListModel {
-        id: favoritesModel
     }
 
     Item {
@@ -181,6 +167,10 @@ Page {
         anchors {
             leftMargin: UIConstants.DEFAULT_MARGIN
             rightMargin: UIConstants.DEFAULT_MARGIN
+        }
+
+        ListModel {
+            id: favoritesModel
         }
 
         GridView {
