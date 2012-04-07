@@ -23,90 +23,66 @@ import "butacautils.js" as BUTACA
 import "storage.js" as Storage
 import 'constants.js' as UIConstants
 
-Component {
-    id: multipleMoviesPage
-
-    Page {
-        tools: commonTools
-        orientationLock: PageOrientation.LockPortrait
-
-        Component.onCompleted: {
-            Storage.initialize()
+Page {
+    tools: ToolBarLayout {
+        ToolIcon {
+            iconId: 'toolbar-back'
+            onClicked: {
+                appWindow.pageStack.pop()
+            }
         }
+    }
+    orientationLock: PageOrientation.LockPortrait
 
-        property string searchTerm: ''
-        property string genre: ''
-        property string genreName:  ''
+    property string searchTerm: ''
+    property string genre: ''
+    property string genreName:  ''
 
-        Item {
-            id: moviesContent
-            anchors.fill: parent
-            anchors.topMargin: appWindow.inPortrait?
-                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
-                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
+    MultipleMoviesModel {
+        id: moviesModel
+        apiMethod: searchTerm ? BUTACA.TMDB_MOVIE_SEARCH : BUTACA.TMDB_MOVIE_BROWSE
+        params: searchTerm ?
+                    searchTerm :
+                    BUTACA.getBrowseCriteria(
+                        Storage.getSetting('orderBy'),
+                        Storage.getSetting('order'),
+                        Storage.getSetting('perPage'),
+                        Storage.getSetting('minVotes'),
+                        genre)
+    }
 
-            MultipleMoviesModel {
-                id: moviesModel
-                apiMethod: searchTerm ? BUTACA.TMDB_MOVIE_SEARCH : BUTACA.TMDB_MOVIE_BROWSE
-                params: searchTerm ?
-                            searchTerm :
-                            BUTACA.getBrowseCriteria(
-                                Storage.getSetting('orderBy'),
-                                Storage.getSetting('order'),
-                                Storage.getSetting('perPage'),
-                                Storage.getSetting('minVotes'),
-                                genre)
-                onStatusChanged: {
-                    if (status == XmlListModel.Ready) {
-                        moviesContent.state = 'Ready'
-                    }
-                }
+    ListView {
+        id: list
+        anchors.fill: parent
+        model: moviesModel
+        delegate: MultipleMoviesDelegate {
+            onClicked: {
+                pageStack.push(movieView,
+                               { detailId: tmdbId,
+                                 viewType: BUTACA.MOVIE })
             }
-
-            ListView {
-                id: list
-                anchors.fill: parent
-                flickableDirection: Flickable.VerticalFlick
-                model: moviesModel
-                delegate: MultipleMoviesDelegate {
-                    onClicked: {
-                        pageStack.push(movieView,
-                                       { detailId: tmdbId,
-                                         viewType: BUTACA.MOVIE })
-                    }
-                }
-                header: Header {
-                    text: genreName
-                }
-            }
-
-            NoContentItem {
-                id: noResults
-                anchors.fill: parent
-                text: 'No content found'
-                visible: false
-            }
-
-            BusyIndicator {
-                id: busyIndicator
-                visible: true
-                running: true
-                platformStyle: BusyIndicatorStyle { size: 'large' }
-                anchors.centerIn: parent
-            }
-
-            ScrollDecorator {
-                flickableItem: list
-            }
-
-            states: [
-                State {
-                    name: 'Ready'
-                    PropertyChanges  { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges  { target: list; visible: true }
-                    PropertyChanges  { target: noResults; visible: moviesModel.count == 0 }
-                }
-            ]
         }
+        header: Header {
+            text: genreName
+        }
+    }
+
+    NoContentItem {
+        id: noResults
+        anchors.fill: parent
+        text: 'No content found'
+        visible: moviesModel.status === XmlListModel.Ready && moviesModel.count === 0
+    }
+
+    BusyIndicator {
+        id: busyIndicator
+        visible: running
+        running: moviesModel.status === XmlListModel.Loading
+        anchors.centerIn: parent
+        platformStyle: BusyIndicatorStyle { size: 'large' }
+    }
+
+    ScrollDecorator {
+        flickableItem: list
     }
 }
