@@ -101,13 +101,13 @@ Page {
 
     Component { id: browseView; BrowseView { } }
 
+    Component { id: settingsView; SettingsView {  } }
 
     ButacaToolBar { id: commonTools }
     SearchView { id: searchView }
     DetailedView { id: movieView }
     DetailedView { id: personView }
     TheatersView { id: theatersView }
-    SettingsView { id: settingsView }
     AboutView { id: aboutView }
 
     /* Model containing the actions: browse, search and shows */
