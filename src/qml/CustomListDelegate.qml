@@ -50,8 +50,8 @@ Item {
     }
 
     Item {
-        anchors.fill: parent
         anchors {
+            fill: parent
             leftMargin: UIConstants.DEFAULT_MARGIN
             rightMargin: UIConstants.DEFAULT_MARGIN
         }
@@ -60,11 +60,12 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             width: parent.width - viewDetails.width - UIConstants.DEFAULT_MARGIN
 
-            Text {
+            Label {
                 id: titleText
                 text: listTitle
-                font.family: UIConstants.FONT_FAMILY
-                font.pixelSize: UIConstants.FONT_SLARGE
+                platformStyle: LabelStyle {
+                    fontPixelSize: UIConstants.FONT_SLARGE
+                }
                 color: theme.inverted ?
                            UIConstants.COLOR_INVERTED_FOREGROUND :
                            UIConstants.COLOR_FOREGROUND
@@ -72,11 +73,13 @@ Item {
                 elide: Text.ElideRight
             }
 
-            Text {
+            Label {
                 id: subtitleText
                 text: listSubtitle
-                font.family: "Nokia Pure Text Light"
-                font.pixelSize: UIConstants.FONT_LSMALL
+                platformStyle: LabelStyle {
+                    fontFamily: UIConstants.FONT_FAMILY_LIGHT
+                    fontPixelSize: UIConstants.FONT_LSMALL
+                }
                 color: UIConstants.COLOR_SECONDARY_FOREGROUND
                 visible: listSubtitle
                 width: parent.width
@@ -86,8 +89,10 @@ Item {
 
         CustomMoreIndicator {
             id: viewDetails
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
+            anchors {
+                verticalCenter: parent.verticalCenter
+                right: parent.right
+            }
             visible: pressable
         }
     }
