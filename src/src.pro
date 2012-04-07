@@ -49,7 +49,7 @@ OTHER_FILES += \
     qml/SingleMovieModel.qml \
     qml/SingleMovieDelegate.qml \
     qml/ButacaToolBar.qml \
-    qml/BrowseGenresView.qml \
+    qml/BrowseView.qml \
     qml/MultipleMoviesView.qml \
     qml/MultipleMoviesModel.qml \
     qml/MultipleMoviesDelegate.qml \

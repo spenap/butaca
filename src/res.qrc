@@ -4,7 +4,7 @@
         <file>qml/MultipleMoviesDelegate.qml</file>
         <file>qml/MultipleMoviesModel.qml</file>
         <file>qml/MultipleMoviesView.qml</file>
-        <file>qml/BrowseGenresView.qml</file>
+        <file>qml/BrowseView.qml</file>
         <file>qml/ButacaToolBar.qml</file>
         <file>qml/SingleMovieDelegate.qml</file>
         <file>qml/SingleMovieModel.qml</file>

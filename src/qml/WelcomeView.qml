@@ -99,8 +99,10 @@ Page {
 
     orientationLock: PageOrientation.LockPortrait
 
+    Component { id: browseView; BrowseView { } }
+
+
     ButacaToolBar { id: commonTools }
-    BrowseGenresView { id: browseView }
     SearchView { id: searchView }
     DetailedView { id: movieView }
     DetailedView { id: personView }
