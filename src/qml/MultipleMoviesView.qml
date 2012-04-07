@@ -44,10 +44,10 @@ Page {
         params: searchTerm ?
                     searchTerm :
                     BUTACA.getBrowseCriteria(
-                        Storage.getSetting('orderBy'),
-                        Storage.getSetting('order'),
-                        Storage.getSetting('perPage'),
-                        Storage.getSetting('minVotes'),
+                        Storage.getSetting('orderBy', 'rating'),
+                        Storage.getSetting('order', 'desc'),
+                        Storage.getSetting('perPage', 10),
+                        Storage.getSetting('minVotes', 0),
                         genre)
     }
 
