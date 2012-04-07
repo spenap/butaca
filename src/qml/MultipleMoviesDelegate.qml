@@ -18,6 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
+import com.nokia.meego 1.0
 import com.nokia.extras 1.1
 import "butacautils.js" as BUTACA
 import 'constants.js' as UIConstants
@@ -27,35 +28,25 @@ Item {
 
     signal clicked
 
-    property int titleSize: UIConstants.FONT_SLARGE
-    property int titleWeight: Font.Bold
-    property color titleColor: theme.inverted ?
-                                   UIConstants.COLOR_INVERTED_FOREGROUND :
-                                   UIConstants.COLOR_FOREGROUND
-
-    property int subtitleSize: UIConstants.FONT_LSMALL
-    property int subtitleWeight: Font.Light
-    property color subtitleColor: UIConstants.COLOR_SECONDARY_FOREGROUND
-
     width: movieDelegate.ListView.view.width
     height: 140 + UIConstants.DEFAULT_MARGIN
 
     Item {
-        anchors.fill: parent
         anchors {
+            fill: parent
             leftMargin: UIConstants.DEFAULT_MARGIN
             rightMargin: UIConstants.DEFAULT_MARGIN
         }
 
         BorderImage {
             id: background
-            anchors.fill: parent
-            anchors.leftMargin: -UIConstants.DEFAULT_MARGIN
-            anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
+            anchors {
+                fill: parent
+                leftMargin: -UIConstants.DEFAULT_MARGIN
+                rightMargin: -UIConstants.DEFAULT_MARGIN
+            }
             visible: mouseArea.pressed
-            source: theme.inverted ?
-                        'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center' :
-                        'image://theme/meegotouch-list-fullwidth-background-pressed-vertical-center'
+            source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
         }
 
         MouseArea {
@@ -68,21 +59,20 @@ Item {
             id: content
             spacing: 15
             anchors {
-                topMargin: UIConstants.DEFAULT_MARGIN / 2
-                bottomMargin: UIConstants.DEFAULT_MARGIN / 2
-                rightMargin: UIConstants.DEFAULT_MARGIN
-            }
-            anchors {
                 top: parent.top
+                topMargin: UIConstants.DEFAULT_MARGIN / 2
                 bottom: parent.bottom
-                left: parent.left
+                bottomMargin: UIConstants.DEFAULT_MARGIN / 2
                 right: viewDetails.left
+                rightMargin: UIConstants.DEFAULT_MARGIN
+                left: parent.left
             }
 
             Image {
                 id: moviePoster
                 width: 95
                 height: 140
+                fillMode: Image.PreserveAspectFit
                 source: poster ? poster : 'qrc:/resources/movie-placeholder.svg'
                 onStatusChanged: {
                     if (moviePoster.status == Image.Error) {
@@ -96,27 +86,29 @@ Item {
                 height: parent.height
                 spacing: 10
 
-                Text {
+                Label {
                     id: titleText
+                    platformStyle: LabelStyle {
+                        fontFamily: UIConstants.FONT_FAMILY_BOLD
+                        fontPixelSize: UIConstants.FONT_SLARGE
+                    }
+                    color: UIConstants.COLOR_INVERTED_FOREGROUND
                     width: parent.width
                     elide: Text.ElideRight
                     textFormat: Text.StyledText
-                    font.weight: movieDelegate.titleWeight
-                    font.pixelSize: movieDelegate.titleSize
-                    font.family: UIConstants.FONT_FAMILY
-                    color: movieDelegate.titleColor
-                    maximumLineCount: 3
+                    maximumLineCount: 2
                     wrapMode: Text.WordWrap
                     text: title
                 }
 
-                Text {
+                Label {
                     id: yearText
+                    platformStyle: LabelStyle {
+                        fontFamily: UIConstants.FONT_FAMILY_LIGHT
+                        fontPixelSize: UIConstants.FONT_LSMALL
+                    }
+                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
                     width: parent.width
-                    font.weight: movieDelegate.subtitleWeight
-                    font.pixelSize: movieDelegate.subtitleSize
-                    font.family: UIConstants.FONT_FAMILY
-                    color: movieDelegate.subtitleColor
                     text: '(' + BUTACA.getYearFromDate(released) +')'
                 }
 
@@ -131,8 +123,10 @@ Item {
 
         CustomMoreIndicator {
             id: viewDetails
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
+            anchors {
+                right: parent.right
+                verticalCenter: parent.verticalCenter
+            }
         }
     }
 }
