@@ -110,7 +110,7 @@ Page {
 
     Component { id: personView; DetailedView { } }
 
-    AboutView { id: aboutView }
+    Component { id: aboutView; AboutView { } }
 
     /* Model containing the actions: browse, search and shows */
     ListModel {
