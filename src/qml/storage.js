@@ -32,18 +32,22 @@ function getDatabase() {
  * Initialize the tables if needed
  */
 function initialize() {
-    var db = getDatabase();
-    db.transaction(
-        function(tx) {
-            // Create the settings table if it doesn't already exist
-            // If the table exists, this is skipped
-            tx.executeSql('CREATE TABLE IF NOT EXISTS favorites' +
-                          '(favoriteId TEXT, title TEXT, iconSource TEXT, favoriteType TINYINT)')
-        })
-    db.transaction(
-        function(tx) {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS settings(setting TEXT UNIQUE, value TEXT)')
-        })
+    try {
+        var db = getDatabase();
+        db.transaction(
+            function(tx) {
+                // Create the settings table if it doesn't already exist
+                // If the table exists, this is skipped
+                tx.executeSql('CREATE TABLE IF NOT EXISTS favorites' +
+                              '(favoriteId TEXT, title TEXT, iconSource TEXT, favoriteType TINYINT)')
+            })
+        db.transaction(
+            function(tx) {
+                tx.executeSql('CREATE TABLE IF NOT EXISTS settings(setting TEXT UNIQUE, value TEXT)')
+            })
+    } catch (ex) {
+        console.debug('initialize:', ex)
+    }
 }
 
 /**
@@ -53,13 +57,17 @@ function initialize() {
  * @return The insertion index
  */
 function saveFavorite(favorite) {
-    var db = getDatabase()
     var insertIndex = -1
-    db.transaction(function(tx) {
-        var rs = tx.executeSql('INSERT OR REPLACE INTO favorites VALUES (?,?,?,?);',
-                               [favorite.id,favorite.title,favorite.icon,favorite.type])
-        insertIndex = rs.insertId
-    })
+    try {
+        var db = getDatabase()
+        db.transaction(function(tx) {
+            var rs = tx.executeSql('INSERT OR REPLACE INTO favorites VALUES (?,?,?,?);',
+                                   [favorite.id,favorite.title,favorite.icon,favorite.type])
+            insertIndex = rs.insertId
+        })
+    } catch (ex) {
+        console.debug('saveFavorite:', ex)
+    }
     return insertIndex
 }
 
@@ -70,13 +78,17 @@ function saveFavorite(favorite) {
  * @return true if the operation is successful, Error if it failed
  */
 function removeFavorite(index) {
-    var db = getDatabase()
     var success = false
-    db.transaction(function(tx) {
-        var rs = tx.executeSql('DELETE FROM favorites WHERE ROWID = ?;',
-                               [index])
-        success = rs.rowsAffected > 0
-    })
+    try {
+        var db = getDatabase()
+        db.transaction(function(tx) {
+            var rs = tx.executeSql('DELETE FROM favorites WHERE ROWID = ?;',
+                                   [index])
+            success = rs.rowsAffected > 0
+        })
+    } catch (ex) {
+        console.debug('removeFavorite:', ex)
+    }
     return success
 }
 
@@ -86,21 +98,25 @@ function removeFavorite(index) {
  * @return The collection of favorites stored or an empty list
  */
 function getFavorites() {
-    var db = getDatabase()
     var res= []
-    db.transaction(function(tx) {
-        var rs = tx.executeSql('SELECT rowid,favoriteId,title,iconSource,favoriteType FROM favorites;')
-        if (rs.rows.length > 0) {
-            for(var i = 0; i < rs.rows.length; i++) {
-                var currentItem = rs.rows.item(i)
-                res.push({'id': currentItem.favoriteId,
-                          'title': currentItem.title,
-                          'icon': currentItem.iconSource,
-                          'type': currentItem.favoriteType,
-                          'rowId': currentItem.rowid})
+    try {
+        var db = getDatabase()
+        db.transaction(function(tx) {
+            var rs = tx.executeSql('SELECT rowid,favoriteId,title,iconSource,favoriteType FROM favorites;')
+            if (rs.rows.length > 0) {
+                for(var i = 0; i < rs.rows.length; i++) {
+                    var currentItem = rs.rows.item(i)
+                    res.push({'id': currentItem.favoriteId,
+                              'title': currentItem.title,
+                              'icon': currentItem.iconSource,
+                              'type': currentItem.favoriteType,
+                              'rowId': currentItem.rowid})
+                }
             }
-        }
-    })
+        })
+    } catch (ex) {
+        console.debug('getFavorites:', ex)
+    }
     return res
 }
 
@@ -112,29 +128,38 @@ function getFavorites() {
  * @return true if the operation is successfull, false otherwise
  */
 function setSetting(setting, value) {
-    var db = getDatabase()
     var success = false
-    db.transaction(function(tx) {
-        var rs = tx.executeSql('INSERT OR REPLACE INTO settings VALUES (?,?);', [setting,value])
-        success = rs.rowsAffected > 0
-    })
+    try {
+        var db = getDatabase()
+        db.transaction(function(tx) {
+            var rs = tx.executeSql('INSERT OR REPLACE INTO settings VALUES (?,?);', [setting,value])
+            success = rs.rowsAffected > 0
+        })
+    } catch (ex) {
+        console.debug('setSetting:', ex)
+    }
     return success
 }
 
 /**
  * Retrieves a setting from the database
  * @param setting The setting to retrieve
+ * @param defaultValue The default value if no value was found
  *
  * @return The value for the setting
  */
-function getSetting(setting) {
-    var db = getDatabase();
-    var res = ''
-    db.transaction(function(tx) {
-        var rs = tx.executeSql('SELECT value FROM settings WHERE setting=?;', [setting]);
-        if (rs.rows.length > 0) {
-            res = rs.rows.item(0).value;
-        }
-    })
+function getSetting(setting, defaultValue) {
+    var res = defaultValue
+    try {
+        var db = getDatabase();
+        db.transaction(function(tx) {
+            var rs = tx.executeSql('SELECT value FROM settings WHERE setting=?;', [setting]);
+            if (rs.rows.length > 0) {
+                res = rs.rows.item(0).value;
+            }
+        })
+    } catch (ex) {
+        console.debug('getSetting:', ex)
+    }
     return res
 }
