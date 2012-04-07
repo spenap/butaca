@@ -34,9 +34,7 @@ Item {
     BorderImage {
         id: backgroundImage
         anchors.fill: parent
-        source: !theme.inverted ?
-                    'image://theme/meegotouch-view-header-fixed' :
-                    'image://theme/meegotouch-view-header-fixed-inverted-pressed'
+        source: 'qrc:/resources/view-header-fixed-inverted.png'
     }
 
     Label {
@@ -44,9 +42,7 @@ Item {
         platformStyle: LabelStyle {
             fontPixelSize: UIConstants.FONT_XLARGE
         }
-        color: !theme.inverted ?
-                   UIConstants.COLOR_FOREGROUND :
-                   UIConstants.COLOR_INVERTED_FOREGROUND
+        color: UIConstants.COLOR_INVERTED_FOREGROUND
         width: parent.width
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         anchors {
