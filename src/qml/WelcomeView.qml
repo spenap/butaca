@@ -105,9 +105,11 @@ Page {
 
     ButacaToolBar { id: commonTools }
     SearchView { id: searchView }
-    DetailedView { id: movieView }
-    DetailedView { id: personView }
     TheatersView { id: theatersView }
+    Component { id: movieView; DetailedView { } }
+
+    Component { id: personView; DetailedView { } }
+
     AboutView { id: aboutView }
 
     /* Model containing the actions: browse, search and shows */

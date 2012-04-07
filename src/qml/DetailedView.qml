@@ -22,123 +22,116 @@ import com.nokia.meego 1.0
 import "butacautils.js" as BUTACA
 import 'constants.js' as UIConstants
 
-Component {
-    id: detailedViewWrapper
+Page {
+    id: detailedView
+    orientationLock: PageOrientation.LockPortrait
 
-    Page {
-        id: detailedView
-        orientationLock: PageOrientation.LockPortrait
+    property string detailId
+    property int viewType: -1
 
-        property string detailId
-        property int viewType: -1
+    function currentItem() {
+        return list.model.get(list.currentIndex)
+    }
 
-        function currentItem() {
-            return list.model.get(list.currentIndex)
+    Menu {
+        id: detailedViewMenu
+        MenuLayout {
+            MenuItem {
+                id: homepageEntry
+                //: Open homepage
+                text: qsTr('btc-open-homepage')
+                onClicked: Qt.openUrlExternally(currentItem().homepage)
+                visible: false
+            }
+            MenuItem {
+                id: tmdbEntry
+                //: View in TMDb
+                text: qsTr('btc-open-tmdb')
+                onClicked: Qt.openUrlExternally(currentItem().url)
+            }
+            MenuItem {
+                id: imdbEntry
+                //: View in IMDb
+                text: qsTr('btc-open-imdb')
+                onClicked: Qt.openUrlExternally(BUTACA.IMDB_BASE_URL + currentItem().imdbId)
+                visible: false
+            }
         }
+    }
+    tools: ButacaToolBar { id: toolBar; state: 'ContentNotReady'; menu: detailedViewMenu }
 
-        Menu {
-            id: detailedViewMenu
-            MenuLayout {
-                MenuItem {
-                    id: homepageEntry
-                    //: Open homepage
-                    text: qsTr('btc-open-homepage')
-                    onClicked: Qt.openUrlExternally(currentItem().homepage)
-                    visible: false
-                }
-                MenuItem {
-                    id: tmdbEntry
-                    //: View in TMDb
-                    text: qsTr('btc-open-tmdb')
-                    onClicked: Qt.openUrlExternally(currentItem().url)
-                }
-                MenuItem {
-                    id: imdbEntry
-                    //: View in IMDb
-                    text: qsTr('btc-open-imdb')
-                    onClicked: Qt.openUrlExternally(BUTACA.IMDB_BASE_URL + currentItem().imdbId)
-                    visible: false
+    Item {
+        id: content
+        anchors.fill: parent
+
+        PersonModel {
+            id: personModel
+            onStatusChanged: {
+                if (content.state == 'FetchingPerson' &&
+                        status == XmlListModel.Ready) {
+                    content.state = 'Ready'
                 }
             }
         }
-        tools: ButacaToolBar { id: toolBar; state: 'ContentNotReady'; menu: detailedViewMenu }
 
-        Item {
-            id: content
+        SingleMovieModel {
+            id: movieModel
+            onStatusChanged: {
+                if (content.state == 'FetchingMovie' &&
+                        status == XmlListModel.Ready) {
+                    content.state = 'Ready'
+                }
+            }
+        }
+
+        Component { id: movieDelegateWrapper; SingleMovieDelegate { } }
+        Component { id: personDelegateWrapper; PersonDelegate { } }
+
+        ListView {
+            id: list
             anchors.fill: parent
-            anchors.topMargin: appWindow.inPortrait?
-                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
-                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
-
-            PersonModel {
-                id: personModel
-                onStatusChanged: {
-                    if (content.state == 'FetchingPerson' &&
-                            status == XmlListModel.Ready) {
-                        content.state = 'Ready'
-                    }
-                }
-            }
-
-            SingleMovieModel {
-                id: movieModel
-                onStatusChanged: {
-                    if (content.state == 'FetchingMovie' &&
-                            status == XmlListModel.Ready) {
-                        content.state = 'Ready'
-                    }
-                }
-            }
-
-            Component { id: movieDelegateWrapper; SingleMovieDelegate { } }
-            Component { id: personDelegateWrapper; PersonDelegate { } }
-
-            ListView {
-                id: list
-                anchors.fill: parent
-                interactive: false
-            }
-
-            BusyIndicator {
-                id: busyIndicator
-                visible: true
-                running: true
-                platformStyle: BusyIndicatorStyle { size: 'large' }
-                anchors.centerIn: parent
-            }
-
-            states: [
-                State {
-                    name: 'FetchingMovie'
-                    when: viewType == BUTACA.MOVIE
-                    PropertyChanges {
-                        target: movieModel; restoreEntryValues: false;
-                        params: detailId }
-                    PropertyChanges {
-                        target: list; restoreEntryValues: false;
-                        model: movieModel; delegate: movieDelegateWrapper }
-                },
-                State {
-                    name: 'FetchingPerson'
-                    when: viewType == BUTACA.PERSON
-                    PropertyChanges {
-                        target: personModel; restoreEntryValues: false;
-                        params: detailId }
-                    PropertyChanges { target: list; restoreEntryValues: false;
-                        model: personModel; delegate: personDelegateWrapper }
-                },
-                State {
-                    name: 'Ready'
-                    PropertyChanges { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges { target: list; visible: true }
-                    PropertyChanges {
-                        target: toolBar
-                        content: viewType == BUTACA.MOVIE ?
-                                     BUTACA.favoriteFromMovie(currentItem()) :
-                                     BUTACA.favoriteFromPerson(currentItem())
-                    }
-                }
-            ]
+            interactive: false
         }
+
+        BusyIndicator {
+            id: busyIndicator
+            visible: true
+            running: true
+            platformStyle: BusyIndicatorStyle { size: 'large' }
+            anchors.centerIn: parent
+        }
+
+        states: [
+            State {
+                name: 'FetchingMovie'
+                when: viewType == BUTACA.MOVIE
+                PropertyChanges {
+                    target: movieModel; restoreEntryValues: false;
+                    params: detailId }
+                PropertyChanges {
+                    target: list; restoreEntryValues: false;
+                    model: movieModel; delegate: movieDelegateWrapper }
+            },
+            State {
+                name: 'FetchingPerson'
+                when: viewType == BUTACA.PERSON
+                PropertyChanges {
+                    target: personModel; restoreEntryValues: false;
+                    params: detailId }
+                PropertyChanges { target: list; restoreEntryValues: false;
+                    model: personModel; delegate: personDelegateWrapper }
+            },
+            State {
+                name: 'Ready'
+                PropertyChanges { target: busyIndicator; running: false; visible: false }
+                PropertyChanges { target: list; visible: true }
+                PropertyChanges {
+                    target: toolBar
+                    content: viewType == BUTACA.MOVIE ?
+                                 BUTACA.favoriteFromMovie(currentItem()) :
+                                 BUTACA.favoriteFromPerson(currentItem())
+                }
+            }
+        ]
     }
 }
