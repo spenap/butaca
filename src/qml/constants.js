@@ -8,8 +8,9 @@ var DEFAULT_MARGIN  = 16
 var PADDING_LARGE   = 8
 var PADDING_XSMALL  = 2
 
-var FONT_FAMILY     = 'Nokia Pure Text'
-var FONT_FAMILY_LIGHT = 'Nokia Pure Text Light'
+var FONT_FAMILY         = 'Nokia Pure Text'
+var FONT_FAMILY_BOLD    = 'Nokia Pure Text Bold'
+var FONT_FAMILY_LIGHT   = 'Nokia Pure Text Light'
 
 var FONT_LSMALL     = 22
 var FONT_DEFAULT    = 24
