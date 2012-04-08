@@ -46,17 +46,33 @@ Page {
                     Storage.getSetting('perPage', 10),
                     Storage.getSetting('minVotes', 0),
                     genre)
+        onStatusChanged: {
+            if (status === XmlListModel.Ready &&
+                    count > 0) {
+                for (var i = 0; i < count; i ++) {
+                    var movie = new BUTACA.TMDbMovie(get(i))
+                    localModel.append(movie)
+                }
+            }
+        }
     }
+
+    ListModel {
+        id: localModel
+    }
+
+    Component { id: movieView; MovieView { } }
 
     ListView {
         id: list
         anchors.fill: parent
-        model: moviesModel
+        model: localModel
         delegate: MultipleMoviesDelegate {
             onClicked: {
                 pageStack.push(movieView,
-                               { detailId: tmdbId,
-                                 viewType: BUTACA.MOVIE })
+                               {
+                                   movie: localModel.get(index)
+                               })
             }
         }
         header: Header {

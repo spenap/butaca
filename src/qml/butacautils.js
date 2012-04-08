@@ -47,6 +47,9 @@ var MOVIE = 1
 
 var IMDB_BASE_URL = 'http://www.imdb.com/title/'
 
+var REMOTE_FETCH_REQUEST = 0
+var REMOTE_FETCH_RESPONSE = 0
+
 /**
  * Builds the source for a model using TMDb services.
  *
@@ -161,4 +164,31 @@ function sanitizeText(text) {
     // "Save" existing <br /> into &lt;br /&gt;, remove all tags
     // and put the <br /> back there
     return text.replace(/<br \/>/g, '&lt;br /&gt;').replace(/<.*?>/g, '').replace(/&lt;br \/&gt;/g, '<br />')
+}
+
+function TMDbMovie(obj) {
+    this.id = obj.id
+    this.name = obj.name
+    this.released = obj.released
+    this.rating = obj.rating
+    this.votes = obj.votes
+    this.overview = obj.overview
+    this.poster = obj.poster
+
+    this.title = this.name
+    this.type = 'TMDbMovie'
+
+    this.toString = movie_toString
+}
+
+function movie_toString() {
+    var str = 'TMDB Movie:' +
+            '\tid: ' + this.id + '\n' +
+            '\tname: ' + this.name + '\n' +
+            '\treleased: ' + this.released + '\n' +
+            '\trating: ' + this.rating + '\n' +
+            '\tvotes: ' + this.votes + '\n' +
+            '\toverview: ' + this.overview + '\n' +
+            '\tposter: ' + this.poster
+    return str
 }

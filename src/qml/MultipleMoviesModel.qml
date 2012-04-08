@@ -30,8 +30,8 @@ XmlListModel {
     source: BUTACA.getTMDbSource(apiMethod, appLocale, params)
     query: BUTACA.TMDB_MOVIE_QUERY
 
-    XmlRole { name: "tmdbId"; query: "id/string()" }
-    XmlRole { name: "title"; query: "name/string()" }
+    XmlRole { name: "id"; query: "id/string()" }
+    XmlRole { name: "name"; query: "name/string()" }
     XmlRole { name: "released"; query: "released/string()" }
     XmlRole { name: "rating"; query: "rating/number()" }
     XmlRole { name: "votes"; query: "votes/number()" }
