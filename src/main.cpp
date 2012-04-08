@@ -65,7 +65,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QDeclarativeContext *context = view->rootContext();
 
     // The Movie Database uses "-" as the divider between language and country code
-    context->setContextProperty("appLocale", locale.replace("_","-"));
+    context->setContextProperty("appLocale", locale.left(locale.indexOf("_")));
     Controller *controller = new Controller(context);
 
     view->engine()->setNetworkAccessManagerFactory(new CustomNetworkAccessManagerFactory);
