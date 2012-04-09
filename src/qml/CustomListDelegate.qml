@@ -24,76 +24,103 @@ import "butacautils.js" as BUTACA
 import 'constants.js' as UIConstants
 
 Item {
-    id: customListDelegate
+    id: delegate
 
     signal clicked
 
-    property string listTitle: model.title
-    property string listSubtitle: model.subtitle ? model.subtitle : ''
+    property string title: ''
+    property int titleSize: UIConstants.FONT_SLARGE
+    property int titleWeight: Font.Normal
+    property string titleFontFamily: UIConstants.FONT_FAMILY
+    property color titleColor: UIConstants.COLOR_INVERTED_FOREGROUND
+
+    property string subtitle: ''
+    property int subtitleSize: UIConstants.FONT_LSMALL
+    property int subtitleWeight: Font.Normal
+    property string subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
+    property color subtitleColor: UIConstants.COLOR_SECONDARY_FOREGROUND
+
+    property string iconSource: ''
+    property bool smallSize: false
+
     property bool pressable: true
 
     width: parent.width
-    height: UIConstants.LIST_ITEM_HEIGHT_DEFAULT
+    height: smallSize ? UIConstants.LIST_ITEM_HEIGHT_SMALL : UIConstants.LIST_ITEM_HEIGHT_DEFAULT
 
     BorderImage {
+        id: delegateBackground
         anchors.fill: parent
-        visible: mouseArea.pressed && pressable
-        source: theme.inverted ?
-                    'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center':
-                    'image://theme/meegotouch-list-fullwidth-background-pressed-vertical-center'
+        visible: delegateMouseArea.pressed && pressable
+        source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
+    }
+
+    Image {
+        id: delegateImage
+        anchors {
+            left: parent.left
+            leftMargin: UIConstants.PADDING_LARGE
+            verticalCenter: parent.verticalCenter
+        }
+        source: iconSource
+        fillMode: Image.PreserveAspectFit
+        width: UIConstants.SIZE_ICON_LARGE
+        height: UIConstants.SIZE_ICON_LARGE
+        visible: iconSource
+    }
+
+    Column {
+        id: delegateColumn
+        anchors {
+            left: delegateImage.visible ? delegateImage.right : parent.left
+            leftMargin: UIConstants.DEFAULT_MARGIN
+            verticalCenter: parent.verticalCenter
+        }
+        width: parent.width - delegateMoreIndicator.width - UIConstants.DEFAULT_MARGIN
+
+        Label {
+            id: delegateTitleLabel
+            platformStyle: LabelStyle {
+                fontPixelSize: titleSize
+                fontFamily: titleFontFamily
+            }
+            font.weight: titleWeight
+            color: titleColor
+            width: parent.width
+            elide: Text.ElideRight
+
+            text: title
+        }
+
+        Label {
+            id: delegateSubtitleLabel
+            platformStyle: LabelStyle {
+                fontFamily: subtitleFontFamily
+                fontPixelSize: subtitleSize
+            }
+            font.weight: subtitleWeight
+            color: subtitleColor
+            width: parent.width
+            elide: Text.ElideRight
+            visible: subtitle
+
+            text: subtitle
+        }
+    }
+
+    CustomMoreIndicator {
+        id: delegateMoreIndicator
+        anchors {
+            verticalCenter: parent.verticalCenter
+            right: parent.right
+            rightMargin: UIConstants.DEFAULT_MARGIN
+        }
+        visible: pressable
     }
 
     MouseArea {
-        id: mouseArea
+        id: delegateMouseArea
         anchors.fill: parent
-        onClicked: customListDelegate.clicked()
-    }
-
-    Item {
-        anchors {
-            fill: parent
-            leftMargin: UIConstants.DEFAULT_MARGIN
-            rightMargin: UIConstants.DEFAULT_MARGIN
-        }
-
-        Column {
-            anchors.verticalCenter: parent.verticalCenter
-            width: parent.width - viewDetails.width - UIConstants.DEFAULT_MARGIN
-
-            Label {
-                id: titleText
-                text: listTitle
-                platformStyle: LabelStyle {
-                    fontPixelSize: UIConstants.FONT_SLARGE
-                }
-                color: theme.inverted ?
-                           UIConstants.COLOR_INVERTED_FOREGROUND :
-                           UIConstants.COLOR_FOREGROUND
-                width: parent.width
-                elide: Text.ElideRight
-            }
-
-            Label {
-                id: subtitleText
-                text: listSubtitle
-                platformStyle: LabelStyle {
-                    fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                    fontPixelSize: UIConstants.FONT_LSMALL
-                }
-                color: UIConstants.COLOR_SECONDARY_FOREGROUND
-                visible: listSubtitle
-                width: parent.width
-                elide: Text.ElideRight
-            }
-        }
-
-        CustomMoreIndicator {
-            id: viewDetails
-            anchors {
-                verticalCenter: parent.verticalCenter
-                right: parent.right
-            }
-            visible: pressable
-        }
+        onClicked: delegate.clicked()
     }
 }

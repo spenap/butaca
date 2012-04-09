@@ -138,6 +138,9 @@ Page {
         clip: true
         interactive: false
         delegate: CustomListDelegate {
+            title: model.title
+            subtitle: model.subtitle
+
             onClicked: {
                 switch (action) {
                 case 0:

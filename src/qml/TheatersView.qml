@@ -137,7 +137,11 @@ Page {
                 showDivider: false
                 visible: !showShowtimesFilter
             }
-            delegate: CustomListDelegate { pressable: false }
+            delegate: CustomListDelegate {
+                title: model.title
+
+                pressable: false
+            }
 
             section.property: 'theaterName'
             section.delegate: ListSectionDelegate { sectionName: section }

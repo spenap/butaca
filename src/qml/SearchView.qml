@@ -181,6 +181,8 @@ Page {
                 }
             }
             delegate: CustomListDelegate {
+                title: model.title
+
                 onClicked: { pageStack.push(personView,
                                             { detailId: personId,
                                               viewType: BUTACA.PERSON })}
@@ -220,6 +222,8 @@ Page {
             flickableDirection: Flickable.VerticalFlick
             model: theaterModel
             delegate: CustomListDelegate {
+                title: model.title
+
                 pressable: false
             }
             section.delegate: ListSectionDelegate { sectionName: section }

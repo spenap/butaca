@@ -48,6 +48,8 @@ Page {
             text: qsTr('btc-browse-genres')
         }
         delegate: CustomListDelegate {
+            title: model.title
+
             onClicked: {
                 pageStack.push(multipleMovieView ,
                                {genre: genreId, genreName: title})

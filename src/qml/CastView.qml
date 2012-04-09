@@ -69,6 +69,9 @@ Component {
                     showDivider: false
                 }
                 delegate: CustomListDelegate {
+                    title: model.title
+                    subtitle: model.subtitle
+
                     onClicked: { pageStack.push(personView,
                                                 { detailId: personId,
                                                   viewType: BUTACA.PERSON })}
