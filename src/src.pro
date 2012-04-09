@@ -45,11 +45,11 @@ OTHER_FILES += \
     qml/PersonModel.qml \
     qml/PersonDelegate.qml \
     qml/PeopleModel.qml \
+    qml/GenresView.qml \
     qml/GenresModel.qml \
     qml/SingleMovieModel.qml \
     qml/SingleMovieDelegate.qml \
     qml/ButacaToolBar.qml \
-    qml/BrowseView.qml \
     qml/MultipleMoviesView.qml \
     qml/MultipleMoviesModel.qml \
     qml/MultipleMoviesDelegate.qml \

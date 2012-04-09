@@ -81,7 +81,7 @@ Page {
         }
     }
 
-    Component { id: browseView; BrowseView { } }
+    Component { id: browseView; GenresView { } }
 
     Component { id: searchView; SearchView { } }
 
