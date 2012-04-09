@@ -44,7 +44,7 @@ Item {
         }
         color: UIConstants.COLOR_INVERTED_FOREGROUND
         width: parent.width
-        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        elide: Text.ElideRight
         anchors {
             left: parent.left
             leftMargin: UIConstants.DEFAULT_MARGIN
