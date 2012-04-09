@@ -74,7 +74,6 @@ Page {
 
         platformSipAttributes: SipAttributes {
             actionKeyIcon: '/usr/share/themes/blanco/meegotouch/icons/icon-m-toolbar-search-selected.png'
-            actionKeyEnabled: searchInput.text
         }
 
         Keys.onReturnPressed: {
