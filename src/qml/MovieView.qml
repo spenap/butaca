@@ -389,56 +389,14 @@ Page {
                     visible: parsedMovie.trailer
                 }
 
-                Item {
-                    id: trailerContainer
-                    width: parent.width
-                    height: UIConstants.LIST_ITEM_HEIGHT_DEFAULT
+                CustomListDelegate {
+                    title: 'Watch Trailer'
+                    titleSize: UIConstants.FONT_SLARGE
+
+                    iconSource: 'qrc:/resources/icon-m-common-video-playback.png'
                     visible: parsedMovie.trailer
 
-                    BorderImage {
-                        anchors.fill: parent
-                        visible: trailerMouseArea.pressed
-                        source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
-                    }
-
-                    Image {
-                        id: trailerImage
-                        anchors {
-                            left: parent.left
-                            leftMargin: UIConstants.PADDING_LARGE
-                            verticalCenter: parent.verticalCenter
-                        }
-                        source: 'file:///home/spenap/Downloads/icon-l-common-video-playback.png'
-                        width: 64; height: 64
-                    }
-
-                    Label {
-                        anchors {
-                            left: trailerImage.right
-                            leftMargin: UIConstants.DEFAULT_MARGIN
-                            verticalCenter: parent.verticalCenter
-                        }
-                        platformStyle: LabelStyle {
-                            fontPixelSize: UIConstants.FONT_SLARGE
-                        }
-                        text: 'Watch Trailer'
-                    }
-
-                    CustomMoreIndicator {
-                        anchors {
-                            right: parent.right
-                            rightMargin: UIConstants.DEFAULT_MARGIN
-                            verticalCenter: parent.verticalCenter
-                        }
-                    }
-
-                    MouseArea {
-                        id: trailerMouseArea
-                        anchors.fill: parent
-                        onClicked: {
-                            Qt.openUrlExternally(parsedMovie.trailer)
-                        }
-                    }
+                    onClicked: Qt.openUrlExternally(parsedMovie.trailer)
                 }
 
                 Rectangle {
