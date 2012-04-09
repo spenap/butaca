@@ -192,3 +192,50 @@ function movie_toString() {
             '\tposter: ' + this.poster
     return str
 }
+
+function TMDbCrewPerson(obj) {
+    // {
+    //  "name":"Frank Miller",
+    //  "job":"Director",
+    //  "department":"Directing",
+    //  "character":"",
+    //  "id":2293,
+    //  "order":0,
+    //  "cast_id":1,
+    //  "url":"http://www.themoviedb.org/person/2293",
+    //  "profile":"http://cf2.imgobject.com/t/p/w185/hGijoL2duWMX4LohvgpkH9HpMq4.jpg"
+    //  }
+    this.id = obj.id
+    this.name = obj.name
+    this.job = obj.job
+    this.department = obj.department
+    this.character = obj.character
+    this.order = obj.order
+    this.castId = obj.cast_id
+    this.url = obj.url
+    this.profile = obj.profile
+}
+
+function TMDbImage(obj) {
+    this.id = obj.image.id
+    this.type = obj.image.type
+    this.sizes = {
+        'thumb' : { 'width' : 0, 'height': 0, 'url': ''},
+        'w154' : { 'width' : 0, 'height': 0, 'url': ''},
+        'cover' : { 'width' : 0, 'height': 0, 'url': ''},
+        'w342' : { 'width' : 0, 'height': 0, 'url': ''},
+        'mid' : { 'width' : 0, 'height': 0, 'url': ''},
+        'original' : { 'width' : 0, 'height': 0, 'url': ''},
+    }
+
+    this.sizes[obj.image.size].width = obj.image.width
+    this.sizes[obj.image.size].height = obj.image.height
+    this.sizes[obj.image.size].url = obj.image.url
+    this.addSize = image_addSize
+}
+
+function image_addSize(obj) {
+    this.sizes[obj.size].width = obj.width
+    this.sizes[obj.size].height = obj.height
+    this.sizes[obj.size].url = obj.url
+}
