@@ -53,7 +53,6 @@ OTHER_FILES += \
     qml/MultipleMoviesView.qml \
     qml/MultipleMoviesModel.qml \
     qml/MultipleMoviesDelegate.qml \
-    qml/CustomMoreIndicator.qml \
     qml/Header.qml \
     qml/NoContentItem.qml \
     qml/CastModel.qml \
@@ -64,20 +63,21 @@ OTHER_FILES += \
     qml/ListSectionDelegate.qml \
     qml/TheatersView.qml \
     qml/SettingsView.qml \
-    qml/CustomListDelegate.qml \
     qml/AboutView.qml \
     qml/FavoriteDelegate.qml \
+    qml/MovieView.qml \
     qml/MyRatingIndicator.qml \
+    qml/MyMoreIndicator.qml \
+    qml/MyListDelegate.qml \
     qml/storage.js \
     qml/butacautils.js \
     qml/constants.js \
+    qml/workerscript.js \
     resources/movie-placeholder.svg \
     resources/person-placeholder.svg \
     resources/butaca.svg \
     resources/tmdb-logo.png \
-    resources/indicator-rating-inverted-star.svg \
-    qml/MovieView.qml \
-    qml/workerscript.js
+    resources/indicator-rating-inverted-star.svg
 
 RESOURCES += \
     res.qrc

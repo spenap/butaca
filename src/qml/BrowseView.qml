@@ -47,7 +47,7 @@ Page {
             //: Movie genres
             text: qsTr('btc-browse-genres')
         }
-        delegate: CustomListDelegate {
+        delegate: MyListDelegate {
             title: model.title
 
             onClicked: {

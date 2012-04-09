@@ -180,7 +180,7 @@ Page {
                     }
                 }
             }
-            delegate: CustomListDelegate {
+            delegate: MyListDelegate {
                 title: model.title
 
                 onClicked: { pageStack.push(personView,
@@ -221,7 +221,7 @@ Page {
             clip: true
             flickableDirection: Flickable.VerticalFlick
             model: theaterModel
-            delegate: CustomListDelegate {
+            delegate: MyListDelegate {
                 title: model.title
 
                 pressable: false

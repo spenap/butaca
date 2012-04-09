@@ -137,7 +137,7 @@ Page {
         model: menuModel
         clip: true
         interactive: false
-        delegate: CustomListDelegate {
+        delegate: MyListDelegate {
             title: model.title
             subtitle: model.subtitle
 

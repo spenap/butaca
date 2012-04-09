@@ -364,7 +364,7 @@ Page {
                         }
                     }
 
-                    CustomMoreIndicator {
+                    MyMoreIndicator {
                         id: galleryMoreIndicator
                         anchors {
                             right: parent.right
@@ -389,7 +389,7 @@ Page {
                     visible: parsedMovie.trailer
                 }
 
-                CustomListDelegate {
+                MyListDelegate {
                     title: 'Watch Trailer'
                     titleSize: UIConstants.FONT_SLARGE
 
@@ -457,7 +457,7 @@ Page {
                     onClicked: movieOverviewSection.expanded = !movieOverviewSection.expanded
                 }
 
-                CustomMoreIndicator {
+                MyMoreIndicator {
                     id: moreIndicator
                     anchors.centerIn: parent
                     rotation: movieOverviewSection.expanded ? -90 : 90
@@ -575,7 +575,7 @@ Page {
                 Repeater {
                     width: parent.width
                     model: Math.min(4, castModel.count)
-                    delegate: CustomListDelegate {
+                    delegate: MyListDelegate {
                         smallSize: true
 
                         iconSource: castModel.get(index).profile ?
@@ -592,7 +592,7 @@ Page {
                     }
                 }
 
-                CustomListDelegate {
+                MyListDelegate {
                     smallSize: true
                     title: 'Full Cast'
                     titleSize: UIConstants.FONT_LSMALL
@@ -618,7 +618,7 @@ Page {
                 Repeater {
                     width: parent.width
                     model: Math.min(4, crewModel.count)
-                    delegate: CustomListDelegate {
+                    delegate: MyListDelegate {
                         smallSize: true
 
                         iconSource: crewModel.get(index).profile ?
@@ -635,7 +635,7 @@ Page {
                     }
                 }
 
-                CustomListDelegate {
+                MyListDelegate {
                     smallSize: true
                     title: 'Full Cast & Crew'
                     titleSize: UIConstants.FONT_LSMALL

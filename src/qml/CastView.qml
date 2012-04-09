@@ -68,7 +68,7 @@ Component {
                     text: qsTr('btc-full-cast').arg(movie)
                     showDivider: false
                 }
-                delegate: CustomListDelegate {
+                delegate: MyListDelegate {
                     title: model.title
                     subtitle: model.subtitle
 

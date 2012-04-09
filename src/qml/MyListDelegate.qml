@@ -108,7 +108,7 @@ Item {
         }
     }
 
-    CustomMoreIndicator {
+    MyMoreIndicator {
         id: delegateMoreIndicator
         anchors {
             verticalCenter: parent.verticalCenter

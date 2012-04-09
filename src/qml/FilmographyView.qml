@@ -68,7 +68,7 @@ Component {
                     text: qsTr('btc-person-filmography').arg(person)
                     showDivider: false
                 }
-                delegate: CustomListDelegate {
+                delegate: MyListDelegate {
                     title: model.title
                     subtitle: model.subtitle
 

@@ -137,7 +137,7 @@ Page {
                 showDivider: false
                 visible: !showShowtimesFilter
             }
-            delegate: CustomListDelegate {
+            delegate: MyListDelegate {
                 title: model.title
 
                 pressable: false

@@ -121,7 +121,7 @@ Item {
             }
         }
 
-        CustomMoreIndicator {
+        MyMoreIndicator {
             id: viewDetails
             anchors {
                 right: parent.right

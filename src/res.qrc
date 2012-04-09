@@ -14,7 +14,7 @@
         <file>qml/PersonModel.qml</file>
         <file>qml/SearchView.qml</file>
         <file>qml/WelcomeView.qml</file>
-        <file>qml/CustomMoreIndicator.qml</file>
+        <file>qml/MyMoreIndicator.qml</file>
         <file>qml/Header.qml</file>
         <file>qml/NoContentItem.qml</file>
         <file>qml/CastView.qml</file>
@@ -25,7 +25,7 @@
         <file>qml/ListSectionDelegate.qml</file>
         <file>qml/TheatersView.qml</file>
         <file>qml/SettingsView.qml</file>
-        <file>qml/CustomListDelegate.qml</file>
+        <file>qml/MyListDelegate.qml</file>
         <file>qml/AboutView.qml</file>
         <file>qml/FavoriteDelegate.qml</file>
         <file>qml/MyRatingIndicator.qml</file>
