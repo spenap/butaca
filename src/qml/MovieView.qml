@@ -132,6 +132,15 @@ Page {
                                 })
     }
 
+    // Several ListModels are used.
+    // * Genres stores the genres / categories which best describe the movie. When
+    //   browsing by genre, the movie will have at least the genre we were navigating
+    // * Studios stores the company which produced the film
+    // * Posters stores all the media for this particular film. The media is
+    //   processed, so each particular image keeps all available resolutions
+    // * Cast and crew are separated from each other, so we can be more specific
+    //   in the movie preview
+
     ListModel {
         id: genresModel
     }
@@ -194,43 +203,20 @@ Page {
     }
 
     Flickable {
-        id: movieFlickable
+        id: movieFlickableWrapper
         anchors {
             fill: parent
             margins: UIConstants.DEFAULT_MARGIN
         }
-        contentHeight: content.height
+        contentHeight: movieContent.height
 
         Column {
-            id: content
+            id: movieContent
             width: parent.width
             spacing: UIConstants.DEFAULT_MARGIN
 
-            Item {
-                width: parent.width
-                height: UIConstants.HEADER_DEFAULT_HEIGHT_PORTRAIT
-
-                BorderImage {
-                    id: backgroundImage
-                    anchors.fill: parent
-                    source: 'file:///home/spenap/sb-workspace/stuff/butaca/butaca/src/resources/view-header-fixed-inverted.png'
-                }
-
-                Label {
-                    id: headerText
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_XLARGE
-                    }
-                    elide: Text.ElideRight
-                    text: parsedMovie.name + ' (' + getYearFromDate(parsedMovie.released) + ')'
-                    anchors {
-                        left: parent.left
-                        leftMargin: UIConstants.DEFAULT_MARGIN
-                        right: parent.right
-                        rightMargin: UIConstants.DEFAULT_MARGIN
-                        verticalCenter: parent.verticalCenter
-                    }
-                }
+            Header {
+                text: parsedMovie.name + ' (' + getYearFromDate(parsedMovie.released) + ')'
             }
 
             Row {
@@ -303,7 +289,7 @@ Page {
             }
 
             Row {
-                id: ratingRow
+                id: movieRatingSection
 
                 Label {
                     id: ratingLabel
@@ -463,7 +449,7 @@ Page {
             }
 
             Item {
-                id: overviewContainer
+                id: movieOverviewSection
                 width: parent.width
                 height: expanded ? actualSize : Math.min(actualSize, collapsedSize)
                 clip: true
@@ -506,17 +492,17 @@ Page {
                 id: overviewExpander
                 height: 24
                 width: parent.width
-                visible: overviewContainer.actualSize > overviewContainer.collapsedSize
+                visible: movieOverviewSection.actualSize > movieOverviewSection.collapsedSize
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: overviewContainer.expanded = !overviewContainer.expanded
+                    onClicked: movieOverviewSection.expanded = !movieOverviewSection.expanded
                 }
 
                 CustomMoreIndicator {
                     id: moreIndicator
                     anchors.centerIn: parent
-                    rotation: overviewContainer.expanded ? -90 : 90
+                    rotation: movieOverviewSection.expanded ? -90 : 90
 
                     Behavior on rotation {
                         NumberAnimation { duration: 200 }
@@ -525,7 +511,7 @@ Page {
             }
 
             Column {
-                id: releaseColumn
+                id: movieReleasedSection
                 width: parent.width
 
                 Label {
@@ -552,7 +538,7 @@ Page {
             }
 
             Column {
-                id: genresColumn
+                id: movieGenresSection
                 width: parent.width
 
                 Label {
@@ -583,7 +569,7 @@ Page {
             }
 
             Column {
-                id: studiosColumn
+                id: movieStudiosSection
                 width: parent.width
 
                 Label {
@@ -614,6 +600,7 @@ Page {
             }
 
             Column {
+                id: movieCastSection
                 width: parent.width
 
                 Label {
@@ -630,111 +617,33 @@ Page {
                 Repeater {
                     width: parent.width
                     model: Math.min(4, castModel.count)
-                    delegate: Item {
-                        width: parent.width
-                        height: UIConstants.LIST_ITEM_HEIGHT_SMALL
+                    delegate: CustomListDelegate {
+                        smallSize: true
 
-                        BorderImage {
-                            anchors.fill: parent
-                            visible: castDelegateMouseArea.pressed
-                            source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
-                        }
+                        iconSource: castModel.get(index).profile ?
+                                        castModel.get(index).profile :
+                                        'qrc:/resources/person-placeholder.svg'
 
-                        Image {
-                            id: castDelegateImage
-                            anchors {
-                                left: parent.left
-                                leftMargin: UIConstants.PADDING_LARGE
-                                verticalCenter: parent.verticalCenter
-                            }
-                            source: castModel.get(index).profile
-                            fillMode: Image.PreserveAspectFit
-                            width: 48; height: 48
-                        }
+                        title: castModel.get(index).name
+                        titleFontFamily: UIConstants.FONT_FAMILY_BOLD
+                        titleSize: UIConstants.FONT_LSMALL
 
-                        Column {
-                            anchors {
-                                left: castDelegateImage.right
-                                leftMargin: UIConstants.DEFAULT_MARGIN
-                                verticalCenter: parent.verticalCenter
-                            }
-
-                            Label {
-                                platformStyle: LabelStyle {
-                                    fontPixelSize: UIConstants.FONT_LSMALL
-                                    fontFamily: UIConstants.FONT_FAMILY_BOLD
-                                }
-                                text: castModel.get(index).name
-                            }
-
-                            Label {
-                                platformStyle: LabelStyle {
-                                    fontPixelSize: UIConstants.FONT_XSMALL
-                                    fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                                }
-                                text: castModel.get(index).job !== 'Actor' ?
-                                          castModel.get(index).job :
-                                          'as ' + castModel.get(index).character
-                            }
-                        }
-
-                        CustomMoreIndicator {
-                            anchors {
-                                right: parent.right
-                                rightMargin: UIConstants.DEFAULT_MARGIN
-                                verticalCenter: parent.verticalCenter
-                            }
-                        }
-
-                        MouseArea {
-                            id: castDelegateMouseArea
-                            anchors.fill: parent
-                        }
+                        subtitle: 'as ' + castModel.get(index).character
+                        subtitleSize: UIConstants.FONT_XSMALL
+                        subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
                     }
                 }
 
-                Item {
-                    width: parent.width
-                    height: UIConstants.LIST_ITEM_HEIGHT_SMALL
-
-                    BorderImage {
-                        anchors.fill: parent
-                        visible: fullCastMouseArea.pressed
-                        source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
-                    }
-
-                    Column {
-                        anchors {
-                            left: parent.left
-                            leftMargin: UIConstants.DEFAULT_MARGIN
-                            verticalCenter: parent.verticalCenter
-                        }
-
-                        Label {
-                            platformStyle: LabelStyle {
-                                fontPixelSize: UIConstants.FONT_LSMALL
-                                fontFamily: UIConstants.FONT_FAMILY_BOLD
-                            }
-                            text: 'Full cast'
-                        }
-                    }
-
-                    CustomMoreIndicator {
-                        anchors {
-                            right: parent.right
-                            rightMargin: UIConstants.DEFAULT_MARGIN
-                            verticalCenter: parent.verticalCenter
-                        }
-                    }
-
-                    MouseArea {
-                        id: fullCastMouseArea
-                        anchors.fill: parent
-                    }
+                CustomListDelegate {
+                    smallSize: true
+                    title: 'Full Cast'
+                    titleSize: UIConstants.FONT_LSMALL
+                    titleFontFamily: UIConstants.FONT_FAMILY_BOLD
                 }
             }
 
             Column {
+                id: movieCrewSection
                 width: parent.width
 
                 Label {
@@ -751,105 +660,28 @@ Page {
                 Repeater {
                     width: parent.width
                     model: Math.min(4, crewModel.count)
-                    delegate: Item {
-                        width: parent.width
-                        height: UIConstants.LIST_ITEM_HEIGHT_SMALL
+                    delegate: CustomListDelegate {
+                        smallSize: true
 
-                        BorderImage {
-                            anchors.fill: parent
-                            visible: crewDelegateMouseArea.pressed
-                            source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
-                        }
+                        iconSource: crewModel.get(index).profile ?
+                                        crewModel.get(index).profile :
+                                        'qrc:/resources/person-placeholder.svg'
 
-                        Image {
-                            id: crewDelegateImage
-                            anchors {
-                                left: parent.left
-                                leftMargin: UIConstants.PADDING_LARGE
-                                verticalCenter: parent.verticalCenter
-                            }
-                            source: crewModel.get(index).profile
-                            fillMode: Image.PreserveAspectFit
-                            width: 48; height: 48
-                        }
+                        title: crewModel.get(index).name
+                        titleFontFamily: UIConstants.FONT_FAMILY_BOLD
+                        titleSize: UIConstants.FONT_LSMALL
 
-                        Column {
-                            anchors {
-                                left: crewDelegateImage.right
-                                leftMargin: UIConstants.DEFAULT_MARGIN
-                                verticalCenter: parent.verticalCenter
-                            }
-
-                            Label {
-                                platformStyle: LabelStyle {
-                                    fontPixelSize: UIConstants.FONT_LSMALL
-                                    fontFamily: UIConstants.FONT_FAMILY_BOLD
-                                }
-                                text: crewModel.get(index).name
-                            }
-
-                            Label {
-                                platformStyle: LabelStyle {
-                                    fontPixelSize: UIConstants.FONT_XSMALL
-                                    fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                                }
-                                text: crewModel.get(index).job
-                            }
-                        }
-
-                        CustomMoreIndicator {
-                            anchors {
-                                right: parent.right
-                                rightMargin: UIConstants.DEFAULT_MARGIN
-                                verticalCenter: parent.verticalCenter
-                            }
-                        }
-
-                        MouseArea {
-                            id: crewDelegateMouseArea
-                            anchors.fill: parent
-                        }
+                        subtitle: crewModel.get(index).job
+                        subtitleSize: UIConstants.FONT_XSMALL
+                        subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
                     }
                 }
 
-                Item {
-                    width: parent.width
-                    height: UIConstants.LIST_ITEM_HEIGHT_SMALL
-
-                    BorderImage {
-                        anchors.fill: parent
-                        visible: fullCrewMouseArea.pressed
-                        source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
-                    }
-
-                    Column {
-                        anchors {
-                            left: parent.left
-                            leftMargin: UIConstants.DEFAULT_MARGIN
-                            verticalCenter: parent.verticalCenter
-                        }
-
-                        Label {
-                            platformStyle: LabelStyle {
-                                fontPixelSize: UIConstants.FONT_LSMALL
-                                fontFamily: UIConstants.FONT_FAMILY_BOLD
-                            }
-                            text: 'Full cast & crew'
-                        }
-                    }
-
-                    CustomMoreIndicator {
-                        anchors {
-                            right: parent.right
-                            rightMargin: UIConstants.DEFAULT_MARGIN
-                            verticalCenter: parent.verticalCenter
-                        }
-                    }
-
-                    MouseArea {
-                        id: fullCrewMouseArea
-                        anchors.fill: parent
-                    }
+                CustomListDelegate {
+                    smallSize: true
+                    title: 'Full Cast & Crew'
+                    titleSize: UIConstants.FONT_LSMALL
+                    titleFontFamily: UIConstants.FONT_FAMILY_BOLD
                 }
             }
         }
