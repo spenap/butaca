@@ -36,7 +36,7 @@ Page {
     onStatusChanged: {
         if (status == PageStatus.Active) {
             Storage.initialize()
-            location = Storage.getSetting('location')
+            location = Storage.getSetting('location', '')
             if (list.model.count === 0 ||
                     location != controller.currentLocation()) {
                 controller.fetchTheaters(location)
