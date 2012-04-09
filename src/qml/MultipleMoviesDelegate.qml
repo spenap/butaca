@@ -26,7 +26,7 @@ import 'constants.js' as UIConstants
 Item {
     id: movieDelegate
 
-    signal clicked
+    signal clicked(int index)
 
     width: movieDelegate.ListView.view.width
     height: 140 + UIConstants.DEFAULT_MARGIN
@@ -52,7 +52,7 @@ Item {
         MouseArea {
             id: mouseArea
             anchors.fill: parent
-            onClicked: movieDelegate.clicked()
+            onClicked: movieDelegate.clicked(index)
         }
 
         Row {

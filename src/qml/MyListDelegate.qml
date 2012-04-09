@@ -26,21 +26,21 @@ import 'constants.js' as UIConstants
 Item {
     id: delegate
 
-    signal clicked
+    signal clicked(int index)
 
-    property string title: ''
+    property string title: model && model.title ? model.title : ''
     property int titleSize: UIConstants.FONT_SLARGE
     property int titleWeight: Font.Normal
     property string titleFontFamily: UIConstants.FONT_FAMILY
     property color titleColor: UIConstants.COLOR_INVERTED_FOREGROUND
 
-    property string subtitle: ''
+    property string subtitle: model && model.subtitle ? model.subtitle : ''
     property int subtitleSize: UIConstants.FONT_LSMALL
     property int subtitleWeight: Font.Normal
     property string subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
     property color subtitleColor: UIConstants.COLOR_SECONDARY_FOREGROUND
 
-    property string iconSource: ''
+    property string iconSource: model && model.iconSource ? model.iconSource : ''
     property bool smallSize: false
 
     property bool pressable: true
@@ -121,6 +121,6 @@ Item {
     MouseArea {
         id: delegateMouseArea
         anchors.fill: parent
-        onClicked: delegate.clicked()
+        onClicked: delegate.clicked(index)
     }
 }
