@@ -28,10 +28,10 @@ XmlListModel {
     source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, appLocale, params)
     query: BUTACA.TMDB_PERSON_QUERY
 
+    XmlRole { name: "id"; query: "id/string()" }
+    XmlRole { name: "name"; query: "name/string()" }
     XmlRole { name: "score"; query: "score/number()" }
     XmlRole { name: "popularity"; query: "popularity/number()" }
-    XmlRole { name: "title"; query: "name/string()" }
-    XmlRole { name: "personId"; query: "id/string()" }
     XmlRole { name: "biography"; query: "biography/string()" }
     XmlRole { name: "url"; query: "url/string()" }
     XmlRole { name: "thumbImage"; query: "images/image[@size='thumb' and @type='profile'][1]/@url/string()" }

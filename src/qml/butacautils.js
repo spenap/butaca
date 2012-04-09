@@ -181,6 +181,17 @@ function TMDbMovie(obj) {
     this.toString = movie_toString
 }
 
+function TMDbPerson(obj) {
+    this.id = obj.id
+    this.name = obj.name
+    this.biography = obj.biography
+    this.url = obj.url
+    this.image = obj.thumbImage
+
+    this.title = this.name
+    this.type = 'TMDbPerson'
+}
+
 function movie_toString() {
     var str = 'TMDB Movie:' +
             '\tid: ' + this.id + '\n' +
