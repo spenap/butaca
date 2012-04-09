@@ -67,7 +67,7 @@ function getTMDbSource(apiMethod, lang, params) {
         '/' + TMDB_FORMAT +
         '/' + TMDB_API_KEY
     if (params !== '') {
-        source += (params.charAt(0) == '?' ? params : '/' + params)
+        source += (params.charAt(0) == '?' ? params + '&page=1' : '/' + params)
     }
     return source
 }
