@@ -25,40 +25,19 @@ import "butacautils.js" as BUTACA
 import "storage.js" as Storage
 
 Page {
-    tools: commonTools
+    tools: ToolBarLayout {
+        ToolIcon {
+            iconId: 'toolbar-back'
+            onClicked: appWindow.pageStack.pop()
+        }
+    }
+
     orientationLock: PageOrientation.LockPortrait
 
     property alias searchTerm: searchInput.text
-    property string location
-    property variant currentListView: movieResultsList
-
-    function handleTheatersFetched(ok) {
-        if (searchResults.state == 'AbstractModelSearch') {
-            searchResults.state = 'SearchFinished'
-        }
-    }
-
-    onStatusChanged: {
-        if (status == PageStatus.Active) {
-            Storage.initialize()
-            location = Storage.getSetting('location')
-        } else if (status == PageStatus.Activating) {
-            if (searchCategory.checkedButton == showSearch) {
-                theaterModel.setFilterWildcard(searchInput.text)
-            }
-        }
-    }
-
-    Connections {
-        target: controller
-        onTheatersFetched: handleTheatersFetched(ok)
-    }
+    property bool useSimpleDelegate : searchCategory.checkedButton !== movieSearch
 
     Header {
-        anchors.top: parent.top
-        anchors.topMargin: appWindow.inPortrait?
-                               UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
-                               UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
         id: header
         //: Search
         text: qsTr('btc-search-header')
@@ -69,29 +48,19 @@ Page {
         //: Enter search terms
         placeholderText: qsTr('btc-search-placeholder')
 
-        anchors  { top: header.bottom; left: parent.left; right: parent.right }
-        anchors.margins: UIConstants.DEFAULT_MARGIN
+        anchors {
+            top: header.bottom
+            left: parent.left
+            right: parent.right
+            margins: UIConstants.DEFAULT_MARGIN
+        }
 
         platformSipAttributes: SipAttributes {
             actionKeyIcon: '/usr/share/themes/blanco/meegotouch/icons/icon-m-toolbar-search-selected.png'
         }
 
         Keys.onReturnPressed: {
-            if (searchCategory.checkedButton == movieSearch) {
-                searchResults.state = 'XmlModelSearch'
-            } else if (searchCategory.checkedButton == peopleSearch) {
-                searchResults.state = 'XmlModelSearch'
-            } else {
-                theaterModel.setFilterWildcard(searchInput.text)
-                if (theaterModel.count === 0 ||
-                        location != controller.currentLocation()) {
-                    controller.fetchTheaters(location)
-                    searchResults.state = 'AbstractModelSearch'
-                } else {
-                    currentListView.visible = true
-                    searchResults.state = 'SearchFinished'
-                }
-            }
+            doSearch()
         }
 
         Image {
@@ -109,126 +78,120 @@ Page {
             onClicked: {
                 inputContext.reset()
                 searchInput.text = ''
-                searchResults.state = 'Waiting'
             }
         }
     }
 
     ButtonRow {
         id: searchCategory
-        anchors { top: searchInput.bottom; left: parent.left; right: parent.right }
-        anchors.margins: UIConstants.DEFAULT_MARGIN
+        anchors {
+            top: searchInput.bottom
+            left: parent.left
+            right: parent.right
+            margins: UIConstants.DEFAULT_MARGIN
+        }
 
         Button {
             id: movieSearch
             //: Movies
             text: qsTr('btc-movies')
-            onClicked: {
-                if (currentListView != movieResultsList) {
-                    currentListView = movieResultsList
-                    searchResults.state = 'Waiting'
-                }
-            }
         }
+
         Button {
             id: peopleSearch
             //: People
             text: qsTr('btc-people')
-            onClicked: {
-                if (currentListView != peopleResultsList) {
-                    currentListView = peopleResultsList
-                    searchResults.state = 'Waiting'
-                }
-            }
         }
-        Button {
-            id: showSearch
-            //: Shows
-            text: qsTr('btc-shows')
-            onClicked: {
-                if (currentListView != showtimesResultsList) {
-                    currentListView = showtimesResultsList
-                    searchResults.state = 'Waiting'
-                }
-            }
+
+        onCheckedButtonChanged: {
+            localModel.clear()
+            doSearch()
         }
     }
+
+    Component { id: movieView; MovieView { } }
 
     Item {
         id: searchResults
         anchors {
+            topMargin: UIConstants.DEFAULT_MARGIN
             top: searchCategory.bottom
             bottom: parent.bottom
             left: parent.left
             right: parent.right
         }
-        anchors.topMargin: UIConstants.DEFAULT_MARGIN
-        state: 'Waiting'
 
-        ListView {
-            id: peopleResultsList
-            anchors.fill: parent
-            clip: true
-            flickableDirection: Flickable.VerticalFlick
-            model: PeopleModel {
-                id: peopleModel
-                source: ''
-                onStatusChanged: {
-                    if (status == XmlListModel.Ready &&
-                            searchResults.state == 'XmlModelSearch') {
-                        searchResults.state = 'SearchFinished'
+        PeopleModel {
+            id: peopleModel
+            source: ''
+            onStatusChanged: {
+                if (status == XmlListModel.Ready &&
+                        count > 0) {
+                    localModel.clear()
+                    for (var i = 0; i < count; i ++) {
+                        localModel.append(new BUTACA.TMDbPerson(get(i)))
                     }
                 }
             }
-            delegate: MyListDelegate {
-                title: model.title
-
-                onClicked: { pageStack.push(personView,
-                                            { detailId: personId,
-                                              viewType: BUTACA.PERSON })}
-            }
-            visible: false
         }
 
-        ListView {
-            id: movieResultsList
-            anchors.fill: parent
-            clip: true
-            flickableDirection: Flickable.VerticalFlick
-            model: MultipleMoviesModel {
-                id: moviesModel
-                source: ''
-                onStatusChanged: {
-                    if (status == XmlListModel.Ready &&
-                            searchResults.state == 'XmlModelSearch') {
-                        searchResults.state = 'SearchFinished'
+        MultipleMoviesModel {
+            id: moviesModel
+            source: ''
+            onStatusChanged: {
+                if (status == XmlListModel.Ready &&
+                        count > 0) {
+                    localModel.clear()
+                    for (var i = 0; i < count; i ++) {
+                        localModel.append(new BUTACA.TMDbMovie(get(i)))
                     }
                 }
             }
-            delegate: MultipleMoviesDelegate {
-                onClicked: {
-                    pageStack.push(movieView,
-                                   { detailId: tmdbId,
-                                     viewType: BUTACA.MOVIE })
-                }
+        }
+
+        ListModel {
+            id: localModel
+        }
+
+        function handleClicked(index) {
+            var element = localModel.get(index)
+            switch (element.type) {
+            case 'TMDbMovie':
+                pageStack.push(movieView,
+                               {
+                                   movie: element
+                               })
+                break
+            case 'TMDbPerson':
+                pageStack.push(personView,
+                               {
+                                   detailId: element.id,
+                                   viewType: BUTACA.PERSON
+                               })
+                break
             }
-            visible: false
+        }
+
+        Component {
+            id: listDelegate
+            MyListDelegate {
+                onClicked: searchResults.handleClicked(index)
+            }
+        }
+
+        Component {
+            id: multipleMoviesDelegate
+            MultipleMoviesDelegate {
+                onClicked: searchResults.handleClicked(index)
+            }
         }
 
         ListView {
-            id: showtimesResultsList
+            id: resultsList
             anchors.fill: parent
             clip: true
-            flickableDirection: Flickable.VerticalFlick
-            model: theaterModel
-            delegate: MyListDelegate {
-                title: model.title
-
-                pressable: false
-            }
-            section.delegate: ListSectionDelegate { sectionName: section }
-            section.property: 'theaterName'
-            visible: false
+            model: localModel
+            delegate: useSimpleDelegate ? listDelegate : multipleMoviesDelegate
         }
 
         NoContentItem {
@@ -239,67 +202,28 @@ Page {
 
         BusyIndicator {
             id: busyIndicator
-            visible: false
+            visible: running
+            running: peopleModel.status === XmlListModel.Loading ||
+                     moviesModel.status === XmlListModel.Loading
             platformStyle: BusyIndicatorStyle { size: 'large' }
             anchors.centerIn: parent
         }
 
         ScrollDecorator {
             id: scrollDecorator
-            flickableItem: currentListView
+            flickableItem: resultsList
         }
+    }
 
-        states: [
-            State {
-                name: 'Waiting'
-                when: searchInput.activeFocus
-                PropertyChanges { target: showtimesResultsList; restoreEntryValues: false; visible: false }
-                PropertyChanges { target: peopleResultsList; restoreEntryValues: false; visible: false }
-                PropertyChanges { target: movieResultsList; restoreEntryValues: false; visible: false }
-                PropertyChanges { target: moviesModel; restoreEntryValues: false; source: '' }
-                PropertyChanges { target: peopleModel; restoreEntryValues: false; source: '' }
-                PropertyChanges { target: noResults; restoreEntryValues: false; visible: false }
-                PropertyChanges { target: busyIndicator; restoreEntryValues: false; visible: false; running: false }
-            },
-            State {
-                name: 'XmlModelSearch'
-                PropertyChanges {
-                    target: currentListView.model
-                    restoreEntryValues: false
-                    source: currentListView.model === moviesModel ?
-                                BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, appLocale, searchTerm) :
-                                BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, appLocale, searchTerm)
-                }
-                PropertyChanges  {
-                    target: currentListView
-                    restoreEntryValues: false
-                    visible: true
-                }
-                PropertyChanges { target: busyIndicator; visible: true; running: true }
-            },
-            State {
-                name: 'AbstractModelSearch'
-                PropertyChanges  {
-                    target: showtimesResultsList
-                    restoreEntryValues: false;
-                    visible: true
-                }
-                PropertyChanges { target: busyIndicator; visible: true; running: true }
-            },
-            State {
-                name: 'SearchFinished'
-                PropertyChanges {
-                    target: noResults
-                    visible: currentListView ? currentListView.model.count === 0 : false
-                    //: No results found
-                    text: qsTr('btc-no-results')
-                }
-                PropertyChanges {
-                    target: busyIndicator
-                    visible: false
-                    running: false
-                }
+    function doSearch() {
+        if (searchTerm) {
+            if (searchCategory.checkedButton === movieSearch) {
+                peopleModel.source = ''
+                moviesModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, appLocale, searchTerm)
+            } else if (searchCategory.checkedButton === peopleSearch) {
+                moviesModel.source = ''
+                peopleModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, appLocale, searchTerm)
             }
-        ]
+        }
     }
 }
