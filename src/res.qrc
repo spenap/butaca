@@ -5,8 +5,6 @@
         <file>qml/MultipleMoviesModel.qml</file>
         <file>qml/MultipleMoviesView.qml</file>
         <file>qml/ButacaToolBar.qml</file>
-        <file>qml/SingleMovieDelegate.qml</file>
-        <file>qml/SingleMovieModel.qml</file>
         <file>qml/GenresView.qml</file>
         <file>qml/GenresModel.qml</file>
         <file>qml/PersonDelegate.qml</file>

@@ -47,8 +47,6 @@ OTHER_FILES += \
     qml/PeopleModel.qml \
     qml/GenresView.qml \
     qml/GenresModel.qml \
-    qml/SingleMovieModel.qml \
-    qml/SingleMovieDelegate.qml \
     qml/ButacaToolBar.qml \
     qml/MultipleMoviesView.qml \
     qml/MultipleMoviesModel.qml \
