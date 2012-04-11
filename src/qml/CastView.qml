@@ -19,82 +19,93 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import com.nokia.extras 1.0
-import "butacautils.js" as BUTACA
+import 'butacautils.js' as BUTACA
 import 'constants.js' as UIConstants
 
-Component {
-    id: peopleView
+Page {
+    id: castView
+    orientationLock: PageOrientation.LockPortrait
 
-    Page {
-        tools: commonTools
-        orientationLock: PageOrientation.LockPortrait
-
-        property string movie: ''
-        property string movieId:  ''
-
-        Item {
-            id: castContent
-            anchors.fill: parent
-            anchors.topMargin: appWindow.inPortrait?
-                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
-                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
-
-            CastModel {
-                id: castModel
-                params: movieId
-                onStatusChanged: {
-                    if (status == XmlListModel.Ready) {
-                        castContent.state = 'Ready'
-                    }
-                }
+    tools: ToolBarLayout {
+        ToolIcon {
+            iconId: 'toolbar-back'
+            onClicked: {
+                appWindow.pageStack.pop()
             }
-
-            BusyIndicator {
-                id: busyIndicator
-                visible: true
-                running: true
-                platformStyle: BusyIndicatorStyle { size: 'large' }
-                anchors.centerIn: parent
-            }
-
-            ListView {
-                id: list
-                anchors.fill: parent
-                flickableDirection: Flickable.VerticalFlick
-                model: castModel
-                header: Header {
-                    //: Full cast in %1
-                    text: qsTr('btc-full-cast').arg(movie)
-                    showDivider: false
-                }
-                delegate: MyListDelegate {
-                    title: model.title
-                    subtitle: model.subtitle
-
-                    onClicked: { pageStack.push(personView,
-                                                { detailId: personId,
-                                                  viewType: BUTACA.PERSON })}
-                }
-
-                section.property: 'department'
-                section.delegate: ListSectionDelegate {
-                    // Translate the section name. See CastModel.qml for translations
-                    sectionName: qsTranslate("CastModel", section)
-                }
-            }
-
-            ScrollDecorator {
-                flickableItem: list
-            }
-
-            states: [
-                State {
-                    name: 'Ready'
-                    PropertyChanges { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges { target: list; visible: true }
-                }
-            ]
         }
+    }
+
+    // Dummy function for translations (found no other way to add them to the file)
+    function dummy() {
+        qsTr('Camera');
+        qsTr("Crew");
+        qsTr("Sound");
+        qsTr("Directing");
+        qsTr("Writing");
+        qsTr("Production");
+        qsTr("Actors");
+        qsTr("Editing");
+        qsTr("Art");
+        qsTr("Costume & Make-Up");
+        qsTr("Visual Effects");
+    }
+
+    property string movieName: ''
+    property ListModel castModel: ListModel { }
+    property variant rawCrew: ''
+    property bool showsCast: true
+
+    Component.onCompleted: {
+        if (!showsCast && rawCrew) {
+            castModel.clear()
+            for (var i = 0; i < rawCrew.length; i ++) {
+                castModel.append(new BUTACA.TMDbCrewPerson(rawCrew[i]))
+            }
+        }
+    }
+
+    Component {
+        id: listSectionDelegate
+
+        ListSectionDelegate {
+            // Translate the section name. See dummy() for translations
+            sectionName: qsTranslate("CastView", section)
+        }
+    }
+
+    ListView {
+        id: castList
+        anchors {
+            fill: parent
+            margins: UIConstants.DEFAULT_MARGIN
+        }
+        model: castModel
+        header: Header {
+            //: Full cast in %1
+            text: showsCast ?
+                      qsTr('btc-full-cast').arg(movieName) :
+                      qsTr('btc-full-crew').arg(movieName)
+            showDivider: false
+        }
+        delegate: MyListDelegate {
+            title: model.name
+            subtitle: showsCast ? model.character : model.job
+
+            onClicked: {
+                appWindow.pageStack.push(personView,
+                                         {
+                                             detailId: model.id,
+                                             viewType: BUTACA.PERSON
+                                         })
+            }
+        }
+
+        section.property: !showsCast ? 'department' : ''
+        section.delegate: listSectionDelegate
+    }
+
+    ScrollDecorator {
+        flickableItem: castList
+        anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
     }
 }
