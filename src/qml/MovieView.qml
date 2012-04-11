@@ -655,6 +655,11 @@ Page {
         }
     }
 
+    ScrollDecorator {
+        flickableItem: movieFlickableWrapper
+        anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
+    }
+
     function getYearFromDate(date) {
         if (date) {
             var dateParts = date.split('-')
