@@ -66,71 +66,34 @@ Page {
 
         PersonModel {
             id: personModel
+            params: detailId
             onStatusChanged: {
-                if (content.state == 'FetchingPerson' &&
-                        status == XmlListModel.Ready) {
+                if (status === XmlListModel.Ready) {
                     content.state = 'Ready'
                 }
             }
         }
-
-        SingleMovieModel {
-            id: movieModel
-            onStatusChanged: {
-                if (content.state == 'FetchingMovie' &&
-                        status == XmlListModel.Ready) {
-                    content.state = 'Ready'
-                }
-            }
-        }
-
-        Component { id: movieDelegateWrapper; SingleMovieDelegate { } }
-        Component { id: personDelegateWrapper; PersonDelegate { } }
 
         ListView {
             id: list
             anchors.fill: parent
             interactive: false
+            model: personModel
+            delegate: PersonDelegate { }
         }
 
         BusyIndicator {
             id: busyIndicator
-            visible: true
-            running: true
+            visible: running
+            running: personModel.status === XmlListModel.Loading
             platformStyle: BusyIndicatorStyle { size: 'large' }
             anchors.centerIn: parent
         }
 
         states: [
             State {
-                name: 'FetchingMovie'
-                when: viewType == BUTACA.MOVIE
-                PropertyChanges {
-                    target: movieModel; restoreEntryValues: false;
-                    params: detailId }
-                PropertyChanges {
-                    target: list; restoreEntryValues: false;
-                    model: movieModel; delegate: movieDelegateWrapper }
-            },
-            State {
-                name: 'FetchingPerson'
-                when: viewType == BUTACA.PERSON
-                PropertyChanges {
-                    target: personModel; restoreEntryValues: false;
-                    params: detailId }
-                PropertyChanges { target: list; restoreEntryValues: false;
-                    model: personModel; delegate: personDelegateWrapper }
-            },
-            State {
                 name: 'Ready'
-                PropertyChanges { target: busyIndicator; running: false; visible: false }
-                PropertyChanges { target: list; visible: true }
-                PropertyChanges {
-                    target: toolBar
-                    content: viewType == BUTACA.MOVIE ?
-                                 BUTACA.favoriteFromMovie(currentItem()) :
-                                 BUTACA.favoriteFromPerson(currentItem())
-                }
+                PropertyChanges { target: toolBar; content: BUTACA.favoriteFromPerson(currentItem()) }
             }
         ]
     }
