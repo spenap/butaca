@@ -535,78 +535,26 @@ Page {
                 }
             }
 
-            Column {
-                id: movieCastSection
+            MyModelPreviewer {
                 width: parent.width
-
-                MyEntryHeader {
-                    width: parent.width
-                    text: 'Cast'
-                }
-
-                Repeater {
-                    width: parent.width
-                    model: Math.min(4, castModel.count)
-                    delegate: MyListDelegate {
-                        smallSize: true
-
-                        iconSource: castModel.get(index).profile ?
-                                        castModel.get(index).profile :
-                                        'qrc:/resources/person-placeholder.svg'
-
-                        title: castModel.get(index).name
-                        titleFontFamily: UIConstants.FONT_FAMILY_BOLD
-                        titleSize: UIConstants.FONT_LSMALL
-
-                        subtitle: 'as ' + castModel.get(index).character
-                        subtitleSize: UIConstants.FONT_XSMALL
-                        subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
-                    }
-                }
-
-                MyListDelegate {
-                    smallSize: true
-                    title: 'Full Cast'
-                    titleSize: UIConstants.FONT_LSMALL
-                    titleFontFamily: UIConstants.FONT_FAMILY_BOLD
-                }
+                previewedModel: castModel
+                previewerHeaderText: 'Cast'
+                previewerDelegateTitle: 'name'
+                previewerDelegateSubtitle: 'character'
+                previewerDelegateIcon: 'profile'
+                previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
+                previewerFooterText: 'Full Cast'
             }
 
-            Column {
-                id: movieCrewSection
+            MyModelPreviewer {
                 width: parent.width
-
-                MyEntryHeader {
-                    width: parent.width
-                    text: 'Crew'
-                }
-
-                Repeater {
-                    width: parent.width
-                    model: Math.min(4, crewModel.count)
-                    delegate: MyListDelegate {
-                        smallSize: true
-
-                        iconSource: crewModel.get(index).profile ?
-                                        crewModel.get(index).profile :
-                                        'qrc:/resources/person-placeholder.svg'
-
-                        title: crewModel.get(index).name
-                        titleFontFamily: UIConstants.FONT_FAMILY_BOLD
-                        titleSize: UIConstants.FONT_LSMALL
-
-                        subtitle: crewModel.get(index).job
-                        subtitleSize: UIConstants.FONT_XSMALL
-                        subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
-                    }
-                }
-
-                MyListDelegate {
-                    smallSize: true
-                    title: 'Full Cast & Crew'
-                    titleSize: UIConstants.FONT_LSMALL
-                    titleFontFamily: UIConstants.FONT_FAMILY_BOLD
-                }
+                previewedModel: crewModel
+                previewerHeaderText: 'Crew'
+                previewerDelegateTitle: 'name'
+                previewerDelegateSubtitle: 'job'
+                previewerDelegateIcon: 'profile'
+                previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
+                previewerFooterText: 'Full Cast & Crew'
             }
         }
     }

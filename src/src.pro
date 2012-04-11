@@ -68,6 +68,7 @@ OTHER_FILES += \
     qml/MyMoreIndicator.qml \
     qml/MyListDelegate.qml \
     qml/MyEntryHeader.qml \
+    qml/MyModelPreviewer.qml \
     qml/storage.js \
     qml/butacautils.js \
     qml/constants.js \
