@@ -244,19 +244,13 @@ Page {
                 Column {
                     width: parent.width - image.width
 
-                    Label {
-                        id: movieTitleLabel
+                    MyEntryHeader {
                         anchors {
                             left: parent.left
                             right: parent.right
                             margins: UIConstants.DEFAULT_MARGIN
                         }
-                        platformStyle: LabelStyle {
-                            fontPixelSize: UIConstants.FONT_SLARGE
-                            fontFamily: UIConstants.FONT_FAMILY_BOLD
-                        }
-                        font.bold: true
-                        wrapMode: Text.WordWrap
+                        headerFontSize: UIConstants.FONT_SLARGE
                         text: parsedMovie.name + ' (' + getYearFromDate(parsedMovie.released) + ')'
                     }
 
@@ -275,7 +269,6 @@ Page {
                     }
 
                     Item {
-                        id: spacingItem1
                         height: UIConstants.DEFAULT_MARGIN
                         width: parent.width
                     }
@@ -321,7 +314,6 @@ Page {
                 }
 
                 Item {
-                    id: spacingItem2
                     height: UIConstants.DEFAULT_MARGIN
                     width: UIConstants.DEFAULT_MARGIN
                 }
@@ -430,14 +422,8 @@ Page {
                     id: overviewColumn
                     width: parent.width
 
-                    Label {
-                        id: overviewText
+                    MyEntryHeader {
                         width: parent.width
-                        platformStyle: LabelStyle {
-                            fontPixelSize: UIConstants.FONT_DEFAULT
-                            fontFamily: UIConstants.FONT_FAMILY_BOLD
-                        }
-                        font.bold: true
                         //: Overview:
                         text: qsTr('btc-overview')
                     }
@@ -482,14 +468,8 @@ Page {
                 id: movieReleasedSection
                 width: parent.width
 
-                Label {
-                    id: releaseText
+                MyEntryHeader {
                     width: parent.width
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
-                        fontFamily: UIConstants.FONT_FAMILY_BOLD
-                    }
-                    font.bold: true
                     //: Release date:
                     text: qsTr('btc-release-date')
                 }
@@ -509,14 +489,8 @@ Page {
                 id: movieGenresSection
                 width: parent.width
 
-                Label {
-                    id: genresText
+                MyEntryHeader {
                     width: parent.width
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
-                        fontFamily: UIConstants.FONT_FAMILY_BOLD
-                    }
-                    font.bold: true
                     text: 'Genre'
                 }
 
@@ -540,14 +514,8 @@ Page {
                 id: movieStudiosSection
                 width: parent.width
 
-                Label {
-                    id: studiosText
+                MyEntryHeader {
                     width: parent.width
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
-                        fontFamily: UIConstants.FONT_FAMILY_BOLD
-                    }
-                    font.bold: true
                     text: 'Studios'
                 }
 
@@ -571,14 +539,8 @@ Page {
                 id: movieCastSection
                 width: parent.width
 
-                Label {
-                    id: castText
+                MyEntryHeader {
                     width: parent.width
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
-                        fontFamily: UIConstants.FONT_FAMILY_BOLD
-                    }
-                    font.bold: true
                     text: 'Cast'
                 }
 
@@ -614,14 +576,8 @@ Page {
                 id: movieCrewSection
                 width: parent.width
 
-                Label {
-                    id: crewText
+                MyEntryHeader {
                     width: parent.width
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
-                        fontFamily: UIConstants.FONT_FAMILY_BOLD
-                    }
-                    font.bold: true
                     text: 'Crew'
                 }
 

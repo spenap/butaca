@@ -27,6 +27,7 @@
         <file>qml/AboutView.qml</file>
         <file>qml/FavoriteDelegate.qml</file>
         <file>qml/MyRatingIndicator.qml</file>
+        <file>qml/MyEntryHeader.qml</file>
         <file>qml/butacautils.js</file>
         <file>qml/storage.js</file>
         <file>qml/constants.js</file>
