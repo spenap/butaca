@@ -91,7 +91,7 @@ Page {
 
     Component { id: movieView; MovieView { } }
 
-    Component { id: personView; DetailedView { } }
+    Component { id: personView; PersonView { } }
 
     Component { id: aboutView; AboutView { } }
 

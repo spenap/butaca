@@ -42,6 +42,7 @@ OTHER_FILES += \
     qml/main.qml \
     qml/WelcomeView.qml \
     qml/SearchView.qml \
+    qml/PersonView.qml \
     qml/PersonModel.qml \
     qml/PersonDelegate.qml \
     qml/PeopleModel.qml \
@@ -56,7 +57,6 @@ OTHER_FILES += \
     qml/CastView.qml \
     qml/FilmographyModel.qml \
     qml/FilmographyView.qml \
-    qml/DetailedView.qml \
     qml/ListSectionDelegate.qml \
     qml/TheatersView.qml \
     qml/SettingsView.qml \

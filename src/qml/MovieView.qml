@@ -219,7 +219,7 @@ Page {
         }
     }
 
-    Component { id: personView; DetailedView { } }
+    Component { id: personView; PersonView { } }
 
     Component { id: castView; CastView { } }
 
