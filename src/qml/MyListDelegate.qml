@@ -26,6 +26,14 @@ import 'constants.js' as UIConstants
 Item {
     id: delegate
 
+    // FIXME: clicked shouldn't carry the index parameter,
+    // so we shouldn't have to workaround its implicit declaration here.
+    //
+    // This is here since in SearchView.qml two delegates are wrapped in a
+    // Component so we can change from one to the other. Defining the signal
+    // handlers in the Component wrapping doesn't work.
+    property int clickedIndex: index
+
     signal clicked(int index)
 
     property string title: model && model.title ? model.title : ''
@@ -121,6 +129,11 @@ Item {
     MouseArea {
         id: delegateMouseArea
         anchors.fill: parent
-        onClicked: delegate.clicked(index)
+        onClicked: {
+            if (clickedIndex !== undefined)
+                delegate.clicked(clickedIndex)
+            else
+                delegate.clicked(-1)
+        }
     }
 }
