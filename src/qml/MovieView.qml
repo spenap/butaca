@@ -456,7 +456,7 @@ Page {
 
             Item {
                 id: overviewExpander
-                height: 24
+                height: UIConstants.SIZE_ICON_LARGE
                 width: parent.width
                 visible: movieOverviewSection.actualSize > movieOverviewSection.collapsedSize
 
