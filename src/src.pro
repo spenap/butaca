@@ -53,7 +53,6 @@ OTHER_FILES += \
     qml/MultipleMoviesDelegate.qml \
     qml/Header.qml \
     qml/NoContentItem.qml \
-    qml/CastModel.qml \
     qml/CastView.qml \
     qml/FilmographyModel.qml \
     qml/FilmographyView.qml \

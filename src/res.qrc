@@ -16,7 +16,6 @@
         <file>qml/Header.qml</file>
         <file>qml/NoContentItem.qml</file>
         <file>qml/CastView.qml</file>
-        <file>qml/CastModel.qml</file>
         <file>qml/FilmographyModel.qml</file>
         <file>qml/FilmographyView.qml</file>
         <file>qml/DetailedView.qml</file>
