@@ -89,7 +89,7 @@ Page {
 
     Component { id: settingsView; SettingsView { } }
 
-    Component { id: movieView; DetailedView { } }
+    Component { id: movieView; MovieView { } }
 
     Component { id: personView; DetailedView { } }
 
@@ -193,8 +193,8 @@ Page {
                 onClicked: {
                     if (type == BUTACA.MOVIE) {
                                appWindow.pageStack.push(movieView,
-                                                        { detailId: id,
-                                                          viewType: BUTACA.MOVIE })
+                                                        { tmdbId: id,
+                                                          loading: true })
                            } else {
                                appWindow.pageStack.push(personView,
                                                         { detailId: id,
