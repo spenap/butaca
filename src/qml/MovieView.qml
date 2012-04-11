@@ -46,6 +46,8 @@ Page {
         property string certification: ''
         property string homepage: ''
 
+        property variant rawCast: ''
+
         function updateWithLightWeightMovie(movie) {
             tmdbId = movie.id
             name = movie.name
@@ -80,7 +82,9 @@ Page {
             if (movie.runtime)
                 runtime = movie.runtime
 
-            movie.cast.sort(sortCastMembers)
+            rawCast = movie.cast
+            rawCast.sort(sortByDepartment)
+            movie.cast.sort(sortByCastId)
 
             populateModel(movie, 'genres', genresModel)
             populateModel(movie, 'studios', studiosModel)
@@ -92,8 +96,12 @@ Page {
         }
     }
 
-    function sortCastMembers(oneItem, theOther) {
+    function sortByCastId(oneItem, theOther) {
         return oneItem.cast_id - theOther.cast_id
+    }
+
+    function sortByDepartment(oneItem, theOther) {
+        return oneItem.department.localeCompare(theOther.department)
     }
 
     function populatePostersModel(movie) {
@@ -210,6 +218,10 @@ Page {
             }
         }
     }
+
+    Component { id: personView; DetailedView { } }
+
+    Component { id: castView; CastView { } }
 
     Flickable {
         id: movieFlickableWrapper
@@ -544,6 +556,21 @@ Page {
                 previewerDelegateIcon: 'profile'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText: 'Full Cast'
+
+                onClicked: {
+                    appWindow.pageStack.push(personView,
+                                             {
+                                                 detailId: castModel.get(modelIndex).id,
+                                                 viewType: BUTACA.PERSON
+                                             })
+                }
+                onFooterClicked: {
+                    appWindow.pageStack.push(castView,
+                                             {
+                                                 movieName: parsedMovie.name,
+                                                 castModel: castModel
+                                             })
+                }
             }
 
             MyModelPreviewer {
@@ -555,6 +582,22 @@ Page {
                 previewerDelegateIcon: 'profile'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText: 'Full Cast & Crew'
+
+                onClicked: {
+                    appWindow.pageStack.push(personView,
+                                             {
+                                                 detailId: crewModel.get(modelIndex).id,
+                                                 viewType: BUTACA.PERSON
+                                             })
+                }
+                onFooterClicked: {
+                    appWindow.pageStack.push(castView,
+                                             {
+                                                 movieName: parsedMovie.name,
+                                                 rawCrew: parsedMovie.rawCast,
+                                                 showsCast: false
+                                             })
+                }
             }
         }
     }
