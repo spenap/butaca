@@ -18,7 +18,8 @@ Page {
     }
 
     property variant movie: ''
-    property bool loading: true
+    property string tmdbId: parsedMovie.tmdbId
+    property bool loading: false
 
     QtObject {
         id: parsedMovie
@@ -52,10 +53,16 @@ Page {
             rating = movie.rating
             votes = movie.votes
             overview = movie.overview
-            poster = movie.poster
+            if (movie.poster)
+                poster = movie.poster
         }
 
         function updateWithFullWeightMovie(movie) {
+            if (!movieView.movie) {
+                updateWithLightWeightMovie(movie)
+            }
+            movieView.movie = ''
+
             if (movie.trailer)
                 trailer = movie.trailer
             if (movie.homepage)
@@ -120,16 +127,18 @@ Page {
     }
 
     Component.onCompleted: {
-        var theMovie = new BUTACA.TMDbMovie(movie)
+        if (movie) {
+            var theMovie = new BUTACA.TMDbMovie(movie)
+            parsedMovie.updateWithLightWeightMovie(theMovie)
+        }
 
-        parsedMovie.updateWithLightWeightMovie(theMovie)
-        movie = ''
-
-        asyncWorker.sendMessage({
-                                    action: BUTACA.REMOTE_FETCH_REQUEST,
-                                    tmdbId: parsedMovie.tmdbId,
-                                    tmdbType: 'movie'
-                                })
+        if (tmdbId !== -1) {
+            asyncWorker.sendMessage({
+                                        action: BUTACA.REMOTE_FETCH_REQUEST,
+                                        tmdbId: tmdbId,
+                                        tmdbType: 'movie'
+                                    })
+        }
     }
 
     // Several ListModels are used.
@@ -209,6 +218,7 @@ Page {
             margins: UIConstants.DEFAULT_MARGIN
         }
         contentHeight: movieContent.height
+        visible: !loading
 
         Column {
             id: movieContent
@@ -679,6 +689,16 @@ Page {
             console.debug('Unknown action response: ', messageObject.action)
         }
 
+    }
+
+    BusyIndicator {
+        id: movieBusyIndicator
+        anchors.centerIn: parent
+        visible: running
+        running: loading
+        platformStyle: BusyIndicatorStyle {
+            size: 'large'
+        }
     }
 
     WorkerScript {
