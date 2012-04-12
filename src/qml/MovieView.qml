@@ -178,46 +178,7 @@ Page {
         id: crewModel
     }
 
-    Component {
-        id: galleryView
-
-        Page {
-            property ListModel galleryViewModel
-
-            tools: ToolBarLayout {
-                ToolIcon {
-                    iconId: 'toolbar-back'
-                    onClicked: {
-                        appWindow.pageStack.pop()
-                    }
-                }
-            }
-
-            GridView {
-                id: grid
-                anchors.fill: parent
-                cellHeight: 160
-                cellWidth: 160
-                model: galleryViewModel
-                clip: true
-                delegate: Rectangle {
-                    height: grid.cellHeight
-                    width: grid.cellWidth
-                    clip: true
-                    color: '#2d2d2d'
-
-                    Image {
-                        anchors {
-                            fill: parent
-                            margins: UIConstants.PADDING_SMALL
-                        }
-                        source: sizes['w154'].url
-                        fillMode: Image.PreserveAspectCrop
-                    }
-                }
-            }
-        }
-    }
+    Component { id: galleryView; MediaGalleryView { } }
 
     Component { id: personView; PersonView { } }
 

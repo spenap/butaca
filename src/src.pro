@@ -76,7 +76,8 @@ OTHER_FILES += \
     resources/person-placeholder.svg \
     resources/butaca.svg \
     resources/tmdb-logo.png \
-    resources/indicator-rating-inverted-star.svg
+    resources/indicator-rating-inverted-star.svg \
+    qml/MediaGalleryView.qml
 
 RESOURCES += \
     res.qrc

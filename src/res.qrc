@@ -48,5 +48,6 @@
         <file>l10n/butaca.pt.qm</file>
         <file>qml/MovieView.qml</file>
         <file>qml/workerscript.js</file>
+        <file>qml/MediaGalleryView.qml</file>
     </qresource>
 </RCC>
