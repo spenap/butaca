@@ -241,59 +241,11 @@ Page {
                 color: UIConstants.COLOR_SECONDARY_FOREGROUND
             }
 
-            Item {
-                id: personBiographySection
+            MyTextExpander {
                 width: parent.width
-                height: expanded ? actualSize : Math.min(actualSize, collapsedSize)
-                clip: true
 
-                property int actualSize: biographyColumn.height
-                property int collapsedSize: 160
-                property bool expanded: false
-
-                Column {
-                    id: biographyColumn
-                    width: parent.width
-
-                    MyEntryHeader {
-                        width: parent.width
-                        text: 'Biography'
-                    }
-
-                    Label {
-                        id: biographyContent
-                        width: parent.width
-                        platformStyle: LabelStyle {
-                            fontPixelSize: UIConstants.FONT_LSMALL
-                            fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                        }
-                        text: parsedPerson.biography
-                        wrapMode: Text.WordWrap
-                        horizontalAlignment: Text.AlignJustify
-                    }
-                }
-            }
-
-            Item {
-                id: biographyExpander
-                height: UIConstants.SIZE_ICON_LARGE
-                width: parent.width
-                visible: personBiographySection.actualSize > personBiographySection.collapsedSize
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: personBiographySection.expanded = !personBiographySection.expanded
-                }
-
-                MyMoreIndicator {
-                    id: moreIndicator
-                    anchors.centerIn: parent
-                    rotation: personBiographySection.expanded ? -90 : 90
-
-                    Behavior on rotation {
-                        NumberAnimation { duration: 200 }
-                    }
-                }
+                textHeader: 'Biography'
+                textContent: parsedPerson.biography
             }
 
             MyModelPreviewer {

@@ -81,7 +81,8 @@ OTHER_FILES += \
     resources/indicator-rating-inverted-star.svg \
     qml/MediaGalleryView.qml \
     qml/MyGalleryPreviewer.qml \
-    qml/MyModelFlowPreviewer.qml
+    qml/MyModelFlowPreviewer.qml \
+    qml/MyTextExpander.qml
 
 RESOURCES += \
     res.qrc

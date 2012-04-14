@@ -51,5 +51,6 @@
         <file>qml/MediaGalleryView.qml</file>
         <file>qml/MyGalleryPreviewer.qml</file>
         <file>qml/MyModelFlowPreviewer.qml</file>
+        <file>qml/MyTextExpander.qml</file>
     </qresource>
 </RCC>

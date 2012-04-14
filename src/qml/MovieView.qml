@@ -321,60 +321,11 @@ Page {
                 }
             }
 
-            Item {
-                id: movieOverviewSection
+            MyTextExpander {
                 width: parent.width
-                height: expanded ? actualSize : Math.min(actualSize, collapsedSize)
-                clip: true
 
-                property int actualSize: overviewColumn.height
-                property int collapsedSize: 160
-                property bool expanded: false
-
-                Column {
-                    id: overviewColumn
-                    width: parent.width
-
-                    MyEntryHeader {
-                        width: parent.width
-                        //: Overview:
-                        text: qsTr('btc-overview')
-                    }
-
-                    Label {
-                        id: overviewContent
-                        width: parent.width
-                        platformStyle: LabelStyle {
-                            fontPixelSize: UIConstants.FONT_LSMALL
-                            fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                        }
-                        text: parsedMovie.overview
-                        wrapMode: Text.WordWrap
-                        horizontalAlignment: Text.AlignJustify
-                    }
-                }
-            }
-
-            Item {
-                id: overviewExpander
-                height: UIConstants.SIZE_ICON_LARGE
-                width: parent.width
-                visible: movieOverviewSection.actualSize > movieOverviewSection.collapsedSize
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: movieOverviewSection.expanded = !movieOverviewSection.expanded
-                }
-
-                MyMoreIndicator {
-                    id: moreIndicator
-                    anchors.centerIn: parent
-                    rotation: movieOverviewSection.expanded ? -90 : 90
-
-                    Behavior on rotation {
-                        NumberAnimation { duration: 200 }
-                    }
-                }
+                textHeader: 'Overview'
+                textContent: parsedMovie.overview
             }
 
             Column {
