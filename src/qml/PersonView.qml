@@ -233,12 +233,14 @@ Page {
                 galleryPreviewerModel: picturesModel
                 previewerDelegateIcon: 'url'
                 previewerDelegateSize: 'thumb'
+                visible: picturesModel.count > 0
             }
 
             Rectangle {
                 width: parent.width
                 height: 1
                 color: UIConstants.COLOR_SECONDARY_FOREGROUND
+                visible: picturesModel.count > 0
             }
 
             MyTextExpander {

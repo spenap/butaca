@@ -291,6 +291,7 @@ Page {
                     galleryPreviewerModel: postersModel
                     previewerDelegateIcon: 'url'
                     previewerDelegateSize: 'thumb'
+                    visible: postersModel.count > 0
 
                     onClicked: {
                         appWindow.pageStack.push(galleryView, { galleryViewModel: postersModel })
@@ -301,7 +302,7 @@ Page {
                     width: parent.width
                     height: 1
                     color: UIConstants.COLOR_SECONDARY_FOREGROUND
-                    visible: parsedMovie.trailer
+                    visible: postersModel.count > 0
                 }
 
                 MyListDelegate {
@@ -318,6 +319,7 @@ Page {
                     width: parent.width
                     height: 1
                     color: UIConstants.COLOR_SECONDARY_FOREGROUND
+                    visible: parsedMovie.trailer
                 }
             }
 
