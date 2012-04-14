@@ -18,6 +18,15 @@ Page {
                 appWindow.pageStack.pop()
             }
         }
+
+        ToolButton {
+            anchors.centerIn: parent
+            visible: expanded
+            text: 'Save image'
+            onClicked: {
+                saveImageSheet.open()
+            }
+        }
     }
 
     Loader {
@@ -39,11 +48,11 @@ Page {
                 height: cellHeight
                 width: cellWidth
                 color: '#2d2d2d'
-                clip: true
                 opacity: gridDelegateMouseArea.pressed ? 0.5 : 1
 
                 Image {
                     id: gridDelegateImage
+                    clip: true
                     anchors {
                         fill: parent
                         margins: UIConstants.PADDING_XSMALL
@@ -171,6 +180,56 @@ Page {
                 galleryView.currentIndex = (galleryView.currentIndex + 1) %
                         galleryView.galleryViewModel.count
             }
+        }
+    }
+
+    Sheet {
+        id: saveImageSheet
+
+        property string imageUrl: galleryView.currentIndex >= 0 ?
+                                      galleryView.galleryViewModel.get(galleryView.currentIndex).sizes['original'].url :
+                                      ''
+
+        acceptButtonText: 'Save'
+        rejectButtonText: 'Cancel'
+
+        acceptButton.enabled: savingImage.status === Image.Ready
+
+        buttons: BusyIndicator {
+            anchors.centerIn: parent
+            platformStyle: BusyIndicatorStyle {
+                size: 'small'
+            }
+            visible: running
+            running: savingImage.status === Image.Loading
+        }
+
+        content: Rectangle {
+            id: saveImageContainer
+            color: '#2d2d2d'
+            anchors.fill: parent
+
+            Image {
+                id: savingImage
+                source: saveImageSheet.visible ?
+                            saveImageSheet.imageUrl :
+                            ''
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+            }
+
+            ProgressBar {
+                id: savingImageProgressBar
+                anchors.centerIn: parent
+                width: parent.width / 2
+                minimumValue: 0
+                maximumValue: 1
+                value: savingImage.progress
+                visible: savingImage.status === Image.Loading
+            }
+        }
+        onAccepted: {
+            controller.saveImage(savingImage, saveImageSheet.imageUrl)
         }
     }
 }

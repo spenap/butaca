@@ -4,17 +4,23 @@
 #include "sortfiltermodel.h"
 
 #include <QDeclarativeContext>
+#include <QFileInfo>
 #ifndef QT_SIMULATOR
     #include <maemo-meegotouch-interfaces/shareuiinterface.h>
     #include <MDataUri>
+#else
+    #include <QDebug>
 #endif
+
+static const QString PICTURES_PATH("/home/user/MyDocs/Pictures/");
 
 Controller::Controller(QDeclarativeContext *context) :
     QObject(),
     m_declarativeContext(context),
     m_showtimesFetcher(0),
     m_theaterListModel(new TheaterListModel),
-    m_sortFilterModel(new SortFilterModel)
+    m_sortFilterModel(new SortFilterModel),
+    m_imageSaver()
 {
     m_sortFilterModel->setDynamicSortFilter(true);
     m_sortFilterModel->setSourceModel(m_theaterListModel);
@@ -82,4 +88,17 @@ QString Controller::formatCurrency(QString value)
 {
     double doubleValue = value.toDouble();
     return QString("$%L1").arg(doubleValue, 0, 'f', 0);
+}
+
+void Controller::saveImage(QObject *item, const QString &remoteSource)
+{
+    QFileInfo imageUrl(remoteSource);
+    QUrl sourceUrl = QUrl::fromUserInput(PICTURES_PATH +
+                                         imageUrl.fileName());
+#ifdef QT_SIMULATOR
+    Q_UNUSED(item)
+    qDebug() << Q_FUNC_INFO << sourceUrl.toLocalFile();
+#else
+    m_imageSaver.save(item, sourceUrl.toLocalFile());
+#endif
 }

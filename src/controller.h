@@ -1,6 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include "imagesaver.h"
 #include <QObject>
 
 class QDeclarativeContext;
@@ -35,6 +36,8 @@ public slots:
     //! \return Formatted value
     QString formatCurrency(QString value);
 
+    void saveImage(QObject *item, const QString &remoteSource);
+
 signals:
     //! Emitted when the theater showtimes have been fetched
     //! \param ok Tells whether the theater showtimes were successfully fetched
@@ -49,6 +52,7 @@ private:
     TheaterListModel *m_theaterListModel;
     SortFilterModel *m_sortFilterModel;
     QString m_location;
+    ImageSaver m_imageSaver;
 };
 
 #endif // CONTROLLER_H

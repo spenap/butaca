@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     theatershowtimesfetcher.cpp \
     sortfiltermodel.cpp \
     customnetworkaccessmanagerfactory.cpp \
-    controller.cpp
+    controller.cpp \
+    imagesaver.cpp
 
 HEADERS += \
     theaterlistmodel.h \
@@ -36,7 +37,8 @@ HEADERS += \
     theatershowtimesfetcher.h \
     sortfiltermodel.h \
     customnetworkaccessmanagerfactory.h \
-    controller.h
+    controller.h \
+    imagesaver.h
 
 OTHER_FILES += \
     qml/main.qml \
