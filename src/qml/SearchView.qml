@@ -165,8 +165,7 @@ Page {
             case 'TMDbPerson':
                 pageStack.push(personView,
                                {
-                                   detailId: element.id,
-                                   viewType: BUTACA.PERSON
+                                   person: element
                                })
                 break
             }

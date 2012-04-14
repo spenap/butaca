@@ -16,6 +16,9 @@ function remoteFetch(id, type) {
     console.debug('TMDb ID:', id)
     console.debug('Element type:', type)
     var xhr = new XMLHttpRequest
+    var url = type === 'movie' ?
+                'http://api.themoviedb.org/2.1/Movie.getInfo/en/json/249e1a42df9bee09fac5e92d3a51396b/' :
+                'http://api.themoviedb.org/2.1/Person.getInfo/en/json/249e1a42df9bee09fac5e92d3a51396b/'
     xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     WorkerScript.sendMessage({
@@ -24,6 +27,6 @@ function remoteFetch(id, type) {
                                              })
                 }
             }
-    xhr.open("GET", 'http://api.themoviedb.org/2.1/Movie.getInfo/en/json/249e1a42df9bee09fac5e92d3a51396b/' + id)
+    xhr.open("GET", url + id)
     xhr.send()
 }

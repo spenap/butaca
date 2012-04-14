@@ -186,7 +186,7 @@ function TMDbPerson(obj) {
     this.name = obj.name
     this.biography = obj.biography
     this.url = obj.url
-    this.image = obj.thumbImage
+    this.image = obj.image
 
     this.title = this.name
     this.type = 'TMDbPerson'
@@ -233,9 +233,11 @@ function TMDbImage(obj) {
     this.sizes = {
         'thumb' : { 'width' : 0, 'height': 0, 'url': ''},
         'w154' : { 'width' : 0, 'height': 0, 'url': ''},
+        'profile' : { 'width' : 0, 'height': 0, 'url': ''},
         'cover' : { 'width' : 0, 'height': 0, 'url': ''},
         'w342' : { 'width' : 0, 'height': 0, 'url': ''},
         'mid' : { 'width' : 0, 'height': 0, 'url': ''},
+        'h632' : { 'width' : 0, 'height': 0, 'url': ''},
         'original' : { 'width' : 0, 'height': 0, 'url': ''},
     }
 

@@ -34,7 +34,7 @@ XmlListModel {
     XmlRole { name: "popularity"; query: "popularity/number()" }
     XmlRole { name: "biography"; query: "biography/string()" }
     XmlRole { name: "url"; query: "url/string()" }
-    XmlRole { name: "thumbImage"; query: "images/image[@size='thumb' and @type='profile'][1]/@url/string()" }
+    XmlRole { name: "image"; query: "images/image[@size='thumb' and @type='profile'][1]/@url/string()" }
     XmlRole { name: "version"; query: "version/number()" }
     XmlRole { name: "lastModified"; query: "last_modified_at/string()" }
 }
