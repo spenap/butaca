@@ -84,7 +84,10 @@ Item {
             leftMargin: UIConstants.DEFAULT_MARGIN
             verticalCenter: parent.verticalCenter
         }
-        width: parent.width - delegateMoreIndicator.width - UIConstants.DEFAULT_MARGIN
+        width: parent.width -
+               (delegateImage.visible ? (delegateImage.width + UIConstants.DEFAULT_MARGIN) : 0) -
+               delegateMoreIndicator.width -
+               UIConstants.DEFAULT_MARGIN
 
         Label {
             id: delegateTitleLabel
