@@ -404,8 +404,8 @@ Page {
                 onClicked: {
                     appWindow.pageStack.push(personView,
                                              {
-                                                 detailId: castModel.get(modelIndex).id,
-                                                 viewType: BUTACA.PERSON
+                                                 tmdbId: castModel.get(modelIndex).id,
+                                                 loading: true
                                              })
                 }
                 onFooterClicked: {
@@ -430,8 +430,8 @@ Page {
                 onClicked: {
                     appWindow.pageStack.push(personView,
                                              {
-                                                 detailId: crewModel.get(modelIndex).id,
-                                                 viewType: BUTACA.PERSON
+                                                 tmdbId: crewModel.get(modelIndex).id,
+                                                 loading: true
                                              })
                 }
                 onFooterClicked: {

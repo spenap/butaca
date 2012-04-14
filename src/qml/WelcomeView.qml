@@ -197,8 +197,8 @@ Page {
                                                           loading: true })
                            } else {
                                appWindow.pageStack.push(personView,
-                                                        { detailId: id,
-                                                          viewType: BUTACA.PERSON })
+                                                        { tmdbId: id,
+                                                          loading: true })
                            }
                 }
             }

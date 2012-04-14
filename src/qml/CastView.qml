@@ -94,8 +94,8 @@ Page {
             onClicked: {
                 appWindow.pageStack.push(personView,
                                          {
-                                             detailId: model.id,
-                                             viewType: BUTACA.PERSON
+                                             tmdbId: model.id,
+                                             loading: true
                                          })
             }
         }
