@@ -11,6 +11,10 @@ Page {
     property int currentIndex: -1
     property bool expanded: false
 
+    property string gridSize: ''
+    property string fullSize: ''
+    property string saveSize: ''
+
     tools: ToolBarLayout {
         ToolIcon {
             iconId: 'toolbar-back'
@@ -57,7 +61,7 @@ Page {
                         fill: parent
                         margins: UIConstants.PADDING_XSMALL
                     }
-                    source: sizes['w154'].url
+                    source: sizes[gridSize].url
                     fillMode: Image.PreserveAspectCrop
                 }
 
@@ -101,7 +105,7 @@ Page {
 
             Image {
                 id: detailedDelegateImage
-                source: galleryView.galleryViewModel.get(galleryView.currentIndex).sizes['mid'].url
+                source: galleryView.galleryViewModel.get(galleryView.currentIndex).sizes[fullSize].url
                 anchors {
                     top: detailedDelegateIndicator.bottom
                     topMargin: UIConstants.DEFAULT_MARGIN
@@ -187,7 +191,7 @@ Page {
         id: saveImageSheet
 
         property string imageUrl: galleryView.currentIndex >= 0 ?
-                                      galleryView.galleryViewModel.get(galleryView.currentIndex).sizes['original'].url :
+                                      galleryView.galleryViewModel.get(galleryView.currentIndex).sizes[saveSize].url :
                                       ''
 
         acceptButtonText: 'Save'

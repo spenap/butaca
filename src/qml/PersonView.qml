@@ -97,6 +97,16 @@ Page {
         id: picturesModel
     }
 
+    Component {
+        id: galleryView
+
+        MediaGalleryView {
+            gridSize: 'profile'
+            fullSize: 'h632'
+            saveSize: 'original'
+        }
+    }
+
     Component.onCompleted: {
         if (person) {
             var thePerson = new BUTACA.TMDbPerson(person)
@@ -234,6 +244,10 @@ Page {
                 previewerDelegateIcon: 'url'
                 previewerDelegateSize: 'thumb'
                 visible: picturesModel.count > 0
+
+                onClicked: {
+                    appWindow.pageStack.push(galleryView, { galleryViewModel: picturesModel })
+                }
             }
 
             Rectangle {

@@ -155,7 +155,15 @@ Page {
         id: crewModel
     }
 
-    Component { id: galleryView; MediaGalleryView { } }
+    Component {
+        id: galleryView
+
+        MediaGalleryView {
+            gridSize: 'w154'
+            fullSize: 'mid'
+            saveSize: 'original'
+        }
+    }
 
     Component { id: personView; PersonView { } }
 
