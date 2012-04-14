@@ -331,6 +331,7 @@ Page {
 
             MyTextExpander {
                 width: parent.width
+                visible: parsedMovie.overview
 
                 textHeader: 'Overview'
                 textContent: parsedMovie.overview
@@ -360,6 +361,7 @@ Page {
             Column {
                 id: movieGenresSection
                 width: parent.width
+                visible: genresModel.count > 0
 
                 MyEntryHeader {
                     width: parent.width
@@ -376,6 +378,7 @@ Page {
             Column {
                 id: movieStudiosSection
                 width: parent.width
+                visible: studiosModel.count > 0
 
                 MyEntryHeader {
                     width: parent.width
@@ -398,6 +401,7 @@ Page {
                 previewerDelegateIcon: 'profile'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText: 'Full Cast'
+                visible: castModel.count > 0
 
                 onClicked: {
                     appWindow.pageStack.push(personView,
@@ -424,6 +428,7 @@ Page {
                 previewerDelegateIcon: 'profile'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText: 'Full Cast & Crew'
+                visible: crewModel.count > 0
 
                 onClicked: {
                     appWindow.pageStack.push(personView,

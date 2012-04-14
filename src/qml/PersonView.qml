@@ -259,6 +259,7 @@ Page {
 
             MyTextExpander {
                 width: parent.width
+                visible: parsedPerson.biography
 
                 textHeader: 'Biography'
                 textContent: parsedPerson.biography
@@ -273,6 +274,7 @@ Page {
                 previewerDelegateIcon: 'poster'
                 previewerDelegatePlaceholder: 'qrc:/resources/movie-placeholder.svg'
                 previewerFooterText: 'Full Filmography'
+                visible: filmographyModel.count > 0
             }
         }
     }
