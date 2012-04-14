@@ -273,7 +273,7 @@ Page {
                         fontPixelSize: UIConstants.FONT_XXLARGE
                         fontFamily: UIConstants.FONT_FAMILY_TABULAR
                     }
-                    text: parsedMovie.rating
+                    text: parsedMovie.rating.toFixed(1)
                 }
 
                 Label {
