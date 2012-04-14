@@ -275,6 +275,14 @@ Page {
                 previewerDelegatePlaceholder: 'qrc:/resources/movie-placeholder.svg'
                 previewerFooterText: 'Full Filmography'
                 visible: filmographyModel.count > 0
+
+                onClicked: {
+                    appWindow.pageStack.push(movieView,
+                                             {
+                                                 tmdbId: filmographyModel.get(modelIndex).id,
+                                                 loading: true
+                                             })
+                }
             }
         }
     }
