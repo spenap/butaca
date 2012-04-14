@@ -270,7 +270,7 @@ Page {
                 Label {
                     id: ratingLabel
                     platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_XXLARGE
+                        fontPixelSize: UIConstants.FONT_XXXLARGE
                         fontFamily: UIConstants.FONT_FAMILY_TABULAR
                     }
                     text: parsedMovie.rating.toFixed(1)
@@ -279,7 +279,7 @@ Page {
                 Label {
                     anchors.verticalCenter: ratingLabel.verticalCenter
                     platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_XLARGE
+                        fontPixelSize: UIConstants.FONT_XXLARGE
                         fontFamily: UIConstants.FONT_FAMILY_TABULAR
                     }
                     color: UIConstants.COLOR_SECONDARY_FOREGROUND
