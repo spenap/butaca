@@ -252,3 +252,44 @@ function image_addSize(obj) {
     this.sizes[obj.size].height = obj.height
     this.sizes[obj.size].url = obj.url
 }
+
+function populateModel(entity, entityProperty, model, filterRules) {
+    if (entity && entity[entityProperty]) {
+        for (var i = 0; i < entity[entityProperty].length; i ++) {
+            if (filterRules) {
+                var theObject = new filterRules.Delegate(entity[entityProperty][i])
+                if (theObject[filterRules.filteringProperty] === filterRules.filteredValue) {
+                    filterRules.secondaryModel.append(theObject)
+                }
+                model.append(theObject)
+            } else {
+                model.append(entity[entityProperty][i])
+            }
+        }
+    }
+}
+
+function populateImagesModel(entity, entityProperty, model) {
+    var i = 0
+    var image
+    if (entity && entity[entityProperty]) {
+        while (i < entity[entityProperty].length) {
+            if (image && image.id === entity[entityProperty][i].image.id) {
+                image.addSize(entity[entityProperty][i].image)
+            } else {
+                if (image) model.append(image)
+                image = new TMDbImage(entity[entityProperty][i])
+            }
+            i ++
+        }
+    }
+}
+
+function parseDate(date) {
+    if (date) {
+        var dateParts = date.split('-')
+        var parsedDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
+        return parsedDate
+    }
+    return ''
+}

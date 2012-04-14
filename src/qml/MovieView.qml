@@ -86,12 +86,19 @@ Page {
             rawCast.sort(sortByDepartment)
             movie.cast.sort(sortByCastId)
 
-            populateModel(movie, 'genres', genresModel)
-            populateModel(movie, 'studios', studiosModel)
-            populatePostersModel(movie)
-            populateModel(movie, 'cast', crewModel)
+            BUTACA.populateModel(movie, 'genres', genresModel)
+            BUTACA.populateModel(movie, 'studios', studiosModel)
+            BUTACA.populateImagesModel(movie, 'posters', postersModel)
+            BUTACA.populateModel(movie, 'cast', crewModel,
+                                 {
+                                     filteringProperty: 'job',
+                                     filteredValue: 'Actor',
+                                     secondaryModel: castModel,
+                                     Delegate: BUTACA.TMDbCrewPerson
+                                 })
 
-            if (postersModel.get(0).sizes['cover'].url)
+            if (postersModel.count > 0 &&
+                    postersModel.get(0).sizes['cover'].url)
                 poster = postersModel.get(0).sizes['cover'].url
         }
     }
@@ -102,36 +109,6 @@ Page {
 
     function sortByDepartment(oneItem, theOther) {
         return oneItem.department.localeCompare(theOther.department)
-    }
-
-    function populatePostersModel(movie) {
-        var i = 0
-        var image
-        while (i < movie.posters.length) {
-            if (image && image.id === movie.posters[i].image.id) {
-                image.addSize(movie.posters[i].image)
-            } else {
-                if (image) postersModel.append(image)
-                image = new BUTACA.TMDbImage(movie.posters[i])
-            }
-            i ++
-        }
-    }
-
-    function populateModel(movie, movieProperty, model) {
-        if (movie[movieProperty]) {
-            for (var i = 0; i < movie[movieProperty].length; i ++) {
-                if (movieProperty === 'cast') {
-                    var castPerson = new BUTACA.TMDbCrewPerson(movie[movieProperty][i])
-                    if (castPerson.job === 'Actor') {
-                        castModel.append(castPerson)
-                    }
-                    model.append(castPerson)
-                } else {
-                    model.append(movie[movieProperty][i])
-                }
-            }
-        }
     }
 
     Component.onCompleted: {
@@ -199,7 +176,7 @@ Page {
             spacing: UIConstants.DEFAULT_MARGIN
 
             Header {
-                text: parsedMovie.name + ' (' + getYearFromDate(parsedMovie.released) + ')'
+                text: parsedMovie.name + ' (' + BUTACA.getYearFromDate(parsedMovie.released) + ')'
             }
 
             Row {
@@ -224,7 +201,7 @@ Page {
                             margins: UIConstants.DEFAULT_MARGIN
                         }
                         headerFontSize: UIConstants.FONT_SLARGE
-                        text: parsedMovie.name + ' (' + getYearFromDate(parsedMovie.released) + ')'
+                        text: parsedMovie.name + ' (' + BUTACA.getYearFromDate(parsedMovie.released) + ')'
                     }
 
                     Label {
@@ -417,7 +394,7 @@ Page {
                         fontPixelSize: UIConstants.FONT_LSMALL
                         fontFamily: UIConstants.FONT_FAMILY_LIGHT
                     }
-                    text: Qt.formatDate(parseDate(parsedMovie.released), Qt.DefaultLocaleLongDate)
+                    text: Qt.formatDate(BUTACA.parseDate(parsedMovie.released), Qt.DefaultLocaleLongDate)
                 }
             }
 
@@ -513,29 +490,12 @@ Page {
         anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
     }
 
-    function getYearFromDate(date) {
-        if (date) {
-            var dateParts = date.split('-')
-            return dateParts[0]
-        }
-        return ' - '
-    }
-
     function parseRuntime(runtime) {
         var hours = parseInt(runtime / 60)
         var minutes = (runtime % 60)
 
         var str = hours + ' h ' + minutes + ' m'
         return str
-    }
-
-    function parseDate(date) {
-        if (date) {
-            var dateParts = date.split('-')
-            var parsedDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
-            return parsedDate
-        }
-        return ''
     }
 
     function handleMessage(messageObject) {

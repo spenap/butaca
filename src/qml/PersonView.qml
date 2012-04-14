@@ -80,33 +80,12 @@ Page {
             if (person.known_movies)
                 knownMovies = person.known_movies
 
-            populatePostersModel(person)
-            populateModel(person, 'filmography', filmographyModel)
+            BUTACA.populateModel(person, 'filmography', filmographyModel)
+            BUTACA.populateImagesModel(person, 'profile', picturesModel)
 
-            if (picturesModel.get(0).sizes['h632'].url)
+            if (picturesModel.count > 0 &&
+                    picturesModel.get(0).sizes['h632'].url)
                 profile = picturesModel.get(0).sizes['h632'].url
-        }
-    }
-
-    function populatePostersModel(person) {
-        var i = 0
-        var image
-        while (i < person.profile.length) {
-            if (image && image.id === person.profile[i].image.id) {
-                image.addSize(person.profile[i].image)
-            } else {
-                if (image) picturesModel.append(image)
-                image = new BUTACA.TMDbImage(person.profile[i])
-            }
-            i ++
-        }
-    }
-
-    function populateModel(movie, movieProperty, model) {
-        if (movie[movieProperty]) {
-            for (var i = 0; i < movie[movieProperty].length; i ++) {
-                model.append(movie[movieProperty][i])
-            }
         }
     }
 
@@ -188,7 +167,6 @@ Page {
                             right: parent.right
                             margins: UIConstants.DEFAULT_MARGIN
                         }
-                        headerFontSize: UIConstants.FONT_SLARGE
                         text: 'Born'
                     }
 
@@ -204,7 +182,7 @@ Page {
                             fontFamily: UIConstants.FONT_FAMILY_LIGHT
                         }
                         wrapMode: Text.WordWrap
-                        text: Qt.formatDate(parseDate(parsedPerson.birthday), Qt.DefaultLocaleLongDate)
+                        text: Qt.formatDate(BUTACA.parseDate(parsedPerson.birthday), Qt.DefaultLocaleLongDate)
                     }
 
                     Label {
@@ -220,6 +198,25 @@ Page {
                         }
                         wrapMode: Text.WordWrap
                         text: parsedPerson.birthplace
+                    }
+
+                    Item {
+                        height: UIConstants.DEFAULT_MARGIN
+                        width: parent.width
+                    }
+
+                    Label {
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            margins: UIConstants.DEFAULT_MARGIN
+                        }
+                        platformStyle: LabelStyle {
+                            fontPixelSize: UIConstants.FONT_DEFAULT
+                            fontFamily: UIConstants.FONT_FAMILY_LIGHT
+                        }
+                        wrapMode: Text.WordWrap
+                        text: 'Known for %1 movies'.arg(parsedPerson.knownMovies)
                     }
                 }
             }
@@ -315,15 +312,6 @@ Page {
     ScrollDecorator {
         flickableItem: personFlickableWrapper
         anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
-    }
-
-    function parseDate(date) {
-        if (date) {
-            var dateParts = date.split('-')
-            var parsedDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
-            return parsedDate
-        }
-        return ''
     }
 
     function handleMessage(messageObject) {
