@@ -165,8 +165,6 @@ Page {
         }
     }
 
-    Component { id: personView; PersonView { } }
-
     Component { id: castView; CastView { } }
 
     Flickable {

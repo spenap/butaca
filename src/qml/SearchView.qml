@@ -109,8 +109,6 @@ Page {
         }
     }
 
-    Component { id: movieView; MovieView { } }
-
     Item {
         id: searchResults
         anchors {
