@@ -19,79 +19,56 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import com.nokia.extras 1.0
 import "butacautils.js" as BUTACA
 import 'constants.js' as UIConstants
 
-Component {
+Page {
     id: filmographyView
+    orientationLock: PageOrientation.LockPortrait
 
-    Page {
-        tools: commonTools
-        orientationLock: PageOrientation.LockPortrait
-
-        property string person: ''
-        property string personId: ''
-
-        Item {
-            id: filmographyContent
-            anchors.fill: parent
-            anchors.topMargin: appWindow.inPortrait?
-                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_PORTRAIT :
-                                   UIConstants.HEADER_DEFAULT_TOP_SPACING_LANDSCAPE
-
-            FilmographyModel {
-                id: filmographyModel
-                params: personId
-                onStatusChanged: {
-                    if (status == XmlListModel.Ready) {
-                        filmographyContent.state = 'Ready'
-                    }
-                }
+    tools: ToolBarLayout {
+        ToolIcon {
+            iconId: 'toolbar-back'
+            onClicked: {
+                appWindow.pageStack.pop()
             }
-
-            BusyIndicator {
-                id: busyIndicator
-                visible: true
-                running: true
-                platformStyle: BusyIndicatorStyle { size: 'large' }
-                anchors.centerIn: parent
-            }
-
-            ListView {
-                id: list
-                anchors.fill: parent
-                flickableDirection: Flickable.VerticalFlick
-                model: filmographyModel
-                header: Header {
-                    //: %1's filmography
-                    text: qsTr('btc-person-filmography').arg(person)
-                    showDivider: false
-                }
-                delegate: MyListDelegate {
-                    title: model.title
-                    subtitle: model.subtitle
-
-                    onClicked: { pageStack.push(movieView,
-                                                { detailId: tmdbId,
-                                                  viewType: BUTACA.MOVIE })}
-                }
-
-                section.property: 'name'
-                section.delegate: ListSectionDelegate { sectionName: section }
-            }
-
-            ScrollDecorator {
-                flickableItem: list
-            }
-
-            states: [
-                State {
-                    name: 'Ready'
-                    PropertyChanges { target: busyIndicator; running: false; visible: false }
-                    PropertyChanges { target: list; visible: true }
-                }
-            ]
         }
+    }
+
+    property string personName: ''
+    property ListModel filmographyModel
+
+    ListView {
+        id: filmographyList
+        anchors {
+            fill: parent
+            margins: UIConstants.DEFAULT_MARGIN
+        }
+        model: filmographyModel
+        header: Header {
+            //: %1's filmography
+            text: qsTr('btc-person-filmography').arg(personName)
+            showDivider: false
+        }
+        delegate: MyListDelegate {
+            title: model.name
+            subtitle: model.job
+
+            onClicked: {
+                pageStack.push(movieView,
+                               {
+                                   tmdbId: model.id,
+                                   loading: true
+                               })
+            }
+        }
+
+        section.property: 'name'
+        section.delegate: ListSectionDelegate { sectionName: section }
+    }
+
+    ScrollDecorator {
+        flickableItem: filmographyList
+        anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
     }
 }

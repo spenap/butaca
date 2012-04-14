@@ -107,6 +107,8 @@ Page {
         }
     }
 
+    Component { id: filmographyView; FilmographyView { } }
+
     Component.onCompleted: {
         if (person) {
             var thePerson = new BUTACA.TMDbPerson(person)
@@ -281,6 +283,14 @@ Page {
                                              {
                                                  tmdbId: filmographyModel.get(modelIndex).id,
                                                  loading: true
+                                             })
+                }
+
+                onFooterClicked: {
+                    appWindow.pageStack.push(filmographyView,
+                                             {
+                                                 personName: parsedPerson.name,
+                                                 filmographyModel: filmographyModel
                                              })
                 }
             }
