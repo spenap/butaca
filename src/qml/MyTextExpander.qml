@@ -15,6 +15,10 @@ Column {
         height: expanded ? actualSize : Math.min(actualSize, collapsedSize)
         clip: true
 
+        Behavior on height {
+            NumberAnimation { duration: 200 }
+        }
+
         property int actualSize: innerColumn.height
         property int collapsedSize: 160
         property bool expanded: false
