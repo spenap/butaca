@@ -48,7 +48,7 @@ Page {
         property string name: ''
         property string biography: ''
         property string url: ''
-        property string profile: ''
+        property string profile: 'qrc:/resources/person-placeholder.svg'
 
         // Part of the full person object
         property variant alsoKnownAs: ''

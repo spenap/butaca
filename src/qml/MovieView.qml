@@ -33,7 +33,7 @@ Page {
         property double rating: 0
         property int votes: 0
         property string overview: ''
-        property string poster: ''
+        property string poster: 'qrc:/resources/movie-placeholder.svg'
         property string url: ''
 
         // Part of the full movie object
