@@ -49,5 +49,7 @@
         <file>qml/MovieView.qml</file>
         <file>qml/workerscript.js</file>
         <file>qml/MediaGalleryView.qml</file>
+        <file>qml/MyGalleryPreviewer.qml</file>
+        <file>qml/MyModelFlowPreviewer.qml</file>
     </qresource>
 </RCC>

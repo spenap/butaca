@@ -308,52 +308,15 @@ Page {
                     color: UIConstants.COLOR_SECONDARY_FOREGROUND
                 }
 
-                Item {
+                MyGalleryPreviewer {
                     width: parent.width
-                    height: 140
 
-                    BorderImage {
-                        anchors.fill: parent
-                        visible: galleryMouseArea.pressed
-                        source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
-                    }
+                    galleryPreviewerModel: postersModel
+                    previewerDelegateIcon: 'url'
+                    previewerDelegateSize: 'thumb'
 
-                    Flow {
-                        anchors {
-                            left: parent.left
-                            leftMargin: UIConstants.PADDING_LARGE
-                            verticalCenter: parent.verticalCenter
-                        }
-                        width: parent.width - galleryMoreIndicator.width
-                        height: parent.height
-                        spacing: UIConstants.PADDING_LARGE
-
-                        Repeater {
-                            model: Math.min(4, postersModel.count)
-                            delegate: Image {
-                                    width: 92; height: 138
-                                    opacity: galleryMouseArea.pressed ? 0.5 : 1
-                                    fillMode: Image.PreserveAspectFit
-                                    source: postersModel.get(index).sizes['thumb'].url
-                                }
-                        }
-                    }
-
-                    MyMoreIndicator {
-                        id: galleryMoreIndicator
-                        anchors {
-                            right: parent.right
-                            rightMargin: UIConstants.DEFAULT_MARGIN
-                            verticalCenter: parent.verticalCenter
-                        }
-                    }
-
-                    MouseArea {
-                        id: galleryMouseArea
-                        anchors.fill: parent
-                        onClicked: {
-                            appWindow.pageStack.push(galleryView, { galleryViewModel: postersModel })
-                        }
+                    onClicked: {
+                        appWindow.pageStack.push(galleryView, { galleryViewModel: postersModel })
                     }
                 }
 
@@ -467,19 +430,10 @@ Page {
                     text: 'Genre'
                 }
 
-                Flow {
+                MyModelFlowPreviewer {
                     width: parent.width
-
-                    Repeater {
-                        model: genresModel
-                        delegate: Label {
-                                platformStyle: LabelStyle {
-                                    fontPixelSize: UIConstants.FONT_LSMALL
-                                    fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                                }
-                                text: genresModel.get(index).name + (index !== genresModel.count - 1 ? ', ' : '')
-                            }
-                    }
+                    flowModel: genresModel
+                    previewedField: 'name'
                 }
             }
 
@@ -492,19 +446,10 @@ Page {
                     text: 'Studios'
                 }
 
-                Flow {
+                MyModelFlowPreviewer {
                     width: parent.width
-
-                    Repeater {
-                        model: studiosModel
-                        delegate: Label {
-                                platformStyle: LabelStyle {
-                                    fontPixelSize: UIConstants.FONT_LSMALL
-                                    fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                                }
-                                text: studiosModel.get(index).name + (index !== studiosModel.count - 1 ? ', ' : '')
-                            }
-                    }
+                    flowModel: studiosModel
+                    previewedField: 'name'
                 }
             }
 

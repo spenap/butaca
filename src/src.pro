@@ -79,7 +79,9 @@ OTHER_FILES += \
     resources/butaca.svg \
     resources/tmdb-logo.png \
     resources/indicator-rating-inverted-star.svg \
-    qml/MediaGalleryView.qml
+    qml/MediaGalleryView.qml \
+    qml/MyGalleryPreviewer.qml \
+    qml/MyModelFlowPreviewer.qml
 
 RESOURCES += \
     res.qrc
