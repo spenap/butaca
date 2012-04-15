@@ -49,5 +49,6 @@
         <file>qml/MyGalleryPreviewer.qml</file>
         <file>qml/MyModelFlowPreviewer.qml</file>
         <file>qml/MyTextExpander.qml</file>
+        <file>qml/aftercredits.js</file>
     </qresource>
 </RCC>

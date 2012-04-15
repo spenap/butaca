@@ -6,6 +6,9 @@ WorkerScript.onMessage = function(message) {
             case REMOTE_FETCH_REQUEST:
                 remoteFetch(message.tmdbId, message.tmdbType)
                 break
+            case EXTRAS_FETCH_REQUEST:
+                extrasFetch(message.movieName)
+                break
             default:
                 console.debug('Unknown action', message.action)
                 break
@@ -28,5 +31,21 @@ function remoteFetch(id, type) {
                 }
             }
     xhr.open("GET", url + id)
+    xhr.send()
+}
+
+function extrasFetch(name) {
+    var xhr = new XMLHttpRequest
+    var url = 'http://aftercredits.com/api/get_search_results?search=' + name
+    console.debug('Fetching extras from', url)
+    xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    WorkerScript.sendMessage({
+                                                 action: EXTRAS_FETCH_RESPONSE,
+                                                 response: xhr.responseText
+                                             })
+                }
+            }
+    xhr.open("GET", url)
     xhr.send()
 }

@@ -1,6 +1,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import 'butacautils.js' as BUTACA
+import 'aftercredits.js'as AC
 import 'constants.js' as UIConstants
 
 Page {
@@ -20,6 +21,7 @@ Page {
     property variant movie: ''
     property string tmdbId: parsedMovie.tmdbId
     property bool loading: false
+    property bool loadingExtras: false
 
     QtObject {
         id: parsedMovie
@@ -45,7 +47,7 @@ Page {
         property int runtime: 0
         property string certification: ''
         property string homepage: ''
-        property string extras: 'Not found'
+        property string extras: 'not found'
 
         property variant rawCast: ''
 
@@ -124,6 +126,14 @@ Page {
                                         action: BUTACA.REMOTE_FETCH_REQUEST,
                                         tmdbId: tmdbId,
                                         tmdbType: 'movie'
+                                    })
+        }
+
+        if (parsedMovie.imdbId) {
+            loadingExtras = true
+            asyncWorker.sendMessage({
+                                        action: BUTACA.EXTRAS_FETCH_REQUEST,
+                                        movieName: parsedMovie.name
                                     })
         }
     }
@@ -434,6 +444,38 @@ Page {
                 }
             }
 
+            Column {
+                id: movieExtrasSection
+                width: parent.width
+
+                MyEntryHeader {
+                    width: parent.width
+                    text: 'Extras after or during credits?'
+
+                    BusyIndicator {
+                        visible: running
+                        running: loadingExtras
+                        anchors {
+                            right: parent.right
+                            rightMargin: UIConstants.DEFAULT_MARGIN
+                        }
+                        platformStyle: BusyIndicatorStyle {
+                            size: 'small'
+                        }
+                    }
+                }
+
+                Label {
+                    width: parent.width
+                    platformStyle: LabelStyle {
+                        fontPixelSize: UIConstants.FONT_LSMALL
+                        fontFamily: UIConstants.FONT_FAMILY_LIGHT
+                    }
+                    text: parsedMovie.extras
+                    visible: !loadingExtras
+                }
+            }
+
             MyModelPreviewer {
                 width: parent.width
                 previewedModel: castModel
@@ -509,6 +551,33 @@ Page {
             loading = false
             var fullMovie = JSON.parse(messageObject.response)[0]
             parsedMovie.updateWithFullWeightMovie(fullMovie)
+        } else if (messageObject.action === BUTACA.EXTRAS_FETCH_RESPONSE) {
+            var afterCreditsResponse = JSON.parse(messageObject.response)
+            var resultsFound = (afterCreditsResponse.posts &&
+                            afterCreditsResponse.posts.length > 0)
+
+            if (resultsFound) {
+                for (var i = 0; i < afterCreditsResponse.posts.length; i ++) {
+                    var postEntry = afterCreditsResponse.posts[i]
+                    if (postEntry.url !== 'http://aftercredits.com/privacy-policy/') {
+                        var movie = new AC.AfterCreditsMovie(postEntry.title,
+                                                             postEntry.url,
+                                                             postEntry.content)
+                        if ((movie.imdbId + '').indexOf(parsedMovie.imdbId) >= 0) {
+                            if (postEntry.categories &&
+                                    postEntry.categories.length > 0) {
+                                for (var j = 0; j < postEntry.categories.length; j ++) {
+                                    var category = postEntry.categories[j]
+                                    movie.addCategory(category)
+                                }
+                            }
+                            parsedMovie.extras = movie.subtitle
+                            break
+                        }
+                    }
+                }
+            }
+            loadingExtras = false
         } else {
             console.debug('Unknown action response: ', messageObject.action)
         }

@@ -79,7 +79,8 @@ OTHER_FILES += \
     qml/MediaGalleryView.qml \
     qml/MyGalleryPreviewer.qml \
     qml/MyModelFlowPreviewer.qml \
-    qml/MyTextExpander.qml
+    qml/MyTextExpander.qml \
+    qml/aftercredits.js
 
 RESOURCES += \
     res.qrc
