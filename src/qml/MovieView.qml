@@ -392,6 +392,46 @@ Page {
                 }
             }
 
+            Column {
+                id: movieBudgetSection
+                width: parent.width
+                visible: parsedMovie.budget
+
+                MyEntryHeader {
+                    width: parent.width
+                    text: 'Budget'
+                }
+
+                Label {
+                    width: parent.width
+                    platformStyle: LabelStyle {
+                        fontPixelSize: UIConstants.FONT_LSMALL
+                        fontFamily: UIConstants.FONT_FAMILY_LIGHT
+                    }
+                    text: controller.formatCurrency(parsedMovie.budget)
+                }
+            }
+
+            Column {
+                id: movieRevenueSection
+                width: parent.width
+                visible: parsedMovie.revenue
+
+                MyEntryHeader {
+                    width: parent.width
+                    text: 'Revenue'
+                }
+
+                Label {
+                    width: parent.width
+                    platformStyle: LabelStyle {
+                        fontPixelSize: UIConstants.FONT_LSMALL
+                        fontFamily: UIConstants.FONT_FAMILY_LIGHT
+                    }
+                    text: controller.formatCurrency(parsedMovie.revenue)
+                }
+            }
+
             MyModelPreviewer {
                 width: parent.width
                 previewedModel: castModel
