@@ -55,7 +55,6 @@ OTHER_FILES += \
     qml/Header.qml \
     qml/NoContentItem.qml \
     qml/CastView.qml \
-    qml/FilmographyModel.qml \
     qml/FilmographyView.qml \
     qml/ListSectionDelegate.qml \
     qml/TheatersView.qml \
