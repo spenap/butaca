@@ -21,6 +21,7 @@ Page {
     property variant movie: ''
     property string tmdbId: parsedMovie.tmdbId
     property bool loading: false
+    property bool loadingExtended: false
     property bool loadingExtras: false
 
     QtObject {
@@ -122,6 +123,7 @@ Page {
         }
 
         if (tmdbId !== -1) {
+            loadingExtended = true
             asyncWorker.sendMessage({
                                         action: BUTACA.REMOTE_FETCH_REQUEST,
                                         tmdbId: tmdbId,
@@ -195,6 +197,23 @@ Page {
 
             Header {
                 text: parsedMovie.name + ' (' + BUTACA.getYearFromDate(parsedMovie.released) + ')'
+            }
+
+            Label {
+                text: 'Loading content'
+                visible: loadingExtended
+
+                BusyIndicator {
+                    visible: running
+                    running: loadingExtended
+                    anchors {
+                        right: parent.right
+                        rightMargin: UIConstants.DEFAULT_MARGIN
+                    }
+                    platformStyle: BusyIndicatorStyle {
+                        size: 'small'
+                    }
+                }
             }
 
             Row {
@@ -548,7 +567,7 @@ Page {
 
     function handleMessage(messageObject) {
         if (messageObject.action === BUTACA.REMOTE_FETCH_RESPONSE) {
-            loading = false
+            loading = loadingExtended = false
             var fullMovie = JSON.parse(messageObject.response)[0]
             parsedMovie.updateWithFullWeightMovie(fullMovie)
         } else if (messageObject.action === BUTACA.EXTRAS_FETCH_RESPONSE) {

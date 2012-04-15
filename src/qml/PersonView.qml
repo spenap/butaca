@@ -39,6 +39,7 @@ Page {
     property variant person: ''
     property string tmdbId: parsedPerson.tmdbId
     property bool loading: false
+    property bool loadingExtended: false
 
     QtObject {
         id: parsedPerson
@@ -116,6 +117,7 @@ Page {
         }
 
         if (tmdbId !== -1) {
+            loadingExtended = true
             asyncWorker.sendMessage({
                                         action: BUTACA.REMOTE_FETCH_REQUEST,
                                         tmdbId: tmdbId,
@@ -141,6 +143,23 @@ Page {
 
             Header {
                 text: parsedPerson.name
+            }
+
+            Label {
+                text: 'Loading content'
+                visible: loadingExtended
+
+                BusyIndicator {
+                    visible: running
+                    running: loadingExtended
+                    anchors {
+                        right: parent.right
+                        rightMargin: UIConstants.DEFAULT_MARGIN
+                    }
+                    platformStyle: BusyIndicatorStyle {
+                        size: 'small'
+                    }
+                }
             }
 
             Row {
@@ -304,7 +323,7 @@ Page {
 
     function handleMessage(messageObject) {
         if (messageObject.action === BUTACA.REMOTE_FETCH_RESPONSE) {
-            loading = false
+            loading = loadingExtended = false
             var fullPerson = JSON.parse(messageObject.response)[0]
             parsedPerson.updateWithFullWeightPerson(fullPerson)
         } else {
