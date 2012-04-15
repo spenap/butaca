@@ -133,11 +133,24 @@ Page {
 
         if (parsedMovie.imdbId) {
             loadingExtras = true
-            asyncWorker.sendMessage({
-                                        action: BUTACA.EXTRAS_FETCH_REQUEST,
-                                        movieName: parsedMovie.name
-                                    })
+            fetchExtras()
         }
+    }
+
+    function fetchExtras() {
+        var xhr = new XMLHttpRequest
+        var url = 'http://aftercredits.com/api/get_search_results?search=' + parsedMovie.name
+        console.debug('Fetching extras from', url)
+        xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        handleMessage({
+                                          action: BUTACA.EXTRAS_FETCH_RESPONSE,
+                                          response: xhr.responseText
+                                      })
+                    }
+                }
+        xhr.open("GET", url)
+        xhr.send()
     }
 
     // Several ListModels are used.
