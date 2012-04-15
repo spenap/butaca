@@ -221,6 +221,7 @@ Page {
                 moviesModel.source = ''
                 peopleModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, appLocale, searchTerm)
             }
+            resultsList.forceActiveFocus()
         }
     }
 }
