@@ -31,6 +31,7 @@ XmlListModel {
     query: BUTACA.TMDB_MOVIE_QUERY
 
     XmlRole { name: "id"; query: "id/string()" }
+    XmlRole { name: "imdb_id"; query: "imdb_id/string()" }
     XmlRole { name: "name"; query: "name/string()" }
     XmlRole { name: "released"; query: "released/string()" }
     XmlRole { name: "rating"; query: "rating/number()" }

@@ -26,6 +26,7 @@ Page {
 
         // Part of the lightweight movie object
         property string tmdbId: ''
+        property string imdbId: ''
         property string name: ''
         property string originalName: ''
         property string alternativeName: ''
@@ -37,7 +38,6 @@ Page {
         property string url: ''
 
         // Part of the full movie object
-        property string imdbId: ''
         property string tagline: ''
         property string trailer: ''
         property string revenue: ''
@@ -45,11 +45,13 @@ Page {
         property int runtime: 0
         property string certification: ''
         property string homepage: ''
+        property string extras: 'Not found'
 
         property variant rawCast: ''
 
         function updateWithLightWeightMovie(movie) {
             tmdbId = movie.id
+            imdbId = movie.imdb_id
             name = movie.name
             released = movie.released
             rating = movie.rating

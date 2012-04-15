@@ -168,6 +168,7 @@ function sanitizeText(text) {
 
 function TMDbMovie(obj) {
     this.id = obj.id
+    this.imdb_id = obj.imdb_id
     this.name = obj.name
     this.released = obj.released
     this.rating = obj.rating
