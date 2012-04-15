@@ -172,6 +172,7 @@ function TMDbMovie(obj) {
     this.id = obj.id
     this.imdb_id = obj.imdb_id
     this.name = obj.name
+    this.original_name = obj.original_name
     this.released = obj.released
     this.rating = obj.rating
     this.votes = obj.votes

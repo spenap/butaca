@@ -33,6 +33,7 @@ XmlListModel {
     XmlRole { name: "id"; query: "id/string()" }
     XmlRole { name: "imdb_id"; query: "imdb_id/string()" }
     XmlRole { name: "name"; query: "name/string()" }
+    XmlRole { name: "original_name"; query: "original_name/string()" }
     XmlRole { name: "released"; query: "released/string()" }
     XmlRole { name: "rating"; query: "rating/number()" }
     XmlRole { name: "votes"; query: "votes/number()" }

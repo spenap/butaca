@@ -32,7 +32,6 @@ Page {
         property string imdbId: ''
         property string name: ''
         property string originalName: ''
-        property string alternativeName: ''
         property string released: ''
         property double rating: 0
         property int votes: 0
@@ -41,6 +40,7 @@ Page {
         property string url: ''
 
         // Part of the full movie object
+        property string alternativeName: ''
         property string tagline: ''
         property string trailer: ''
         property string revenue: ''
@@ -56,6 +56,7 @@ Page {
             tmdbId = movie.id
             imdbId = movie.imdb_id
             name = movie.name
+            originalName = movie.original_name
             released = movie.released
             rating = movie.rating
             votes = movie.votes
@@ -139,7 +140,7 @@ Page {
 
     function fetchExtras() {
         var xhr = new XMLHttpRequest
-        var url = 'http://aftercredits.com/api/get_search_results?search=' + parsedMovie.name
+        var url = 'http://aftercredits.com/api/get_search_results?search=' + parsedMovie.originalName
         console.debug('Fetching extras from', url)
         xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
