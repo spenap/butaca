@@ -88,9 +88,10 @@ Page {
             if (movie.runtime)
                 runtime = movie.runtime
 
-            rawCast = movie.cast
-            rawCast.sort(sortByDepartment)
             movie.cast.sort(sortByCastId)
+            var crew = movie.cast
+            crew.sort(sortByDepartment)
+            rawCast = crew
 
             BUTACA.populateModel(movie, 'genres', genresModel)
             BUTACA.populateModel(movie, 'studios', studiosModel)
@@ -114,7 +115,18 @@ Page {
     }
 
     function sortByDepartment(oneItem, theOther) {
-        return oneItem.department.localeCompare(theOther.department)
+        var result = oneItem.department.localeCompare(theOther.department)
+        if (result !== 0) {
+            if (oneItem.department === 'Directing')
+                return -1
+            else if (theOther.department === 'Directing')
+                return 1
+            else if (oneItem.department === 'Actors')
+                return 1
+            else if (theOther.department === 'Actors')
+                return -1
+        }
+        return result
     }
 
     Component.onCompleted: {
