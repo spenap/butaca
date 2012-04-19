@@ -36,6 +36,11 @@ Page {
 
     property alias searchTerm: searchInput.text
     property bool useSimpleDelegate : searchCategory.checkedButton !== movieSearch
+    property bool loading: false
+
+    Component.onCompleted: {
+        searchInput.forceActiveFocus()
+    }
 
     Header {
         id: header
@@ -123,12 +128,8 @@ Page {
             id: peopleModel
             source: ''
             onStatusChanged: {
-                if (status == XmlListModel.Ready &&
-                        count > 0) {
-                    localModel.clear()
-                    for (var i = 0; i < count; i ++) {
-                        localModel.append(new BUTACA.TMDbPerson(get(i)))
-                    }
+                if (status == XmlListModel.Ready) {
+                    searchResults.populateModel(peopleModel, localModel, BUTACA.TMDbPerson)
                 }
             }
         }
@@ -137,12 +138,8 @@ Page {
             id: moviesModel
             source: ''
             onStatusChanged: {
-                if (status == XmlListModel.Ready &&
-                        count > 0) {
-                    localModel.clear()
-                    for (var i = 0; i < count; i ++) {
-                        localModel.append(new BUTACA.TMDbMovie(get(i)))
-                    }
+                if (status == XmlListModel.Ready) {
+                    searchResults.populateModel(moviesModel, localModel, BUTACA.TMDbMovie)
                 }
             }
         }
@@ -167,6 +164,15 @@ Page {
                                })
                 break
             }
+        }
+
+        function populateModel(sourceModel, destinationModel, ObjectConstructor) {
+            if (sourceModel.count > 0) {
+                for (var i = 0; i < sourceModel.count; i ++) {
+                    destinationModel.append(new ObjectConstructor(sourceModel.get(i)))
+                }
+            }
+            loading = false
         }
 
         Component {
@@ -195,13 +201,13 @@ Page {
             id: noResults
             anchors.fill: parent
             visible: false
+            text: ''
         }
 
         BusyIndicator {
             id: busyIndicator
             visible: running
-            running: peopleModel.status === XmlListModel.Loading ||
-                     moviesModel.status === XmlListModel.Loading
+            running: loading
             platformStyle: BusyIndicatorStyle { size: 'large' }
             anchors.centerIn: parent
         }
@@ -210,15 +216,63 @@ Page {
             id: scrollDecorator
             flickableItem: resultsList
         }
+
+        states: [
+            State {
+                name: 'loadingState'
+                when: peopleModel.status == XmlListModel.Loading ||
+                      moviesModel.status == XmlListModel.Loading
+                PropertyChanges {
+                    target: busyIndicator
+                    running: true
+                }
+            },
+            State {
+                name: 'errorState'
+                when: peopleModel.status == XmlListModel.Error ||
+                      moviesModel.status == XmlListModel.Error
+                PropertyChanges {
+                    target: noResults
+                    visible: true
+                    text: 'There was an error performing the search'
+                }
+            },
+            State {
+                name: 'notFoundState'
+                when: (peopleModel.status == XmlListModel.Ready ||
+                       moviesModel.status == XmlListModel.Ready) &&
+                      (peopleModel.source != '' || moviesModel.source != '') &&
+                      localModel.count === 0
+                PropertyChanges {
+                    target: noResults
+                    visible: true
+                    text: 'Not found'
+                }
+            },
+            State {
+                name: 'emptyState'
+                when: (peopleModel.status == XmlListModel.Ready ||
+                       moviesModel.status == XmlListModel.Ready) &&
+                      (peopleModel.source  == '' && moviesModel.source == '') &&
+                      !searchInput.text
+                PropertyChanges {
+                    target: noResults
+                    visible: true
+                    text: 'Enter search terms'
+                }
+            }
+        ]
     }
 
     function doSearch() {
+        peopleModel.source = ''
+        moviesModel.source = ''
         if (searchTerm) {
+            loading = true
+            localModel.clear()
             if (searchCategory.checkedButton === movieSearch) {
-                peopleModel.source = ''
                 moviesModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, appLocale, searchTerm)
             } else if (searchCategory.checkedButton === peopleSearch) {
-                moviesModel.source = ''
                 peopleModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, appLocale, searchTerm)
             }
             resultsList.forceActiveFocus()
