@@ -57,7 +57,6 @@ Page {
 
     Component.onCompleted: {
         if (!showsCast && rawCrew) {
-            castModel.clear()
             for (var i = 0; i < rawCrew.length; i ++) {
                 castModel.append(new BUTACA.TMDbCrewPerson(rawCrew[i]))
             }
