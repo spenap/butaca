@@ -183,7 +183,10 @@ Page {
 
         NoContentItem {
             id: noTheaterResults
-            anchors.fill: parent
+            anchors {
+                fill: parent
+                margins: UIConstants.DEFAULT_MARGIN
+            }
             text: (location ?
                        //: No results for %1
                        qsTr('btc-no-results-given-location').arg(location) :

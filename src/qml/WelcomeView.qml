@@ -210,7 +210,10 @@ Page {
         }
 
         NoContentItem {
-            anchors.fill: parent
+            anchors {
+                fill: parent
+                margins: UIConstants.DEFAULT_MARGIN
+            }
             //: Mark content as favorite
             text: qsTr('btc-mark-favorite')
             visible: favoritesModel.count == 0

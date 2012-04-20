@@ -82,7 +82,10 @@ Page {
 
     NoContentItem {
         id: noResults
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            margins: UIConstants.DEFAULT_MARGIN
+        }
         text: 'No content found'
         visible: moviesModel.status === XmlListModel.Ready && moviesModel.count === 0
     }

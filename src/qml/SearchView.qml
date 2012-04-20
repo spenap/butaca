@@ -203,6 +203,7 @@ Page {
             bottom: parent.bottom
             left: parent.left
             right: parent.right
+            margins: UIConstants.DEFAULT_MARGIN
         }
         visible: false
         text: ''
