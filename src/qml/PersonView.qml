@@ -27,13 +27,18 @@ Page {
 
     orientationLock: PageOrientation.LockPortrait
 
-    tools: ToolBarLayout {
-        ToolIcon {
-            iconId: 'toolbar-back'
-            onClicked: {
-                appWindow.pageStack.pop()
-            }
-        }
+    tools: ButacaToolBar {
+        content: ({
+                      id: parsedPerson.tmdbId,
+                      url: parsedPerson.url,
+                      title: parsedPerson.name,
+                      icon: parsedPerson.profile,
+                      type: BUTACA.PERSON
+                  })
+        isFavorite: welcomeView.indexOf({
+                                            id: tmdbId,
+                                            type: BUTACA.PERSON
+                                        }) >= 0
     }
 
     property variant person: ''

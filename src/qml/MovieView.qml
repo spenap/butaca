@@ -9,13 +9,18 @@ Page {
 
     orientationLock: PageOrientation.LockPortrait
 
-    tools: ToolBarLayout {
-        ToolIcon {
-            iconId: 'toolbar-back'
-            onClicked: {
-                appWindow.pageStack.pop()
-            }
-        }
+    tools: ButacaToolBar {
+        content: ({
+                      id: parsedMovie.tmdbId,
+                      url: parsedMovie.url,
+                      title: parsedMovie.name,
+                      icon: parsedMovie.poster,
+                      type: BUTACA.MOVIE
+                  })
+        isFavorite: welcomeView.indexOf({
+                                            id: tmdbId,
+                                            type: BUTACA.MOVIE
+                                        }) >= 0
     }
 
     property variant movie: ''

@@ -22,15 +22,21 @@ import com.nokia.meego 1.0
 import "butacautils.js" as BUTACA
 
 ToolBarLayout {
-    id: commonTools
-    visible: false
+    property variant content: ''
+    property variant menu: ''
+    property bool isFavorite: false
 
-    property variant content: undefined
-    property variant menu: undefined
+    function toggleFavorite() {
+        if (isFavorite)
+            welcomeView.removeFavorite(content)
+        else
+            welcomeView.addFavorite(content)
+    }
 
     ToolIcon {
-        id: backIcon
-        iconId: 'toolbar-back'
+        iconId: enabled ?
+                    'toolbar-back' :
+                    'toolbar-back-dimmed'
         onClicked: {
             if (menu) menu.close()
             pageStack.pop()
@@ -38,92 +44,25 @@ ToolBarLayout {
     }
 
     ToolIcon {
-        id: favoriteIcon
-        iconId: 'toolbar-favorite-unmark-dimmed'
-        visible: false
-        onClicked: {
-            iconId = iconId == 'toolbar-favorite-mark' ?
-                        'toolbar-favorite-unmark' : 'toolbar-favorite-mark'
-
-            var idx = welcomeView.indexOf(content)
-
-            if (idx >= 0) {
-                welcomeView.removeFavoriteAt(idx)
-            } else {
-                welcomeView.addFavorite(content)
-            }
-        }
+        iconId: (isFavorite ?
+                     'toolbar-favorite-mark' :
+                      'toolbar-favorite-unmark') +
+                 (enabled ? '' : '-dimmed')
+        onClicked: toggleFavorite()
     }
 
     ToolIcon {
-        id: shareIcon
-        iconId: enabled ? 'toolbar-share' : 'toolbar-share-dimmed'
-        visible: false
+        iconId: enabled ?
+                    'toolbar-share' :
+                    'toolbar-share-dimmed'
         onClicked: controller.share(content.title, content.url)
     }
 
     ToolIcon {
-        id: menuListIcon
-        iconId: enabled ? 'toolbar-view-menu' : 'toolbar-view-menu-dimmed'
-        visible: false
-        onClicked: (menu.status == DialogStatus.Closed) ?
+        iconId: enabled ?
+                    'toolbar-view-menu' :
+                    'toolbar-view-menu-dimmed'
+        onClicked: (menu.status === DialogStatus.Closed) ?
                        menu.open() : menu.close()
     }
-
-    /*
-     * Besides the implicit initial state, with all icons
-     * hidden but the 'back' one, there are 'ContentReady',
-     * used when the content displayed is available, and
-     * 'ContentNotReady', used when we expect content but it's
-     * yet unavailable
-     */
-    states: [
-        State {
-            name: 'ContentReady'
-            when: content !== undefined
-            PropertyChanges {
-                target: shareIcon
-                enabled: true
-                visible: true
-            }
-            PropertyChanges {
-                target: favoriteIcon;
-                iconId: welcomeView.indexOf(content) >= 0 ?
-                                          'toolbar-favorite-mark' : 'toolbar-favorite-unmark'
-                enabled: true
-                visible: true
-            }
-            PropertyChanges {
-                target: menuListIcon
-                enabled: true
-                visible: menu !== undefined
-            }
-            PropertyChanges {
-                target: homepageEntry
-                visible: (content.type == BUTACA.MOVIE) && content.homepage
-            }
-            PropertyChanges {
-                target: imdbEntry
-                visible: (content.type == BUTACA.MOVIE) && content.imdbId
-            }
-        },
-        State {
-            name: 'ContentNotReady'
-            PropertyChanges {
-                target: shareIcon
-                enabled: false
-                visible: true
-            }
-            PropertyChanges {
-                target: favoriteIcon
-                enabled: false
-                visible: true
-            }
-            PropertyChanges {
-                target: menuListIcon
-                enabled: false
-                visible: true && (menu !== undefined)
-            }
-        }
-    ]
 }
