@@ -26,34 +26,25 @@ import 'constants.js' as UIConstants
 Item {
     id: delegate
 
-    // FIXME: clicked shouldn't carry the index parameter,
-    // so we shouldn't have to workaround its implicit declaration here.
-    //
-    // This is here since in SearchView.qml two delegates are wrapped in a
-    // Component so we can change from one to the other. Defining the signal
-    // handlers in the Component wrapping doesn't work.
-    property int clickedIndex: index
+    signal clicked()
 
-    signal clicked(int index)
-
-    property string title: model && model.title ? model.title : ''
+    property string title: ''
     property int titleSize: UIConstants.FONT_SLARGE
     property int titleWeight: Font.Normal
     property string titleFontFamily: UIConstants.FONT_FAMILY
     property color titleColor: UIConstants.COLOR_INVERTED_FOREGROUND
 
-    property string subtitle: model && model.subtitle ? model.subtitle : ''
+    property string subtitle: ''
     property int subtitleSize: UIConstants.FONT_LSMALL
     property int subtitleWeight: Font.Normal
     property string subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
     property color subtitleColor: UIConstants.COLOR_SECONDARY_FOREGROUND
 
-    property string iconSource: model && model.iconSource ? model.iconSource : ''
+    property string iconSource: ''
     property bool smallSize: false
 
     property bool pressable: true
 
-    width: parent.width
     height: smallSize ? UIConstants.LIST_ITEM_HEIGHT_SMALL : UIConstants.LIST_ITEM_HEIGHT_DEFAULT
 
     BorderImage {
@@ -132,11 +123,6 @@ Item {
     MouseArea {
         id: delegateMouseArea
         anchors.fill: parent
-        onClicked: {
-            if (clickedIndex !== undefined)
-                delegate.clicked(clickedIndex)
-            else
-                delegate.clicked(-1)
-        }
+        onClicked: delegate.clicked()
     }
 }

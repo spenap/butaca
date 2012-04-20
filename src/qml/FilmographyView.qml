@@ -51,6 +51,7 @@ Page {
             showDivider: false
         }
         delegate: MyListDelegate {
+            width: parent.width
             title: model.name
             subtitle: model.job
 

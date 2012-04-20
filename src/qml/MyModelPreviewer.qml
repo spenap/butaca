@@ -29,6 +29,7 @@ Column {
         width: parent.width
         model: Math.min(previewedItems, previewedModel.count)
         delegate: MyListDelegate {
+            width: parent.width
             smallSize: true
 
             iconSource: previewedModel.get(index)[previewerDelegateIcon] ?
@@ -48,6 +49,7 @@ Column {
     }
 
     MyListDelegate {
+        width: parent.width
         smallSize: true
         title: previewerFooterText
         titleSize: UIConstants.FONT_LSMALL

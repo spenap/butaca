@@ -138,6 +138,7 @@ Page {
                 visible: !showShowtimesFilter
             }
             delegate: MyListDelegate {
+                width: parent.width
                 title: model.title
 
                 pressable: false

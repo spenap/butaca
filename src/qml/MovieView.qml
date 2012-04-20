@@ -380,6 +380,7 @@ Page {
                 }
 
                 MyListDelegate {
+                    width: parent.width
                     title: 'Watch Trailer'
                     titleSize: UIConstants.FONT_SLARGE
 

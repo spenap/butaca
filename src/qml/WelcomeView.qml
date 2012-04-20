@@ -138,6 +138,7 @@ Page {
         clip: true
         interactive: false
         delegate: MyListDelegate {
+            width: parent.width
             title: model.title
             subtitle: model.subtitle
 

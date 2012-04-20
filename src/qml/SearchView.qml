@@ -160,6 +160,8 @@ Page {
                 anchors.fill: parent
                 model: searchView.localModel
                 delegate: MyListDelegate {
+                    width: parent.width
+                    title: model.title
                     onClicked: searchView.handleClicked(index)
                 }
             }

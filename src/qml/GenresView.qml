@@ -48,6 +48,7 @@ Page {
             text: qsTr('btc-browse-genres')
         }
         delegate: MyListDelegate {
+            width: parent.width
             title: model.title
 
             onClicked: {
