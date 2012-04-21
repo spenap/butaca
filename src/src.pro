@@ -70,7 +70,6 @@ OTHER_FILES += \
     qml/storage.js \
     qml/butacautils.js \
     qml/constants.js \
-    qml/workerscript.js \
     resources/movie-placeholder.svg \
     resources/person-placeholder.svg \
     resources/butaca.svg \
