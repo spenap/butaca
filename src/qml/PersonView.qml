@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import 'butacautils.js' as Util
+import 'moviedbwrapper.js' as TMDB
 import 'constants.js' as UIConstants
 
 Page {
@@ -121,14 +122,16 @@ Page {
             parsedPerson.updateWithLightWeightPerson(thePerson)
         }
 
-        if (tmdbId !== -1) {
-            loadingExtended = true
-            asyncWorker.sendMessage({
-                                        action: Util.REMOTE_FETCH_REQUEST,
-                                        tmdbId: tmdbId,
-                                        tmdbType: 'person'
-                                    })
-        }
+        if (tmdbId !== -1) fetchExtendedContent()
+    }
+
+    function fetchExtendedContent() {
+        loadingExtended = true
+        Util.asyncQuery({
+                              url: TMDB.person_info(tmdbId, { app_locale: appLocale, format: 'json' }),
+                              response_action: Util.REMOTE_FETCH_RESPONSE
+                          },
+                          handleMessage)
     }
 
     Flickable {
@@ -346,14 +349,6 @@ Page {
         running: loading
         platformStyle: BusyIndicatorStyle {
             size: 'large'
-        }
-    }
-
-    WorkerScript {
-        id: asyncWorker
-        source: 'workerscript.js'
-        onMessage: {
-            handleMessage(messageObject)
         }
     }
 }

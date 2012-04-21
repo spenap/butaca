@@ -2,6 +2,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 import 'butacautils.js' as Util
 import 'aftercredits.js'as WATC
+import 'moviedbwrapper.js' as TMDB
 import 'constants.js' as UIConstants
 
 Page {
@@ -140,35 +141,27 @@ Page {
             parsedMovie.updateWithLightWeightMovie(theMovie)
         }
 
-        if (tmdbId !== -1) {
-            loadingExtended = true
-            asyncWorker.sendMessage({
-                                        action: Util.REMOTE_FETCH_REQUEST,
-                                        tmdbId: tmdbId,
-                                        tmdbType: 'movie'
-                                    })
-        }
+        if (tmdbId !== -1) fetchExtendedContent()
 
-        if (parsedMovie.imdbId) {
-            loadingExtras = true
-            fetchExtras()
-        }
+        if (parsedMovie.imdbId) fetchExtras()
+    }
+
+    function fetchExtendedContent() {
+        loadingExtended = true
+        Util.asyncQuery({
+                            url: TMDB.movie_info(tmdbId, { app_locale: appLocale, format: 'json' }),
+                            response_action: Util.REMOTE_FETCH_RESPONSE
+                        },
+                        handleMessage)
     }
 
     function fetchExtras() {
-        var xhr = new XMLHttpRequest
-        var url = 'http://aftercredits.com/api/get_search_results?search=' + parsedMovie.originalName
-        console.debug('Fetching extras from', url)
-        xhr.onreadystatechange = function () {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        handleMessage({
-                                          action: Util.EXTRAS_FETCH_RESPONSE,
-                                          response: xhr.responseText
-                                      })
-                    }
-                }
-        xhr.open("GET", url)
-        xhr.send()
+        loadingExtras = true
+        Util.asyncQuery({
+                            url: WATC.movie_extras(parsedMovie.originalName),
+                            response_action: Util.EXTRAS_FETCH_RESPONSE
+                        },
+                        handleMessage)
     }
 
     // Several ListModels are used.
@@ -638,14 +631,6 @@ Page {
         running: loading
         platformStyle: BusyIndicatorStyle {
             size: 'large'
-        }
-    }
-
-    WorkerScript {
-        id: asyncWorker
-        source: 'workerscript.js'
-        onMessage: {
-            handleMessage(messageObject)
         }
     }
 }
