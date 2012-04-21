@@ -592,36 +592,13 @@ Page {
             var fullMovie = JSON.parse(messageObject.response)[0]
             parsedMovie.updateWithFullWeightMovie(fullMovie)
         } else if (messageObject.action === Util.EXTRAS_FETCH_RESPONSE) {
-            var afterCreditsResponse = JSON.parse(messageObject.response)
-            var resultsFound = (afterCreditsResponse.posts &&
-                            afterCreditsResponse.posts.length > 0)
-
-            if (resultsFound) {
-                for (var i = 0; i < afterCreditsResponse.posts.length; i ++) {
-                    var postEntry = afterCreditsResponse.posts[i]
-                    if (postEntry.url !== 'http://aftercredits.com/privacy-policy/') {
-                        var movie = new WATC.ACMovie(postEntry.title,
-                                                     postEntry.url,
-                                                     postEntry.content)
-                        if ((movie.imdbId + '').indexOf(parsedMovie.imdbId) >= 0) {
-                            if (postEntry.categories &&
-                                    postEntry.categories.length > 0) {
-                                for (var j = 0; j < postEntry.categories.length; j ++) {
-                                    var category = postEntry.categories[j]
-                                    movie.addCategory(category)
-                                }
-                            }
-                            parsedMovie.extras = movie.subtitle
-                            break
-                        }
-                    }
-                }
-            }
             loadingExtras = false
+            var afterCreditsResponse = JSON.parse(messageObject.response)
+            var watcMovie = WATC.parseACResponse(afterCreditsResponse, parsedMovie.imdbId)
+            if (watcMovie) parsedMovie.extras = watcMovie.subtitle
         } else {
             console.debug('Unknown action response: ', messageObject.action)
         }
-
     }
 
     BusyIndicator {

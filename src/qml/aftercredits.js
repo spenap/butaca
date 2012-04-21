@@ -82,3 +82,24 @@ function _toString() {
     formattedMovie += this.dataConfirmed ? ' (data confirmed)' : '(data unconfirmed)'
     return formattedMovie
 }
+
+function parseACResponse(ac_response, imdb_id_candidate) {
+    if (ac_response.posts) {
+        for (var i = 0; i < ac_response.posts.length; i ++) {
+            var post = ac_response.posts[i]
+            if (post.url !== 'http://aftercredits.com/privacy-policy/') {
+                var movie = new ACMovie(post.title, post.url, post.content)
+                if ((movie.imdbId + '').indexOf(imdb_id_candidate) >= 0) {
+                    if (post.categories) {
+                        for (var j = 0; j < post.categories.length; j ++) {
+                            var category = post.categories[j]
+                            movie.addCategory(category)
+                        }
+                    }
+                    return movie
+                }
+            }
+        }
+    }
+    return undefined
+}
