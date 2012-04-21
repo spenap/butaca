@@ -1,7 +1,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import 'butacautils.js' as Util
-import 'aftercredits.js'as AC
+import 'aftercredits.js'as WATC
 import 'constants.js' as UIConstants
 
 Page {
@@ -607,9 +607,9 @@ Page {
                 for (var i = 0; i < afterCreditsResponse.posts.length; i ++) {
                     var postEntry = afterCreditsResponse.posts[i]
                     if (postEntry.url !== 'http://aftercredits.com/privacy-policy/') {
-                        var movie = new AC.AfterCreditsMovie(postEntry.title,
-                                                             postEntry.url,
-                                                             postEntry.content)
+                        var movie = new WATC.ACMovie(postEntry.title,
+                                                     postEntry.url,
+                                                     postEntry.content)
                         if ((movie.imdbId + '').indexOf(parsedMovie.imdbId) >= 0) {
                             if (postEntry.categories &&
                                     postEntry.categories.length > 0) {

@@ -4,7 +4,7 @@ var STINGERS_NONE           = 0
 var STINGERS_DURING_CREDITS = 1
 var STINGERS_AFTER_CREDITS  = 2
 
-function AfterCreditsMovie(title, url, content) {
+function ACMovie(title, url, content) {
     this.year = title.match(/\(\d\d\d\d/gi)[0].slice(1)
     this.title = title.replace(/\(\d\d\d\d\).*/gi, '')
     this.url = url
@@ -14,7 +14,6 @@ function AfterCreditsMovie(title, url, content) {
     this.stingersType = STINGERS_NONE
     var regExp=/http:\/\/www\.imdb\.com\/title\/tt\d*/gi
     this.imdbId = content.match(regExp)
-    console.debug(this.imdbId)
 
     this.addCategory = _addCategory
     this.toString = _toString
@@ -39,10 +38,10 @@ function _addCategory(category) {
         this.hasStingers = true
         this.stingersType |= STINGERS_DURING_CREDITS
     }
-    this.subtitle = getSubtitle(this.stingersType, this.year)
+    this.subtitle = _getSubtitle(this.stingersType, this.year)
 }
 
-function getSubtitle(stingerType, year) {
+function _getSubtitle(stingerType, year) {
     var subtitle = ''
     if (stingerType === STINGERS_NONE) {
         subtitle  += 'no extra content'
