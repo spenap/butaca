@@ -241,3 +241,17 @@ function parseRuntime(runtime) {
     var str = hours + ' h ' + minutes + ' m'
     return str
 }
+
+function asyncQuery(message, callback_function) {
+    var xhr = new XMLHttpRequest
+    xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && callback_function) {
+                    callback_function({
+                                          action: message.response_action,
+                                          response: xhr.responseText
+                                      })
+                }
+            }
+    xhr.open('GET', message.url)
+    xhr.send()
+}
