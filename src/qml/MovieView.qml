@@ -22,6 +22,39 @@ Page {
                                             id: tmdbId,
                                             type: Util.MOVIE
                                         }) >= 0
+        menu: movieMenu
+    }
+
+    Menu {
+        id: movieMenu
+        visualParent: pageStack
+        MenuLayout {
+            MenuItem {
+                text: 'Add to watchlist'
+            }
+            MenuItem {
+                //: Open homepage
+                text: qsTr('btc-open-homepage')
+                visible: parsedMovie.homepage
+                onClicked: Qt.openUrlExternally(parsedMovie.homepage)
+            }
+            MenuItem {
+                //: View extras
+                text: 'View extras'
+                visible: parsedMovie.extrasUrl
+                onClicked: Qt.openUrlExternally(parsedMovie.extrasUrl)
+            }
+            MenuItem {
+                //: View in IMDb
+                text: qsTr('btc-open-imdb')
+                onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + parsedMovie.imdbId)
+            }
+            MenuItem {
+                //: View in TMDb
+                text: qsTr('btc-open-tmdb')
+                onClicked: Qt.openUrlExternally(parsedMovie.url)
+            }
+        }
     }
 
     property variant movie: ''
@@ -55,6 +88,7 @@ Page {
         property string certification: ''
         property string homepage: ''
         property string extras: 'not found'
+        property string extrasUrl: ''
 
         property variant rawCast: ''
 
@@ -595,7 +629,10 @@ Page {
             loadingExtras = false
             var afterCreditsResponse = JSON.parse(messageObject.response)
             var watcMovie = WATC.parseACResponse(afterCreditsResponse, parsedMovie.imdbId)
-            if (watcMovie) parsedMovie.extras = watcMovie.subtitle
+            if (watcMovie) {
+                parsedMovie.extras = watcMovie.subtitle
+                parsedMovie.extrasUrl = watcMovie.url
+            }
         } else {
             console.debug('Unknown action response: ', messageObject.action)
         }

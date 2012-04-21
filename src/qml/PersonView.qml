@@ -40,6 +40,24 @@ Page {
                                             id: tmdbId,
                                             type: Util.PERSON
                                         }) >= 0
+        menu: personMenu
+    }
+
+    Menu {
+        id: personMenu
+        visualParent: pageStack
+        MenuLayout {
+            MenuItem {
+                //: View in IMDb
+                text: qsTr('btc-open-imdb')
+                onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + parsedPerson.imdbId)
+            }
+            MenuItem {
+                //: View in TMDb
+                text: qsTr('btc-open-tmdb')
+                onClicked: Qt.openUrlExternally(parsedPerson.url)
+            }
+        }
     }
 
     property variant person: ''
