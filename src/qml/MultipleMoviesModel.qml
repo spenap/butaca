@@ -18,18 +18,10 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import "butacautils.js" as BUTACA
 
 // See http://api.themoviedb.org/2.1/methods/Movie.search and
 //     http://api.themoviedb.org/2.1/methods/Movie.browse
 XmlListModel {
-
-    property string apiMethod: ''
-    property string params: ''
-
-    source: BUTACA.getTMDbSource(apiMethod, appLocale, params)
-    query: BUTACA.TMDB_MOVIE_QUERY
-
     XmlRole { name: "id"; query: "id/string()" }
     XmlRole { name: "imdb_id"; query: "imdb_id/string()" }
     XmlRole { name: "name"; query: "name/string()" }

@@ -18,15 +18,14 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import "butacautils.js" as BUTACA
+import 'moviedbwrapper.js' as TheMovieDb
 
 // See http://api.themoviedb.org/2.1/methods/Person.search
 XmlListModel {
+    property string personName: ''
 
-    property string params: ''
-
-    source: BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, appLocale, params)
-    query: BUTACA.TMDB_PERSON_QUERY
+    source: personName ? TheMovieDb.person_search(personName) : ''
+    query: TheMovieDb.query_path(TheMovieDb.PERSON_SEARCH)
 
     XmlRole { name: "id"; query: "id/string()" }
     XmlRole { name: "name"; query: "name/string()" }

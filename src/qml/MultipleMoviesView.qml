@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import "butacautils.js" as BUTACA
+import 'moviedbwrapper.js' as TheMovieDb
 import "storage.js" as Storage
 import 'constants.js' as UIConstants
 
@@ -39,13 +40,15 @@ Page {
 
     MultipleMoviesModel {
         id: moviesModel
-        apiMethod: BUTACA.TMDB_MOVIE_BROWSE
-        params: BUTACA.getBrowseCriteria(
-                    Storage.getSetting('orderBy', 'rating'),
-                    Storage.getSetting('order', 'desc'),
-                    Storage.getSetting('perPage', 10),
-                    Storage.getSetting('minVotes', 0),
-                    genre)
+        source: TheMovieDb.movie_browse({
+                                            'browse_orderBy_value' : Storage.getSetting('orderBy', 'rating'),
+                                            'browse_order_value' : Storage.getSetting('order', 'desc'),
+                                            'browse_page_value' : 1,
+                                            'browse_count_value' : Storage.getSetting('perPage', 10),
+                                            'browse_minvotes_value' : Storage.getSetting('minVotes', 0),
+                                            'browse_genres_value' : genre
+                                        })
+        query: TheMovieDb.query_path(TheMovieDb.MOVIE_BROWSE)
         onStatusChanged: {
             if (status === XmlListModel.Ready &&
                     count > 0) {

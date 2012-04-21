@@ -18,13 +18,12 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import "butacautils.js" as BUTACA
+import 'moviedbwrapper.js' as TheMovieDb
 
 // See http://api.themoviedb.org/2.1/methods/Genres.getList
 XmlListModel {
-
-    source: BUTACA.getTMDbSource(BUTACA.TMDB_GENRES_GET_LIST, appLocale, '')
-    query: BUTACA.TMDB_GENRES_QUERY
+    source: TheMovieDb.genres_list({ app_locale: appLocale })
+    query: TheMovieDb.query_path(TheMovieDb.GENRES_LIST)
 
     XmlRole { name: "title"; query: "@name/string()" }
     XmlRole { name: "genreId"; query: "id/string()" }

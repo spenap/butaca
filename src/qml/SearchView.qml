@@ -22,6 +22,7 @@ import com.nokia.meego 1.0
 import com.nokia.extras 1.0
 import 'constants.js' as UIConstants
 import "butacautils.js" as BUTACA
+import 'moviedbwrapper.js' as TheMovieDb
 import "storage.js" as Storage
 
 Page {
@@ -130,7 +131,6 @@ Page {
 
     PeopleModel {
         id: peopleModel
-        source: ''
         onStatusChanged: {
             if (status == XmlListModel.Ready) {
                 populateModel(peopleModel, localModel, BUTACA.TMDbPerson)
@@ -140,7 +140,9 @@ Page {
 
     MultipleMoviesModel {
         id: moviesModel
-        source: ''
+        property string movieName: ''
+        source: movieName ? TheMovieDb.movie_search(movieName, { app_locale: appLocale }) : ''
+        query: TheMovieDb.query_path(TheMovieDb.MOVIE_SEARCH)
         onStatusChanged: {
             if (status == XmlListModel.Ready) {
                 populateModel(moviesModel, localModel, BUTACA.TMDbMovie)
@@ -291,15 +293,15 @@ Page {
     }
 
     function doSearch() {
-        peopleModel.source = ''
-        moviesModel.source = ''
+        peopleModel.personName = ''
+        moviesModel.movieName = ''
         localModel.clear()
         if (searchTerm) {
             loading = true
             if (searchCategory.checkedButton === movieSearch) {
-                moviesModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_MOVIE_SEARCH, appLocale, searchTerm)
+                moviesModel.movieName = searchTerm
             } else if (searchCategory.checkedButton === peopleSearch) {
-                peopleModel.source = BUTACA.getTMDbSource(BUTACA.TMDB_PERSON_SEARCH, appLocale, searchTerm)
+                peopleModel.personName = searchTerm
             }
             resultsListLoader.forceActiveFocus()
         }
