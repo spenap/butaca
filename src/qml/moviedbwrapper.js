@@ -10,12 +10,25 @@ var PERSON_GET_INFO     = 'person_get_info'
 
 var _wrapper = ''
 
+/**
+ * Gets the instance for the API wrapper, containing default
+ * configuration, urls for methods and mappings for queries.
+ *
+ * @param {string} The locale to be used in the queries to TMDb
+ * @return {object} The wrapper around TMDb API
+ */
 function instance(app_locale) {
     if (!_wrapper)
         _wrapper = new TMDb(app_locale)
     return _wrapper
 }
 
+/**
+ * Creates an instance for the API wrapper, containing default
+ * configuration, urls for methods and mappings for queries.
+ *
+ * @param {string} The locale to be used in the queries to TMDb
+ */
 function TMDb(app_locale) {
     this.config = new Object
     this.method = new Object
@@ -62,17 +75,42 @@ function TMDb(app_locale) {
     this.toString = _toString
 }
 
+/**
+ * Helper method to add a pair "arg=value" to
+ * a query url. If a separator is given, it's used,
+ * otherwise, the "&" is added.
+ *
+ * @param {string} The name for the argument
+ * @param {string} The value for the argument
+ * @param {string} The separator given. If empty, "&" is used
+ * @return A string containing "&arg=value", or the given
+ * separator instead of the "&"
+ */
 function _addArgument(param, value, separator) {
     if (!separator) separator = '&'
     var arg = separator + param + '=' + value
     return arg
 }
 
+/**
+ * Helper method to add a parameter to a query url.
+ *
+ * @param {string} The parameter
+ * @return The parameter, starting with a "/"
+ */
 function _addField(param) {
     var field = '/' + param
     return field
 }
 
+/**
+ * Helper method which creates the common part of a query url: base url, api version,
+ * method name, language, format and api key
+ *
+ * @param {string} The method name
+ * @param {object} The custom configuration. If empty, the default one is used
+ * @return {string} A string combining the mentioned pieces
+ */
 function _getCommonUrl(method_name, config) {
     if (!config)
         config = { }
@@ -83,12 +121,22 @@ function _getCommonUrl(method_name, config) {
     return url
 }
 
+/**
+ * Helper method providing a string representation of the TMDb wrapper object
+ *
+ * @return {string} String representation of the TMDb wrapper object
+ */
 function _toString() {
     var str = 'Dumping keys & values for TMDb object\n'
     str += _dumpObject(this)
     return str
 }
 
+/**
+ * Helper method which inspects an object and extracts keys and values
+ *
+ * @return {string} String representation of the inspection
+ */
 function _dumpObject(theObject) {
     var str = ''
     if (typeof(theObject) === typeof({})) {
@@ -101,6 +149,14 @@ function _dumpObject(theObject) {
     return str
 }
 
+/**
+ * Wrapper method which provides the API url for a movie search, and accepts
+ * a movie name and a custom configuration
+ *
+ * @param {string} The movie name to look for
+ * @param {object} The custom configuration for the search
+ * @return {string} API url for searching a movie
+ */
 function movie_search(movie_name, config) {
     if (!config) config = { }
     var url = instance(config.app_locale).getCommonUrl('movie_search', config) +
@@ -109,6 +165,15 @@ function movie_search(movie_name, config) {
     return url
 }
 
+/**
+ * Wrapper method which provides the API url for browsing movies, and accepts
+ * a custom configuration
+ *
+ * @param {object} The custom configuration for the search, accepting the following
+ * parameters: browse_orderBy_value, browse_order_value, browse_page_value, browse_count_value,
+ * browse_genres_value. Custom values are used when not provided.
+ * @return {string} API url for browsing movies
+ */
 function movie_browse(browse_config) {
     if (!browse_config)
         browse_config = { }
@@ -143,6 +208,15 @@ function movie_browse(browse_config) {
     return url
 }
 
+/**
+ * Wrapper method which provides the API url for getting the full movie info,
+ * and accepts the movie TMDB id and the custom configuration
+ *
+ * @param {string} The movie TMDB id to look up
+ * @param {object} The custom configuration for the look up. Values typically
+ * changed could be the app_locale and the return format.
+ * @return {string} API url for looking up movie information
+ */
 function movie_info(movie_id, config) {
     if (!config)
         config = { format: 'json' }
@@ -152,6 +226,15 @@ function movie_info(movie_id, config) {
     return url
 }
 
+/**
+ * Wrapper method which provides the API url for getting the full movie info,
+ * and accepts the movie IMDB id and the custom configuration
+ *
+ * @param {string} The movie IMDB id to look up
+ * @param {object} The custom configuration for the look up. Values typically
+ * changed could be the app_locale and the return format.
+ * @return {string} API url for looking up movie information
+ */
 function movie_imdb_lookup(imdb_id, config) {
     if (!config)
         config = { format: 'json' }
@@ -161,6 +244,14 @@ function movie_imdb_lookup(imdb_id, config) {
     return url
 }
 
+/**
+ * Wrapper method which provides the API url for searching people, and accepts
+ * the person name and a custom configuration
+ *
+ * @param {string} The person name to search
+ * @param {object} The custom configuration for the search
+ * @return {string} API url for searching people
+ */
 function person_search(person_name, config) {
     if (!config) config = { }
     var url = instance(config.app_locale).getCommonUrl('person_search', config) +
@@ -169,6 +260,15 @@ function person_search(person_name, config) {
     return url
 }
 
+/**
+ * Wrapper method which provides the API url for getting the full person info,
+ * and accepts the person TMDB id and the custom configuration
+ *
+ * @param {string} The person TMDB id to look up
+ * @param {object} The custom configuration for the look up. Values typically
+ * changed could be the app_locale and the return format.
+ * @return {string} API url for looking up person information
+ */
 function person_info(person_id, config) {
     if (!config) config = { format: 'json' }
     var url = instance(config.app_locale).getCommonUrl('person_get_info', config) +
@@ -177,6 +277,13 @@ function person_info(person_id, config) {
     return url
 }
 
+/**
+ * Wrapper method which provides the API url for listing genres, and accepts
+ * a custom configuration
+ *
+ * @param {object} The custom configuration for the listing
+ * @return {string} API url for listing genres
+ */
 function genres_list(config) {
     if (!config) config = { }
     var url = instance(config.app_locale).getCommonUrl('genres_get_list', config)
@@ -184,6 +291,13 @@ function genres_list(config) {
     return url
 }
 
+/**
+ * Wrapper method which provides the XPath queries for parsing XML results for a
+ * given method
+ *
+ * @param {string} The method to look up the query for
+ * @return {string} XPath queries for parsing method results
+ */
 function query_path(method) {
     switch (method) {
     case GENRES_LIST:
