@@ -21,7 +21,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
-import 'butacautils.js' as BUTACA
+import 'butacautils.js' as Util
 import 'storage.js' as Storage
 
 Page {
@@ -187,12 +187,12 @@ Page {
             model: favoritesModel
             delegate: FavoriteDelegate {
                 source: icon ? icon :
-                               (type == BUTACA.MOVIE ?
+                               (type == Util.MOVIE ?
                                     'qrc:/resources/movie-placeholder.svg' :
                                     'qrc:/resources/person-placeholder.svg')
                 text: title
                 onClicked: {
-                    if (type == BUTACA.MOVIE) {
+                    if (type == Util.MOVIE) {
                                appWindow.pageStack.push(movieView,
                                                         { tmdbId: id,
                                                           loading: true })

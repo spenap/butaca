@@ -20,7 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import com.nokia.extras 1.1
-import "butacautils.js" as BUTACA
+import 'butacautils.js' as Util
 import 'constants.js' as UIConstants
 
 Item {
@@ -109,7 +109,7 @@ Item {
                     }
                     color: UIConstants.COLOR_SECONDARY_FOREGROUND
                     width: parent.width
-                    text: '(' + BUTACA.getYearFromDate(released) +')'
+                    text: '(' + Util.getYearFromDate(released) +')'
                 }
 
                 MyRatingIndicator {

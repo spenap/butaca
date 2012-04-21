@@ -19,7 +19,7 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import "butacautils.js" as BUTACA
+import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TheMovieDb
 import "storage.js" as Storage
 import 'constants.js' as UIConstants
@@ -51,7 +51,7 @@ Page {
         query: TheMovieDb.query_path(TheMovieDb.MOVIE_BROWSE)
         onStatusChanged: {
             if (status === XmlListModel.Ready) {
-                BUTACA.populateModelFromModel(moviesModel, localModel, BUTACA.TMDbMovie)
+                Util.populateModelFromModel(moviesModel, localModel, Util.TMDbMovie)
             }
         }
     }
