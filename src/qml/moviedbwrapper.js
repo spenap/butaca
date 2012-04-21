@@ -103,7 +103,7 @@ function _dumpObject(theObject) {
 
 function movie_search(movie_name, config) {
     if (!config) config = { }
-    var url = _wrapper.getCommonUrl('movie_search', config) +
+    var url = instance(config.app_locale).getCommonUrl('movie_search', config) +
             _addField(movie_name)
     console.debug('** SEARCH URL:', url)
     return url
@@ -146,7 +146,7 @@ function movie_browse(browse_config) {
 function movie_info(movie_id, config) {
     if (!config)
         config = { format: 'json' }
-    var url = this.getCommonUrl('movie_get_info', config) +
+    var url = instance(config.app_locale).getCommonUrl('movie_get_info', config) +
             _addField(movie_id)
     console.debug('** MOVIE GET INFO URL:', url)
     return url
@@ -155,7 +155,7 @@ function movie_info(movie_id, config) {
 function movie_imdb_lookup(imdb_id, config) {
     if (!config)
         config = { format: 'json' }
-    var url = this.getCommonUrl('movie_imdb_lookup', config) +
+    var url = instance(config.app_locale).getCommonUrl('movie_imdb_lookup', config) +
             _addField(imdb_id)
     console.debug('** IMDB LOOKUP URL:', url)
     return url

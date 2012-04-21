@@ -19,29 +19,6 @@
 
 .pragma library
 
-/* TheMovieDb.org API-related stuff */
-var TMDB_API_KEY = '249e1a42df9bee09fac5e92d3a51396b'
-var TMDB_BASE_URL = 'http://api.themoviedb.org/2.1'
-var TMDB_LANGUAGE = 'en'
-var TMDB_FORMAT = 'xml'
-
-/* Movie API */
-var TMDB_MOVIE_SEARCH = 'Movie.search'
-var TMDB_MOVIE_BROWSE = 'Movie.browse'
-var TMDB_MOVIE_GET_INFO = 'Movie.getInfo'
-var TMDB_MOVIE_QUERY = '/OpenSearchDescription/movies/movie'
-var TMDB_MOVIE_CAST_QUERY = '/OpenSearchDescription/movies/movie/cast/person'
-
-/* Person API */
-var TMDB_PERSON_SEARCH = 'Person.search'
-var TMDB_PERSON_GET_INFO = 'Person.getInfo'
-var TMDB_PERSON_QUERY = '/OpenSearchDescription/people/person'
-var TMDB_PERSON_FILMOGRAPHY_QUERY = '/OpenSearchDescription/people/person/filmography/movie'
-
-/* Genres API */
-var TMDB_GENRES_GET_LIST = 'Genres.getList'
-var TMDB_GENRES_QUERY = '/OpenSearchDescription/genres/genre'
-
 var PERSON = 0
 var MOVIE = 1
 
@@ -51,47 +28,6 @@ var REMOTE_FETCH_REQUEST = 0
 var EXTRAS_FETCH_REQUEST = 1
 var REMOTE_FETCH_RESPONSE = 0
 var EXTRAS_FETCH_RESPONSE = 1
-
-/**
- * Builds the source for a model using TMDb services.
- *
- * @param {string} the api method of choice
- * @param {string} the language to get the content in
- * @param {params} additional params to build the query
- * @return {string} the string with the source
- */
-function getTMDbSource(apiMethod, lang, params) {
-
-    // BASE_URL + API_METHOD + LAN + FORMAT + API_KEY + PARAMS
-
-    var source = TMDB_BASE_URL + '/' + apiMethod +
-        '/' + lang +
-        '/' + TMDB_FORMAT +
-        '/' + TMDB_API_KEY
-    if (params !== '') {
-        source += (params.charAt(0) == '?' ? params + '&page=1' : '/' + params)
-    }
-    return source
-}
-
-/**
- * Gets the browse criteria given a genre
- *
- * @param {string} order criteria (rating, title, release)
- * @param {string} sort order (asc, desc)
- * @param {string} results per page
- * @param {string} minimum votes
- * @param {string} genre to use for browsing
- *
- * @return {string} browse criteria
- */
-function getBrowseCriteria(orderBy, order, perPage, minVotes, genreId) {
-    return '?order_by=' + orderBy +
-            '&order=' + order +
-            '&per_page=' + perPage +
-            '&min_votes=' + minVotes +
-            '&genres=' + genreId
-}
 
 /**
  * Gets the year from a string containing a date
