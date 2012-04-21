@@ -151,15 +151,18 @@ Page {
             }
 
             Label {
+                id: extendedContentLabel
                 text: 'Loading content'
                 visible: loadingExtended
+                anchors.horizontalCenter: parent.horizontalCenter
 
                 BusyIndicator {
                     visible: running
                     running: loadingExtended
                     anchors {
-                        right: parent.right
-                        rightMargin: UIConstants.DEFAULT_MARGIN
+                        left: extendedContentLabel.right
+                        leftMargin: UIConstants.DEFAULT_MARGIN
+                        verticalCenter: extendedContentLabel.verticalCenter
                     }
                     platformStyle: BusyIndicatorStyle {
                         size: 'small'

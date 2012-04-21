@@ -230,27 +230,19 @@ Page {
                 text: parsedMovie.name + ' (' + BUTACA.getYearFromDate(parsedMovie.released) + ')'
             }
 
-            Item {
-                width: parent.width
-                height: extendedContentLabel.height
-
-                Label {
-                    id: extendedContentLabel
-                    text: 'Loading content'
-                    visible: loadingExtended
-                    anchors {
-                        left: parent.right
-                        leftMargin: UIConstants.DEFAULT_MARGIN
-                    }
-                }
+            Label {
+                id: extendedContentLabel
+                text: 'Loading content'
+                visible: loadingExtended
+                anchors.horizontalCenter: parent.horizontalCenter
 
                 BusyIndicator {
                     visible: running
                     running: loadingExtended
                     anchors {
-                        right: parent.right
-                        rightMargin: UIConstants.DEFAULT_MARGIN
-                        verticalCenter: parent.verticalCenter
+                        left: extendedContentLabel.right
+                        leftMargin: UIConstants.DEFAULT_MARGIN
+                        verticalCenter: extendedContentLabel.verticalCenter
                     }
                     platformStyle: BusyIndicatorStyle {
                         size: 'small'
