@@ -1,6 +1,6 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import 'butacautils.js' as BUTACA
+import 'butacautils.js' as Util
 import 'aftercredits.js'as AC
 import 'constants.js' as UIConstants
 
@@ -15,11 +15,11 @@ Page {
                       url: parsedMovie.url,
                       title: parsedMovie.name,
                       icon: parsedMovie.poster,
-                      type: BUTACA.MOVIE
+                      type: Util.MOVIE
                   })
         isFavorite: welcomeView.indexOf({
                                             id: tmdbId,
-                                            type: BUTACA.MOVIE
+                                            type: Util.MOVIE
                                         }) >= 0
     }
 
@@ -98,15 +98,15 @@ Page {
             crew.sort(sortByDepartment)
             rawCast = crew
 
-            BUTACA.populateModel(movie, 'genres', genresModel)
-            BUTACA.populateModel(movie, 'studios', studiosModel)
-            BUTACA.populateImagesModel(movie, 'posters', postersModel)
-            BUTACA.populateModel(movie, 'cast', crewModel,
+            Util.populateModel(movie, 'genres', genresModel)
+            Util.populateModel(movie, 'studios', studiosModel)
+            Util.populateImagesModel(movie, 'posters', postersModel)
+            Util.populateModel(movie, 'cast', crewModel,
                                  {
                                      filteringProperty: 'job',
                                      filteredValue: 'Actor',
                                      secondaryModel: castModel,
-                                     Delegate: BUTACA.TMDbCrewPerson
+                                     Delegate: Util.TMDbCrewPerson
                                  })
 
             if (postersModel.count > 0 &&
@@ -136,14 +136,14 @@ Page {
 
     Component.onCompleted: {
         if (movie) {
-            var theMovie = new BUTACA.TMDbMovie(movie)
+            var theMovie = new Util.TMDbMovie(movie)
             parsedMovie.updateWithLightWeightMovie(theMovie)
         }
 
         if (tmdbId !== -1) {
             loadingExtended = true
             asyncWorker.sendMessage({
-                                        action: BUTACA.REMOTE_FETCH_REQUEST,
+                                        action: Util.REMOTE_FETCH_REQUEST,
                                         tmdbId: tmdbId,
                                         tmdbType: 'movie'
                                     })
@@ -162,7 +162,7 @@ Page {
         xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         handleMessage({
-                                          action: BUTACA.EXTRAS_FETCH_RESPONSE,
+                                          action: Util.EXTRAS_FETCH_RESPONSE,
                                           response: xhr.responseText
                                       })
                     }
@@ -227,7 +227,7 @@ Page {
             spacing: UIConstants.DEFAULT_MARGIN
 
             Header {
-                text: parsedMovie.name + ' (' + BUTACA.getYearFromDate(parsedMovie.released) + ')'
+                text: parsedMovie.name + ' (' + Util.getYearFromDate(parsedMovie.released) + ')'
             }
 
             Label {
@@ -272,7 +272,7 @@ Page {
                             margins: UIConstants.DEFAULT_MARGIN
                         }
                         headerFontSize: UIConstants.FONT_SLARGE
-                        text: parsedMovie.name + ' (' + BUTACA.getYearFromDate(parsedMovie.released) + ')'
+                        text: parsedMovie.name + ' (' + Util.getYearFromDate(parsedMovie.released) + ')'
                     }
 
                     Label {
@@ -286,7 +286,7 @@ Page {
                             fontPixelSize: UIConstants.FONT_LSMALL
                         }
                         wrapMode: Text.WordWrap
-                        text: 'Rated ' + parsedMovie.certification + ', ' + parseRuntime(parsedMovie.runtime)
+                        text: 'Rated ' + parsedMovie.certification + ', ' + Util.parseRuntime(parsedMovie.runtime)
                     }
 
                     Item {
@@ -420,7 +420,7 @@ Page {
                         fontPixelSize: UIConstants.FONT_LSMALL
                         fontFamily: UIConstants.FONT_FAMILY_LIGHT
                     }
-                    text: Qt.formatDate(BUTACA.parseDate(parsedMovie.released), Qt.DefaultLocaleLongDate)
+                    text: Qt.formatDate(Util.parseDate(parsedMovie.released), Qt.DefaultLocaleLongDate)
                 }
             }
 
@@ -593,20 +593,12 @@ Page {
         anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
     }
 
-    function parseRuntime(runtime) {
-        var hours = parseInt(runtime / 60)
-        var minutes = (runtime % 60)
-
-        var str = hours + ' h ' + minutes + ' m'
-        return str
-    }
-
     function handleMessage(messageObject) {
-        if (messageObject.action === BUTACA.REMOTE_FETCH_RESPONSE) {
+        if (messageObject.action === Util.REMOTE_FETCH_RESPONSE) {
             loading = loadingExtended = false
             var fullMovie = JSON.parse(messageObject.response)[0]
             parsedMovie.updateWithFullWeightMovie(fullMovie)
-        } else if (messageObject.action === BUTACA.EXTRAS_FETCH_RESPONSE) {
+        } else if (messageObject.action === Util.EXTRAS_FETCH_RESPONSE) {
             var afterCreditsResponse = JSON.parse(messageObject.response)
             var resultsFound = (afterCreditsResponse.posts &&
                             afterCreditsResponse.posts.length > 0)

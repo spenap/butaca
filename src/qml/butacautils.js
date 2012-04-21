@@ -233,3 +233,11 @@ function parseDate(date) {
     }
     return ''
 }
+
+function parseRuntime(runtime) {
+    var hours = parseInt(runtime / 60)
+    var minutes = (runtime % 60)
+
+    var str = hours + ' h ' + minutes + ' m'
+    return str
+}

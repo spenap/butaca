@@ -19,7 +19,7 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import 'butacautils.js' as BUTACA
+import 'butacautils.js' as Util
 import 'constants.js' as UIConstants
 
 Page {
@@ -33,11 +33,11 @@ Page {
                       url: parsedPerson.url,
                       title: parsedPerson.name,
                       icon: parsedPerson.profile,
-                      type: BUTACA.PERSON
+                      type: Util.PERSON
                   })
         isFavorite: welcomeView.indexOf({
                                             id: tmdbId,
-                                            type: BUTACA.PERSON
+                                            type: Util.PERSON
                                         }) >= 0
     }
 
@@ -86,8 +86,8 @@ Page {
             if (person.known_movies)
                 knownMovies = person.known_movies
 
-            BUTACA.populateModel(person, 'filmography', filmographyModel)
-            BUTACA.populateImagesModel(person, 'profile', picturesModel)
+            Util.populateModel(person, 'filmography', filmographyModel)
+            Util.populateImagesModel(person, 'profile', picturesModel)
 
             if (picturesModel.count > 0 &&
                     picturesModel.get(0).sizes['h632'].url)
@@ -117,14 +117,14 @@ Page {
 
     Component.onCompleted: {
         if (person) {
-            var thePerson = new BUTACA.TMDbPerson(person)
+            var thePerson = new Util.TMDbPerson(person)
             parsedPerson.updateWithLightWeightPerson(thePerson)
         }
 
         if (tmdbId !== -1) {
             loadingExtended = true
             asyncWorker.sendMessage({
-                                        action: BUTACA.REMOTE_FETCH_REQUEST,
+                                        action: Util.REMOTE_FETCH_REQUEST,
                                         tmdbId: tmdbId,
                                         tmdbType: 'person'
                                     })
@@ -221,7 +221,7 @@ Page {
                             fontFamily: UIConstants.FONT_FAMILY_LIGHT
                         }
                         wrapMode: Text.WordWrap
-                        text: Qt.formatDate(BUTACA.parseDate(parsedPerson.birthday), Qt.DefaultLocaleLongDate)
+                        text: Qt.formatDate(Util.parseDate(parsedPerson.birthday), Qt.DefaultLocaleLongDate)
                     }
 
                     Label {
@@ -330,7 +330,7 @@ Page {
     }
 
     function handleMessage(messageObject) {
-        if (messageObject.action === BUTACA.REMOTE_FETCH_RESPONSE) {
+        if (messageObject.action === Util.REMOTE_FETCH_RESPONSE) {
             loading = loadingExtended = false
             var fullPerson = JSON.parse(messageObject.response)[0]
             parsedPerson.updateWithFullWeightPerson(fullPerson)
