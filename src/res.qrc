@@ -50,5 +50,6 @@
         <file>qml/MyModelFlowPreviewer.qml</file>
         <file>qml/MyTextExpander.qml</file>
         <file>qml/aftercredits.js</file>
+        <file>qml/moviedbwrapper.js</file>
     </qresource>
 </RCC>
