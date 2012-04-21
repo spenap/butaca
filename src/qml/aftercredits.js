@@ -4,6 +4,12 @@ var STINGERS_NONE           = 0
 var STINGERS_DURING_CREDITS = 1
 var STINGERS_AFTER_CREDITS  = 2
 
+function movie_extras(movie_name) {
+    var url = 'http://aftercredits.com/api/get_search_results?search=' + movie_name
+    console.debug('** MOVIE EXTRAS:', url)
+    return url
+}
+
 function ACMovie(title, url, content) {
     this.year = title.match(/\(\d\d\d\d/gi)[0].slice(1)
     this.title = title.replace(/\(\d\d\d\d\).*/gi, '')
