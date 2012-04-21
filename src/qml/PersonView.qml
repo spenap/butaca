@@ -87,8 +87,8 @@ Page {
             if (person.known_movies)
                 knownMovies = person.known_movies
 
-            Util.populateModel(person, 'filmography', filmographyModel)
-            Util.populateImagesModel(person, 'profile', picturesModel)
+            Util.populateModelFromArray(person, 'filmography', filmographyModel)
+            Util.populateImagesModelFromArray(person, 'profile', picturesModel)
 
             if (picturesModel.count > 0 &&
                     picturesModel.get(0).sizes['h632'].url)

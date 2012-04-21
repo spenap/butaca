@@ -133,7 +133,7 @@ Page {
         id: peopleModel
         onStatusChanged: {
             if (status == XmlListModel.Ready) {
-                populateModel(peopleModel, localModel, BUTACA.TMDbPerson)
+                BUTACA.populateModelFromModel(peopleModel, localModel, Util.TMDbPerson)
             }
         }
     }
@@ -145,7 +145,8 @@ Page {
         query: TheMovieDb.query_path(TheMovieDb.MOVIE_SEARCH)
         onStatusChanged: {
             if (status == XmlListModel.Ready) {
-                populateModel(moviesModel, localModel, BUTACA.TMDbMovie)
+                BUTACA.populateModelFromModel(moviesModel, localModel, BUTACA.TMDbMovie)
+                loading = false
             }
         }
     }
@@ -281,15 +282,6 @@ Page {
                            })
             break
         }
-    }
-
-    function populateModel(sourceModel, destinationModel, ObjectConstructor) {
-        if (sourceModel.count > 0) {
-            for (var i = 0; i < sourceModel.count; i ++) {
-                destinationModel.append(new ObjectConstructor(sourceModel.get(i)))
-            }
-        }
-        loading = false
     }
 
     function doSearch() {

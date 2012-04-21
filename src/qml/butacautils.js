@@ -193,7 +193,15 @@ function image_addSize(obj) {
     this.sizes[obj.size].url = obj.url
 }
 
-function populateModel(entity, entityProperty, model, filterRules) {
+function populateModelFromModel(sourceModel, destinationModel, ObjectConstructor) {
+    if (sourceModel.count > 0) {
+        for (var i = 0; i < sourceModel.count; i ++) {
+            destinationModel.append(new ObjectConstructor(sourceModel.get(i)))
+        }
+    }
+}
+
+function populateModelFromArray(entity, entityProperty, model, filterRules) {
     if (entity && entity[entityProperty]) {
         for (var i = 0; i < entity[entityProperty].length; i ++) {
             if (filterRules) {
@@ -209,7 +217,7 @@ function populateModel(entity, entityProperty, model, filterRules) {
     }
 }
 
-function populateImagesModel(entity, entityProperty, model) {
+function populateImagesModelFromArray(entity, entityProperty, model) {
     var i = 0
     var image
     if (entity && entity[entityProperty]) {

@@ -99,10 +99,10 @@ Page {
             crew.sort(sortByDepartment)
             rawCast = crew
 
-            Util.populateModel(movie, 'genres', genresModel)
-            Util.populateModel(movie, 'studios', studiosModel)
-            Util.populateImagesModel(movie, 'posters', postersModel)
-            Util.populateModel(movie, 'cast', crewModel,
+            Util.populateModelFromArray(movie, 'genres', genresModel)
+            Util.populateModelFromArray(movie, 'studios', studiosModel)
+            Util.populateImagesModelFromArray(movie, 'posters', postersModel)
+            Util.populateModelFromArray(movie, 'cast', crewModel,
                                  {
                                      filteringProperty: 'job',
                                      filteredValue: 'Actor',

@@ -50,12 +50,8 @@ Page {
                                         })
         query: TheMovieDb.query_path(TheMovieDb.MOVIE_BROWSE)
         onStatusChanged: {
-            if (status === XmlListModel.Ready &&
-                    count > 0) {
-                for (var i = 0; i < count; i ++) {
-                    var movie = new BUTACA.TMDbMovie(get(i))
-                    localModel.append(movie)
-                }
+            if (status === XmlListModel.Ready) {
+                BUTACA.populateModelFromModel(moviesModel, localModel, BUTACA.TMDbMovie)
             }
         }
     }
