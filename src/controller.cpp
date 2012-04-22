@@ -8,9 +8,15 @@
 #ifndef QT_SIMULATOR
     #include <maemo-meegotouch-interfaces/shareuiinterface.h>
     #include <MDataUri>
+    #include <QDBusInterface>
+    #include <QDBusPendingCall>
 #else
     #include <QDebug>
 #endif
+#include <QStringList>
+
+static const QString LAST_UPDATE_KEY("lastUpdate");
+static const QString STORE_DBUS_IFACE("com.nokia.OviStoreClient");
 
 static const QString PICTURES_PATH("/home/user/MyDocs/Pictures/");
 
@@ -100,5 +106,24 @@ void Controller::saveImage(QObject *item, const QString &remoteSource)
     qDebug() << Q_FUNC_INFO << sourceUrl.toLocalFile();
 #else
     m_imageSaver.save(item, sourceUrl.toLocalFile());
+#endif
+}
+
+void Controller::openStoreClient(const QString& url) const
+{
+    // Based on
+    // https://gitorious.org/n9-apps-client/n9-apps-client/blobs/master/daemon/notificationhandler.cpp#line178
+#ifdef QT_SIMULATOR
+    Q_UNUSED(url)
+#else
+    QDBusInterface dbusInterface(STORE_DBUS_IFACE,
+                                 "/",
+                                 STORE_DBUS_IFACE,
+                                 QDBusConnection::sessionBus());
+
+    QStringList callParams;
+    callParams << url;
+
+    dbusInterface.asyncCall("LaunchWithLink", QVariant::fromValue(callParams));
 #endif
 }

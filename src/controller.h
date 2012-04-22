@@ -38,6 +38,8 @@ public slots:
 
     void saveImage(QObject *item, const QString &remoteSource);
 
+    void openStoreClient(const QString& url) const;
+
 signals:
     //! Emitted when the theater showtimes have been fetched
     //! \param ok Tells whether the theater showtimes were successfully fetched
