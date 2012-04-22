@@ -23,7 +23,6 @@ import com.nokia.extras 1.0
 import 'constants.js' as UIConstants
 import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TheMovieDb
-import "storage.js" as Storage
 
 Page {
     id: searchView

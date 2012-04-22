@@ -63,35 +63,6 @@ function getTrailerThumbnail(trailerUrl) {
     return ''
 }
 
-function favoriteFromPerson(personContent) {
-
-    var id = personContent.personId
-    var title = personContent.personName
-    var icon = personContent.profileImage
-
-    return {'id': id,
-            'title': title,
-            'icon': icon,
-            'type': PERSON,
-            'url': personContent.url
-    }
-}
-
-function favoriteFromMovie(movieContent) {
-    var id = movieContent.tmdbId
-    var title = movieContent.title
-    var icon = movieContent.poster
-
-    return {'id': id,
-            'title': title,
-            'icon': icon,
-            'type': MOVIE,
-            'url' : movieContent.url,
-            'homepage' : movieContent.homepage,
-            'imdbId' : movieContent.imdbId
-    }
-}
-
 /**
  * Processes a text to remove undesirable HTML tags
  * @param {string} text with the HTML tags
