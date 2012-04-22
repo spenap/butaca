@@ -15,6 +15,11 @@ const QString Movie::movieDescription() const
     return m_movieDescription;
 }
 
+const QString Movie::movieImdbId() const
+{
+    return m_movieImdbId;
+}
+
 const QString Movie::theaterName() const
 {
     return m_theaterName;
@@ -43,6 +48,11 @@ void Movie::setMovieName(const QString &name)
 void Movie::setMovieTimes(const QString &times)
 {
     m_movieTimes = times;
+}
+
+void Movie::setMovieImdbId(const QString &imdbId)
+{
+    m_movieImdbId = imdbId;
 }
 
 void Movie::setMovieDescription(const QString &description)
