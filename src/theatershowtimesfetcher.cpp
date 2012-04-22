@@ -90,7 +90,7 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
                     QUrl anchorUrl(movieAnchor.attribute("href"));
                     movie.setMovieId(anchorUrl.queryItemValue("mid"));
                     QString movieInfo(movieElement.findFirst("span.info").toInnerXml());
-                    QRegExp imdbUrl("http://www\.imdb\.com/title/\(tt[0-9]*\)");
+                    QRegExp imdbUrl("http://www\\.imdb\\.com/title/(tt\\d*)");
                     if (movieInfo.contains(imdbUrl)) {
                         movie.setMovieImdbId(imdbUrl.cap(1));
                     }
