@@ -31,6 +31,8 @@ public:
 
     void setMovieShowtimes(QList<Movie> movies);
 
+    QVariantMap get(const QModelIndex &index) const;
+
 signals:
     void countChanged();
 

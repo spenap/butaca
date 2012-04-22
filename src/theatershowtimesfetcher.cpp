@@ -58,7 +58,6 @@ void TheaterShowtimesFetcher::fetchTheaters(QString location)
     m_webView->load(m_showtimesBaseUrl);
 }
 
-
 void TheaterShowtimesFetcher::onLoadFinished(bool ok)
 {
     if (ok) {
@@ -90,7 +89,12 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
                     QWebElement movieAnchor = movieElement.findFirst("div.name a");
                     QUrl anchorUrl(movieAnchor.attribute("href"));
                     movie.setMovieId(anchorUrl.queryItemValue("mid"));
-                    movie.setMovieInfo(movieElement.findFirst("span.info").toPlainText());
+                    QString movieInfo(movieElement.findFirst("span.info").toInnerXml());
+                    QRegExp imdbUrl("http://www\.imdb\.com/title/\(tt[0-9]*\)");
+                    if (movieInfo.contains(imdbUrl)) {
+                        movie.setMovieImdbId(imdbUrl.cap(1));
+                    }
+                    movie.setMovieInfo(movieInfo.remove(QRegExp(" - (<.*)?$")));
                     movie.setMovieName(movieAnchor.toPlainText());
                     movie.setMovieTimes(movieElement.findFirst("div.times").toPlainText());
                     movie.setTheaterName(theaterName);

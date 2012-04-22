@@ -34,3 +34,10 @@ bool SortFilterModel::filterAcceptsRow(int sourceRow,
             movieDescription.contains(filterRegExp()) ||
             theaterName.contains(filterRegExp()));
 }
+
+QVariantMap SortFilterModel::get(int sourceRow) const
+{
+    const TheaterListModel* source = qobject_cast<const TheaterListModel*>(sourceModel());
+    const QModelIndex index = source->index(sourceRow, 0);
+    return source->get(index);
+}

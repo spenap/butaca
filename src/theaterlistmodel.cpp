@@ -76,3 +76,23 @@ void TheaterListModel::setMovieShowtimes(QList<Movie> movies)
 
     emit countChanged();
 }
+
+QVariantMap TheaterListModel::get(const QModelIndex &index) const
+{
+    QVariantMap mappedEntry;
+
+    if (!index.isValid() || index.row() >= m_movies.count()) {
+        return mappedEntry;
+    }
+
+    const Movie& movie = m_movies.at(index.row());
+    mappedEntry.insert("title", movie.movieName());
+    mappedEntry.insert("subtitle", movie.movieTimes());
+    mappedEntry.insert("movieDescription", movie.movieDescription());
+    mappedEntry.insert("movieId", movie.movieId());
+    mappedEntry.insert("movieInfo", movie.movieInfo());
+    mappedEntry.insert("movieImdbId", movie.movieImdbId());
+    mappedEntry.insert("theaterName", movie.theaterName());
+    mappedEntry.insert("theaterInfo", movie.theaterInfo());
+    return mappedEntry;
+}

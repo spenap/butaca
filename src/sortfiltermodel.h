@@ -12,6 +12,9 @@ public:
     SortFilterModel(QObject *parent = 0);
     ~SortFilterModel();
 
+public Q_SLOTS:
+    QVariantMap get(int sourceRow) const;
+
 signals:
     void countChanged();
 
