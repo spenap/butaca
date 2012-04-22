@@ -233,7 +233,7 @@ Page {
                 margins: UIConstants.DEFAULT_MARGIN
             }
             //: Shown as a placeholder in the favorites area of the main view while no favorites are there
-            //% "Mark content as favorite"
+            //% "Your favorite content will appear here"
             text: qsTrId('btc-mark-favorite')
             visible: favoritesModel.count == 0
         }
