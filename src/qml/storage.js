@@ -1,6 +1,6 @@
 /**************************************************************************
- *    Butaca
- *    Copyright (C) 2011 Simon Pena <spena@igalia.com>
+ *   Butaca
+ *   Copyright (C) 2011 - 2012 Simon Pena <spena@igalia.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -36,8 +36,6 @@ function initialize() {
         var db = getDatabase();
         db.transaction(
             function(tx) {
-                // Create the settings table if it doesn't already exist
-                // If the table exists, this is skipped
                 tx.executeSql('CREATE TABLE IF NOT EXISTS favorites' +
                               '(favoriteId TEXT, title TEXT, iconSource TEXT, favoriteType TINYINT)')
             })
