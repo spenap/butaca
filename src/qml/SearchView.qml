@@ -138,6 +138,7 @@ Page {
         onStatusChanged: {
             if (status == XmlListModel.Ready) {
                 Util.populateModelFromModel(peopleModel, localModel, Util.TMDbPerson)
+                loading = false
             }
         }
     }
