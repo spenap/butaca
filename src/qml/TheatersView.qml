@@ -24,25 +24,34 @@ import 'constants.js' as UIConstants
 import "storage.js" as Storage
 
 Page {
-    tools: commonTools
+    id: showtimesView
+
+    tools: ToolBarLayout {
+        ToolIcon {
+            iconId: 'toolbar-back'
+            onClicked: {
+                appWindow.pageStack.pop()
+            }
+        }
+    }
+
     orientationLock: PageOrientation.LockPortrait
 
+    property string extendedSection: ''
     property string location
-    property bool showShowtimesFilter
+    property bool showShowtimesFilter: false
     property real contentYPos: list.visibleArea.yPosition *
                                    Math.max(list.height, list.contentHeight)
 
-    onStatusChanged: {
-        if (status == PageStatus.Active) {
-            Storage.initialize()
-            location = Storage.getSetting('location', '')
-            if (list.model.count === 0 ||
-                    location != controller.currentLocation()) {
-                controller.fetchTheaters(location)
-                theatersContent.state = 'Loading'
-            }
-        } else if (status == PageStatus.Activating) {
-            theaterModel.setFilterWildcard('')
+    Component.onCompleted: {
+        location = Storage.getSetting('location', '')
+        theaterModel.setFilterWildcard('')
+        if (list.model.count === 0 ||
+                location.localeCompare(controller.currentLocation()) !== 0) {
+            controller.fetchTheaters(location)
+            theatersContent.state = 'Loading'
+        } else {
+            theatersContent.state = 'Ready'
         }
     }
 
@@ -133,20 +142,44 @@ Page {
             model: theaterModel
             clip: true
             header: Header {
-                //: On theaters
-                text: qsTr('btc-theaters')
+                //: Header shown in the showtimes view
+                //% "In theaters"
+                text: qsTrId('btc-showtimes-header')
                 showDivider: false
                 visible: !showShowtimesFilter
             }
             delegate: MyListDelegate {
-                width: parent.width
+                anchors { left: parent.left; right: parent.right; margins: UIConstants.DEFAULT_MARGIN }
+
                 title: model.title
+                titleSize: UIConstants.FONT_DEFAULT
+                titleWeight: Font.Bold
+                subtitle: model.subtitle
+                subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
+                subtitleSize: UIConstants.FONT_XSMALL
 
-                pressable: false
+                height: showtimesView.extendedSection === model.theaterName ?
+                            UIConstants.LIST_ITEM_HEIGHT_SMALL : 0
+                visible: height !== 0
+                smallSize: true
+
+                onClicked: {
+                    if (model.movieImdbId)
+                        appWindow.pageStack.push(movieView, { imdbId: model.movieImdbId, loading: true })
+                    else
+                        appWindow.pageStack.push(searchView, { searchTerm: model.title })
+                }
             }
-
             section.property: 'theaterName'
-            section.delegate: ListSectionDelegate { sectionName: section }
+            section.delegate: MyListDelegate {
+                width: parent.width
+                title: section
+                expandable: true
+                expanded: showtimesView.extendedSection === section
+                onClicked: {
+                    showtimesView.extendedSection = expanded ? '' : section
+                }
+            }
 
             Connections {
                 target: list.visibleArea

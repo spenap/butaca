@@ -42,14 +42,15 @@ Item {
     property string iconSource: ''
     property bool smallSize: false
 
-    property bool pressable: true
+    property bool expandable: false
+    property bool expanded: false
 
     height: smallSize ? UIConstants.LIST_ITEM_HEIGHT_SMALL : UIConstants.LIST_ITEM_HEIGHT_DEFAULT
 
     BorderImage {
         id: delegateBackground
         anchors.fill: parent
-        visible: delegateMouseArea.pressed && pressable
+        visible: delegateMouseArea.pressed
         source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
     }
 
@@ -116,7 +117,11 @@ Item {
             right: parent.right
             rightMargin: UIConstants.DEFAULT_MARGIN
         }
-        visible: pressable
+        rotation: expandable ? (expanded ? -90 : 90) : 0
+
+        Behavior on rotation {
+            NumberAnimation { duration: 100 }
+        }
     }
 
     MouseArea {
