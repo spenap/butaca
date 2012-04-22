@@ -48,14 +48,16 @@ Page {
 
     Header {
         id: header
-        //: Search
-        text: qsTr('btc-search-header')
+        //: Header shown in the search view
+        //% "Search"
+        text: qsTrId('btc-search-header')
     }
 
     TextField {
         id: searchInput
-        //: Enter search terms
-        placeholderText: qsTr('btc-search-placeholder')
+        //: Placeholder text shown in the search input field and the result area
+        //% "Enter search terms"
+        placeholderText: qsTrId('btc-search-placeholder')
 
         anchors {
             top: header.bottom
@@ -102,14 +104,16 @@ Page {
 
         Button {
             id: movieSearch
-            //: Movies
-            text: qsTr('btc-movies')
+            //: Shown in the button selecting movie search
+            //% "Movies"
+            text: qsTrId('btc-search-movies')
         }
 
         Button {
             id: peopleSearch
-            //: People
-            text: qsTr('btc-people')
+            //: Shown in the button selecting people search
+            //% "People"
+            text: qsTrId('btc-search-people')
         }
 
         onCheckedButtonChanged: {
@@ -237,7 +241,9 @@ Page {
             PropertyChanges {
                 target: noResults
                 visible: true
-                text: 'There was an error performing the search'
+                //: Shown in the search results area when an error ocurred
+                //% "There was an error performing the search
+                text: qsTrId('btc-search-error')
             }
         },
         State {
@@ -249,7 +255,9 @@ Page {
             PropertyChanges {
                 target: noResults
                 visible: true
-                text: 'Not found'
+                //: Shown in the search results area when no results were found
+                //% "No results found"
+                text: qsTrId('btc-search-not-found')
             }
         },
         State {
@@ -261,7 +269,9 @@ Page {
             PropertyChanges {
                 target: noResults
                 visible: true
-                text: 'Enter search terms'
+                //: Shown in the search results area when no terms have been introduced
+                //% "Enter search terms"
+                text: qsTrId('btc-search-extendedplaceholder')
             }
         }
     ]

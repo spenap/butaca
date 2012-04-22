@@ -79,8 +79,10 @@ Page {
                leftMargin: UIConstants.DEFAULT_MARGIN
                rightMargin: UIConstants.DEFAULT_MARGIN
             }
-            //: Search
-            placeholderText: qsTr('btc-search')
+            placeholderText:
+                //: Placeholder text for the search field in the showtimes view
+                //% "Search"
+                qsTrId('btc-showtimes-placeholder')
             opacity: showShowtimesFilter ? 1 : 0
             inputMethodHints: Qt.ImhNoPredictiveText
 
@@ -187,10 +189,12 @@ Page {
                 margins: UIConstants.DEFAULT_MARGIN
             }
             text: (location ?
-                       //: No results for %1
-                       qsTr('btc-no-results-given-location').arg(location) :
-                       //: No results for your location
-                       qsTr('btc-no-results-automatic-location'))
+                       //: Message shown when no results are found for a given location
+                       //% "No results for %1"
+                       qsTrId('btc-no-results-given-location').arg(location) :
+                       //: Message shown when no results are found for the automatic location
+                       //% "No results for your location"
+                       qsTrId('btc-no-results-automatic-location'))
             visible: list.model.count === 0
         }
 

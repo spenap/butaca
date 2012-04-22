@@ -39,18 +39,33 @@ Page {
         // Due to a limitation in the ListModel, translating its elements
         // must be done this way
 
-        //: Movie genres
-        menuModel.get(0).title = qsTr('btc-browse-genres')
-        //: Explore movie genres
-        menuModel.get(0).subtitle = qsTr('btc-browse-genres-description')
-        //: Showtimes
-        menuModel.get(1).title = qsTr('btc-showtimes')
-        //: What\'s on cinemas near you
-        menuModel.get(1).subtitle = qsTr('btc-showtimes-description')
-        //: Search
-        menuModel.get(2).title = qsTr('btc-search')
-        //: Search people, movies and shows
-        menuModel.get(2).subtitle = qsTr('btc-search-description')
+        //: Shown as the title for the browse view menu entry
+        //% "Movie genres"
+        menuModel.get(0).title = qsTrId('btc-browse-title')
+        //: Shown as the subtitle for the browse view menu entry
+        //% "Explore movie genres"
+        menuModel.get(0).subtitle = qsTrId('btc-browse-subtitle')
+
+        //: Shown as the title for the showtimes menu entry
+        //% "Showtimes"
+        menuModel.get(1).title = qsTrId('btc-showtimes-title')
+        //: Shown as the subtitle for the browse view menu entry
+        //% "What's on in cinemas near you"
+        menuModel.get(1).subtitle = qsTrId('btc-showtimes-subtitle')
+
+        //: Shown as the title for the search view menu entry
+        //% "Search"
+        menuModel.get(2).title = qsTrId('btc-search-title')
+        //: Shown as the subtitle for the search view menu entry
+        //% "Search people and movies"
+        menuModel.get(2).subtitle = qsTrId('btc-search-subtitle')
+
+        //: Shown as the title for the lists view menu entry
+        //% "Lists"
+        menuModel.get(3).title = qsTrId('btc-lists-title')
+        //: Shown as the subtitle for the lists view menu entry
+        //% "Favorites and watchlist"
+        menuModel.get(3).subtitle = qsTrId('btc-lists-subtitle')
     }
 
     tools: ToolBarLayout {
@@ -68,14 +83,16 @@ Page {
         MenuLayout {
             MenuItem {
                 id: settingsEntry
-                //: Settings
-                text: qsTr('btc-settings')
+                //: Title for the settings entry in the main page object menu
+                //% "Settings"
+                text: qsTrId('btc-settings-title')
                 onClicked: appWindow.pageStack.push(settingsView)
             }
             MenuItem {
                 id: aboutEntry
-                //: About
-                text: qsTr('btc-about')
+                //: Title for the about entry in the main page object menu
+                //% "About"
+                text: qsTrId('btc-about-title')
                 onClicked: appWindow.pageStack.push(aboutView)
             }
         }
@@ -160,8 +177,9 @@ Page {
             }
         }
         header: Header {
-            //: Enjoy the show!
-            text: qsTr('btc-welcome-header')
+            //: Shown in the main view header
+            //% "Enjoy the show!"
+            text: qsTrId('btc-welcome-header')
         }
     }
 
@@ -214,8 +232,9 @@ Page {
                 fill: parent
                 margins: UIConstants.DEFAULT_MARGIN
             }
-            //: Mark content as favorite
-            text: qsTr('btc-mark-favorite')
+            //: Shown as a placeholder in the favorites area of the main view while no favorites are there
+            //% "Mark content as favorite"
+            text: qsTrId('btc-mark-favorite')
             visible: favoritesModel.count == 0
         }
     }

@@ -48,13 +48,15 @@ Page {
         visualParent: pageStack
         MenuLayout {
             MenuItem {
-                //: View in IMDb
-                text: qsTr('btc-open-imdb')
+                //: This visits the Internet Movie Database page of this content (movie or person)
+                //% "View in IMDb"
+                text: qsTrId('btc-open-imdb')
                 onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + parsedPerson.imdbId)
             }
             MenuItem {
-                //: View in TMDb
-                text: qsTr('btc-open-tmdb')
+                //: This visits the The Movie Database page of this content (movie or person)
+                //% "View in TMDb"
+                text: qsTrId('btc-open-tmdb')
                 onClicked: Qt.openUrlExternally(parsedPerson.url)
             }
         }
@@ -173,7 +175,9 @@ Page {
 
             Label {
                 id: extendedContentLabel
-                text: 'Loading content'
+                //: This indicates that the extended info for a content (person or movie) is still loading
+                //% "Loading content"
+                text: qsTrId('btc-content-loading')
                 visible: loadingExtended
                 anchors.horizontalCenter: parent.horizontalCenter
 
@@ -227,7 +231,9 @@ Page {
                             right: parent.right
                             margins: UIConstants.DEFAULT_MARGIN
                         }
-                        text: 'Born'
+                        //: Header shown for the born details of a person
+                        //% "Born"
+                        text: qsTrId('btc-person-born')
                     }
 
                     Label {
@@ -276,7 +282,9 @@ Page {
                             fontFamily: UIConstants.FONT_FAMILY_LIGHT
                         }
                         wrapMode: Text.WordWrap
-                        text: 'Known for %1 movies'.arg(parsedPerson.knownMovies)
+                        //: Text shown in the person view displaying the number of movies a person is known for
+                        //% "Known for %1 movies"
+                        text: qsTrId('btc-person-known-for').arg(parsedPerson.knownMovies)
                     }
                 }
             }
@@ -310,20 +318,27 @@ Page {
             MyTextExpander {
                 width: parent.width
                 visible: parsedPerson.biography
-
-                textHeader: 'Biography'
+                //: Label acting as the header for the biography
+                //% "Biography"
+                textHeader: qsTrId('btc-person-biography')
                 textContent: parsedPerson.biography
             }
 
             MyModelPreviewer {
                 width: parent.width
                 previewedModel: filmographyModel
-                previewerHeaderText: 'Filmography'
+                previewerHeaderText:
+                    //: Header for the filmography preview shown in the person view
+                    //% "Filmography"
+                    qsTrId('btc-previewfilmography-header')
                 previewerDelegateTitle: 'name'
                 previewerDelegateSubtitle: 'job'
                 previewerDelegateIcon: 'poster'
                 previewerDelegatePlaceholder: 'qrc:/resources/movie-placeholder.svg'
-                previewerFooterText: 'Full Filmography'
+                previewerFooterText:
+                    //: Footer for the filmography preview shown in the person view. When clicked, shows the full filmography
+                    //% "Full filmography"
+                    qsTrId('btc-previewfilmography-footer')
                 visible: filmographyModel.count > 0
 
                 onClicked: {

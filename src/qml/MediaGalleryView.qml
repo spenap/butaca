@@ -25,7 +25,9 @@ Page {
         ToolButton {
             anchors.centerIn: parent
             visible: expanded
-            text: 'Save image'
+            //: Placed on a tool button, when clicked opens a sheet to save the image
+            //% "Save image"
+            text: qsTrId('btc-gallery-toolbar-save')
             onClicked: {
                 saveImageSheet.open()
             }
@@ -193,8 +195,14 @@ Page {
                                       galleryView.galleryViewModel.get(galleryView.currentIndex).sizes[saveSize].url :
                                       ''
 
-        acceptButtonText: 'Save'
-        rejectButtonText: 'Cancel'
+        acceptButtonText:
+            //: Placed on the save image sheet, when clicked actually saves the image
+            //% "Save"
+            qsTrId('btc-gallery-sheet-save')
+        rejectButtonText:
+            //: Placed on the save image sheet, when clicked closes the sheet and doesn't save
+            //% "Cancel"
+            qsTrId('btc-gallery-sheet-cancel')
 
         acceptButton.enabled: savingImage.status === Image.Ready
 

@@ -80,10 +80,13 @@ Page {
         }
         model: castModel
         header: Header {
-            //: Full cast in %1
             text: showsCast ?
-                      qsTr('btc-full-cast').arg(movieName) :
-                      qsTr('btc-full-crew').arg(movieName)
+                      //: This appears in the cast view when the cast is shown
+                      //% "Full cast in %1"
+                      qsTrId('btc-fullcast-header').arg(movieName) :
+                      //: This appears in the cast view when cast and crew are shown
+                      //% "Cast and crew in %1"
+                      qsTrId('btc-fullcrew-header').arg(movieName)
             showDivider: false
         }
         delegate: MyListDelegate {
