@@ -18,7 +18,8 @@ public:
         MovieIdRole,
         MovieInfoRole,
         TheaterNameRole,
-        TheaterInfoRole
+        TheaterInfoRole,
+        MovieImdbIdRole
     };
 
     TheaterListModel(QObject *parent = 0);

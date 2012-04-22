@@ -10,6 +10,7 @@ TheaterListModel::TheaterListModel(QObject *parent)
     roles[MovieDescriptionRole] = "movieDescription";
     roles[MovieIdRole] = "movieId";
     roles[MovieInfoRole] = "movieInfo";
+    roles[MovieImdbIdRole] = "movieImdbId";
     roles[TheaterNameRole] = "theaterName";
     roles[TheaterInfoRole] = "theaterInfo";
     setRoleNames(roles);
@@ -48,6 +49,8 @@ QVariant TheaterListModel::data(const QModelIndex &index, int role) const
         return QVariant::fromValue(movie.movieId());
     case MovieInfoRole:
         return QVariant::fromValue(movie.movieInfo());
+    case MovieImdbIdRole:
+        return QVariant::fromValue(movie.movieImdbId());
     case TheaterNameRole:
         return QVariant::fromValue(movie.theaterName());
     case TheaterInfoRole:
