@@ -1,0 +1,15 @@
+#! /bin/sh
+
+set -e
+
+if [ "$1" = configure ] ; then
+    if test ! -d  /home/user/.local/share/data/simonpena/Butaca/; then
+        STORAGE_PATH=/home/user/.local/share/data/simonpena/Butaca/Databases
+        mkdir -p $STORAGE_PATH
+        OLD_PATH=/home/user/.local/share/data/QML/OfflineStorage/Databases
+        if test -f $OLD_PATH/4edefdd7302c2cf9a3c54670cf16940a.sqlite; then
+            cp $OLD_PATH/4edefdd7302c2cf9a3c54670cf16940a.sqlite $STORAGE_PATH/4edefdd7302c2cf9a3c54670cf16940a.sqlite
+            cp $OLD_PATH/4edefdd7302c2cf9a3c54670cf16940a.ini $STORAGE_PATH/4edefdd7302c2cf9a3c54670cf16940a.ini
+        fi
+    fi
+fi

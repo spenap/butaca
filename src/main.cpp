@@ -23,6 +23,7 @@
 #include <QtGui/QApplication>
 #include <QtDeclarative>
 #include <QDeclarativeContext>
+#include <QDesktopServices>
 #ifndef QT_SIMULATOR
     #include <MDeclarativeCache>
 #endif
@@ -61,6 +62,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     view = MDeclarativeCache::qDeclarativeView();
 #endif
+
+    view->engine()->setOfflineStoragePath(
+                QDesktopServices::storageLocation(QDesktopServices::DataLocation));
 
     QDeclarativeContext *context = view->rootContext();
 
