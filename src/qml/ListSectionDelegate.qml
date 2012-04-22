@@ -27,8 +27,9 @@ Item {
 
     id: sectionDelegate
 
-    anchors { left: parent.left; right: parent.right }
     anchors {
+        left: parent.left
+        right: parent.right
         leftMargin: UIConstants.DEFAULT_MARGIN
         rightMargin: UIConstants.DEFAULT_MARGIN
     }
@@ -40,27 +41,33 @@ Item {
         width: parent.width -
                sectionDelegateText.width -
                UIConstants.DEFAULT_MARGIN
-        height: 1
-        color: UIConstants.COLOR_SECONDARY_FOREGROUND
+        height: 3
+        color: UIConstants.COLOR_INVERTED_FOREGROUND
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    Text {
+    Label {
         id: sectionDelegateText
-        color: UIConstants.COLOR_SECONDARY_FOREGROUND
-        font.pixelSize: UIConstants.FONT_LSMALL
-        font.family: "Nokia Pure Text Light"
-        anchors.left: sectionDelegateDivider.right
-        anchors.leftMargin: UIConstants.DEFAULT_MARGIN
-        anchors.verticalCenter: sectionDelegateDivider.verticalCenter
+        platformStyle: LabelStyle {
+            fontPixelSize: UIConstants.FONT_LSMALL
+            fontFamily: UIConstants.FONT_FAMILY_LIGHT
+        }
+        color: UIConstants.COLOR_INVERTED_FOREGROUND
+        anchors {
+            left: sectionDelegateDivider.right
+            leftMargin: UIConstants.DEFAULT_MARGIN
+            verticalCenter: sectionDelegateDivider.verticalCenter
+        }
         width: Math.min(2 * parent.width / 3, helperText.width)
-        elide: Text.ElideRight
+        wrapMode: Text.WordWrap
     }
 
-    Text {
+    Label {
         id: helperText
-        font.pixelSize: UIConstants.FONT_LSMALL
-        font.family: "Nokia Pure Text Light"
+        platformStyle: LabelStyle {
+            fontPixelSize: UIConstants.FONT_LSMALL
+            fontFamily: UIConstants.FONT_FAMILY_LIGHT
+        }
         text: sectionDelegateText.text
         visible: false
     }
