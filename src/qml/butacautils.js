@@ -201,6 +201,8 @@ function populateModelFromModel(sourceModel, destinationModel, ObjectConstructor
 }
 
 function populateModelFromArray(entity, entityProperty, model, filterRules) {
+    model.clear()
+    if (filterRules) filterRules.secondaryModel.clear()
     if (entity && entity[entityProperty]) {
         for (var i = 0; i < entity[entityProperty].length; i ++) {
             if (filterRules) {
@@ -219,6 +221,7 @@ function populateModelFromArray(entity, entityProperty, model, filterRules) {
 function populateImagesModelFromArray(entity, entityProperty, model) {
     var i = 0
     var image
+    model.clear()
     if (entity && entity[entityProperty]) {
         while (i < entity[entityProperty].length) {
             if (image && image.id === entity[entityProperty][i].image.id) {
