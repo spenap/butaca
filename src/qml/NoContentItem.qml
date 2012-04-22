@@ -13,7 +13,10 @@ Item {
         color: !theme.inverted ?
                    UIConstants.COLOR_FOREGROUND :
                    UIConstants.COLOR_INVERTED_FOREGROUND
+        width: parent.width
+        anchors.verticalCenter: parent.verticalCenter
         horizontalAlignment: Text.AlignHCenter
+        wrapMode: Text.Wrap
         anchors.centerIn: parent
         opacity: 0.5
     }
