@@ -24,10 +24,9 @@ var MOVIE = 1
 
 var IMDB_BASE_URL = 'http://www.imdb.com/title/'
 
-var REMOTE_FETCH_REQUEST = 0
-var EXTRAS_FETCH_REQUEST = 1
 var REMOTE_FETCH_RESPONSE = 0
 var EXTRAS_FETCH_RESPONSE = 1
+var LOOKUP_FETCH_RESPONSE = 2
 
 /**
  * Gets the year from a string containing a date

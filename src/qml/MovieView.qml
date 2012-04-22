@@ -69,6 +69,7 @@ Page {
 
     property variant movie: ''
     property string tmdbId: parsedMovie.tmdbId
+    property string imdbId: parsedMovie.imdbId
     property bool loading: false
     property bool loadingExtended: false
     property bool loadingExtras: false
@@ -102,6 +103,7 @@ Page {
             //% "Not found"
             qsTrId('btc-extras-not-found')
         property string extrasUrl: ''
+        property bool extrasFetched: false
 
         property variant rawCast: ''
 
@@ -141,10 +143,12 @@ Page {
             if (movie.runtime)
                 runtime = movie.runtime
 
-            movie.cast.sort(sortByCastId)
-            var crew = movie.cast
-            crew.sort(sortByDepartment)
-            rawCast = crew
+            if (movie.cast) {
+                movie.cast.sort(sortByCastId)
+                var crew = movie.cast
+                crew.sort(sortByDepartment)
+                rawCast = crew
+            }
 
             Util.populateModelFromArray(movie, 'genres', genresModel)
             Util.populateModelFromArray(movie, 'studios', studiosModel)
@@ -160,6 +164,9 @@ Page {
             if (postersModel.count > 0 &&
                     postersModel.get(0).sizes['cover'].url)
                 poster = postersModel.get(0).sizes['cover'].url
+
+            if (!loadingExtras && !parsedMovie.extrasFetched)
+                fetchExtras()
         }
     }
 
@@ -188,16 +195,22 @@ Page {
             parsedMovie.updateWithLightWeightMovie(theMovie)
         }
 
-        if (tmdbId !== -1) fetchExtendedContent()
+        if (tmdbId) {
+            fetchExtendedContent(TMDB.movie_info(tmdbId, { app_locale: appLocale, format: 'json' }),
+                                 Util.REMOTE_FETCH_RESPONSE)
+        } else if (imdbId) {
+            fetchExtendedContent(TMDB.movie_imdb_lookup(imdbId, { app_locale: appLocale, format: 'json' }),
+                                 Util.LOOKUP_FETCH_RESPONSE)
+        }
 
-        if (parsedMovie.imdbId) fetchExtras()
+        if (imdbId && parsedMovie.originalName) fetchExtras()
     }
 
-    function fetchExtendedContent() {
+    function fetchExtendedContent(contentUrl, action) {
         loadingExtended = true
         Util.asyncQuery({
-                            url: TMDB.movie_info(tmdbId, { app_locale: appLocale, format: 'json' }),
-                            response_action: Util.REMOTE_FETCH_RESPONSE
+                            url: contentUrl,
+                            response_action: action
                         },
                         handleMessage)
     }
@@ -668,8 +681,16 @@ Page {
             loading = loadingExtended = false
             var fullMovie = JSON.parse(messageObject.response)[0]
             parsedMovie.updateWithFullWeightMovie(fullMovie)
+        } else if (messageObject.action === Util.LOOKUP_FETCH_RESPONSE) {
+            // When doing a IMDB lookup, the information retrieved lacks some details
+            loading = false
+            var partialMovie = JSON.parse(messageObject.response)[0]
+            parsedMovie.updateWithFullWeightMovie(partialMovie)
+            fetchExtendedContent(TMDB.movie_info(tmdbId, { app_locale: appLocale, format: 'json' }),
+                                 Util.REMOTE_FETCH_RESPONSE)
         } else if (messageObject.action === Util.EXTRAS_FETCH_RESPONSE) {
             loadingExtras = false
+            parsedMovie.extrasFetched = true
             var afterCreditsResponse = JSON.parse(messageObject.response)
             var watcMovie = WATC.parseACResponse(afterCreditsResponse, parsedMovie.imdbId)
             if (watcMovie) {
