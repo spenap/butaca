@@ -33,14 +33,14 @@ this application, don't hesitate to create an entry in the [bug tracker][6].
 
 ## Contribute! ##
 
-Butaca is free software, licensed under the [GPL 3.0][7] license, which means
+Butaca is free software, licensed under the [GPL 3.0][8] license, which means
 there are several ways you can contribute to it:
 
  * [Fork the project][7], modify the sources, and send merge requests with patches
- * [Translate Butaca][8] to your language
+ * [Translate Butaca][9] to your language
  * File bugs or write feature requests in the [bug tracker][6]
  * Spread the word, and recommend it to your friends
- * Rate us on the [Nokia Store][9]
+ * Rate us on the [Nokia Store][10]
 
 ## Awards ##
 
