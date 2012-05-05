@@ -21,16 +21,14 @@
 #include "movielistmodel.h"
 
 Cinema::Cinema(const QString& name, const QString& info, QList<Movie> movies) :
-    m_moviesModel(new MovieListModel)
+    m_moviesPlaying(movies)
 {
     m_name = name;
     m_info = info;
-    m_moviesModel->setMovieList(movies);
 }
 
 Cinema::~Cinema()
 {
-    delete m_moviesModel;
 }
 
 const QString Cinema::name() const
@@ -43,9 +41,11 @@ const QString Cinema::info() const
     return m_info;
 }
 
-const MovieListModel* Cinema::showtimesModel() const
+MovieListModel* Cinema::showtimesModel() const
 {
-    return m_moviesModel;
+    MovieListModel* model = new MovieListModel;
+    model->setMovieList(m_moviesPlaying);
+    return model;
 }
 
 void Cinema::setName(const QString &name)
@@ -60,5 +60,5 @@ void Cinema::setInfo(const QString &info)
 
 void Cinema::setMovies(QList<Movie> movies)
 {
-    m_moviesModel->setMovieList(movies);
+    m_moviesPlaying.append(movies);
 }

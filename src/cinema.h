@@ -60,9 +60,9 @@ public:
     //! \param info Extra details of this cinema
     void setInfo(const QString& info);
 
-    //! Gets the showtimes model
-    //! \return Showtimes model
-    const MovieListModel* showtimesModel() const;
+    //! Gets a new showtimes model. It must be free'd once it's no longer used
+    //! \return A newly created showtimes model
+    MovieListModel *showtimesModel() const;
 
     //! Sets the movies playing at the cinema
     //! \param movies The movies playing at the cinema
@@ -71,7 +71,7 @@ public:
 private:
     QString m_name;
     QString m_info;
-    MovieListModel* m_moviesModel;
+    QList<Movie> m_moviesPlaying;
 };
 
 #endif // CINEMA_H
