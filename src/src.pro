@@ -29,7 +29,8 @@ SOURCES += main.cpp \
     sortfiltermodel.cpp \
     customnetworkaccessmanagerfactory.cpp \
     controller.cpp \
-    imagesaver.cpp
+    imagesaver.cpp \
+    movielistmodel.cpp
 
 HEADERS += \
     theaterlistmodel.h \
@@ -38,7 +39,8 @@ HEADERS += \
     sortfiltermodel.h \
     customnetworkaccessmanagerfactory.h \
     controller.h \
-    imagesaver.h
+    imagesaver.h \
+    movielistmodel.h
 
 OTHER_FILES += \
     qml/main.qml \
