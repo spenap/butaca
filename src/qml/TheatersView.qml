@@ -153,7 +153,8 @@ Page {
             delegate: MyListDelegate {
                 width: parent.width
                 title: model.name
-                subtitle: model.info
+                subtitle: model.playing
+                subtitleSize: UIConstants.FONT_XSMALL
 
                 onClicked: {
                     appWindow.pageStack.push(showtimesView,
