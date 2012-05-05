@@ -23,6 +23,7 @@
 #include <QAbstractListModel>
 
 class Cinema;
+class MovieListModel;
 
 //! \class TheaterListModel
 //! \brief TheaterListModel is a model for the available cinemas
@@ -65,6 +66,12 @@ public:
     //! \return A QVariantMap with all the information about the cinema
     QVariantMap get(const QModelIndex& index) const;
 
+    //! Convenience method which provides the showtimes for the cinema at the
+    //! given row
+    //! \param index The index to retrieve the showtimes at
+    //! \return A MovieListModel for the cinema at the given index
+    MovieListModel* showtimes(const QModelIndex& index);
+
 signals:
     //! Signal notifying that the cinemas count has changed
     void countChanged();
@@ -72,6 +79,7 @@ signals:
 private:
     Q_DISABLE_COPY(TheaterListModel)
     QList<Cinema> m_cinemas;
+    MovieListModel* m_currentMovieListModel;
 };
 
 #endif // THEATERLISTMODEL_H

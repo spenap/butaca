@@ -18,10 +18,15 @@
  **************************************************************************/
 
 #include "theaterlistmodel.h"
+#include "movielistmodel.h"
 #include "cinema.h"
 
+#include <QDebug>
+
 TheaterListModel::TheaterListModel(QObject* parent)
-    : QAbstractListModel(parent)
+    : QAbstractListModel(parent),
+      m_cinemas(),
+      m_currentMovieListModel(0)
 {
     QHash<int, QByteArray> roles;
     roles[TheaterNameRole] = "name";
@@ -31,6 +36,7 @@ TheaterListModel::TheaterListModel(QObject* parent)
 
 TheaterListModel::~TheaterListModel()
 {
+    delete m_currentMovieListModel;
 }
 
 int TheaterListModel::rowCount(const QModelIndex& index) const
@@ -53,6 +59,7 @@ QVariant TheaterListModel::data(const QModelIndex& index, int role) const
     case TheaterInfoRole:
         return QVariant::fromValue(cinema.info());
     default:
+        qDebug() << Q_FUNC_INFO << "Unhandled role" << role;
         return QVariant();
     }
 }
@@ -74,7 +81,7 @@ void TheaterListModel::setCinemaList(QList<Cinema> cinemas)
     emit countChanged();
 }
 
-QVariantMap TheaterListModel::get(const QModelIndex &index) const
+QVariantMap TheaterListModel::get(const QModelIndex& index) const
 {
     QVariantMap mappedEntry;
 
@@ -89,4 +96,23 @@ QVariantMap TheaterListModel::get(const QModelIndex &index) const
     mappedEntry[roles[TheaterInfoRole]] = cinema.info();
 
     return mappedEntry;
+}
+
+MovieListModel* TheaterListModel::showtimes(const QModelIndex& index)
+{
+    if (!index.isValid() || index.row() >= m_cinemas.count()) {
+        return 0;
+    }
+
+    const Cinema& cinema = m_cinemas.at(index.row());
+
+    if (m_currentMovieListModel) {
+        delete m_currentMovieListModel;
+    }
+
+    m_currentMovieListModel = cinema.showtimesModel();
+
+    Q_ASSERT(m_currentMovieListModel && m_currentMovieListModel->rowCount() > 0);
+
+    return m_currentMovieListModel;
 }
