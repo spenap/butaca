@@ -30,7 +30,8 @@ SOURCES += main.cpp \
     customnetworkaccessmanagerfactory.cpp \
     controller.cpp \
     imagesaver.cpp \
-    movielistmodel.cpp
+    movielistmodel.cpp \
+    cinema.cpp
 
 HEADERS += \
     theaterlistmodel.h \
@@ -40,7 +41,8 @@ HEADERS += \
     customnetworkaccessmanagerfactory.h \
     controller.h \
     imagesaver.h \
-    movielistmodel.h
+    movielistmodel.h \
+    cinema.h
 
 OTHER_FILES += \
     qml/main.qml \
