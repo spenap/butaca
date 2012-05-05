@@ -19,82 +19,62 @@
 
 #include "movie.h"
 
-const QString Movie::movieName() const
+const QString Movie::name() const
 {
-    return m_movieName;
+    return m_name;
 }
 
-const QString Movie::movieTimes() const
+const QString Movie::showtimes() const
 {
-    return m_movieTimes;
+    return m_showtimes;
 }
 
-const QString Movie::movieDescription() const
+const QString Movie::description() const
 {
-    return m_movieDescription;
+    return m_description;
 }
 
-const QString Movie::movieImdbId() const
+const QString Movie::imdbId() const
 {
-    return m_movieImdbId;
+    return m_imdbId;
 }
 
-const QString Movie::theaterName() const
+const QString Movie::id() const
 {
-    return m_theaterName;
+    return m_id;
 }
 
-const QString Movie::theaterInfo() const
+const QString Movie::info() const
 {
-    return m_theaterInfo;
+    return m_info;
 }
 
-const QString Movie::movieId() const
+void Movie::setName(const QString &name)
 {
-    return m_movieId;
+    m_name = name;
 }
 
-const QString Movie::movieInfo() const
+void Movie::setShowtimes(const QString &times)
 {
-    return m_movieInfo;
+    m_showtimes = times;
 }
 
-void Movie::setMovieName(const QString &name)
+void Movie::setImdbId(const QString &imdbId)
 {
-    m_movieName = name;
+    m_imdbId = imdbId;
 }
 
-void Movie::setMovieTimes(const QString &times)
+void Movie::setDescription(const QString &description)
 {
-    m_movieTimes = times;
+    m_description = description;
 }
 
-void Movie::setMovieImdbId(const QString &imdbId)
+void Movie::setId(const QString &id)
 {
-    m_movieImdbId = imdbId;
+    m_id = id;
 }
 
-void Movie::setMovieDescription(const QString &description)
+void Movie::setInfo(const QString &info)
 {
-    m_movieDescription = description;
-}
-
-void Movie::setMovieId(const QString &id)
-{
-    m_movieId = id;
-}
-
-void Movie::setMovieInfo(const QString &info)
-{
-    m_movieInfo = info;
-}
-
-void Movie::setTheaterName(const QString &name)
-{
-    m_theaterName = name;
-}
-
-void Movie::setTheaterInfo(const QString &info)
-{
-    m_theaterInfo = info;
+    m_info = info;
 }

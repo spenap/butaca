@@ -49,17 +49,17 @@ QVariant MovieListModel::data(const QModelIndex& index, int role) const
 
     switch (role) {
     case MovieIdRole:
-        return QVariant::fromValue(movie.movieId());
+        return QVariant::fromValue(movie.id());
     case MovieImdbIdRole:
-        return QVariant::fromValue(movie.movieImdbId());
+        return QVariant::fromValue(movie.imdbId());
     case MovieNameRole:
-        return QVariant::fromValue(movie.movieName());
+        return QVariant::fromValue(movie.name());
     case MovieInfoRole:
-        return QVariant::fromValue(movie.movieInfo());
+        return QVariant::fromValue(movie.info());
     case MovieTimesRole:
-        return QVariant::fromValue(movie.movieTimes());
+        return QVariant::fromValue(movie.showtimes());
     case MovieDescriptionRole:
-        return QVariant::fromValue(movie.movieDescription());
+        return QVariant::fromValue(movie.description());
     default:
         qDebug() << Q_FUNC_INFO << "Unhandled role" << role;
         return QVariant();
@@ -83,12 +83,12 @@ QVariantMap MovieListModel::get(const QModelIndex& index) const
     const Movie& movie = m_movies.at(index.row());
     const QHash<int, QByteArray>& roles = roleNames();
 
-    mappedEntry[roles[MovieIdRole]] = movie.movieId();
-    mappedEntry[roles[MovieImdbIdRole]] = movie.movieImdbId();
-    mappedEntry[roles[MovieNameRole]] = movie.movieName();
-    mappedEntry[roles[MovieInfoRole]] = movie.movieInfo();
-    mappedEntry[roles[MovieTimesRole]] = movie.movieTimes();
-    mappedEntry[roles[MovieDescriptionRole]] = movie.movieDescription();
+    mappedEntry[roles[MovieIdRole]] = movie.id();
+    mappedEntry[roles[MovieImdbIdRole]] = movie.imdbId();
+    mappedEntry[roles[MovieNameRole]] = movie.name();
+    mappedEntry[roles[MovieInfoRole]] = movie.info();
+    mappedEntry[roles[MovieTimesRole]] = movie.showtimes();
+    mappedEntry[roles[MovieDescriptionRole]] = movie.description();
     return mappedEntry;
 }
 

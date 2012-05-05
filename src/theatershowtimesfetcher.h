@@ -23,6 +23,7 @@
 #include <QObject>
 #include <QUrl>
 #include "movie.h"
+#include "cinema.h"
 
 class QWebView;
 class TheaterListModel;
@@ -49,7 +50,7 @@ private:
     QUrl m_showtimesBaseUrl;
     int m_numPages;
     int m_parsedPages;
-    QList<Movie> m_movies;
+    QList<Cinema> m_cinemas;
 };
 
 #endif // THEATERSHOWTIMESFETCHER_H

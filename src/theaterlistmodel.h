@@ -22,7 +22,7 @@
 
 #include <QAbstractListModel>
 
-class Movie;
+class Cinema;
 
 class TheaterListModel : public QAbstractListModel
 {
@@ -31,33 +31,27 @@ class TheaterListModel : public QAbstractListModel
     Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
 public:
     enum TheaterListRoles {
-        MovieNameRole = Qt::UserRole + 1,
-        MovieTimesRole,
-        MovieDescriptionRole,
-        MovieIdRole,
-        MovieInfoRole,
-        TheaterNameRole,
-        TheaterInfoRole,
-        MovieImdbIdRole
+        TheaterNameRole = Qt::UserRole + 1,
+        TheaterInfoRole
     };
 
-    TheaterListModel(QObject *parent = 0);
+    TheaterListModel(QObject* parent = 0);
     ~TheaterListModel();
 
-    QVariant data(const QModelIndex &index, int role) const;
+    QVariant data(const QModelIndex& index, int role) const;
 
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int rowCount(const QModelIndex& index = QModelIndex()) const;
 
-    void setMovieShowtimes(QList<Movie> movies);
+    void setCinemaList(QList<Cinema> cinemas);
 
-    QVariantMap get(const QModelIndex &index) const;
+    QVariantMap get(const QModelIndex& index) const;
 
 signals:
     void countChanged();
 
 private:
     Q_DISABLE_COPY(TheaterListModel)
-    QList<Movie> m_movies;
+    QList<Cinema> m_cinemas;
 };
 
 #endif // THEATERLISTMODEL_H

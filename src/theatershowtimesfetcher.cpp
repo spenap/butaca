@@ -44,7 +44,7 @@ TheaterShowtimesFetcher::~TheaterShowtimesFetcher()
 void TheaterShowtimesFetcher::fetchTheaters(QString location)
 {
     m_showtimesBaseUrl = QUrl("http://www.google.com/movies");
-    m_movies.clear();
+    m_cinemas.clear();
     m_parsedPages = 0;
 
     QString locale(QLocale::system().name());
@@ -80,34 +80,37 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
         if (theaters.count() > 0) {
             Q_FOREACH(QWebElement theaterElement, theaters) {
 
-                QString theaterName = theaterElement.findFirst("div.desc h2").toPlainText();
-                QString theaterInfo = theaterElement.findFirst("div.desc div").toPlainText();
+                Cinema cinema(theaterElement.findFirst("div.desc h2").toPlainText(),
+                              theaterElement.findFirst("div.desc div").toPlainText());
+
+                QList<Movie> moviesPlaying;
 
                 Q_FOREACH(QWebElement movieElement, theaterElement.findAll("div.movie")) {
 
                     Movie movie;
                     QWebElement movieAnchor = movieElement.findFirst("div.name a");
                     QUrl anchorUrl(movieAnchor.attribute("href"));
-                    movie.setMovieId(anchorUrl.queryItemValue("mid"));
+                    movie.setId(anchorUrl.queryItemValue("mid"));
                     QString movieInfo(movieElement.findFirst("span.info").toInnerXml());
                     QRegExp imdbUrl("http://www\\.imdb\\.com/title/(tt\\d*)");
                     if (movieInfo.contains(imdbUrl)) {
-                        movie.setMovieImdbId(imdbUrl.cap(1));
+                        movie.setImdbId(imdbUrl.cap(1));
                     }
-                    movie.setMovieInfo(movieInfo.remove(QRegExp(" - (<.*)?$")));
-                    movie.setMovieName(movieAnchor.toPlainText());
-                    movie.setMovieTimes(movieElement.findFirst("div.times").toPlainText());
-                    movie.setTheaterName(theaterName);
-                    movie.setTheaterInfo(theaterInfo);
+                    movie.setInfo(movieInfo.remove(QRegExp(" - (<.*)?$")));
+                    movie.setName(movieAnchor.toPlainText());
+                    movie.setShowtimes(movieElement.findFirst("div.times").toPlainText());
 
-                    m_movies << movie;
+                    moviesPlaying << movie;
                 }
+
+                cinema.setMovies(moviesPlaying);
+                m_cinemas << cinema;
             }
         }
 
         if (m_numPages == m_parsedPages) {
-            m_theaterListModel->setMovieShowtimes(m_movies);
-            emit theatersFetched(m_movies.count());
+            m_theaterListModel->setCinemaList(m_cinemas);
+            emit theatersFetched(m_cinemas.count());
         } else {
             if (m_showtimesBaseUrl.hasQueryItem("start"))
                 m_showtimesBaseUrl.removeQueryItem("start");

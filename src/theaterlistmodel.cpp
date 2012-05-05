@@ -18,20 +18,14 @@
  **************************************************************************/
 
 #include "theaterlistmodel.h"
-#include "movie.h"
+#include "cinema.h"
 
-TheaterListModel::TheaterListModel(QObject *parent)
+TheaterListModel::TheaterListModel(QObject* parent)
     : QAbstractListModel(parent)
 {
     QHash<int, QByteArray> roles;
-    roles[MovieNameRole] = "title";
-    roles[MovieTimesRole] = "subtitle";
-    roles[MovieDescriptionRole] = "movieDescription";
-    roles[MovieIdRole] = "movieId";
-    roles[MovieInfoRole] = "movieInfo";
-    roles[MovieImdbIdRole] = "movieImdbId";
-    roles[TheaterNameRole] = "theaterName";
-    roles[TheaterInfoRole] = "theaterInfo";
+    roles[TheaterNameRole] = "name";
+    roles[TheaterInfoRole] = "info";
     setRoleNames(roles);
 }
 
@@ -39,57 +33,41 @@ TheaterListModel::~TheaterListModel()
 {
 }
 
-int TheaterListModel::rowCount(const QModelIndex &parent) const
+int TheaterListModel::rowCount(const QModelIndex& index) const
 {
-    Q_UNUSED(parent)
-    return m_movies.count();
+    Q_UNUSED(index)
+    return m_cinemas.count();
 }
 
-QVariant TheaterListModel::data(const QModelIndex &index, int role) const
+QVariant TheaterListModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid()) {
+    if (!index.isValid() || index.row() >= m_cinemas.count()) {
         return QVariant();
     }
 
-    if (index.row() >= m_movies.count()) {
-        return QVariant();
-    }
-
-    const Movie& movie = m_movies.at(index.row());
+    const Cinema& cinema = m_cinemas.at(index.row());
 
     switch (role) {
-    case MovieNameRole:
-        return QVariant::fromValue(movie.movieName());
-    case MovieTimesRole:
-        return QVariant::fromValue(movie.movieTimes());
-    case MovieDescriptionRole:
-        return QVariant::fromValue(movie.movieDescription());
-    case MovieIdRole:
-        return QVariant::fromValue(movie.movieId());
-    case MovieInfoRole:
-        return QVariant::fromValue(movie.movieInfo());
-    case MovieImdbIdRole:
-        return QVariant::fromValue(movie.movieImdbId());
     case TheaterNameRole:
-        return QVariant::fromValue(movie.theaterName());
+        return QVariant::fromValue(cinema.name());
     case TheaterInfoRole:
-        return QVariant::fromValue(movie.theaterInfo());
+        return QVariant::fromValue(cinema.info());
     default:
         return QVariant();
     }
 }
 
-void TheaterListModel::setMovieShowtimes(QList<Movie> movies)
+void TheaterListModel::setCinemaList(QList<Cinema> cinemas)
 {
-    if (m_movies.count() > 0) {
-        beginRemoveRows(QModelIndex(), 0, m_movies.count() - 1);
-        m_movies.clear();
+    if (m_cinemas.count() > 0) {
+        beginRemoveRows(QModelIndex(), 0, m_cinemas.count() - 1);
+        m_cinemas.clear();
         endRemoveRows();
     }
 
-    if (movies.count() > 0) {
-        beginInsertRows(QModelIndex(), 0, movies.count() - 1);
-        m_movies << movies;
+    if (cinemas.count() > 0) {
+        beginInsertRows(QModelIndex(), 0, cinemas.count() - 1);
+        m_cinemas << cinemas;
         endInsertRows();
     }
 
@@ -100,18 +78,15 @@ QVariantMap TheaterListModel::get(const QModelIndex &index) const
 {
     QVariantMap mappedEntry;
 
-    if (!index.isValid() || index.row() >= m_movies.count()) {
+    if (!index.isValid() || index.row() >= m_cinemas.count()) {
         return mappedEntry;
     }
 
-    const Movie& movie = m_movies.at(index.row());
-    mappedEntry.insert("title", movie.movieName());
-    mappedEntry.insert("subtitle", movie.movieTimes());
-    mappedEntry.insert("movieDescription", movie.movieDescription());
-    mappedEntry.insert("movieId", movie.movieId());
-    mappedEntry.insert("movieInfo", movie.movieInfo());
-    mappedEntry.insert("movieImdbId", movie.movieImdbId());
-    mappedEntry.insert("theaterName", movie.theaterName());
-    mappedEntry.insert("theaterInfo", movie.theaterInfo());
+    const Cinema& cinema = m_cinemas.at(index.row());
+    const QHash<int, QByteArray>& roles = roleNames();
+
+    mappedEntry[roles[TheaterNameRole]] = cinema.name();
+    mappedEntry[roles[TheaterInfoRole]] = cinema.info();
+
     return mappedEntry;
 }

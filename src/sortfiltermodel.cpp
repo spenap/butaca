@@ -35,23 +35,14 @@ bool SortFilterModel::filterAcceptsRow(int sourceRow,
 {
     Q_UNUSED(sourceParent)
 
-    // We search on movie name and description and theater name.
-    // Theater info and movie times are ignored when searching.
+    // We search on theater name
     const QModelIndex rowIndex = sourceModel()->index(sourceRow, 0);
 
-    const QString movieName =
-            sourceModel()->data(rowIndex,
-                                TheaterListModel::MovieNameRole).toString();
-    const QString movieDescription =
-            sourceModel()->data(rowIndex,
-                                TheaterListModel::MovieDescriptionRole).toString();
     const QString theaterName =
             sourceModel()->data(rowIndex,
                                 TheaterListModel::TheaterNameRole).toString();
 
-    return (movieName.contains(filterRegExp()) ||
-            movieDescription.contains(filterRegExp()) ||
-            theaterName.contains(filterRegExp()));
+    return theaterName.contains(filterRegExp());
 }
 
 QVariantMap SortFilterModel::get(int sourceRow) const
