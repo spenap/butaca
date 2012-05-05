@@ -143,12 +143,32 @@ Page {
             flickableDirection: Flickable.VerticalFlick
             model: theaterModel
             clip: true
-            header: Header {
-                //: Header shown in the showtimes view
-                //% "In theaters"
-                text: qsTrId('btc-showtimes-header')
-                showDivider: false
-                visible: !showShowtimesFilter
+            header: Column {
+                width: parent.width
+                visible: height !== 0
+                height: !showShowtimesFilter ? childrenRect.height : 0
+
+                Header {
+                    //: Header shown in the showtimes view
+                    //% "In theaters"
+                    text: qsTrId('btc-showtimes-header')
+                    showDivider: false
+                }
+
+                Label {
+                    platformStyle: LabelStyle {
+                        fontFamily: UIConstants.FONT_FAMILY_LIGHT
+                        fontPixelSize: UIConstants.FONT_LSMALL
+                    }
+                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+
+                    //: Hint shown to tell users that they can filter by pulling
+                    //% "Pull to filter by cinema or movie"
+                    text: qsTrId('btc-showtimes-filter-hint')
+                }
             }
             delegate: MyListDelegate {
                 width: parent.width
@@ -182,7 +202,7 @@ Page {
                 id: listTimer
                 interval: 3000
                 onTriggered: {
-                    showShowtimesFilter = false
+                    showShowtimesFilter = searchInput.text
                     list.positionViewAtBeginning(0, ListView.Beginning)
                 }
             }
