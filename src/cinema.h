@@ -52,6 +52,10 @@ public:
     //! \return The extra details of this cinema
     const QString info() const;
 
+    //! Gets a string with all the movies playing in this cinema
+    //! \return A string with the movies playing in the cinema
+    const QString moviesPlaying() const;
+
     //! Sets the name of this cinema
     //! \param name The name of the cinema
     void setName(const QString& name);

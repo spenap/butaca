@@ -42,8 +42,12 @@ bool SortFilterModel::filterAcceptsRow(int sourceRow,
     const QString theaterName =
             sourceModel()->data(rowIndex,
                                 TheaterListModel::TheaterNameRole).toString();
+    const QString moviesPlaying =
+            sourceModel()->data(rowIndex,
+                                TheaterListModel::TheaterMovieListRole).toString();
 
-    return theaterName.contains(filterRegExp());
+    return theaterName.contains(filterRegExp()) ||
+            moviesPlaying.contains(filterRegExp());
 }
 
 QVariantMap SortFilterModel::get(int sourceRow) const

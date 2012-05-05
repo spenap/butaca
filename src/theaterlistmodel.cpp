@@ -31,6 +31,7 @@ TheaterListModel::TheaterListModel(QObject* parent)
     QHash<int, QByteArray> roles;
     roles[TheaterNameRole] = "name";
     roles[TheaterInfoRole] = "info";
+    roles[TheaterMovieListRole] = "playing";
     setRoleNames(roles);
 }
 
@@ -58,6 +59,8 @@ QVariant TheaterListModel::data(const QModelIndex& index, int role) const
         return QVariant::fromValue(cinema.name());
     case TheaterInfoRole:
         return QVariant::fromValue(cinema.info());
+    case TheaterMovieListRole:
+        return QVariant::fromValue(cinema.moviesPlaying());
     default:
         qDebug() << Q_FUNC_INFO << "Unhandled role" << role;
         return QVariant();
@@ -94,6 +97,7 @@ QVariantMap TheaterListModel::get(const QModelIndex& index) const
 
     mappedEntry[roles[TheaterNameRole]] = cinema.name();
     mappedEntry[roles[TheaterInfoRole]] = cinema.info();
+    mappedEntry[roles[TheaterMovieListRole]] = cinema.moviesPlaying();
 
     return mappedEntry;
 }

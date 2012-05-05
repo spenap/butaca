@@ -41,6 +41,24 @@ const QString Cinema::info() const
     return m_info;
 }
 
+const QString Cinema::moviesPlaying() const
+{
+    if (m_moviesPlaying.count() == 0) {
+        return QString();
+    }
+
+    QString playing(m_moviesPlaying.at(0).name());
+
+    if (m_moviesPlaying.count() > 1) {
+        for (int i = 1; i < m_moviesPlaying.count(); i++) {
+            const Movie& movie = m_moviesPlaying.at(i);
+            playing.append(QString(", %1").arg(movie.name()));
+        }
+    }
+
+    return playing;
+}
+
 MovieListModel* Cinema::showtimesModel() const
 {
     MovieListModel* model = new MovieListModel;

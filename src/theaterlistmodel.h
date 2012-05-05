@@ -40,7 +40,8 @@ public:
     //! Enum for supported roles
     enum TheaterListRoles {
         TheaterNameRole = Qt::UserRole + 1, //!< Cinema name role
-        TheaterInfoRole                     //!< Cinema info role
+        TheaterInfoRole,                    //!< Cinema info role
+        TheaterMovieListRole                //!< Movie list role
     };
 
     //! Constructor
