@@ -19,6 +19,7 @@
 
 #include "sortfiltermodel.h"
 #include "theaterlistmodel.h"
+#include "movielistmodel.h"
 
 SortFilterModel::SortFilterModel(QObject *parent) :
     QSortFilterProxyModel (parent)
@@ -31,9 +32,9 @@ SortFilterModel::~SortFilterModel()
 }
 
 bool SortFilterModel::filterAcceptsRow(int sourceRow,
-                                       const QModelIndex &sourceParent) const
+                                       const QModelIndex& parent) const
 {
-    Q_UNUSED(sourceParent)
+    Q_UNUSED(parent)
 
     // We search on theater name
     const QModelIndex rowIndex = sourceModel()->index(sourceRow, 0);
@@ -50,4 +51,15 @@ QVariantMap SortFilterModel::get(int sourceRow) const
     const TheaterListModel* source = qobject_cast<const TheaterListModel*>(sourceModel());
     const QModelIndex index = source->index(sourceRow, 0);
     return source->get(index);
+}
+
+QObject* SortFilterModel::showtimes(int sourceRow)
+{
+    TheaterListModel* source = qobject_cast<TheaterListModel*>(sourceModel());
+    const QModelIndex index = source->index(sourceRow, 0);
+    MovieListModel* subModel = source->showtimes(index);
+
+    Q_ASSERT(subModel && subModel->rowCount() > 0);
+
+    return subModel;
 }
