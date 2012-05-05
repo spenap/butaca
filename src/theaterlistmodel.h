@@ -24,29 +24,49 @@
 
 class Cinema;
 
+//! \class TheaterListModel
+//! \brief TheaterListModel is a model for the available cinemas
+//!
+//! The model exposes brief information for cinemas in the surrounding areas,
+//! such as name, address and movies playing there
 class TheaterListModel : public QAbstractListModel
 {
     Q_OBJECT
 
     Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
 public:
+
+    //! Enum for supported roles
     enum TheaterListRoles {
-        TheaterNameRole = Qt::UserRole + 1,
-        TheaterInfoRole
+        TheaterNameRole = Qt::UserRole + 1, //!< Cinema name role
+        TheaterInfoRole                     //!< Cinema info role
     };
 
+    //! Constructor
     TheaterListModel(QObject* parent = 0);
+
+    //! Destructor
     ~TheaterListModel();
 
+    //! \reimp
     QVariant data(const QModelIndex& index, int role) const;
 
+    //! \reimp
     int rowCount(const QModelIndex& index = QModelIndex()) const;
 
+    //! Sets a cinema list to the model
+    //! \param cinemas The list of cinemas to set to the model
     void setCinemaList(QList<Cinema> cinemas);
 
+    //! Convenience method which provides a QVariantMap for the cinema
+    //! at the given index
+    //!
+    //! \param index The index for the cinema to fetch
+    //! \return A QVariantMap with all the information about the cinema
     QVariantMap get(const QModelIndex& index) const;
 
 signals:
+    //! Signal notifying that the cinemas count has changed
     void countChanged();
 
 private:
