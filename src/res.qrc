@@ -51,5 +51,6 @@
         <file>qml/aftercredits.js</file>
         <file>qml/moviedbwrapper.js</file>
         <file>resources/round-corners.png</file>
+        <file>qml/ShowtimesView.qml</file>
     </qresource>
 </RCC>

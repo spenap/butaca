@@ -24,7 +24,7 @@ import 'constants.js' as UIConstants
 import "storage.js" as Storage
 
 Page {
-    id: showtimesView
+    id: cinemasView
 
     tools: ToolBarLayout {
         ToolIcon {
@@ -130,6 +130,8 @@ Page {
            }
         }
 
+        Component { id: showtimesView; ShowtimesView { } }
+
         ListView {
             id: list
             anchors {
@@ -154,10 +156,12 @@ Page {
                 subtitle: model.info
 
                 onClicked: {
-                    if (model.movieImdbId)
-                        appWindow.pageStack.push(movieView, { imdbId: model.movieImdbId, loading: true })
-                    else
-                        appWindow.pageStack.push(searchView, { searchTerm: model.title })
+                    appWindow.pageStack.push(showtimesView,
+                                             {
+                                                 cinemaName: model.name,
+                                                 cinemaInfo: model.info,
+                                                 showtimesModel: theaterModel.showtimes(index)
+                                             })
                 }
             }
 
