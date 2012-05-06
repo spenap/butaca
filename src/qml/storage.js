@@ -41,6 +41,11 @@ function initialize() {
             })
         db.transaction(
             function(tx) {
+                tx.executeSql('CREATE TABLE IF NOT EXISTS watchlist' +
+                              '(movieId TEXT, name TEXT, year TEXT, iconSource TEXT, rating DOUBLE, votes INT)')
+            })
+        db.transaction(
+            function(tx) {
                 tx.executeSql('CREATE TABLE IF NOT EXISTS settings(setting TEXT UNIQUE, value TEXT)')
             })
     } catch (ex) {
@@ -114,6 +119,71 @@ function getFavorites() {
         })
     } catch (ex) {
         console.debug('getFavorites:', ex)
+    }
+    return res
+}
+
+/**
+ * Saves a movie into the watchlist
+ * @param movie The movie to save: (id, name, year, iconSource, rating, votes)
+ */
+function addToWatchlist(movie) {
+    try {
+        var db = getDatabase()
+        db.transaction(function(tx) {
+                           tx.executeSql('INSERT OR REPLACE INTO watchlist '+
+                                         'VALUES (?, ?, ?, ?, ?, ?);',
+                                         [movie.id, movie.name,
+                                          movie.year, movie.iconSource,
+                                          movie.rating, movie.votes])
+                       })
+    } catch (ex) {
+        console.debug('addToWatchlist:', ex)
+    }
+}
+
+/**
+ * Deletes a movie from the watchlist
+ * @param movie The movie to remove: (id)
+ */
+function removeFromWatchlist(movie) {
+    try {
+        var db = getDatabase()
+        db.transaction(function(tx) {
+                           tx.executeSql('DELETE FROM watchlist '+
+                                         'WHERE movieId = ?;',
+                                         [movie.id])
+                       })
+    } catch (ex) {
+        console.debug('removeFromWatchlist:', ex)
+    }
+}
+
+/**
+ * Gets the watchlist from the database
+ *
+ * @return The collection of movies in the watchlist or an empty list
+ */
+function getWatchlist() {
+    var res = []
+    try {
+        var db = getDatabase()
+        db.transaction(function(tx) {
+                           var rs = tx.executeSql('SELECT movieId, name, year, iconSource, rating, votes FROM watchlist;')
+                           for (var i = 0; i < rs.rows.length; i ++) {
+                               var currentItem = rs.rows.item(i)
+                               res.push({
+                                            'id': currentItem.movieId,
+                                            'title': currentItem.name,
+                                            'year': currentItem.year,
+                                            'icon': currentItem.iconSource,
+                                            'rating': currentItem.rating,
+                                            'votes': currentItem.votes,
+                                        })
+                           }
+                       })
+    } catch (ex) {
+        console.debug('getWatchlist:', ex)
     }
     return res
 }
