@@ -80,6 +80,8 @@ Item {
         anchors {
             left: delegateImage.visible ? delegateImage.right : parent.left
             leftMargin: UIConstants.DEFAULT_MARGIN
+            right: delegateMoreIndicator.left
+            rightMargin: UIConstants.DEFAULT_MARGIN
             verticalCenter: parent.verticalCenter
         }
         width: parent.width -
