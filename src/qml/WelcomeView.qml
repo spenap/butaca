@@ -192,8 +192,8 @@ Page {
         id: favorites
         anchors { top: list.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
         anchors {
-            leftMargin: UIConstants.DEFAULT_MARGIN
-            rightMargin: UIConstants.DEFAULT_MARGIN
+            leftMargin: 30
+            rightMargin: 30
         }
 
         ListModel {
