@@ -33,6 +33,13 @@ Page {
                 appWindow.pageStack.pop()
             }
         }
+        ToolIcon {
+            iconId: 'toolbar-settings'
+            onClicked: {
+                appWindow.pageStack.push(settingsView, { state: 'showShowtimesSection' })
+            }
+            anchors.right: parent.right
+        }
     }
 
     orientationLock: PageOrientation.LockPortrait
