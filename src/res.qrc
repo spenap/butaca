@@ -54,5 +54,6 @@
         <file>qml/ShowtimesView.qml</file>
         <file>qml/FavoritesView.qml</file>
         <file>qml/ListsView.qml</file>
+        <file>resources/icon-bg-cinema.png</file>
     </qresource>
 </RCC>

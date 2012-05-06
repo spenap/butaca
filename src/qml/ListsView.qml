@@ -54,43 +54,56 @@ Page {
 
     Component { id: favoritesView; FavoritesView { } }
 
-    ListView {
-        id: list
+    Column {
         anchors.fill: parent
-        height: (appWindow.inPortrait ?
-                     UIConstants.HEADER_DEFAULT_HEIGHT_PORTRAIT :
-                     UIConstants.HEADER_DEFAULT_HEIGHT_LANDSCAPE) +
-                    listsModel.count * UIConstants.LIST_ITEM_HEIGHT_DEFAULT
-        model: listsModel
-        clip: true
-        interactive: false
-        delegate: MyListDelegate {
-            width: parent.width
-            title: model.title
-            subtitle: model.subtitle
+        spacing: 100
 
-            onClicked: {
-                switch (action) {
-                case 0:
-                    appWindow.pageStack.push(favoritesView, {
-                                                 headerText: model.title,
-                                                 state: 'favorites'
-                                             })
-                    break;
-                case 1:
-                    appWindow.pageStack.push(favoritesView, {
-                                                 headerText: model.title,
-                                                 state: 'watchlist'
-                                             })
-                    break;
-                default:
-                    console.debug('Action not available')
-                    break
+        ListView {
+            id: list
+            width: parent.width
+            height: (appWindow.inPortrait ?
+                         UIConstants.HEADER_DEFAULT_HEIGHT_PORTRAIT :
+                         UIConstants.HEADER_DEFAULT_HEIGHT_LANDSCAPE) +
+                        listsModel.count * UIConstants.LIST_ITEM_HEIGHT_DEFAULT
+            model: listsModel
+            clip: true
+            interactive: false
+            delegate: MyListDelegate {
+                width: parent.width
+                title: model.title
+                subtitle: model.subtitle
+
+                onClicked: {
+                    switch (action) {
+                    case 0:
+                        appWindow.pageStack.push(favoritesView, {
+                                                     headerText: model.title,
+                                                     state: 'favorites'
+                                                 })
+                        break;
+                    case 1:
+                        appWindow.pageStack.push(favoritesView, {
+                                                     headerText: model.title,
+                                                     state: 'watchlist'
+                                                 })
+                        break;
+                    default:
+                        console.debug('Action not available')
+                        break
+                    }
                 }
             }
-        }
-        header: Header {
+            header: Header {
             text: headerText
+        }
+        }
+
+        Image {
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: 360
+            opacity: 0.5
+            source: 'qrc:/resources/icon-bg-cinema.png'
+            fillMode: Image.PreserveAspectFit
         }
     }
 }
