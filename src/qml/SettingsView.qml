@@ -84,229 +84,258 @@ Page {
                 showDivider: false
             }
 
-            ListSectionDelegate {
+            Column {
                 id: showtimesSection
-                anchors { rightMargin: 0; leftMargin: 0 }
-                //: Label for the showtimes section in the settings view
-                //% "Showtimes"
-                sectionName: qsTrId('btc-settings-showtimes')
-            }
-
-            Row {
-                id: showtimesLocation
+                width: parent.width
                 spacing: UIConstants.DEFAULT_MARGIN
-                width: parent.width
 
-                Label {
-                    id: locationText
-                    anchors.verticalCenter: locationInput.verticalCenter
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
-                    }
-                    color: UIConstants.COLOR_INVERTED_FOREGROUND
-                    //: Label for the default location setting to try for showtimes
-                    //% "Default location"
-                    text: qsTrId('btc-settings-default-location')
+                ListSectionDelegate {
+                    id: showtimesSectionHeader
+                    anchors { rightMargin: 0; leftMargin: 0 }
+                    //: Label for the showtimes section in the settings view
+                    //% "Showtimes"
+                    sectionName: qsTrId('btc-settings-showtimes')
                 }
 
-                TextField {
-                    id: locationInput
-                    //: Placeholder text for the default location. When visible, automatic location will be attempted
-                    //% "Try automatically"
-                    placeholderText: qsTrId('btc-settings-locate-automatically')
-                    width: parent.width - locationText.width - parent.spacing
-                    text: Storage.getSetting('location', '')
-                    Keys.onReturnPressed: {
-                        Storage.setSetting('location', text)
-                    }
+                Row {
+                    id: showtimesLocation
+                    spacing: UIConstants.DEFAULT_MARGIN
+                    width: parent.width
 
-                    Image {
-                        id: clearLocationText
-                        anchors {
-                            right: parent.right
-                            verticalCenter: parent.verticalCenter
+                    Label {
+                        id: locationText
+                        anchors.verticalCenter: locationInput.verticalCenter
+                        platformStyle: LabelStyle {
+                            fontPixelSize: UIConstants.FONT_DEFAULT
                         }
-                        source: 'image://theme/icon-m-input-clear'
-                        visible: locationInput.activeFocus
+                        color: UIConstants.COLOR_INVERTED_FOREGROUND
+                        //: Label for the default location setting to try for showtimes
+                        //% "Default location"
+                        text: qsTrId('btc-settings-default-location')
                     }
 
-                    MouseArea {
-                        id: locationInputMouseArea
-                        anchors.fill: clearLocationText
-                        onClicked: {
-                            inputContext.reset()
-                            locationInput.text = ''
+                    TextField {
+                        id: locationInput
+                        //: Placeholder text for the default location. When visible, automatic location will be attempted
+                        //% "Try automatically"
+                        placeholderText: qsTrId('btc-settings-locate-automatically')
+                        width: parent.width - locationText.width - parent.spacing
+                        text: Storage.getSetting('location', '')
+                        Keys.onReturnPressed: {
+                            Storage.setSetting('location', text)
+                        }
+
+                        Image {
+                            id: clearLocationText
+                            anchors {
+                                right: parent.right
+                                verticalCenter: parent.verticalCenter
+                            }
+                            source: 'image://theme/icon-m-input-clear'
+                            visible: locationInput.activeFocus
+                        }
+
+                        MouseArea {
+                            id: locationInputMouseArea
+                            anchors.fill: clearLocationText
+                            onClicked: {
+                                inputContext.reset()
+                                locationInput.text = ''
+                            }
                         }
                     }
                 }
             }
 
-            ListSectionDelegate {
+            Column {
                 id: browsingSection
-                anchors.rightMargin: 0
-                anchors.leftMargin: 0
-                //: Label for the browsing section in the settings view
-                //% "Browsing"
-                sectionName: qsTrId('btc-settings-browsing')
-            }
-
-            Item {
-                id: orderCriteria
                 width: parent.width
-                height: childrenRect.height
+                spacing: UIConstants.DEFAULT_MARGIN
 
-                Label {
-                    id: criteriaText
-                    anchors.top:  parent.top
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
-                    }
-                    //: Label for the order criteria setting used when browsing
-                    //% "Order criteria"
-                    text: qsTrId('btc-settings-order-criteria')
-                    color: UIConstants.COLOR_INVERTED_FOREGROUND
+                ListSectionDelegate {
+                    id: browsingSectionHeader
+                    anchors.rightMargin: 0
+                    anchors.leftMargin: 0
+                    //: Label for the browsing section in the settings view
+                    //% "Browsing"
+                    sectionName: qsTrId('btc-settings-browsing')
                 }
 
-                ButtonColumn {
-                    id: criteriaOptions
-                    anchors {
-                        top: criteriaText.bottom
-                        topMargin: UIConstants.DEFAULT_MARGIN / 2
-                        right: parent.right
+                Item {
+                    id: orderCriteria
+                    width: parent.width
+                    height: childrenRect.height
+
+                    Label {
+                        id: criteriaText
+                        anchors.top:  parent.top
+                        platformStyle: LabelStyle {
+                            fontPixelSize: UIConstants.FONT_DEFAULT
+                        }
+                        //: Label for the order criteria setting used when browsing
+                        //% "Order criteria"
+                        text: qsTrId('btc-settings-order-criteria')
+                        color: UIConstants.COLOR_INVERTED_FOREGROUND
                     }
 
-                    Button {
-                        id: byRating
-                        //: Label for the "order by rating" setting
-                        //% "Rating"
-                        text: qsTrId('btc-settings-order-by-rating')
-                        onClicked: Storage.setSetting('orderBy', 'rating')
-                    }
+                    ButtonColumn {
+                        id: criteriaOptions
+                        anchors {
+                            top: criteriaText.bottom
+                            topMargin: UIConstants.DEFAULT_MARGIN / 2
+                            right: parent.right
+                        }
 
-                    Button {
-                        id: byRelease
-                        //: Label for the "order by release date" setting
-                        //% "Release"
-                        text: qsTrId('btc-settings-order-by-release')
-                        onClicked: Storage.setSetting('orderBy', 'release')
-                    }
+                        Button {
+                            id: byRating
+                            //: Label for the "order by rating" setting
+                            //% "Rating"
+                            text: qsTrId('btc-settings-order-by-rating')
+                            onClicked: Storage.setSetting('orderBy', 'rating')
+                        }
 
-                    Button {
-                        id: byTitle
-                        //: Label for the "order by title" setting
-                        //% "Title"
-                        text: qsTrId('btc-settings-order-by-title')
-                        onClicked: Storage.setSetting('orderBy', 'title')
-                    }
-                }
-            }
+                        Button {
+                            id: byRelease
+                            //: Label for the "order by release date" setting
+                            //% "Release"
+                            text: qsTrId('btc-settings-order-by-release')
+                            onClicked: Storage.setSetting('orderBy', 'release')
+                        }
 
-            Item {
-                id: sortOrder
-                width: parent.width
-                height: childrenRect.height
-
-                Label {
-                    id: sortOrderText
-                    anchors.top:  parent.top
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
-                    }
-                    //: Label for the sort order setting used when browsing
-                    //% "Sort order"
-                    text: qsTrId('btc-settings-sort-order')
-                    color: UIConstants.COLOR_INVERTED_FOREGROUND
-                }
-
-                ButtonColumn {
-                    id: sortOrderOptions
-                    anchors {
-                        top: sortOrderText.bottom
-                        topMargin: UIConstants.DEFAULT_MARGIN / 2
-                        right: parent.right
-                    }
-
-                    Button {
-                        id: sortAscending
-                        //: Label for the "sort ascending" setting
-                        //% "Ascending"
-                        text: qsTrId('btc-settings-sort-ascending')
-                        onClicked: Storage.setSetting('order', 'asc')
-                    }
-
-                    Button {
-                        id: sortDescending
-                        //: Label for the "sort descending" setting
-                        //% "Descending"
-                        text: qsTrId('btc-settings-sort-descending')
-                        onClicked: Storage.setSetting('order', 'desc')
+                        Button {
+                            id: byTitle
+                            //: Label for the "order by title" setting
+                            //% "Title"
+                            text: qsTrId('btc-settings-order-by-title')
+                            onClicked: Storage.setSetting('orderBy', 'title')
+                        }
                     }
                 }
-            }
 
-            Item {
-                id: resultsPerPage
-                width: parent.width
-                height: childrenRect.height
+                Item {
+                    id: sortOrder
+                    width: parent.width
+                    height: childrenRect.height
 
-                Label {
-                    id: resultsPerPageText
-                    anchors {
-                        verticalCenter: resultsPerPageInput.verticalCenter
-                        left: parent.left
+                    Label {
+                        id: sortOrderText
+                        anchors.top:  parent.top
+                        platformStyle: LabelStyle {
+                            fontPixelSize: UIConstants.FONT_DEFAULT
+                        }
+                        //: Label for the sort order setting used when browsing
+                        //% "Sort order"
+                        text: qsTrId('btc-settings-sort-order')
+                        color: UIConstants.COLOR_INVERTED_FOREGROUND
                     }
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
+
+                    ButtonColumn {
+                        id: sortOrderOptions
+                        anchors {
+                            top: sortOrderText.bottom
+                            topMargin: UIConstants.DEFAULT_MARGIN / 2
+                            right: parent.right
+                        }
+
+                        Button {
+                            id: sortAscending
+                            //: Label for the "sort ascending" setting
+                            //% "Ascending"
+                            text: qsTrId('btc-settings-sort-ascending')
+                            onClicked: Storage.setSetting('order', 'asc')
+                        }
+
+                        Button {
+                            id: sortDescending
+                            //: Label for the "sort descending" setting
+                            //% "Descending"
+                            text: qsTrId('btc-settings-sort-descending')
+                            onClicked: Storage.setSetting('order', 'desc')
+                        }
                     }
-                    //: Label for the results per page setting used when browsing
-                    //% "Results per page"
-                    text: qsTrId('btc-settings-results-per-page')
-                    color: UIConstants.COLOR_INVERTED_FOREGROUND
                 }
 
-                TextField {
-                    id: resultsPerPageInput
-                    anchors.right: parent.right
-                    text: Storage.getSetting('perPage', '10')
-                    width: 100
-                    inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
-                    Keys.onReturnPressed: {
-                        Storage.setSetting('perPage', text)
+                Item {
+                    id: resultsPerPage
+                    width: parent.width
+                    height: childrenRect.height
+
+                    Label {
+                        id: resultsPerPageText
+                        anchors {
+                            verticalCenter: resultsPerPageInput.verticalCenter
+                            left: parent.left
+                        }
+                        platformStyle: LabelStyle {
+                            fontPixelSize: UIConstants.FONT_DEFAULT
+                        }
+                        //: Label for the results per page setting used when browsing
+                        //% "Results per page"
+                        text: qsTrId('btc-settings-results-per-page')
+                        color: UIConstants.COLOR_INVERTED_FOREGROUND
+                    }
+
+                    TextField {
+                        id: resultsPerPageInput
+                        anchors.right: parent.right
+                        text: Storage.getSetting('perPage', '10')
+                        width: 100
+                        inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
+                        Keys.onReturnPressed: {
+                            Storage.setSetting('perPage', text)
+                        }
                     }
                 }
-            }
 
-            Item {
-                id: minVotes
-                width: parent.width
-                height: childrenRect.height
+                Item {
+                    id: minVotes
+                    width: parent.width
+                    height: childrenRect.height
 
-                Label {
-                    id: minVotesText
-                    anchors {
-                        verticalCenter: minVotesInput.verticalCenter
-                        left: parent.left
+                    Label {
+                        id: minVotesText
+                        anchors {
+                            verticalCenter: minVotesInput.verticalCenter
+                            left: parent.left
+                        }
+                        platformStyle: LabelStyle {
+                            fontPixelSize: UIConstants.FONT_DEFAULT
+                        }
+                        //: Label for the minimum votes setting used when browsing
+                        //% "Minimum votes"
+                        text: qsTrId('btc-settings-minimum-votes')
+                        color: UIConstants.COLOR_INVERTED_FOREGROUND
                     }
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_DEFAULT
-                    }
-                    //: Label for the minimum votes setting used when browsing
-                    //% "Minimum votes"
-                    text: qsTrId('btc-settings-minimum-votes')
-                    color: UIConstants.COLOR_INVERTED_FOREGROUND
-                }
 
-                TextField {
-                    id: minVotesInput
-                    anchors.right: parent.right
-                    text: Storage.getSetting('minVotes', '0')
-                    width: 100
-                    inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
-                    Keys.onReturnPressed: {
-                        Storage.setSetting('minVotes', text)
+                    TextField {
+                        id: minVotesInput
+                        anchors.right: parent.right
+                        text: Storage.getSetting('minVotes', '0')
+                        width: 100
+                        inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
+                        Keys.onReturnPressed: {
+                            Storage.setSetting('minVotes', text)
+                        }
                     }
                 }
             }
         }
     }
+
+    states: [
+        State {
+            name: 'showBrowsingSection'
+            PropertyChanges {
+                target: showtimesSection
+                visible: false
+            }
+        },
+        State {
+            name: 'showShowtimesSection'
+            PropertyChanges {
+                target: browsingSection
+                visible: false
+            }
+        }
+    ]
 }
