@@ -29,7 +29,7 @@
 // http://blog.mrcongwang.com/2009/07/21/applying-system-proxy-settings-to-qt-application/
 // for details on adding proxy support to Qt Quick applications
 
-QNetworkAccessManager* CustomNetworkAccessManagerFactory::create(QObject *parent)
+QNetworkAccessManager* CustomNetworkAccessManagerFactory::create(QObject* parent)
 {
     QNetworkAccessManager* networkAccessManager =
             new QNetworkAccessManager(parent);

@@ -22,10 +22,17 @@
 
 #include <QDeclarativeNetworkAccessManagerFactory>
 
+//! \class CustomNetworkAccessManagerFactory
+//! \brief Custom NetworkAccessManagerFactory to allow creating custom QNetworkAccessManagers
+//!
+//! In order to use a custom QNetworkAccessManager (which can use proxy settings),
+//! a custom NetworkAccessManagerFactory must be provided, and the create method,
+//! reimplemented
 class CustomNetworkAccessManagerFactory : public QDeclarativeNetworkAccessManagerFactory
 {
 public:
-    virtual QNetworkAccessManager* create(QObject *parent);
+    //! \reimp
+    virtual QNetworkAccessManager* create(QObject* parent);
 };
 
 #endif // CUSTOMNETWORKACCESSMANAGERFACTORY_H
