@@ -44,6 +44,7 @@ Page {
                              '<li>Petru Motrescu - Romanian (ro)</li>' +
                              '<li>Oytun Şengül, Ismail Coskuner, Aras Ergus - Turkish (tr)</li>' +
                              '<li>Joaquim Rocha - Portuguese (pt)</li></ul>'
+    property string styleSheets: "<style type='text/css'>a:link {color:#FFFFFF}</style>"
 
     tools: ToolBarLayout {
         ToolIcon {
@@ -219,7 +220,7 @@ Page {
                 Label {
                     id: aboutTMDbDisclaimer
                     //: Disclaimer about The Movie Database API usage
-                    text: qsTr('This product uses the ' +
+                    text: styleSheets + qsTr('This product uses the ' +
                                '<a href="http://www.themoviedb.org/">TMDb</a> ' +
                                'API but is not endorsed or certified by TMDb.')
                     width: parent.width
@@ -235,7 +236,7 @@ Page {
                 Label {
                     id: aboutACDisclaimer
                     //: Disclaimer about After Credits API usage
-                    text: qsTr('This product uses <a href="http://aftercredits.com/">' +
+                    text: styleSheets + qsTr('This product uses <a href="http://aftercredits.com/">' +
                                'What\'s After The Credits?</a> API but is not ' +
                                'endorsed or certified by them.')
                     width: parent.width
@@ -251,7 +252,7 @@ Page {
                 Label {
                     id: aboutShowtimesDisclaimer
                     //: Disclaimer about Google Showtimes usage
-                    text: qsTr('This product presents showtimes from' +
+                    text: styleSheets + qsTr('This product presents showtimes from ' +
                                '<a href="http://www.google.com/movies">Google ' +
                                'Movies</a> but is not endorsed or certified by Google.')
                     width: parent.width
