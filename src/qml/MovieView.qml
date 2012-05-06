@@ -23,6 +23,7 @@ import 'butacautils.js' as Util
 import 'aftercredits.js'as WATC
 import 'moviedbwrapper.js' as TMDB
 import 'constants.js' as UIConstants
+import 'storage.js' as Storage
 
 Page {
     id: movieView
@@ -47,15 +48,33 @@ Page {
     Menu {
         id: movieMenu
         visualParent: pageStack
+
         MenuLayout {
             MenuItem {
-                text: true ?
+                enabled: !loading
+                text: !inWatchlist ?
                           //: This adds the movie to the watch list
                           //% "Add to watchlist"
                           qsTrId('btc-watchlist-add') :
                           //: This removes the movie from the watch list
                           //% "Remove from watchlist"
                           qsTrId('btc-watchlist-remove')
+                onClicked: {
+                    if (inWatchlist) {
+                        Storage.removeFromWatchlist({
+                                                        'id': tmdbId
+                                                    })
+                    } else {
+                        Storage.addToWatchlist({
+                                                   'id': tmdbId,
+                                                   'name': parsedMovie.name,
+                                                   'year': Util.getYearFromDate(parsedMovie.released),
+                                                   'iconSource': parsedMovie.poster,
+                                                   'rating': parsedMovie.rating,
+                                                   'votes': parsedMovie.votes
+                                               })
+                    }
+                }
             }
             MenuItem {
                 //: This opens a website displaying the movie homepage
@@ -92,6 +111,7 @@ Page {
     property bool loading: false
     property bool loadingExtended: false
     property bool loadingExtras: false
+    property bool inWatchlist: tmdbId ? Storage.inWatchlist({ 'id': tmdbId }) : false
 
     QtObject {
         id: parsedMovie
