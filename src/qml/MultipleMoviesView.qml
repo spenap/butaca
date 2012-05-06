@@ -33,6 +33,24 @@ Page {
             }
         }
         ToolIcon {
+            enabled: moviesModel.status !== XmlListModel.Loading
+            iconId: 'toolbar-refresh' + (enabled ? '' : '-dimmed')
+            onClicked: {
+                var source = TheMovieDb.movie_browse({
+                                                         'browse_orderBy_value' : Storage.getSetting('orderBy', 'rating'),
+                                                         'browse_order_value' : Storage.getSetting('order', 'desc'),
+                                                         'browse_page_value' : 1,
+                                                         'browse_count_value' : Storage.getSetting('perPage', 10),
+                                                         'browse_minvotes_value' : Storage.getSetting('minVotes', 0),
+                                                         'browse_genres_value' : genre
+                                                     })
+                if (source.localeCompare(moviesModel.source) !== 0) {
+                    moviesModel.reload()
+                }
+            }
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        ToolIcon {
             iconId: 'toolbar-settings'
             onClicked: {
                 appWindow.pageStack.push(settingsView, { state: 'showBrowsingSection' })
@@ -58,6 +76,7 @@ Page {
         query: TheMovieDb.query_path(TheMovieDb.MOVIE_BROWSE)
         onStatusChanged: {
             if (status === XmlListModel.Ready) {
+                localModel.clear()
                 Util.populateModelFromModel(moviesModel, localModel, Util.TMDbMovie)
             }
         }
