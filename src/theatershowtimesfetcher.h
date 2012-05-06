@@ -28,17 +28,32 @@
 class QWebView;
 class TheaterListModel;
 
+//! \class TheaterShowtimesFetcher
+//! \brief Class for fetching cinemas and showtimes for a given location
+//!
+//! This class provides cinemas around a given location, and showtimes for the
+//! movies playing there
 class TheaterShowtimesFetcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit TheaterShowtimesFetcher(TheaterListModel *model);
+    //! Constructor
+    //! \param model TheaterListModel to be populated
+    explicit TheaterShowtimesFetcher(TheaterListModel* model);
+
+    //! Destructor
     ~TheaterShowtimesFetcher();
 
 public slots:
+    //! Fetches cinemas playing around a given location. An empty location tries
+    //! automatic location
+    //! \param location The location to search for cinemas, will try automatically
+    //! if empty
     void fetchTheaters(QString location = QString());
 
 signals:
+    //! Signal notifying that the cinemas have been fetched, and their number
+    //! \param count The number of cinemas fetched
     void theatersFetched(int count);
 
 private slots:

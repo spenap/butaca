@@ -28,7 +28,7 @@
 
 #include <QDebug>
 
-TheaterShowtimesFetcher::TheaterShowtimesFetcher(TheaterListModel *model) :
+TheaterShowtimesFetcher::TheaterShowtimesFetcher(TheaterListModel* model) :
     m_webView(new QWebView),
     m_theaterListModel(model)
 {
@@ -43,6 +43,8 @@ TheaterShowtimesFetcher::~TheaterShowtimesFetcher()
 
 void TheaterShowtimesFetcher::fetchTheaters(QString location)
 {
+    // TODO: This is currently hardcoded to Google Showtimes. It would be
+    // better if several services could be used.
     m_showtimesBaseUrl = QUrl("http://www.google.com/movies");
     m_cinemas.clear();
     m_parsedPages = 0;
