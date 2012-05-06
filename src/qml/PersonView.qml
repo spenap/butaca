@@ -48,13 +48,11 @@ Page {
         visualParent: pageStack
         MenuLayout {
             MenuItem {
-                //: This visits the Internet Movie Database page of this content (movie or person)
                 //% "View in IMDb"
                 text: qsTrId('btc-open-imdb')
                 onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + parsedPerson.imdbId)
             }
             MenuItem {
-                //: This visits the The Movie Database page of this content (movie or person)
                 //% "View in TMDb"
                 text: qsTrId('btc-open-tmdb')
                 onClicked: Qt.openUrlExternally(parsedPerson.url)
@@ -175,7 +173,6 @@ Page {
 
             Label {
                 id: extendedContentLabel
-                //: This indicates that the extended info for a content (person or movie) is still loading
                 //% "Loading content"
                 text: qsTrId('btc-content-loading')
                 visible: loadingExtended

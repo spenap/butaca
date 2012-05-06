@@ -286,6 +286,7 @@ Page {
 
     QueryDialog {
         id: licenseDialog
+        //% "License"
         titleText: qsTrId('btc-about-license')
         message: license
         //: OK button
@@ -295,6 +296,7 @@ Page {
 
     QueryDialog {
         id: creditsDialog
+        //% "Credits"
         titleText: qsTrId('btc-about-credits')
         message: credits
         acceptButtonText: qsTrId('btc-about-ok')

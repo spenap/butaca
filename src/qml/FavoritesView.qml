@@ -138,6 +138,7 @@ Page {
             }
             PropertyChanges {
                 target: noContentItem
+                //% "Your favorite content will appear here"
                 text: qsTrId('btc-mark-favorite')
             }
             StateChangeScript {
