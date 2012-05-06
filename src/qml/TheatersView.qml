@@ -34,6 +34,18 @@ Page {
             }
         }
         ToolIcon {
+            enabled: theatersContent.state !== 'Loading'
+            iconId: 'toolbar-refresh' + (enabled ? '' : '-dimmed')
+            onClicked: {
+                location = Storage.getSetting('location', '')
+                if (location.localeCompare(controller.currentLocation()) !== 0) {
+                    controller.fetchTheaters(location)
+                    theatersContent.state = 'Loading'
+                }
+            }
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        ToolIcon {
             iconId: 'toolbar-settings'
             onClicked: {
                 appWindow.pageStack.push(settingsView, { state: 'showShowtimesSection' })
