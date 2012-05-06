@@ -28,11 +28,21 @@ class TheaterShowtimesFetcher;
 class TheaterListModel;
 class SortFilterModel;
 
+//! \class Controller
+//! \brief Class exposing core functionality to the QML context
+//!
+//! This class exposes several methods, not available in pure QML, to the
+//! context, such as sharing using the share-ui interface, retrieving movie
+//! showtimes, accessing the current location, formatting a currency, saving
+//! images or opening Nokia Store links in the Nokia Store client
 class Controller : public QObject
 {
     Q_OBJECT
 public:
+    //! Constructor
     explicit Controller(QDeclarativeContext *context);
+
+    //! Destructor
     ~Controller();
 
 public slots:
@@ -55,8 +65,14 @@ public slots:
     //! \return Formatted value
     QString formatCurrency(QString value);
 
-    void saveImage(QObject *item, const QString &remoteSource);
+    //! Saves a QML image to the device, so it can be shown in the
+    //! built-in Gallery
+    //! \param item The item containing the QML image, as a QObject pointer
+    //! \param remoteSource The url pointing to the image
+    void saveImage(QObject* item, const QString& remoteSource);
 
+    //! Opens a link in the Nokia Store client
+    //! \param link The link to open in the Nokia Store client
     void openStoreClient(const QString& url) const;
 
 signals:
@@ -68,10 +84,10 @@ private slots:
     void onTheatersFetched(int count);
 
 private:
-    QDeclarativeContext *m_declarativeContext;
-    TheaterShowtimesFetcher *m_showtimesFetcher;
-    TheaterListModel *m_theaterListModel;
-    SortFilterModel *m_sortFilterModel;
+    QDeclarativeContext* m_declarativeContext;
+    TheaterShowtimesFetcher* m_showtimesFetcher;
+    TheaterListModel* m_theaterListModel;
+    SortFilterModel* m_sortFilterModel;
     QString m_location;
     ImageSaver m_imageSaver;
 };

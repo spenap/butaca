@@ -39,7 +39,7 @@ static const QString STORE_DBUS_IFACE("com.nokia.OviStoreClient");
 
 static const QString PICTURES_PATH("/home/user/MyDocs/Pictures/");
 
-Controller::Controller(QDeclarativeContext *context) :
+Controller::Controller(QDeclarativeContext* context) :
     QObject(),
     m_declarativeContext(context),
     m_showtimesFetcher(0),
@@ -115,7 +115,7 @@ QString Controller::formatCurrency(QString value)
     return QString("$%L1").arg(doubleValue, 0, 'f', 0);
 }
 
-void Controller::saveImage(QObject *item, const QString &remoteSource)
+void Controller::saveImage(QObject* item, const QString& remoteSource)
 {
     QFileInfo imageUrl(remoteSource);
     QUrl sourceUrl = QUrl::fromUserInput(PICTURES_PATH +
