@@ -112,6 +112,8 @@ Page {
 
     Component { id: aboutView; AboutView { } }
 
+    Component { id: listsView; ListsView { } }
+
     ListModel {
         id: menuModel
 
@@ -169,6 +171,9 @@ Page {
                     break;
                 case 2:
                     appWindow.pageStack.push(searchView)
+                    break;
+                case 3:
+                    appWindow.pageStack.push(listsView, { headerText: model.title })
                     break;
                 default:
                     console.debug('Action not available')

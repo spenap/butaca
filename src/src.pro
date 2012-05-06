@@ -85,7 +85,9 @@ OTHER_FILES += \
     qml/MyTextExpander.qml \
     qml/aftercredits.js \
     qml/moviedbwrapper.js \
-    qml/ShowtimesView.qml
+    qml/ShowtimesView.qml \
+    qml/FavoritesView.qml \
+    qml/ListsView.qml
 
 RESOURCES += \
     res.qrc

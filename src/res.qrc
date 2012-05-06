@@ -52,5 +52,7 @@
         <file>qml/moviedbwrapper.js</file>
         <file>resources/round-corners.png</file>
         <file>qml/ShowtimesView.qml</file>
+        <file>qml/FavoritesView.qml</file>
+        <file>qml/ListsView.qml</file>
     </qresource>
 </RCC>
