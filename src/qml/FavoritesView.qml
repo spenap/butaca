@@ -37,6 +37,8 @@ Page {
     }
 
     property bool holdsMixedContent: false
+    property string moviePlaceholderIcon: 'qrc:/resources/movie-placeholder.svg'
+    property string personPlaceholderIcon: 'qrc:/resources/person-placeholder.svg'
     property string headerText: ''
 
     ListModel {
@@ -54,11 +56,9 @@ Page {
         model: localModel
         delegate: FavoriteDelegate {
 
-            property string placeholderIcon: (type == Util.MOVIE ?
-                                                  'qrc:/resources/movie-placeholder.svg' :
-                                                  'qrc:/resources/person-placeholder.svg')
-
-            source: model.icon ? model.icon : placeholderIcon
+            source: model.icon ?
+                        model.icon :
+                        (type == Util.PERSON ? personPlaceholderIcon : moviePlaceholderIcon)
 
             text: title
             onClicked: {
@@ -72,6 +72,15 @@ Page {
                 appWindow.pageStack.push(thePage, pageConfig)
             }
         }
+    }
+
+    NoContentItem {
+        id: noContentItem
+        anchors {
+            fill: parent
+            margins: UIConstants.DEFAULT_MARGIN
+        }
+        visible: localModel.count == 0
     }
 
     function loadContent(loadFavorites) {
@@ -96,6 +105,12 @@ Page {
                 target: favoritesView
                 holdsMixedContent: false
             }
+            PropertyChanges {
+                target: noContentItem
+                //: Shown as a placeholder in the watchlist view, when empty
+                //% "Movies in your watchlist will appear here"
+                text: qsTrId('btc-mark-watchlist')
+            }
             StateChangeScript {
                 script: loadContent(false)
             }
@@ -105,6 +120,10 @@ Page {
             PropertyChanges {
                 target: favoritesView
                 holdsMixedContent: true
+            }
+            PropertyChanges {
+                target: noContentItem
+                text: qsTrId('btc-mark-favorite')
             }
             StateChangeScript {
                 script: loadContent(true)
