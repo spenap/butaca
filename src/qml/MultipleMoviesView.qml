@@ -93,6 +93,12 @@ Page {
         anchors.fill: parent
         model: localModel
         delegate: MultipleMoviesDelegate {
+            iconSource: model.poster
+            name: model.name
+            rating: model.rating
+            votes: model.votes
+            year: Util.getYearFromDate(model.released)
+
             onClicked: {
                 pageStack.push(movieView,
                                {

@@ -20,13 +20,19 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import com.nokia.extras 1.1
-import 'butacautils.js' as Util
 import 'constants.js' as UIConstants
 
 Item {
     id: movieDelegate
 
     signal clicked()
+
+    property string iconSource: placeholderSource
+    property string placeholderSource: 'qrc:/resources/movie-placeholder.svg'
+    property string name: ''
+    property string year: ''
+    property double rating: 0
+    property int votes: 0
 
     width: movieDelegate.ListView.view.width
     height: 140 + UIConstants.DEFAULT_MARGIN
@@ -73,10 +79,10 @@ Item {
                 width: 95
                 height: 140
                 fillMode: Image.PreserveAspectFit
-                source: poster ? poster : 'qrc:/resources/movie-placeholder.svg'
+                source: iconSource
                 onStatusChanged: {
                     if (moviePoster.status == Image.Error) {
-                        moviePoster.source = 'qrc:/resources/movie-placeholder.svg'
+                        moviePoster.source = placeholderSource
                     }
                 }
             }
@@ -98,7 +104,7 @@ Item {
                     textFormat: Text.StyledText
                     maximumLineCount: 2
                     wrapMode: Text.WordWrap
-                    text: title
+                    text: name
                 }
 
                 Label {
@@ -109,7 +115,7 @@ Item {
                     }
                     color: UIConstants.COLOR_SECONDARY_FOREGROUND
                     width: parent.width
-                    text: '(' + Util.getYearFromDate(released) +')'
+                    text: '(%1)'.arg(year)
                 }
 
                 MyRatingIndicator {
