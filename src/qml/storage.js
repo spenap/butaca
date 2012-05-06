@@ -189,6 +189,27 @@ function getWatchlist() {
 }
 
 /**
+ * Checks if a movie is in the watchlist
+ * @param movie The movie to check
+ * @return TRUE if the movie is in the watchlist, FALSE otherwise
+ */
+function inWatchlist(movie) {
+    var res = false
+    try {
+        var db = getDatabase()
+        db.transaction(function(tx) {
+                           var rs = tx.executeSql('SELECT movieId FROM watchlist '+
+                                                  'WHERE movieId = ?;',
+                                                  [movie.id])
+                           res = rs.rows.length > 0
+                       })
+    } catch (ex) {
+        console.debug('removeFromWatchlist:', ex)
+    }
+    return res
+}
+
+/**
  * Saves a setting into the database
  * @param setting The setting to save
  * @param value The value for the setting to save
