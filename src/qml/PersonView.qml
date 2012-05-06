@@ -280,8 +280,8 @@ Page {
                         }
                         wrapMode: Text.WordWrap
                         //: Text shown in the person view displaying the number of movies a person is known for
-                        //% "Known for %1 movies"
-                        text: qsTrId('btc-person-known-for').arg(parsedPerson.knownMovies)
+                        //% "Known for %Ln movie(s)"
+                        text: qsTrId('btc-person-known-for', parsedPerson.knownMovies).arg(parsedPerson.knownMovies)
                     }
                 }
             }
