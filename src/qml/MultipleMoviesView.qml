@@ -118,8 +118,7 @@ Page {
             margins: UIConstants.DEFAULT_MARGIN
         }
         //: When browsing movies, shown when no movies matched the browse criteria
-        //% "No content found"
-        text: qsTrId('btc-browse-not-found')
+        text: qsTr('No content found')
         visible: moviesModel.status === XmlListModel.Ready && moviesModel.count === 0
     }
 

@@ -40,32 +40,24 @@ Page {
         // must be done this way
 
         //: Shown as the title for the browse view menu entry
-        //% "Movie genres"
-        menuModel.get(0).title = qsTrId('btc-browse-title')
+        menuModel.get(0).title = qsTr('Movie genres')
         //: Shown as the subtitle for the browse view menu entry
-        //% "Explore movie genres"
-        menuModel.get(0).subtitle = qsTrId('btc-browse-subtitle')
+        menuModel.get(0).subtitle = qsTr('Explore movie genres')
 
         //: Shown as the title for the showtimes menu entry
-        //% "Showtimes"
-        menuModel.get(1).title = qsTrId('btc-showtimes-title')
+        menuModel.get(1).title = qsTr('Showtimes')
         //: Shown as the subtitle for the browse view menu entry
-        //% "What's on in cinemas near you"
-        menuModel.get(1).subtitle = qsTrId('btc-showtimes-subtitle')
+        menuModel.get(1).subtitle = qsTr('What\'s on in cinemas near you')
 
         //: Shown as the title for the search view menu entry
-        //% "Search"
-        menuModel.get(2).title = qsTrId('btc-search-title')
+        menuModel.get(2).title = qsTr('Search')
         //: Shown as the subtitle for the search view menu entry
-        //% "Search people and movies"
-        menuModel.get(2).subtitle = qsTrId('btc-search-subtitle')
+        menuModel.get(2).subtitle = qsTr('Search movies and celebrities')
 
         //: Shown as the title for the lists view menu entry
-        //% "Lists"
-        menuModel.get(3).title = qsTrId('btc-lists-title')
+        menuModel.get(3).title = qsTr('Lists')
         //: Shown as the subtitle for the lists view menu entry
-        //% "Favorites and watchlist"
-        menuModel.get(3).subtitle = qsTrId('btc-lists-subtitle')
+        menuModel.get(3).subtitle = qsTr('Favorites and watchlist')
     }
 
     tools: ToolBarLayout {
@@ -84,15 +76,13 @@ Page {
             MenuItem {
                 id: settingsEntry
                 //: Title for the settings entry in the main page object menu
-                //% "Settings"
-                text: qsTrId('btc-settings-title')
+                text: qsTr('Settings')
                 onClicked: appWindow.pageStack.push(settingsView)
             }
             MenuItem {
                 id: aboutEntry
                 //: Title for the about entry in the main page object menu
-                //% "About"
-                text: qsTrId('btc-about-title')
+                text: qsTr('About')
                 onClicked: appWindow.pageStack.push(aboutView)
             }
         }
@@ -183,8 +173,7 @@ Page {
         }
         header: Header {
             //: Shown in the main view header
-            //% "Enjoy the show!"
-            text: qsTrId('btc-welcome-header')
+            text: qsTr('Enjoy the show!')
         }
     }
 
@@ -238,8 +227,7 @@ Page {
                 margins: UIConstants.DEFAULT_MARGIN
             }
             //: Shown as a placeholder in the favorites area of the main view while no favorites are there
-            //% "Your favorite content will appear here"
-            text: qsTrId('btc-mark-favorite')
+            text: qsTr('Your favorite content will appear here')
             visible: favoritesModel.count == 0
         }
     }

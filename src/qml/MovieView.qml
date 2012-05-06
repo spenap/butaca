@@ -54,11 +54,9 @@ Page {
                 enabled: !loading
                 text: !inWatchlist ?
                           //: This adds the movie to the watch list
-                          //% "Add to watchlist"
-                          qsTrId('btc-watchlist-add') :
+                          qsTr('Add to watchlist') :
                           //: This removes the movie from the watch list
-                          //% "Remove from watchlist"
-                          qsTrId('btc-watchlist-remove')
+                          qsTr('Remove from watchlist')
                 onClicked: {
                     if (inWatchlist) {
                         Storage.removeFromWatchlist({
@@ -78,28 +76,24 @@ Page {
             }
             MenuItem {
                 //: This opens a website displaying the movie homepage
-                //% "Open homepage"
-                text: qsTrId('btc-open-homepage')
+                text: qsTr('Open homepage')
                 visible: parsedMovie.homepage
                 onClicked: Qt.openUrlExternally(parsedMovie.homepage)
             }
             MenuItem {
                 //: This opens a website displaying movie's extras after or during credits
-                //% "View extras"
-                text: qsTrId('btc-open-movie-extras')
+                text: qsTr('View extras')
                 visible: parsedMovie.extrasUrl
                 onClicked: Qt.openUrlExternally(parsedMovie.extrasUrl)
             }
             MenuItem {
                 //: This visits the Internet Movie Database page of this content (movie or person)
-                //% "View in IMDb"
-                text: qsTrId('btc-open-imdb')
+                text: qsTr('View in IMDb')
                 onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + parsedMovie.imdbId)
             }
             MenuItem {
                 //: This visits the The Movie Database page of this content (movie or person)
-                //% "View in TMDb"
-                text: qsTrId('btc-open-tmdb')
+                text: qsTr('View in TMDb')
                 onClicked: Qt.openUrlExternally(parsedMovie.url)
             }
         }
@@ -139,8 +133,7 @@ Page {
         property string homepage: ''
         property string extras:
             //: This indicates that no extra content after or during the credits was found
-            //% "Not found"
-            qsTrId('btc-extras-not-found')
+            qsTr('Not found')
         property string extrasUrl: ''
         property bool extrasFetched: false
 
@@ -325,8 +318,7 @@ Page {
             Label {
                 id: extendedContentLabel
                 //: This indicates that the extended info for a content (person or movie) is still loading
-                //% "Loading content"
-                text: qsTrId('btc-content-loading')
+                text: qsTr('Loading content')
                 visible: loadingExtended
                 anchors.horizontalCenter: parent.horizontalCenter
 
@@ -381,8 +373,7 @@ Page {
                         }
                         wrapMode: Text.WordWrap
                         //: This shows the classification of a movie and its runtime (duration)
-                        //% "Rated %1, %2"
-                        text: qsTrId('btc-movie-rating-runtime').arg(parsedMovie.certification).arg(Util.parseRuntime(parsedMovie.runtime))
+                        text: qsTr('Rated %1, %2').arg(parsedMovie.certification).arg(Util.parseRuntime(parsedMovie.runtime))
                     }
 
                     Item {
@@ -475,8 +466,7 @@ Page {
                 MyListDelegate {
                     width: parent.width
                     //: Opens the movie trailer for viewing
-                    //% "Watch trailer"
-                    title: qsTrId('btc-watch-trailer')
+                    title: qsTr('Watch trailer')
                     titleSize: UIConstants.FONT_SLARGE
 
                     iconSource: 'qrc:/resources/icon-m-common-video-playback.png'
@@ -497,8 +487,7 @@ Page {
                 width: parent.width
                 visible: parsedMovie.overview
                 //: Label acting as the header for the overview
-                //% "Overview"
-                textHeader: qsTrId('btc-movie-overview')
+                textHeader: qsTr('Overview')
                 textContent: parsedMovie.overview
             }
 
@@ -509,8 +498,7 @@ Page {
                 MyEntryHeader {
                     width: parent.width
                     //: Label acting as the header for the release date
-                    //% "Release date"
-                    text: qsTrId('btc-movie-release-date')
+                    text: qsTr('Release date')
                 }
 
                 Label {
@@ -532,8 +520,7 @@ Page {
                 MyEntryHeader {
                     width: parent.width
                     //: Label acting as the header for the genres
-                    //% "Genre"
-                    text: qsTrId('btc-movie-genre')
+                    text: qsTr('Genre')
                 }
 
                 MyModelFlowPreviewer {
@@ -551,8 +538,7 @@ Page {
                 MyEntryHeader {
                     width: parent.width
                     //: Label acting as the header for the studios
-                    //% "Studios"
-                    text: qsTrId('btc-movie-studios')
+                    text: qsTr('Studios')
                 }
 
                 MyModelFlowPreviewer {
@@ -570,8 +556,7 @@ Page {
                 MyEntryHeader {
                     width: parent.width
                     //: Label acting as the header for the movie budget
-                    //% "Budget"
-                    text: qsTrId('btc-movie-budget')
+                    text: qsTr('Budget')
                 }
 
                 Label {
@@ -592,8 +577,7 @@ Page {
                 MyEntryHeader {
                     width: parent.width
                     //: Label acting as the header for the movie revenue
-                    //% "Revenue"
-                    text: qsTrId('btc-movie-revenue')
+                    text: qsTr('Revenue')
                 }
 
                 Label {
@@ -613,8 +597,7 @@ Page {
                 MyEntryHeader {
                     width: parent.width
                     //: Label acting as the header for the extra information after / during credits
-                    //% "Extras after or during credits?"
-                    text: qsTrId('btc-extras-header')
+                    text: qsTr('Extras after or during credits?')
 
                     BusyIndicator {
                         visible: running
@@ -646,16 +629,14 @@ Page {
                 previewedModel: castModel
                 previewerHeaderText:
                     //: Header for the cast preview shown in the movie view
-                    //% "Cast"
-                    qsTrId('btc-previewcast-header')
+                    qsTr('Cast')
                 previewerDelegateTitle: 'name'
                 previewerDelegateSubtitle: 'character'
                 previewerDelegateIcon: 'profile'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText:
                     //: Footer for the cast preview shown in the movie view. When clicked, shows the full cast.
-                    //% "Full cast"
-                    qsTrId('btc-previewcast-footer')
+                    qsTr('Full cast')
                 visible: castModel.count > 0
 
                 onClicked: {
@@ -679,16 +660,14 @@ Page {
                 previewedModel: crewModel
                 previewerHeaderText:
                     //: Header for the crew preview shown in the movie view
-                    //% "Crew"
-                    qsTrId('btc-previewcrew-header')
+                    qsTr('Crew')
                 previewerDelegateTitle: 'name'
                 previewerDelegateSubtitle: 'job'
                 previewerDelegateIcon: 'profile'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText:
                     //: Footer for the crew preview shown in the movie view. When clicked, shows the full cast and crew.
-                    //% "Full cast & crew"
-                    qsTrId('btc-previewcrew-footer')
+                    qsTr('Full cast & crew')
                 visible: crewModel.count > 0
 
                 onClicked: {

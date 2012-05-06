@@ -46,8 +46,7 @@ Page {
         model: filmographyModel
         header: Header {
             //: This appears in the filmography view header
-            //% "%1's filmography"
-            text: qsTrId('btc-filmography-header').arg(personName)
+            text: qsTr('%1\'s filmography').arg(personName)
             showDivider: false
         }
         delegate: MyListDelegate {

@@ -123,8 +123,7 @@ Page {
             PropertyChanges {
                 target: noContentItem
                 //: Shown as a placeholder in the watchlist view, when empty
-                //% "Movies in your watchlist will appear here"
-                text: qsTrId('btc-mark-watchlist')
+                text: qsTr('Movies in your watchlist will appear here')
             }
             StateChangeScript {
                 script: loadContent(false)
@@ -138,8 +137,7 @@ Page {
             }
             PropertyChanges {
                 target: noContentItem
-                //% "Your favorite content will appear here"
-                text: qsTrId('btc-mark-favorite')
+                text: qsTr('Your favorite content will appear here')
             }
             StateChangeScript {
                 script: loadContent(true)

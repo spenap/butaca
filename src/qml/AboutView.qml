@@ -269,16 +269,14 @@ Page {
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 //: Shown in a button. When clicked, the application license is shown
-                //% "License"
-                text: qsTrId('btc-about-license')
+                text: qsTr('License')
                 onClicked: licenseDialog.open()
             }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 //: Shown in a button. When clicked, the application credits are shown
-                //% "Credits"
-                text: qsTrId('btc-about-credits')
+                text: qsTr('Credits')
                 onClicked: creditsDialog.open()
             }
         }
@@ -286,20 +284,17 @@ Page {
 
     QueryDialog {
         id: licenseDialog
-        //% "License"
-        titleText: qsTrId('btc-about-license')
+        titleText: qsTr('License')
         message: license
         //: OK button
-        //% "OK"
-        acceptButtonText: qsTrId('btc-about-ok')
+        acceptButtonText: qsTr('OK')
     }
 
     QueryDialog {
         id: creditsDialog
-        //% "Credits"
-        titleText: qsTrId('btc-about-credits')
+        titleText: qsTr('Credits')
         message: credits
-        acceptButtonText: qsTrId('btc-about-ok')
+        acceptButtonText: qsTr('OK')
     }
 
     ScrollDecorator {

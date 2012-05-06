@@ -79,8 +79,7 @@ Page {
                 id: settingsHeader
                 anchors { rightMargin: 0; leftMargin: 0 }
                 //: Text shown in the settings view header
-                //% "Settings"
-                text: qsTrId('btc-settings-header')
+                text: qsTr('Settings')
                 showDivider: false
             }
 
@@ -93,8 +92,7 @@ Page {
                     id: showtimesSectionHeader
                     anchors { rightMargin: 0; leftMargin: 0 }
                     //: Label for the showtimes section in the settings view
-                    //% "Showtimes"
-                    sectionName: qsTrId('btc-settings-showtimes')
+                    sectionName: qsTr('Showtimes')
                 }
 
                 Row {
@@ -110,15 +108,13 @@ Page {
                         }
                         color: UIConstants.COLOR_INVERTED_FOREGROUND
                         //: Label for the default location setting to try for showtimes
-                        //% "Default location"
-                        text: qsTrId('btc-settings-default-location')
+                        text: qsTr('Default location')
                     }
 
                     TextField {
                         id: locationInput
                         //: Placeholder text for the default location. When visible, automatic location will be attempted
-                        //% "Try automatically"
-                        placeholderText: qsTrId('btc-settings-locate-automatically')
+                        placeholderText: qsTr('Try automatically')
                         width: parent.width - locationText.width - parent.spacing
                         text: Storage.getSetting('location', '')
                         Keys.onReturnPressed: {
@@ -157,8 +153,7 @@ Page {
                     anchors.rightMargin: 0
                     anchors.leftMargin: 0
                     //: Label for the browsing section in the settings view
-                    //% "Browsing"
-                    sectionName: qsTrId('btc-settings-browsing')
+                    sectionName: qsTr('Browsing')
                 }
 
                 Item {
@@ -173,8 +168,7 @@ Page {
                             fontPixelSize: UIConstants.FONT_DEFAULT
                         }
                         //: Label for the order criteria setting used when browsing
-                        //% "Order criteria"
-                        text: qsTrId('btc-settings-order-criteria')
+                        text: qsTr('Order criteria')
                         color: UIConstants.COLOR_INVERTED_FOREGROUND
                     }
 
@@ -189,24 +183,21 @@ Page {
                         Button {
                             id: byRating
                             //: Label for the "order by rating" setting
-                            //% "Rating"
-                            text: qsTrId('btc-settings-order-by-rating')
+                            text: qsTr('Rating')
                             onClicked: Storage.setSetting('orderBy', 'rating')
                         }
 
                         Button {
                             id: byRelease
                             //: Label for the "order by release date" setting
-                            //% "Release"
-                            text: qsTrId('btc-settings-order-by-release')
+                            text: qsTr('Release')
                             onClicked: Storage.setSetting('orderBy', 'release')
                         }
 
                         Button {
                             id: byTitle
                             //: Label for the "order by title" setting
-                            //% "Title"
-                            text: qsTrId('btc-settings-order-by-title')
+                            text: qsTr('Title')
                             onClicked: Storage.setSetting('orderBy', 'title')
                         }
                     }
@@ -224,8 +215,7 @@ Page {
                             fontPixelSize: UIConstants.FONT_DEFAULT
                         }
                         //: Label for the sort order setting used when browsing
-                        //% "Sort order"
-                        text: qsTrId('btc-settings-sort-order')
+                        text: qsTr('Sort order')
                         color: UIConstants.COLOR_INVERTED_FOREGROUND
                     }
 
@@ -240,16 +230,14 @@ Page {
                         Button {
                             id: sortAscending
                             //: Label for the "sort ascending" setting
-                            //% "Ascending"
-                            text: qsTrId('btc-settings-sort-ascending')
+                            text: qsTr('Ascending')
                             onClicked: Storage.setSetting('order', 'asc')
                         }
 
                         Button {
                             id: sortDescending
                             //: Label for the "sort descending" setting
-                            //% "Descending"
-                            text: qsTrId('btc-settings-sort-descending')
+                            text: qsTr('Descending')
                             onClicked: Storage.setSetting('order', 'desc')
                         }
                     }
@@ -270,8 +258,7 @@ Page {
                             fontPixelSize: UIConstants.FONT_DEFAULT
                         }
                         //: Label for the results per page setting used when browsing
-                        //% "Results per page"
-                        text: qsTrId('btc-settings-results-per-page')
+                        text: qsTr('Results per page')
                         color: UIConstants.COLOR_INVERTED_FOREGROUND
                     }
 
@@ -302,8 +289,7 @@ Page {
                             fontPixelSize: UIConstants.FONT_DEFAULT
                         }
                         //: Label for the minimum votes setting used when browsing
-                        //% "Minimum votes"
-                        text: qsTrId('btc-settings-minimum-votes')
+                        text: qsTr('Minimum votes')
                         color: UIConstants.COLOR_INVERTED_FOREGROUND
                     }
 

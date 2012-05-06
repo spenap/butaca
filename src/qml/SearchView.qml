@@ -48,15 +48,13 @@ Page {
     Header {
         id: header
         //: Header shown in the search view
-        //% "Search"
-        text: qsTrId('btc-search-header')
+        text: qsTr('Search')
     }
 
     TextField {
         id: searchInput
         //: Placeholder text shown in the search input field
-        //% "Enter search terms"
-        placeholderText: qsTrId('btc-search-placeholder')
+        placeholderText: qsTr('Enter search terms')
 
         anchors {
             top: header.bottom
@@ -104,15 +102,13 @@ Page {
         Button {
             id: movieSearch
             //: Shown in the button selecting movie search
-            //% "Movies"
-            text: qsTrId('btc-search-movies')
+            text: qsTr('Movies')
         }
 
         Button {
             id: peopleSearch
             //: Shown in the button selecting celebrities search
-            //% "Celebrities"
-            text: qsTrId('btc-search-people')
+            text: qsTr('Celebrities')
         }
 
         onCheckedButtonChanged: {
@@ -248,8 +244,7 @@ Page {
                 target: noResults
                 visible: true
                 //: Shown in the search results area when an error ocurred
-                //% "There was an error performing the search
-                text: qsTrId('btc-search-error')
+                text: qsTr('There was an error performing the search')
             }
         },
         State {
@@ -262,8 +257,7 @@ Page {
                 target: noResults
                 visible: true
                 //: Shown in the search results area when no results were found
-                //% "No results found"
-                text: qsTrId('btc-search-not-found')
+                text: qsTr('No results found')
             }
         },
         State {
@@ -276,8 +270,7 @@ Page {
                 target: noResults
                 visible: true
                 //: Shown in the search results area when no terms have been introduced
-                //% "Enter search terms"
-                text: qsTrId('btc-search-extendedplaceholder')
+                text: qsTr('Introduce search terms')
             }
         }
     ]

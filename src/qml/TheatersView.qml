@@ -109,8 +109,7 @@ Page {
             }
             placeholderText:
                 //: Placeholder text for the search field in the showtimes view
-                //% "Search"
-                qsTrId('btc-showtimes-placeholder')
+                qsTr('Search')
             opacity: showShowtimesFilter ? 1 : 0
             inputMethodHints: Qt.ImhNoPredictiveText
 
@@ -169,8 +168,7 @@ Page {
 
                 Header {
                     //: Header shown in the showtimes view
-                    //% "In theaters"
-                    text: qsTrId('btc-showtimes-header')
+                    text: qsTr('In theaters')
                     showDivider: false
                 }
 
@@ -185,8 +183,7 @@ Page {
                     horizontalAlignment: Text.AlignHCenter
 
                     //: Hint shown to tell users that they can filter by pulling
-                    //% "Pull to filter by cinema or movie"
-                    text: qsTrId('btc-showtimes-filter-hint')
+                    text: qsTr('Pull to filter by cinema or movie')
                 }
             }
             delegate: MyListDelegate {
@@ -247,11 +244,9 @@ Page {
             }
             text: (location ?
                        //: Message shown when no results are found for a given location
-                       //% "No results for %1"
-                       qsTrId('btc-no-results-given-location').arg(location) :
+                       qsTr('No results for %1').arg(location) :
                        //: Message shown when no results are found for the automatic location
-                       //% "No results for your location"
-                       qsTrId('btc-no-results-automatic-location'))
+                       qsTr('No results for your location'))
             visible: list.model.count === 0
         }
 

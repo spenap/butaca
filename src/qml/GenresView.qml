@@ -45,8 +45,7 @@ Page {
         anchors.fill: parent
         header: Header {
             //: This appears in the browse view header
-            //% "Movie genres"
-            text: qsTrId('btc-browse-header')
+            text: qsTr('Movie genres')
         }
         delegate: MyListDelegate {
             width: parent.width

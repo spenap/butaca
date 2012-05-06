@@ -20,18 +20,14 @@ Page {
         // must be done this way
 
         //: Shown as the title for the favorites menu entry
-        //% "Favorites"
-        listsModel.get(0).title = qsTrId('btc-favorites-title')
+        listsModel.get(0).title = qsTr('Favorites')
         //: Shown as the subtitle for the favorites menu entry
-        //% "Your favorite movies and celebrities"
-        listsModel.get(0).subtitle = qsTrId('btc-favorites-subtitle')
+        listsModel.get(0).subtitle = qsTr('Your favorite movies and celebrities')
 
         //: Shown as the title for the watchlist menu entry
-        //% "Watchlist"
-        listsModel.get(1).title = qsTrId('btc-watchlist-title')
+        listsModel.get(1).title = qsTr('Watchlist')
         //: Shown as the subtitle for the watchlist menu entry
-        //% "Movies you've saved to watch later"
-        listsModel.get(1).subtitle = qsTrId('btc-watchlist-subtitle')
+        listsModel.get(1).subtitle = qsTr('Movies you\'ve saved to watch later')
     }
 
     property string headerText: ''

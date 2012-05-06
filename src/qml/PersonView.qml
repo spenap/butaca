@@ -48,13 +48,11 @@ Page {
         visualParent: pageStack
         MenuLayout {
             MenuItem {
-                //% "View in IMDb"
-                text: qsTrId('btc-open-imdb')
+                text: qsTr('View in IMDb')
                 onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + parsedPerson.imdbId)
             }
             MenuItem {
-                //% "View in TMDb"
-                text: qsTrId('btc-open-tmdb')
+                text: qsTr('View in TMDb')
                 onClicked: Qt.openUrlExternally(parsedPerson.url)
             }
         }
@@ -173,8 +171,7 @@ Page {
 
             Label {
                 id: extendedContentLabel
-                //% "Loading content"
-                text: qsTrId('btc-content-loading')
+                text: qsTr('Loading content')
                 visible: loadingExtended
                 anchors.horizontalCenter: parent.horizontalCenter
 
@@ -229,8 +226,7 @@ Page {
                             margins: UIConstants.DEFAULT_MARGIN
                         }
                         //: Header shown for the born details of a person
-                        //% "Born"
-                        text: qsTrId('btc-person-born')
+                        text: qsTr('Born')
                     }
 
                     Label {
@@ -279,9 +275,9 @@ Page {
                             fontFamily: UIConstants.FONT_FAMILY_LIGHT
                         }
                         wrapMode: Text.WordWrap
-                        //: Text shown in the person view displaying the number of movies a person is known for
-                        //% "Known for %Ln movie(s)"
-                        text: qsTrId('btc-person-known-for', parsedPerson.knownMovies).arg(parsedPerson.knownMovies)
+                        text: qsTr('Known for %Ln movie(s)',
+                                   'Text shown in the person view displaying the number of movies a person is known for',
+                                   parsedPerson.knownMovies).arg(parsedPerson.knownMovies)
                     }
                 }
             }
@@ -316,8 +312,7 @@ Page {
                 width: parent.width
                 visible: parsedPerson.biography
                 //: Label acting as the header for the biography
-                //% "Biography"
-                textHeader: qsTrId('btc-person-biography')
+                textHeader: qsTr('Biography')
                 textContent: parsedPerson.biography
             }
 
@@ -326,16 +321,14 @@ Page {
                 previewedModel: filmographyModel
                 previewerHeaderText:
                     //: Header for the filmography preview shown in the person view
-                    //% "Filmography"
-                    qsTrId('btc-previewfilmography-header')
+                    qsTr('Filmography')
                 previewerDelegateTitle: 'name'
                 previewerDelegateSubtitle: 'job'
                 previewerDelegateIcon: 'poster'
                 previewerDelegatePlaceholder: 'qrc:/resources/movie-placeholder.svg'
                 previewerFooterText:
                     //: Footer for the filmography preview shown in the person view. When clicked, shows the full filmography
-                    //% "Full filmography"
-                    qsTrId('btc-previewfilmography-footer')
+                    qsTr('Full filmography')
                 visible: filmographyModel.count > 0
 
                 onClicked: {
