@@ -54,7 +54,7 @@ Page {
 
     TextField {
         id: searchInput
-        //: Placeholder text shown in the search input field and the result area
+        //: Placeholder text shown in the search input field
         //% "Enter search terms"
         placeholderText: qsTrId('btc-search-placeholder')
 
@@ -110,8 +110,8 @@ Page {
 
         Button {
             id: peopleSearch
-            //: Shown in the button selecting people search
-            //% "People"
+            //: Shown in the button selecting celebrities search
+            //% "Celebrities"
             text: qsTrId('btc-search-people')
         }
 
