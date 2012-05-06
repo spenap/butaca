@@ -88,6 +88,7 @@ Page {
             title: model.name
             titleWraps: true
             subtitle: model.showtimes
+            subtitleSize: UIConstants.FONT_SMALL
             subtitleWraps: true
 
             onClicked: {
