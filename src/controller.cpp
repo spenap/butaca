@@ -21,6 +21,7 @@
 #include "theatershowtimesfetcher.h"
 #include "theaterlistmodel.h"
 #include "sortfiltermodel.h"
+#include "imagesaver.h"
 
 #include <QDeclarativeContext>
 #include <QFileInfo>
@@ -44,8 +45,7 @@ Controller::Controller(QDeclarativeContext* context) :
     m_declarativeContext(context),
     m_showtimesFetcher(0),
     m_theaterListModel(new TheaterListModel),
-    m_sortFilterModel(new SortFilterModel),
-    m_imageSaver()
+    m_sortFilterModel(new SortFilterModel)
 {
     m_sortFilterModel->setDynamicSortFilter(true);
     m_sortFilterModel->setSourceModel(m_theaterListModel);
@@ -124,7 +124,7 @@ void Controller::saveImage(QObject* item, const QString& remoteSource)
     Q_UNUSED(item)
     qDebug() << Q_FUNC_INFO << sourceUrl.toLocalFile();
 #else
-    m_imageSaver.save(item, sourceUrl.toLocalFile());
+    ImageSaver::save(item, sourceUrl.toLocalFile());
 #endif
 }
 

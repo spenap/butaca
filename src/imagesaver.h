@@ -22,10 +22,17 @@
 
 #include <QObject>
 
+//! \class ImageSaver
+//! \brief Convenience class which allows saving a QML image to disk
+//!
+//! This class provides a method which takes a QML image and saves it to disk
 class ImageSaver
 {
 public:
-    void save(QObject *item, const QString &fileName);
+    //! Saves a QML image to disk
+    //! \param item The QML image, as a QObject pointer
+    //! \param fileName The fileName where the image is saved
+    static void save(QObject* item, const QString& fileName);
 
 };
 

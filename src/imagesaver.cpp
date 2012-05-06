@@ -22,9 +22,9 @@
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
 
-void ImageSaver::save(QObject *qmlImage, const QString &fileName)
+void ImageSaver::save(QObject* qmlImage, const QString& fileName)
 {
-    QGraphicsObject *graphicsObject = qobject_cast<QGraphicsObject*>(qmlImage);
+    QGraphicsObject* graphicsObject = qobject_cast<QGraphicsObject*>(qmlImage);
 
     if (graphicsObject) {
 

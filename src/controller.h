@@ -20,7 +20,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "imagesaver.h"
 #include <QObject>
 
 class QDeclarativeContext;
@@ -89,7 +88,6 @@ private:
     TheaterListModel* m_theaterListModel;
     SortFilterModel* m_sortFilterModel;
     QString m_location;
-    ImageSaver m_imageSaver;
 };
 
 #endif // CONTROLLER_H
