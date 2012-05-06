@@ -45,13 +45,24 @@ Page {
         id: localModel
     }
 
+    Header {
+        id: favoritesHeader
+        text: headerText
+    }
+
     GridView {
-        id: view
-        anchors.fill: parent
+        id: favoritesGrid
+        anchors {
+            top: favoritesHeader.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            leftMargin: 30
+            rightMargin: 30
+        }
         clip: true
         cellWidth: 140
         cellHeight: 210
-        header: Header { text: headerText }
 
         model: localModel
         delegate: FavoriteDelegate {
@@ -72,6 +83,10 @@ Page {
                 appWindow.pageStack.push(thePage, pageConfig)
             }
         }
+    }
+
+    ScrollDecorator {
+        flickableItem: favoritesGrid
     }
 
     NoContentItem {
