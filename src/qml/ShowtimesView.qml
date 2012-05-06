@@ -86,7 +86,9 @@ Page {
         delegate: MyListDelegate {
             width: parent.width
             title: model.name
+            titleWraps: true
             subtitle: model.showtimes
+            subtitleWraps: true
 
             onClicked: {
                 if (model.movieImdbId)

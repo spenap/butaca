@@ -32,12 +32,14 @@ Item {
     property int titleWeight: Font.Normal
     property string titleFontFamily: UIConstants.FONT_FAMILY
     property color titleColor: UIConstants.COLOR_INVERTED_FOREGROUND
+    property bool titleWraps: false
 
     property string subtitle: ''
     property int subtitleSize: UIConstants.FONT_LSMALL
     property int subtitleWeight: Font.Normal
     property string subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
     property color subtitleColor: UIConstants.COLOR_SECONDARY_FOREGROUND
+    property bool subtitleWraps: false
 
     property string iconSource: ''
     property bool smallSize: false
@@ -45,7 +47,12 @@ Item {
     property bool expandable: false
     property bool expanded: false
 
-    height: smallSize ? UIConstants.LIST_ITEM_HEIGHT_SMALL : UIConstants.LIST_ITEM_HEIGHT_DEFAULT
+    property int defaultSize: smallSize ?
+                                  UIConstants.LIST_ITEM_HEIGHT_SMALL :
+                                  UIConstants.LIST_ITEM_HEIGHT_DEFAULT
+    height: titleWraps || subtitleWraps ?
+                delegateColumn.height :
+                defaultSize
 
     BorderImage {
         id: delegateBackground
@@ -89,7 +96,8 @@ Item {
             font.weight: titleWeight
             color: titleColor
             width: parent.width
-            elide: Text.ElideRight
+            wrapMode: titleWraps ? Text.WordWrap : Text.NoWrap
+            elide: titleWraps ? Text.ElideNone : Text.ElideRight
 
             text: title
         }
@@ -103,7 +111,8 @@ Item {
             font.weight: subtitleWeight
             color: subtitleColor
             width: parent.width
-            elide: Text.ElideRight
+            wrapMode: subtitleWraps ? Text.WordWrap : Text.NoWrap
+            elide: subtitleWraps ? Text.ElideNone : Text.ElideRight
             visible: subtitle
 
             text: subtitle
