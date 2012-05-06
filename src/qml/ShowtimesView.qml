@@ -99,4 +99,8 @@ Page {
             }
         }
     }
+
+    ScrollDecorator {
+        flickableItem: list
+    }
 }
