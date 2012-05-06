@@ -270,7 +270,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 //: Shown in a button. When clicked, the application license is shown
                 //% "License"
-                text: qsTr('btc-about-license')
+                text: qsTrId('btc-about-license')
                 onClicked: licenseDialog.open()
             }
 
