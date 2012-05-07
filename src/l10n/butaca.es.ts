@@ -4,70 +4,76 @@
 <context>
     <name>AboutView</name>
     <message>
-        <location filename="../qml/AboutView.qml" line="59"/>
+        <location filename="../qml/AboutView.qml" line="41"/>
+        <source>Thanks a lot to all contributors: %1</source>
+        <extracomment>Header introducing the list of contributors</extracomment>
+        <translation>Gracias a todos los que han colaborado: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="58"/>
         <source>Recommend this app</source>
         <extracomment>Short text inviting to recommend the application</extracomment>
         <translation>Recomiéndanos</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="61"/>
+        <location filename="../qml/AboutView.qml" line="60"/>
         <source>Tell us what you think</source>
         <extracomment>Short text inviting to provide application feedback</extracomment>
         <translation>Cuéntanos tu opinión</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="63"/>
+        <location filename="../qml/AboutView.qml" line="62"/>
         <source>Rate us in the Nokia Store</source>
         <extracomment>Short text inviting to rate us in the Nokia Store</extracomment>
         <translation>Valóranos en la Nokia Store</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="65"/>
+        <location filename="../qml/AboutView.qml" line="64"/>
         <source>Follow us on Twitter</source>
         <extracomment>Short text inviting to follow us on Twitter</extracomment>
         <translation>Síguenos en Twitter</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="67"/>
+        <location filename="../qml/AboutView.qml" line="66"/>
         <source>Check our other apps</source>
         <extracomment>Short text inviting to check our other apps</extracomment>
         <translation>Otras de nuestras aplicaciones</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="223"/>
+        <location filename="../qml/AboutView.qml" line="222"/>
         <source>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</source>
         <extracomment>Disclaimer about The Movie Database API usage</extracomment>
         <translation>Este producto utiliza el API de &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; pero no está promocionado o certificado por TMDb.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="239"/>
+        <location filename="../qml/AboutView.qml" line="238"/>
         <source>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</source>
         <extracomment>Disclaimer about After Credits API usage</extracomment>
         <translation>Este producto utiliza el API de &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; pero no está promocionado o certificado por ellos.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="255"/>
+        <location filename="../qml/AboutView.qml" line="254"/>
         <source>This product presents showtimes from &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; but is not endorsed or certified by Google.</source>
         <extracomment>Disclaimer about Google Showtimes usage</extracomment>
         <translation>Este producto muestra la cartelera utilizando &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; pero no está promocionado o certificado por Google.</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="272"/>
-        <location filename="../qml/AboutView.qml" line="287"/>
+        <location filename="../qml/AboutView.qml" line="271"/>
+        <location filename="../qml/AboutView.qml" line="286"/>
         <source>License</source>
         <extracomment>Shown in a button. When clicked, the application license is shown</extracomment>
         <translation>Licencia</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="279"/>
-        <location filename="../qml/AboutView.qml" line="295"/>
+        <location filename="../qml/AboutView.qml" line="278"/>
+        <location filename="../qml/AboutView.qml" line="294"/>
         <source>Credits</source>
         <extracomment>Shown in a button. When clicked, the application credits are shown</extracomment>
         <translation>Créditos</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="290"/>
-        <location filename="../qml/AboutView.qml" line="297"/>
+        <location filename="../qml/AboutView.qml" line="289"/>
+        <location filename="../qml/AboutView.qml" line="296"/>
         <source>OK</source>
         <extracomment>OK button</extracomment>
         <translation>Aceptar</translation>
@@ -146,7 +152,7 @@
 <context>
     <name>Controller</name>
     <message>
-        <location filename="../controller.cpp" line="80"/>
+        <location filename="../controller.cpp" line="82"/>
         <source>btc-shared-with-butaca</source>
         <extracomment>Shared with #Butaca</extracomment>
         <translation>Compartido con #Butaca</translation>
@@ -277,85 +283,85 @@
         <translation>No encontrado</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="321"/>
+        <location filename="../qml/MovieView.qml" line="323"/>
         <source>Loading content</source>
         <extracomment>This indicates that the extended info for a content (person or movie) is still loading</extracomment>
         <translation>Cargando contenido</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="376"/>
+        <location filename="../qml/MovieView.qml" line="378"/>
         <source>Rated %1, %2</source>
         <extracomment>This shows the classification of a movie and its runtime (duration)</extracomment>
         <translation>Calificado %1, %2</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="469"/>
+        <location filename="../qml/MovieView.qml" line="471"/>
         <source>Watch trailer</source>
         <extracomment>Opens the movie trailer for viewing</extracomment>
         <translation>Ver trailer</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="490"/>
+        <location filename="../qml/MovieView.qml" line="492"/>
         <source>Overview</source>
         <extracomment>Label acting as the header for the overview</extracomment>
         <translation>Sinopsis</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="501"/>
+        <location filename="../qml/MovieView.qml" line="503"/>
         <source>Release date</source>
         <extracomment>Label acting as the header for the release date</extracomment>
         <translation>Fecha de lanzamiento</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="523"/>
+        <location filename="../qml/MovieView.qml" line="525"/>
         <source>Genre</source>
         <extracomment>Label acting as the header for the genres</extracomment>
         <translation>Género</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="541"/>
+        <location filename="../qml/MovieView.qml" line="543"/>
         <source>Studios</source>
         <extracomment>Label acting as the header for the studios</extracomment>
         <translation>Estudios</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="559"/>
+        <location filename="../qml/MovieView.qml" line="561"/>
         <source>Budget</source>
         <extracomment>Label acting as the header for the movie budget</extracomment>
         <translation>Presupuesto</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="580"/>
+        <location filename="../qml/MovieView.qml" line="582"/>
         <source>Revenue</source>
         <extracomment>Label acting as the header for the movie revenue</extracomment>
         <translation>Recaudación</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="600"/>
+        <location filename="../qml/MovieView.qml" line="602"/>
         <source>Extras after or during credits?</source>
         <extracomment>Label acting as the header for the extra information after / during credits</extracomment>
         <translation>¿Extras durante o después de los créditos?</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="632"/>
+        <location filename="../qml/MovieView.qml" line="634"/>
         <source>Cast</source>
         <extracomment>Header for the cast preview shown in the movie view</extracomment>
         <translation>Reparto</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="639"/>
+        <location filename="../qml/MovieView.qml" line="641"/>
         <source>Full cast</source>
         <extracomment>Footer for the cast preview shown in the movie view. When clicked, shows the full cast.</extracomment>
         <translation>Reparto completo</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="663"/>
+        <location filename="../qml/MovieView.qml" line="665"/>
         <source>Crew</source>
         <extracomment>Header for the crew preview shown in the movie view</extracomment>
         <translation>Equipo</translation>
     </message>
     <message>
-        <location filename="../qml/MovieView.qml" line="670"/>
+        <location filename="../qml/MovieView.qml" line="672"/>
         <source>Full cast &amp; crew</source>
         <extracomment>Footer for the crew preview shown in the movie view. When clicked, shows the full cast and crew.</extracomment>
         <translation>Reparto y equipo completo</translation>
