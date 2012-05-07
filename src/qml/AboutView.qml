@@ -109,7 +109,7 @@ Page {
 
         Column {
             id: contentColumn
-            spacing: UIConstants.DEFAULT_MARGIN
+            spacing: UIConstants.PADDING_LARGE
             width: parent.width
 
             Label {
@@ -120,13 +120,13 @@ Page {
                 platformStyle: LabelStyle {
                     fontPixelSize: UIConstants.FONT_XLARGE
                 }
-                color: UIConstants.COLOR_SECONDARY_FOREGROUND
+                color: UIConstants.COLOR_INVERTED_FOREGROUND
             }
 
             Rectangle {
                 width: parent.width
                 height: repeater.model.count * UIConstants.LIST_ITEM_HEIGHT_SMALL
-                color: '#8c8c8c'
+                color: UIConstants.COLOR_INVERTED_FOREGROUND
 
                 Column {
                     id: subcolumn
@@ -141,7 +141,7 @@ Page {
                             BorderImage {
                                 anchors.fill: parent
                                 visible: mouseArea.pressed
-                                source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
+                                source: 'image://theme/meegotouch-list-fullwidth-background-pressed-vertical-center'
                             }
 
                             Label {
