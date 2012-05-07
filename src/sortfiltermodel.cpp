@@ -53,15 +53,17 @@ bool SortFilterModel::filterAcceptsRow(int sourceRow,
 QVariantMap SortFilterModel::get(int sourceRow) const
 {
     const TheaterListModel* source = qobject_cast<const TheaterListModel*>(sourceModel());
-    const QModelIndex index = source->index(sourceRow, 0);
-    return source->get(index);
+    const QModelIndex proxyIndex = index(sourceRow, 0);
+    const QModelIndex sourceIndex = mapToSource(proxyIndex);
+    return source->get(sourceIndex);
 }
 
 QObject* SortFilterModel::showtimes(int sourceRow)
 {
     TheaterListModel* source = qobject_cast<TheaterListModel*>(sourceModel());
-    const QModelIndex index = source->index(sourceRow, 0);
-    MovieListModel* subModel = source->showtimes(index);
+    const QModelIndex proxyIndex = index(sourceRow, 0);
+    const QModelIndex sourceIndex = mapToSource(proxyIndex);
+    MovieListModel* subModel = source->showtimes(sourceIndex);
 
     Q_ASSERT(subModel && subModel->rowCount() > 0);
 
