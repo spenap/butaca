@@ -40,7 +40,7 @@ Page {
     //: Header introducing the list of contributors
     property string credits: qsTr('Thanks a lot to all contributors: %1').arg(
                              '<br /><p>Adrian Perez, Amit Singh, Nik Rolls, ' +
-                             'Christoph Keller, Janne Makinen, ' +
+                             'Christoph Keller, Janne Makinen, Tuomas Siipola, ' +
                              'Alexandre Mazari, Petru Motrescu, Oytun Şengül, ' +
                              'Ismail Coskuner, Aras Ergus, Joaquim Rocha</p>')
     property string styleSheets: "<style type='text/css'>a:link {color:#FFFFFF}</style>"
