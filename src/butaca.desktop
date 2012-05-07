@@ -3,6 +3,6 @@ Encoding=UTF-8
 Version=1.0
 Type=Application
 Name=Butaca
-Exec=/usr/bin/invoker --single-instance --splash /usr/share/butaca/butaca-splash.jpg --type=d /usr/bin/butaca
-Icon=/usr/share/icons/hicolor/64x64/apps/butaca.png
+Exec=/usr/bin/invoker --single-instance --splash /opt/butaca/share/butaca-splash.jpg --type=d /opt/butaca/bin/butaca
+Icon=/opt/butaca/share/icons/icon-l-butaca.png
 Categories=Network;
