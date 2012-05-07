@@ -22,6 +22,9 @@ CONFIG += shareuiinterface-maemo-meegotouch mdatauri
     LIBS += -lmdeclarativecache
 }
 
+PACKAGEVERSION = $$system(head -n 1 ../qtc_packaging/debian_harmattan/changelog | grep -o [0-9].[0-9].[0-9])
+DEFINES += "PACKAGEVERSION=\\\"$$PACKAGEVERSION\\\""
+
 SOURCES += main.cpp \
     theaterlistmodel.cpp \
     movie.cpp \
