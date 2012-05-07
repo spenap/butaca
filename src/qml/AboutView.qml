@@ -114,7 +114,7 @@ Page {
 
             Label {
                 id: aboutVersion
-                text: 'Butaca 0.9.0'
+                text: 'Butaca %1'.arg(packageVersion)
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 platformStyle: LabelStyle {
