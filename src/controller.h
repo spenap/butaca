@@ -34,6 +34,18 @@ class SortFilterModel;
 //! context, such as sharing using the share-ui interface, retrieving movie
 //! showtimes, accessing the current location, formatting a currency, saving
 //! images or opening Nokia Store links in the Nokia Store client
+//!
+//! \mainpage
+//! Butaca is a movie database application
+//! It provides:
+//!
+//! \li All details about a movie: overview, cast & crew, trailer...
+//! \li All details about a celebrity: biography, filmography...
+//! \li Whether a movie has extra content during or after the credits
+//! \li Showtimes -when available- for cinemas around you
+//!
+//! You can also share links to a movie or celebrity, save them as favorites,
+//! save movies to your watchlist, and save pictures into your phone's gallery.
 class Controller : public QObject
 {
     Q_OBJECT
