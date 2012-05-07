@@ -88,8 +88,7 @@ void Controller::share(QString title, QString url)
         qCritical() << "Invalid interface";
     }
 #else
-    Q_UNUSED(title)
-    Q_UNUSED(url)
+    qDebug() << Q_FUNC_INFO << title << url;
 #endif
 }
 

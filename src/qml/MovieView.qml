@@ -174,6 +174,8 @@ Page {
                 tagline = movie.tagline
             if (movie.runtime)
                 runtime = movie.runtime
+            if (movie.url)
+                url = movie.url
 
             if (movie.cast) {
                 movie.cast.sort(sortByCastId)
