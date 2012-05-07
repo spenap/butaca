@@ -63,6 +63,10 @@ function _addCategory(category) {
         this.hasStingers = true
         this.stingersType |= STINGERS_DURING_CREDITS
     }
+    if (category.slug === 'both-during-after-credits') {
+        this.hasStingers = true
+        this.stingersType |= (STINGERS_AFTER_CREDITS | STINGERS_DURING_CREDITS)
+    }
     this.subtitle = _getSubtitle(this.stingersType, this.year)
 }
 
