@@ -45,7 +45,8 @@ Controller::Controller(QDeclarativeContext* context) :
     m_declarativeContext(context),
     m_showtimesFetcher(0),
     m_theaterListModel(new TheaterListModel),
-    m_sortFilterModel(new SortFilterModel)
+    m_sortFilterModel(new SortFilterModel),
+    m_packageVersion(PACKAGEVERSION)
 {
     m_sortFilterModel->setDynamicSortFilter(true);
     m_sortFilterModel->setSourceModel(m_theaterListModel);
@@ -54,6 +55,7 @@ Controller::Controller(QDeclarativeContext* context) :
 
     m_declarativeContext->setContextProperty("controller", this);
     m_declarativeContext->setContextProperty("theaterModel", m_sortFilterModel);
+    m_declarativeContext->setContextProperty("packageVersion", m_packageVersion);
 
     m_showtimesFetcher = new TheaterShowtimesFetcher(m_theaterListModel);
     connect(m_showtimesFetcher, SIGNAL(theatersFetched(int)),

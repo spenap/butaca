@@ -88,6 +88,7 @@ private:
     TheaterListModel* m_theaterListModel;
     SortFilterModel* m_sortFilterModel;
     QString m_location;
+    QString m_packageVersion;
 };
 
 #endif // CONTROLLER_H
