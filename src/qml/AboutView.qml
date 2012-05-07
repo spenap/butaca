@@ -37,13 +37,12 @@ Page {
         'along with this program. If not, see ' +
         '<a href="http://www.gnu.org/licenses">http://www.gnu.org/licenses</a><br /><br />'
 
-    property string credits: '<ul><li>Nik Rolls - English (en_GB)</li>' +
-                             '<li>Christoph Keller - German (de)</li>' +
-                             '<li>Janne Makinen - Finnish (fi)</li>' +
-                             '<li>Alexandre Mazari - French (fr_FR)</li>' +
-                             '<li>Petru Motrescu - Romanian (ro)</li>' +
-                             '<li>Oytun Şengül, Ismail Coskuner, Aras Ergus - Turkish (tr)</li>' +
-                             '<li>Joaquim Rocha - Portuguese (pt)</li></ul>'
+    //: Header introducing the list of contributors
+    property string credits: qsTr('Thanks a lot to all contributors: %1').arg(
+                             '<br /><p>Adrian Perez, Amit Singh, Nik Rolls, ' +
+                             'Christoph Keller, Janne Makinen, ' +
+                             'Alexandre Mazari, Petru Motrescu, Oytun Şengül, ' +
+                             'Ismail Coskuner, Aras Ergus, Joaquim Rocha</p>')
     property string styleSheets: "<style type='text/css'>a:link {color:#FFFFFF}</style>"
 
     tools: ToolBarLayout {
