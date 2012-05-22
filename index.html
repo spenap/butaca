@@ -1,110 +1,187 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Butaca by spenap</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
+    <title>Butaca, a Movie Database application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website for Butaca, the movie database application for the Nokia N9">
+    <meta name="author" content="Simon Pena">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/spenap/butaca">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/spenap/butaca/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/spenap/butaca/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
 
-    <div class="wrapper">
-
-      <section>
-        <div id="title">
-          <h1>Butaca</h1>
-          <p>Movie database application for the Nokia N9</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/spenap">spenap</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="index.html">Butaca</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="index.html">Home</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
         </div>
-
-        <h1>Butaca: movie database</h1>
-
-<h2>What is Butaca?</h2>
-
-<p>Butaca is a movie database application for MeeGo Harmattan, the operating
-system running on the <a href="http://swipe.nokia.com/" title="Nokia N9">Nokia N9</a>. You can use it to:</p>
-
-<ul>
-<li>Get all details about a movies: release date, overview, cast &amp; crew, trailer...</li>
-<li>Get all details about a celebrity: birth details, biography, filmography...</li>
-<li>Check whether a movie has extra content during or after the credits</li>
-<li>Check showtimes -when available- for cinemas around you</li>
-</ul><h2>Get Butaca</h2>
-
-<p>Download Butaca at the <a href="http://store.nokia.com/content/195876" title="Butaca at the Nokia Store">Nokia Store</a></p>
-
-<h2>How does it work?</h2>
-
-<p>Butaca uses different data sources to present its content. It gets the
-information about movies and celebrities from <a href="http://www.themoviedb.org/" title="The open movie database">The Movie Database</a>, an open
-movie database where everybody can collaborate. It shows movie showtimes -when
-available- using results from <a href="http://google.com/movies" title="Google Movie Showtimes">Google Showtimes</a>. And it checks if a movie
-has extra content after or during the credits (also known as "stinger") using
-<a href="http://aftercredits.com/" title="What's After The Credits?">What's After The Credits?</a>, a website which provides that kind of
-information for movies, games and other media.</p>
-
-<h2>Bugs &amp; Feedback</h2>
-
-<p>I -<a href="https://twitter.com/spenap" title="Simón Pena">Simón Pena</a>- develop Butaca on my free time. I am writing it hoping
-that you enjoy it and find it useful, but there could be bugs or things you would
-expect to work in a different way. If you find issues or have ideas to improve
-this application, don't hesitate to create an entry in the <a href="https://github.com/spenap/butaca/issues" title="Bug Tracker">bug tracker</a>.</p>
-
-<h2>Contribute!</h2>
-
-<p>Butaca is free software, licensed under the <a href="http://www.gnu.org/licenses/gpl.html" title="GPL License">GPL 3.0</a> license, which means
-there are several ways you can contribute to it:</p>
-
-<ul>
-<li>
-<a href="https://github.com/spenap/butaca" title="Butaca on GitHub">Fork the project</a>, modify the sources, and send merge requests with patches</li>
-<li>
-<a href="https://www.transifex.net/projects/p/butaca/" title="Butaca: cinema information localization">Translate Butaca</a> to your language</li>
-<li>File bugs or write feature requests in the <a href="https://github.com/spenap/butaca/issues" title="Bug Tracker">bug tracker</a>
-</li>
-<li>Spread the word, and recommend it to your friends</li>
-<li>Rate us on the <a href="http://store.nokia.com/content/195876" title="Butaca at the Nokia Store">Nokia Store</a>
-</li>
-</ul><h2>Awards</h2>
-
-<p>Butaca is a proud member of the <a href="http://qt.nokia.com/qt-in-use/ambassadors/project?id=a0F20000006N9pVEAS" title="Butaca">Qt Ambassador Program</a></p>
-
-<h2>Known Issues</h2>
-
-<ul>
-<li>Butaca uses mainly <code>qsTrId</code> for translations. As reported in <a href="https://bugreports.qt-project.org/browse/QTBUG-17327">QTBUG-17327</a>,
-in <code>Qt 4.7.1</code> <code>lupdate</code> won't extract engineering translations when <code>//%</code> is used.
-Newer versions work fine.</li>
-<li>There are a couple of <code>ListModels</code> translated manually using <code>Component.onCompleted</code>,
-since as reported in <a href="https://bugreports.qt-project.org/browse/QTBUG-11403">QTBUG-11403</a> and <a href="https://bugreports.qt-project.org/browse/QTBUG-16289">QTBUG-16289</a>, <code>qsTrId</code> cannot be
-used inside <code>ListElement</code>
-</li>
-</ul>
-      </section>
-
+      </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-    
+
+    <div class="container">
+
+      <div class="row">
+	<div class="span3">
+	  <ul class="thumbnails">
+	    <li>
+	      <div class="thumbnail">
+		<img src="img/butaca-thumbnail.jpg"/>
+		<div class="caption">
+		  <h5>Movie view</h5>
+		  <p>
+		    Movie view displaying info about Zombieland
+		  </p>
+		</div><!--./caption -->
+	      </div><!--./thumbnail -->
+	    </li>
+	  </ul>
+	</div><!--./span3 -->
+
+	<div class="span9">
+	  <div class="well">
+            <h1>What is Butaca?</h1>
+            <p>
+	      Butaca is a movie database application for MeeGo Harmattan, the operating system running on the
+	      <a href="http://swipe.nokia.com/">Nokia N9</a>. You can use it to:</p>
+	    <ul>
+	      <li>Get all details about a movies: release date, overview, cast & crew, trailer...</li>
+	      <li>Get all details about a celebrity: birth details, biography, filmography...</li>
+	      <li>Check whether a movie has extra content during or after the credits</li>
+	      <li>Check showtimes -when available- for cinemas around you</li>
+	    </ul>
+	    <p>
+	      Not only that. You can share links to a movie or celebrity, you can save them as favorites, so they appear
+	      in the main screen, you can save movies to your watchlist, and you can save pictures into your phone's gallery.
+	    </p>
+	    <p>
+	      Butaca is currently available in German, English, Spanish, Finnish, French, Portuguese, Romanian and Turkish.
+	    </p>
+	    <p><small>If you're looking for technical information about Butaca,
+		<a href="https://github.com/spenap/butaca/blob/master/README.md">start here</a></small></p>
+	  </div><!--./well -->
+
+	  <div class="row">
+            <div class="span6">
+	      <h2>Get support</h2>
+	      <p>
+		Butaca is being developed in my free time. This means that although I do my best to
+		keep it <em>bug free</em>, you might find issues.
+	      </p>
+	      <p>
+		If that's the case and something goes wrong, you have suggestions to improve Butaca,
+		or would like to see something done in a different way, don't hesitate to report
+		a bug in <a href="https://github.com/Igalia/butaca/issues">the bugtracker</a>.
+	      </p>
+	      <p>
+		You can also file a new bug if you want to see Butaca translated to your language. Bonus
+		points if you're willing to <a href="https://www.transifex.net/projects/p/butaca/">help
+		  at Transifex</a> :-)
+	      </p>
+
+	      <h2>Get the app</h2>
+	      <p>
+		<a href="http://store.ovi.com/content/195876/">Butaca is available for free</a> in
+		the Nokia Store, and already has more than 6000 downloads.
+		<a href="http://store.ovi.com/content/195876/reviews">User reviews</a> have been widely
+		positive (with the application valoration moving between 4 and 5 stars).
+	      </p>
+	      <p>
+		If you enjoy Butaca, don't forget to rate it and tell your friends about it.
+	      </p>
+	      
+	    </div><!--./span6 -->
+	    <div class="span3">
+	      <h2>Qt Ambassador</h2>
+	      <ul class="thumbnails">
+		<li class="span3">
+		  <div class="thumbnail">
+		    <img src="img/qt_ambassador_logo.png"/>
+		    <div class="caption">
+		      <p>Butaca is being developed using Qt Quick, and is a proud member of the
+			<a href="http://qt.nokia.com/qt-in-use/ambassadors/qtambassador/">Qt Ambassador Program</a></p>
+		    </div><!--/.caption -->
+		  </div><!--/.thumbnail -->
+		</li>
+	      </ul>
+	    </div><!--/.span3 -->
+
+	  </div><!--./row -->
+	</div><!--./span9 -->
+      </div><!--./row -->
+
+
+      <div>
+	<h2>Credits</h2>
+	<p>
+	  Butaca is mainly being developed by Simón Pena, although many people have helped already:
+	</p>
+	<p>
+	  Adrian Perez, Amit Singh, Christoph Keller have contributed code. Felipe Erias has helped with the UX,
+	  and Nik Rolls, Christoph Keller, Janne Makinen, Alexandre Mazari, Petru Motrescu, Oytun Şengül,
+	  Ismail Coskuner, Aras Ergus, sengun95 and Joaquim Rocha have provided the translations. Many thanks to them!
+	</p>
+	<a class="btn btn-mini" href="https://github.com/spenap/butaca/blob/master/AUTHORS">AUTHORS »</a>
+      </div>
+
+      <hr>
+
+      <footer>
+	<p>
+          <small>
+            <strong>Butaca</strong> is licensed <a href="http://www.gnu.org/copyleft/gpl.html">GPLv3</a> -
+            Website designed using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>
+	    and the <a href="http://glyphicons.com/">Glyphicons Free</a> icons
+	    - 
+            Source code and website are hosted at <a href="http://github.com">GitHub</a>.
+            <br>
+            &copy; Simón Pena 2011 - 2012
+          </small>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+
   </body>
 </html>
