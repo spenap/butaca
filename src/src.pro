@@ -90,7 +90,9 @@ OTHER_FILES += \
     qml/moviedbwrapper.js \
     qml/ShowtimesView.qml \
     qml/FavoritesView.qml \
-    qml/ListsView.qml
+    qml/ListsView.qml \
+    qml/JSONListModel.qml \
+    qml/jsonpath.js
 
 RESOURCES += \
     res.qrc

@@ -6,6 +6,8 @@
         <file>qml/MultipleMoviesView.qml</file>
         <file>qml/ButacaToolBar.qml</file>
         <file>qml/GenresView.qml</file>
+        <file>qml/JSONListModel.qml</file>
+        <file>qml/jsonpath.js</file>
         <file>qml/GenresModel.qml</file>
         <file>qml/PeopleModel.qml</file>
         <file>qml/SearchView.qml</file>
