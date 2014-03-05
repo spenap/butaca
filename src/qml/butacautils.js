@@ -22,11 +22,10 @@
 var PERSON = 0
 var MOVIE = 1
 
-var IMDB_BASE_URL = 'http://www.imdb.com/title/'
+var IMDB_BASE_URL = 'http://www.imdb.com/'
 
-var REMOTE_FETCH_RESPONSE = 0
-var EXTRAS_FETCH_RESPONSE = 1
-var LOOKUP_FETCH_RESPONSE = 2
+var FETCH_RESPONSE_TMDB_MOVIE = 0
+var FETCH_RESPONSE_WATC = 1
 
 /**
  * Gets the year from a string containing a date
@@ -76,16 +75,13 @@ function sanitizeText(text) {
 
 function TMDbMovie(obj) {
     this.id = obj.id
-    this.imdb_id = obj.imdb_id
-    this.name = obj.name
-    this.original_name = obj.original_name
-    this.released = obj.released
-    this.rating = obj.rating
-    this.votes = obj.votes
-    this.overview = obj.overview
-    this.poster = obj.poster
+    this.title = obj.title
+    this.original_title = obj.original_title
+    this.release_date = obj.release_date
+    this.vote_average = obj.vote_average
+    this.vote_count = obj.vote_count
+    this.poster_path = obj.poster_path
 
-    this.title = this.name
     this.type = 'TMDbMovie'
 
     this.toString = movie_toString
@@ -105,36 +101,12 @@ function TMDbPerson(obj) {
 function movie_toString() {
     var str = 'TMDB Movie:' +
             '\tid: ' + this.id + '\n' +
-            '\tname: ' + this.name + '\n' +
-            '\treleased: ' + this.released + '\n' +
-            '\trating: ' + this.rating + '\n' +
-            '\tvotes: ' + this.votes + '\n' +
-            '\toverview: ' + this.overview + '\n' +
-            '\tposter: ' + this.poster
+            '\ttitle: ' + this.title + '\n' +
+            '\trelease_date: ' + this.release_date + '\n' +
+            '\tvote_average: ' + this.vote_average + '\n' +
+            '\tvote_count: ' + this.vote_count + '\n' +
+            '\tposter_path: ' + this.poster_path
     return str
-}
-
-function TMDbCrewPerson(obj) {
-    // {
-    //  "name":"Frank Miller",
-    //  "job":"Director",
-    //  "department":"Directing",
-    //  "character":"",
-    //  "id":2293,
-    //  "order":0,
-    //  "cast_id":1,
-    //  "url":"http://www.themoviedb.org/person/2293",
-    //  "profile":"http://cf2.imgobject.com/t/p/w185/hGijoL2duWMX4LohvgpkH9HpMq4.jpg"
-    //  }
-    this.id = obj.id
-    this.name = obj.name
-    this.job = obj.job
-    this.department = obj.department
-    this.character = obj.character
-    this.order = obj.order
-    this.castId = obj.cast_id
-    this.url = obj.url
-    this.profile = obj.profile
 }
 
 function TMDbImage(obj) {
@@ -171,6 +143,16 @@ function populateModelFromModel(sourceModel, destinationModel, ObjectConstructor
     }
 }
 
+/*
+ * example use:
+ * Util.populateModelFromArray(creditsResponse, 'cast', crewModel,
+ * {
+ *     filteringProperty: 'job',
+ *     filteredValue: 'Actor',
+ *     secondaryModel: castModel,
+ *     Delegate: Util.TMDbCrewPerson
+ * })
+*/
 function populateModelFromArray(entity, entityProperty, model, filterRules) {
     model.clear()
     if (filterRules) filterRules.secondaryModel.clear()

@@ -52,16 +52,7 @@ Page {
 
     property string movieName: ''
     property ListModel castModel: ListModel { }
-    property variant rawCrew: ''
     property bool showsCast: true
-
-    Component.onCompleted: {
-        if (!showsCast && rawCrew) {
-            for (var i = 0; i < rawCrew.length; i ++) {
-                castModel.append(new BUTACA.TMDbCrewPerson(rawCrew[i]))
-            }
-        }
-    }
 
     Component {
         id: listSectionDelegate
@@ -83,8 +74,8 @@ Page {
             text: showsCast ?
                       //: This appears in the cast view when the cast is shown
                       qsTr('Full cast in %1').arg(movieName) :
-                      //: This appears in the cast view when cast and crew are shown
-                      qsTr('Cast and crew in %1').arg(movieName)
+                      //: This appears in the cast view when the crew is shown
+                      qsTr('Full crew in %1').arg(movieName)
             showDivider: false
         }
         delegate: MyListDelegate {

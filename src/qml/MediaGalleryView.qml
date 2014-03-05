@@ -21,6 +21,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
+import 'moviedbwrapper.js' as TMDB
 
 Page {
     id: galleryView
@@ -29,9 +30,10 @@ Page {
     property int currentIndex: -1
     property bool expanded: false
 
-    property string gridSize: ''
-    property string fullSize: ''
-    property string saveSize: ''
+    property int imgType: TMDB.IMAGE_POSTER
+    property int gridSize: 1
+    property int fullSize: 4
+    property int saveSize: 100
 
     tools: ToolBarLayout {
         ToolIcon {
@@ -80,7 +82,10 @@ Page {
                         fill: parent
                         margins: UIConstants.PADDING_XSMALL
                     }
-                    source: sizes[gridSize].url
+                    source: TMDB.image(imgType,
+                                       gridSize,
+                                       file_path,
+                                       { app_locale: appLocale })
                     fillMode: Image.PreserveAspectCrop
                 }
 
@@ -124,7 +129,10 @@ Page {
 
             Image {
                 id: detailedDelegateImage
-                source: galleryView.galleryViewModel.get(galleryView.currentIndex).sizes[fullSize].url
+                source: TMDB.image(imgType,
+                                   fullSize,
+                                   galleryView.galleryViewModel.get(galleryView.currentIndex).file_path,
+                                   { app_locale: appLocale })
                 anchors {
                     top: detailedDelegateIndicator.bottom
                     topMargin: UIConstants.DEFAULT_MARGIN
@@ -210,7 +218,10 @@ Page {
         id: saveImageSheet
 
         property string imageUrl: galleryView.currentIndex >= 0 ?
-                                      galleryView.galleryViewModel.get(galleryView.currentIndex).sizes[saveSize].url :
+                                      TMDB.image(imgType,
+                                                 saveSize,
+                                                 galleryView.galleryViewModel.get(galleryView.currentIndex).file_path,
+                                                 { app_locale: appLocale }) :
                                       ''
 
         acceptButtonText:

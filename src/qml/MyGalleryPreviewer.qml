@@ -20,14 +20,15 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import 'constants.js' as UIConstants
+import 'moviedbwrapper.js' as TMDB
 
 Item {
     id: galleryPreviewer
     height: 140
 
     property ListModel galleryPreviewerModel
-    property string previewerDelegateIcon: ''
-    property string previewerDelegateSize: ''
+    property int previewerDelegateSize: 0
+    property int previewerDelegateType: TMDB.IMAGE_POSTER
     property int previewedItems: 4
 
     property int previewerDelegateIconWidth: 92
@@ -61,7 +62,10 @@ Item {
                 width: previewerDelegateIconWidth; height: previewerDelegateIconHeight
                 opacity: galleryPreviewerMouseArea.pressed ? 0.5 : 1
                 fillMode: Image.PreserveAspectFit
-                source: galleryPreviewerModel.get(index).sizes[previewerDelegateSize][previewerDelegateIcon]
+                source: TMDB.image(previewerDelegateType,
+                                   previewerDelegateSize,
+                                   galleryPreviewerModel.get(index).file_path,
+                                   { app_locale: appLocale} )
             }
         }
     }
