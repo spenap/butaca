@@ -22,6 +22,7 @@ import com.nokia.meego 1.0
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
 import 'butacautils.js' as Util
+import 'moviedbwrapper.js' as TMDB
 import 'storage.js' as Storage
 
 Page {
@@ -58,6 +59,12 @@ Page {
         menuModel.get(3).title = qsTr('Lists')
         //: Shown as the subtitle for the lists view menu entry
         menuModel.get(3).subtitle = qsTr('Favorites and watchlist')
+
+        Util.asyncQuery({
+                            url: TMDB.configuration_getUrl({ app_locale: appLocale }),
+                            response_action: 0
+                        },
+                        handleMessage)
     }
 
     tools: ToolBarLayout {
@@ -205,14 +212,14 @@ Page {
                 text: title
                 onClicked: {
                     if (type == Util.MOVIE) {
-                               appWindow.pageStack.push(movieView,
-                                                        { tmdbId: id,
-                                                          loading: true })
-                           } else {
-                               appWindow.pageStack.push(personView,
-                                                        { tmdbId: id,
-                                                          loading: true })
-                           }
+                        appWindow.pageStack.push(movieView,
+                                                 { tmdbId: id,
+                                                   loading: true })
+                    } else {
+                        appWindow.pageStack.push(personView,
+                                                 { tmdbId: id,
+                                                   loading: true })
+                    }
                 }
             }
         }
@@ -259,5 +266,11 @@ Page {
             }
         }
         return -1
+    }
+
+    function handleMessage(messageObject) {
+        var jsonResponse = JSON.parse(messageObject.response)
+        if (jsonResponse.errors === undefined)
+            TMDB.configuration_set(jsonResponse, { app_locale: appLocale })
     }
 }
