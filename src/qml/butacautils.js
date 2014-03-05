@@ -26,6 +26,7 @@ var IMDB_BASE_URL = 'http://www.imdb.com/'
 
 var FETCH_RESPONSE_TMDB_MOVIE = 0
 var FETCH_RESPONSE_WATC = 1
+var FETCH_RESPONSE_TMDB_PERSON = 2
 
 /**
  * Gets the year from a string containing a date
@@ -90,9 +91,7 @@ function TMDbMovie(obj) {
 function TMDbPerson(obj) {
     this.id = obj.id
     this.name = obj.name
-    this.biography = obj.biography
-    this.url = obj.url
-    this.image = obj.image
+    this.profile_path = obj.profile_path
 
     this.title = this.name
     this.type = 'TMDbPerson'

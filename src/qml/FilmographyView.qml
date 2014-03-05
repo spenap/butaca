@@ -36,6 +36,7 @@ Page {
 
     property string personName: ''
     property ListModel filmographyModel
+    property string listModelSubTitle: ''
 
     ListView {
         id: filmographyList
@@ -51,8 +52,8 @@ Page {
         }
         delegate: MyListDelegate {
             width: parent.width
-            title: model.name
-            subtitle: model.job
+            title: model.title
+            subtitle: model[listModelSubTitle]
 
             onClicked: {
                 pageStack.push(movieView,
