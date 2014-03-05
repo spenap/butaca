@@ -52,7 +52,6 @@ OTHER_FILES += \
     qml/WelcomeView.qml \
     qml/SearchView.qml \
     qml/PersonView.qml \
-    qml/PeopleModel.qml \
     qml/GenresView.qml \
     qml/ButacaToolBar.qml \
     qml/MultipleMoviesView.qml \
