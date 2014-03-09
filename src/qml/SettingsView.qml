@@ -36,28 +36,15 @@ Page {
 
     Component.onCompleted: {
         Storage.initialize()
-        var orderBy = Storage.getSetting('orderBy', 'rating')
-        var order = Storage.getSetting('order', 'desc')
+        var includeAll = Storage.getSetting('includeAll', 'true')
+        var includeAdult = Storage.getSetting('includeAdult', 'true')
 
-        if (orderBy === 'title') {
-            criteriaOptions.checkedButton = byTitle
-        } else if (orderBy === 'release') {
-            criteriaOptions.checkedButton = byRelease
-        } else {
-            criteriaOptions.checkedButton = byRating
-        }
-
-        if (order === 'asc') {
-            sortOrderOptions.checkedButton = sortAscending
-        } else {
-            sortOrderOptions.checkedButton = sortDescending
-        }
+        includeAllSwitch.checked = (includeAll === 'true')
+        includeAdultSwitch.checked = (includeAdult === 'true')
     }
 
     Component.onDestruction: {
         Storage.setSetting('location', locationInput.text)
-        Storage.setSetting('minVotes', minVotesInput.text)
-        Storage.setSetting('perPage', resultsPerPageInput.text)
     }
 
     Flickable {
@@ -157,150 +144,63 @@ Page {
                 }
 
                 Item {
-                    id: orderCriteria
+                    id: includeAllItem
                     width: parent.width
-                    height: childrenRect.height
+                    height: 60
 
                     Label {
-                        id: criteriaText
-                        anchors.top:  parent.top
-                        platformStyle: LabelStyle {
-                            fontPixelSize: UIConstants.FONT_DEFAULT
-                        }
-                        //: Label for the order criteria setting used when browsing
-                        text: qsTr('Order criteria')
-                        color: UIConstants.COLOR_INVERTED_FOREGROUND
-                    }
-
-                    ButtonColumn {
-                        id: criteriaOptions
+                        id: includeAllText
                         anchors {
-                            top: criteriaText.bottom
-                            topMargin: UIConstants.DEFAULT_MARGIN / 2
-                            right: parent.right
-                        }
-
-                        Button {
-                            id: byRating
-                            //: Label for the "order by rating" setting
-                            text: qsTr('Rating')
-                            onClicked: Storage.setSetting('orderBy', 'rating')
-                        }
-
-                        Button {
-                            id: byRelease
-                            //: Label for the "order by release date" setting
-                            text: qsTr('Release')
-                            onClicked: Storage.setSetting('orderBy', 'release')
-                        }
-
-                        Button {
-                            id: byTitle
-                            //: Label for the "order by title" setting
-                            text: qsTr('Title')
-                            onClicked: Storage.setSetting('orderBy', 'title')
-                        }
-                    }
-                }
-
-                Item {
-                    id: sortOrder
-                    width: parent.width
-                    height: childrenRect.height
-
-                    Label {
-                        id: sortOrderText
-                        anchors.top:  parent.top
-                        platformStyle: LabelStyle {
-                            fontPixelSize: UIConstants.FONT_DEFAULT
-                        }
-                        //: Label for the sort order setting used when browsing
-                        text: qsTr('Sort order')
-                        color: UIConstants.COLOR_INVERTED_FOREGROUND
-                    }
-
-                    ButtonColumn {
-                        id: sortOrderOptions
-                        anchors {
-                            top: sortOrderText.bottom
-                            topMargin: UIConstants.DEFAULT_MARGIN / 2
-                            right: parent.right
-                        }
-
-                        Button {
-                            id: sortAscending
-                            //: Label for the "sort ascending" setting
-                            text: qsTr('Ascending')
-                            onClicked: Storage.setSetting('order', 'asc')
-                        }
-
-                        Button {
-                            id: sortDescending
-                            //: Label for the "sort descending" setting
-                            text: qsTr('Descending')
-                            onClicked: Storage.setSetting('order', 'desc')
-                        }
-                    }
-                }
-
-                Item {
-                    id: resultsPerPage
-                    width: parent.width
-                    height: childrenRect.height
-
-                    Label {
-                        id: resultsPerPageText
-                        anchors {
-                            verticalCenter: resultsPerPageInput.verticalCenter
                             left: parent.left
+                            verticalCenter: parent.verticalCenter
                         }
                         platformStyle: LabelStyle {
                             fontPixelSize: UIConstants.FONT_DEFAULT
                         }
-                        //: Label for the results per page setting used when browsing
-                        text: qsTr('Results per page')
+                        //: Label for the include criteria setting for adult content used when browsing
+                        text: qsTr('Include content with <10 votes')
                         color: UIConstants.COLOR_INVERTED_FOREGROUND
                     }
 
-                    TextField {
-                        id: resultsPerPageInput
-                        anchors.right: parent.right
-                        text: Storage.getSetting('perPage', '10')
-                        width: 100
-                        inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
-                        Keys.onReturnPressed: {
-                            Storage.setSetting('perPage', text)
+                    Switch {
+                        id: includeAllSwitch
+                        anchors {
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                        }
+                        onCheckedChanged: {
+                            Storage.setSetting('includeAll', checked ? 'true' : 'false')
                         }
                     }
                 }
 
                 Item {
-                    id: minVotes
+                    id: includeAdultItem
                     width: parent.width
-                    height: childrenRect.height
+                    height: 60
 
                     Label {
-                        id: minVotesText
+                        id: includeAdultText
                         anchors {
-                            verticalCenter: minVotesInput.verticalCenter
                             left: parent.left
+                            verticalCenter: parent.verticalCenter
                         }
                         platformStyle: LabelStyle {
                             fontPixelSize: UIConstants.FONT_DEFAULT
                         }
-                        //: Label for the minimum votes setting used when browsing
-                        text: qsTr('Minimum votes')
+                        //: Label for the include criteria setting for adult content used when browsing
+                        text: qsTr('Include adult content')
                         color: UIConstants.COLOR_INVERTED_FOREGROUND
                     }
 
-                    TextField {
-                        id: minVotesInput
-                        anchors.right: parent.right
-                        text: Storage.getSetting('minVotes', '0')
-                        width: 100
-                        inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
-                        Keys.onReturnPressed: {
-                            Storage.setSetting('minVotes', text)
+                    Switch {
+                        id: includeAdultSwitch
+                        anchors {
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                        }
+                        onCheckedChanged: {
+                            Storage.setSetting('includeAdult', checked ? 'true' : 'false')
                         }
                     }
                 }
