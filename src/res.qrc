@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>qml/MultipleMoviesDelegate.qml</file>
-        <file>qml/MultipleMoviesModel.qml</file>
         <file>qml/MultipleMoviesView.qml</file>
         <file>qml/ButacaToolBar.qml</file>
         <file>qml/GenresView.qml</file>

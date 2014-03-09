@@ -56,7 +56,6 @@ OTHER_FILES += \
     qml/GenresView.qml \
     qml/ButacaToolBar.qml \
     qml/MultipleMoviesView.qml \
-    qml/MultipleMoviesModel.qml \
     qml/MultipleMoviesDelegate.qml \
     qml/Header.qml \
     qml/NoContentItem.qml \
