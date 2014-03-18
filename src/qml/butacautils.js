@@ -45,6 +45,23 @@ function getYearFromDate(date) {
 }
 
 /**
+ * Gets the Date object from a string containing a date
+ *
+ * @param {string} A date in a format yyyy-mm-dd
+ * @return {Date} the Date object
+ */
+function getDateFromString(date) {
+    /* This asumes a date in yyyy-mm-dd */
+    if (date) {
+        var dateParts = date.split('-');
+        return new Date(dateParts[0],
+                        dateParts[1] - 1, // months are 0-based
+                        dateParts[2])
+    }
+    return ''
+}
+
+/**
  * Gets an url pointing to a thumbnail for the given trailer
  *
  * @param {string} The trailer url. It expects Youtube urls

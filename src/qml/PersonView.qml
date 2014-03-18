@@ -104,9 +104,41 @@ Page {
             if (person.imdb_id)
                 imdbId = person.imdb_id
 
-            Util.populateModelFromArray(person.movie_credits, 'cast', castModel)
-            Util.populateModelFromArray(person.movie_credits, 'crew', crewModel)
+            if (person.movie_credits.cast) {
+                person.movie_credits.cast.sort(sortByDate)
+                Util.populateModelFromArray(person.movie_credits, 'cast', castModel)
+            }
+            if (person.movie_credits.crew) {
+                person.movie_credits.crew.sort(sortByDepartmentAndYear)
+                Util.populateModelFromArray(person.movie_credits, 'crew', crewModel)
+            }
             Util.populateModelFromArray(person.images, 'profiles', picturesModel)
+        }
+
+        function sortByDate(oneItem, theOther) {
+            var oneDate = Util.getDateFromString(oneItem.release_date)
+            var theOtherDate = Util.getDateFromString(theOther.release_date)
+
+            return (oneDate > theOtherDate ? -1 : 1)
+        }
+
+        function sortByDepartmentAndYear(oneItem, theOther) {
+            var result = oneItem.department.localeCompare(theOther.department)
+            if (result !== 0) {
+                // pull directors and writers to the top
+                if (oneItem.department === 'Directing')
+                    return -1
+                else if (theOther.department === 'Directing')
+                    return 1
+                else if (oneItem.department === 'Writing')
+                    return -1
+                else if (theOther.department === 'Writing')
+                    return 1
+            } else {
+                result = sortByDate(oneItem, theOther)
+            }
+
+            return result
         }
     }
 

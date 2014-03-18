@@ -64,7 +64,7 @@ Page {
             }
         }
 
-        section.property: 'name'
+        section.property: 'department'
         section.delegate: ListSectionDelegate { sectionName: section }
     }
 
