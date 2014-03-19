@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import 'constants.js' as UIConstants
+import 'butacautils.js' as Util
 
 Page {
     id: filmographyView
@@ -52,7 +53,8 @@ Page {
         }
         delegate: MyListDelegate {
             width: parent.width
-            title: model.title
+            title: model.title +
+                   (model.release_date ? ' (' + Util.getYearFromDate(model.release_date) + ')' : '')
             subtitle: model[listModelSubTitle]
 
             onClicked: {
