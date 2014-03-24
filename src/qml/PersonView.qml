@@ -261,6 +261,7 @@ Page {
                             right: parent.right
                             margins: UIConstants.DEFAULT_MARGIN
                         }
+                        visible: parsedPerson.birthday
                         //: Header shown for the born details of a person
                         text: qsTr('Born')
                     }
