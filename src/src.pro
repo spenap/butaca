@@ -80,6 +80,7 @@ OTHER_FILES += \
     resources/tmdb-logo.png \
     resources/indicator-rating-inverted-star.svg \
     qml/MediaGalleryView.qml \
+    qml/ZoomableImage.qml \
     qml/MyGalleryPreviewer.qml \
     qml/MyModelFlowPreviewer.qml \
     qml/MyTextExpander.qml \
