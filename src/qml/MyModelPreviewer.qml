@@ -49,7 +49,7 @@ Column {
         width: parent.width
         model: Math.min(previewedItems, previewedModel.count)
         delegate: MyListDelegate {
-            width: parent.width
+            width: modelPreviewer.width
             smallSize: true
 
             iconSource: previewedModel.get(index)[previewerDelegateIcon] ?
