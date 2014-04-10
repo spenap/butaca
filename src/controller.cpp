@@ -94,15 +94,21 @@ void Controller::share(QString title, QString url)
 #endif
 }
 
-void Controller::fetchTheaters(QString location)
+void Controller::fetchTheaters(QString location, QString daysAhead)
 {
     m_location = location;
-    m_showtimesFetcher->fetchTheaters(m_location);
+    m_daysAhead = daysAhead;
+    m_showtimesFetcher->fetchTheaters(m_location, m_daysAhead);
 }
 
 QString Controller::currentLocation()
 {
     return m_location;
+}
+
+QString Controller::currentDaysAhead()
+{
+    return m_daysAhead;
 }
 
 void Controller::onTheatersFetched(int count)

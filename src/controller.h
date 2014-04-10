@@ -65,11 +65,16 @@ public slots:
     //! Fetches theater showtimes for the given location.
     //! tries to autoresolve it when it is empty
     //! \param location Specific location to fetch theater showtimes
-    void fetchTheaters(QString location = QString());
+    //! \param daysAhead Offset from the current date
+    void fetchTheaters(QString location = QString(), QString daysAhead = QString("0"));
 
     //! Retrieves the location currently used
     //! \return Location currently used
     QString currentLocation();
+
+    //! Retrieves the days ahead currently used
+    //! \return Days ahead currently used
+    QString currentDaysAhead();
 
     //! Formats the given value as a currency
     //! \param value Value to be formatted
@@ -100,6 +105,7 @@ private:
     TheaterListModel* m_theaterListModel;
     SortFilterModel* m_sortFilterModel;
     QString m_location;
+    QString m_daysAhead;
     QString m_packageVersion;
 };
 

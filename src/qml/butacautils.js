@@ -62,6 +62,21 @@ function getDateFromString(date) {
 }
 
 /**
+ * gets the difference in days between two given dates
+ *
+ * @param {Date} A date object
+ * @param {Date} Another date object
+ * @return {int} the difference in days
+ */
+function dateDiffInDays(a, b) {
+    // Discard the time and time-zone information.
+    var utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    var utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+    return Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
+}
+
+/**
  * Gets an url pointing to a thumbnail for the given trailer
  *
  * @param {string} The trailer url. It expects Youtube urls
