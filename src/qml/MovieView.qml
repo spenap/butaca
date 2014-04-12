@@ -89,7 +89,7 @@ Page {
             MenuItem {
                 //: This visits the Internet Movie Database page of this content (movie or person)
                 text: qsTr('View in IMDb')
-                onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + parsedMovie.imdbId)
+                onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + 'title/' + parsedMovie.imdbId)
             }
             MenuItem {
                 //: This visits the The Movie Database page of this content (movie or person)
@@ -112,44 +112,43 @@ Page {
 
         // Part of the lightweight movie object
         property string tmdbId: ''
-        property string imdbId: ''
         property string name: ''
         property string originalName: ''
         property string released: ''
         property double rating: 0
         property int votes: 0
-        property string overview: ''
         property string poster: 'qrc:/resources/movie-placeholder.svg'
-        property string url: ''
+        property string url: '' // implicit: base url + movie id
+        // also available: backdrop, adult, popularity
 
         // Part of the full movie object
-        property string alternativeName: ''
+        property string imdbId: ''
+        property string overview: ''
         property string tagline: ''
         property string trailer: ''
         property string revenue: ''
         property string budget: ''
         property int runtime: 0
-        property string certification: ''
+        property string certification: '-'
         property string homepage: ''
         property string extras:
             //: This indicates that no extra content after or during the credits was found
             qsTr('Not found')
         property string extrasUrl: ''
         property bool extrasFetched: false
-
-        property variant rawCast: ''
+        // also available: belongs_to_collection, spoken_languages, status
 
         function updateWithLightWeightMovie(movie) {
             tmdbId = movie.id
-            imdbId = movie.imdb_id
-            name = movie.name
-            originalName = movie.original_name
-            released = movie.released
-            rating = movie.rating
-            votes = movie.votes
-            overview = movie.overview
-            if (movie.poster)
-                poster = movie.poster
+            name = movie.title
+            originalName = movie.original_title
+            released = movie.release_date
+            rating = movie.vote_average
+            votes = movie.vote_count
+            url = 'http://www.themoviedb.org/movie/' + tmdbId
+            if (movie.poster_path)
+                poster = TMDB.image(TMDB.IMAGE_POSTER, 2,
+                                    movie.poster_path, { app_locale: appLocale })
         }
 
         function updateWithFullWeightMovie(movie) {
@@ -158,46 +157,41 @@ Page {
             }
             movieView.movie = ''
 
-            if (movie.trailer)
-                trailer = movie.trailer
+            if (movie.imdb_id)
+                imdbId = movie.imdb_id
+            if (movie.overview)
+                overview = movie.overview
+            if (movie.trailers.youtube[0]) // can't deal with quicktime
+                trailer = 'http://www.youtube.com/watch?v=' + movie.trailers.youtube[0].source
             if (movie.homepage)
                 homepage = movie.homepage
             if (movie.revenue)
                 revenue = movie.revenue
             if (movie.budget)
                 budget = movie.budget
-            if (movie.certification)
-                certification = movie.certification
-            if (movie.alternativeName)
-                alternativeName = movie.alternative_name
             if (movie.tagline)
                 tagline = movie.tagline
             if (movie.runtime)
                 runtime = movie.runtime
-            if (movie.url)
-                url = movie.url
 
-            if (movie.cast) {
-                movie.cast.sort(sortByCastId)
-                var crew = movie.cast
-                crew.sort(sortByDepartment)
-                rawCast = crew
-            }
-
+            Util.populateModelFromArray(movie.alternative_titles, 'titles', altTitlesModel)
             Util.populateModelFromArray(movie, 'genres', genresModel)
-            Util.populateModelFromArray(movie, 'studios', studiosModel)
-            Util.populateImagesModelFromArray(movie, 'posters', postersModel)
-            Util.populateModelFromArray(movie, 'cast', crewModel,
-                                 {
-                                     filteringProperty: 'job',
-                                     filteredValue: 'Actor',
-                                     secondaryModel: castModel,
-                                     Delegate: Util.TMDbCrewPerson
-                                 })
+            Util.populateModelFromArray(movie, 'production_companies', studiosModel)
+            Util.populateModelFromArray(movie.images, 'posters', postersModel)
+            Util.populateModelFromArray(movie.images, 'backdrops', backdropsModel)
 
-            if (postersModel.count > 0 &&
-                    postersModel.get(0).sizes['cover'].url)
-                poster = postersModel.get(0).sizes['cover'].url
+            for (var i = 0; i < movie.releases['countries'].length; i++)
+                if (movie.releases.countries[i].iso_3166_1 == appLocale.toUpperCase())
+                    certification = movie.releases.countries[i].certification
+
+            if (movie.credits.cast) {
+                movie.credits.cast.sort(sortByCastId)
+                Util.populateModelFromArray(movie.credits, 'cast', castModel)
+            }
+            if (movie.credits.crew) {
+                movie.credits.crew.sort(sortByDepartment)
+                Util.populateModelFromArray(movie.credits, 'crew', crewModel)
+            }
 
             if (!loadingExtras && !parsedMovie.extrasFetched)
                 fetchExtras()
@@ -211,14 +205,15 @@ Page {
     function sortByDepartment(oneItem, theOther) {
         var result = oneItem.department.localeCompare(theOther.department)
         if (result !== 0) {
+            // pull directors and writers to the top
             if (oneItem.department === 'Directing')
                 return -1
             else if (theOther.department === 'Directing')
                 return 1
-            else if (oneItem.department === 'Actors')
-                return 1
-            else if (theOther.department === 'Actors')
+            else if (oneItem.department === 'Writing')
                 return -1
+            else if (theOther.department === 'Writing')
+                return 1
         }
         return result
     }
@@ -229,43 +224,27 @@ Page {
             parsedMovie.updateWithLightWeightMovie(theMovie)
         }
 
-        if (tmdbId) {
-            fetchExtendedContent(TMDB.movie_info(tmdbId, { app_locale: appLocale, format: 'json' }),
-                                 Util.REMOTE_FETCH_RESPONSE)
-        } else if (imdbId) {
-            fetchExtendedContent(TMDB.movie_imdb_lookup(imdbId, { app_locale: appLocale, format: 'json' }),
-                                 Util.LOOKUP_FETCH_RESPONSE)
-        }
+        if (tmdbId)
+            fetchExtendedContent(TMDB.movie_info(tmdbId,
+                                                 'alternative_titles,credits,images,trailers,releases',
+                                                 { app_locale: appLocale }),
+                                 Util.FETCH_RESPONSE_TMDB_MOVIE)
 
-        if (imdbId && parsedMovie.originalName) fetchExtras()
-    }
-
-    function fetchExtendedContent(contentUrl, action) {
-        loadingExtended = true
-        Util.asyncQuery({
-                            url: contentUrl,
-                            response_action: action
-                        },
-                        handleMessage)
-    }
-
-    function fetchExtras() {
-        loadingExtras = true
-        Util.asyncQuery({
-                            url: WATC.movie_extras(parsedMovie.originalName),
-                            response_action: Util.EXTRAS_FETCH_RESPONSE
-                        },
-                        handleMessage)
+        if (imdbId && parsedMovie.originalName)
+            fetchExtras()
     }
 
     // Several ListModels are used.
     // * Genres stores the genres / categories which best describe the movie. When
     //   browsing by genre, the movie will have at least the genre we were navigating
     // * Studios stores the company which produced the film
-    // * Posters stores all the media for this particular film. The media is
-    //   processed, so each particular image keeps all available resolutions
+    // * Posters stores all the poster images for this particular film. By using the
+    //   resolutions in the API configuration, all quality levels can be accessed
+    // * Backdrops stores all the backdrop images for this particular film. By using the
+    //   resolutions in the API configuration, all quality levels can be accessed
     // * Cast and crew are separated from each other, so we can be more specific
     //   in the movie preview
+    // * AltTitles stores the alternative titles of the film
 
     ListModel {
         id: genresModel
@@ -280,6 +259,10 @@ Page {
     }
 
     ListModel {
+        id: backdropsModel
+    }
+
+    ListModel {
         id: castModel
     }
 
@@ -287,13 +270,16 @@ Page {
         id: crewModel
     }
 
+    ListModel {
+        id: altTitlesModel
+    }
+
     Component {
         id: galleryView
 
         MediaGalleryView {
-            gridSize: 'w154'
-            fullSize: 'mid'
-            saveSize: 'original'
+            gridSize: 0
+            saveSize: 100
         }
     }
 
@@ -360,7 +346,7 @@ Page {
                             margins: UIConstants.DEFAULT_MARGIN
                         }
                         headerFontSize: UIConstants.FONT_SLARGE
-                        text: parsedMovie.name + ' (' + Util.getYearFromDate(parsedMovie.released) + ')'
+                        text: parsedMovie.originalName + ' (' + Util.getYearFromDate(parsedMovie.released) + ')'
                     }
 
                     Label {
@@ -449,12 +435,16 @@ Page {
                     width: parent.width
 
                     galleryPreviewerModel: postersModel
-                    previewerDelegateIcon: 'url'
-                    previewerDelegateSize: 'thumb'
+                    previewerDelegateType: TMDB.IMAGE_POSTER
                     visible: postersModel.count > 0
 
                     onClicked: {
-                        appWindow.pageStack.push(galleryView, { galleryViewModel: postersModel })
+                        appWindow.pageStack.push(galleryView,
+                                                 {
+                                                     galleryViewModel: postersModel,
+                                                     imgType: TMDB.IMAGE_POSTER,
+                                                     fullSize: 3
+                                                 })
                     }
                 }
 
@@ -463,6 +453,32 @@ Page {
                     height: 1
                     color: UIConstants.COLOR_SECONDARY_FOREGROUND
                     visible: postersModel.count > 0
+                }
+
+                MyGalleryPreviewer {
+                    width: parent.width
+
+                    galleryPreviewerModel: backdropsModel
+                    previewerDelegateType: TMDB.IMAGE_BACKDROP
+                    previewedItems: 2
+                    previewerDelegateIconWidth: 92 * 2
+                    visible: backdropsModel.count > 0
+
+                    onClicked: {
+                        appWindow.pageStack.push(galleryView,
+                                                 {
+                                                     galleryViewModel: backdropsModel,
+                                                     imgType: TMDB.IMAGE_BACKDROP,
+                                                     fullSize: 1
+                                                 })
+                    }
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 1
+                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
+                    visible: backdropsModel.count > 0
                 }
 
                 MyListDelegate {
@@ -529,6 +545,24 @@ Page {
                     width: parent.width
                     flowModel: genresModel
                     previewedField: 'name'
+                }
+            }
+
+            Column {
+                id: movieAltTitlesSection
+                width: parent.width
+                visible: altTitlesModel.count > 0
+
+                MyEntryHeader {
+                    width: parent.width
+                    //: Label acting as the header for the alternative titles
+                    text: qsTr('Alternative titles')
+                }
+
+                MyModelFlowPreviewer {
+                    width: parent.width
+                    flowModel: altTitlesModel
+                    previewedField: 'title'
                 }
             }
 
@@ -634,7 +668,7 @@ Page {
                     qsTr('Cast')
                 previewerDelegateTitle: 'name'
                 previewerDelegateSubtitle: 'character'
-                previewerDelegateIcon: 'profile'
+                previewerDelegateIcon: 'profile_path'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText:
                     //: Footer for the cast preview shown in the movie view. When clicked, shows the full cast.
@@ -644,7 +678,7 @@ Page {
                 onClicked: {
                     appWindow.pageStack.push(personView,
                                              {
-                                                 tmdbId: castModel.get(modelIndex).id,
+                                                 person: castModel.get(modelIndex),
                                                  loading: true
                                              })
                 }
@@ -665,17 +699,17 @@ Page {
                     qsTr('Crew')
                 previewerDelegateTitle: 'name'
                 previewerDelegateSubtitle: 'job'
-                previewerDelegateIcon: 'profile'
+                previewerDelegateIcon: 'profile_path'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText:
                     //: Footer for the crew preview shown in the movie view. When clicked, shows the full cast and crew.
-                    qsTr('Full cast & crew')
+                    qsTr('Full crew')
                 visible: crewModel.count > 0
 
                 onClicked: {
                     appWindow.pageStack.push(personView,
                                              {
-                                                 tmdbId: crewModel.get(modelIndex).id,
+                                                 person: crewModel.get(modelIndex),
                                                  loading: true
                                              })
                 }
@@ -683,7 +717,7 @@ Page {
                     appWindow.pageStack.push(castView,
                                              {
                                                  movieName: parsedMovie.name,
-                                                 rawCrew: parsedMovie.rawCast,
+                                                 castModel: crewModel,
                                                  showsCast: false
                                              })
                 }
@@ -696,29 +730,50 @@ Page {
         anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
     }
 
+    function fetchExtendedContent(contentUrl, action) {
+        loadingExtended = true
+        Util.asyncQuery({
+                            url: contentUrl,
+                            response_action: action
+                        },
+                        handleMessage)
+    }
+
+    function fetchExtras() {
+        loadingExtras = true
+        Util.asyncQuery({
+                            url: WATC.movie_extras(parsedMovie.originalName),
+                            response_action: Util.FETCH_RESPONSE_WATC
+                        },
+                        handleMessage)
+    }
+
     function handleMessage(messageObject) {
-        if (messageObject.action === Util.REMOTE_FETCH_RESPONSE) {
+        var objectArray = JSON.parse(messageObject.response)
+        if (objectArray.errors !== undefined) {
+            console.debug("Error parsing JSON: " + objectArray.errors[0].message)
+            return
+        }
+
+        switch (messageObject.action) {
+        case Util.FETCH_RESPONSE_TMDB_MOVIE:
+            parsedMovie.updateWithFullWeightMovie(objectArray)
             loading = loadingExtended = false
-            var fullMovie = JSON.parse(messageObject.response)[0]
-            parsedMovie.updateWithFullWeightMovie(fullMovie)
-        } else if (messageObject.action === Util.LOOKUP_FETCH_RESPONSE) {
-            // When doing a IMDB lookup, the information retrieved lacks some details
-            loading = false
-            var partialMovie = JSON.parse(messageObject.response)[0]
-            parsedMovie.updateWithFullWeightMovie(partialMovie)
-            fetchExtendedContent(TMDB.movie_info(tmdbId, { app_locale: appLocale, format: 'json' }),
-                                 Util.REMOTE_FETCH_RESPONSE)
-        } else if (messageObject.action === Util.EXTRAS_FETCH_RESPONSE) {
-            loadingExtras = false
+            break
+
+        case Util.FETCH_RESPONSE_WATC:
             parsedMovie.extrasFetched = true
-            var afterCreditsResponse = JSON.parse(messageObject.response)
-            var watcMovie = WATC.parseACResponse(afterCreditsResponse, parsedMovie.imdbId)
+            var watcMovie = WATC.parseACResponse(objectArray, parsedMovie.imdbId)
             if (watcMovie) {
                 parsedMovie.extras = watcMovie.subtitle
                 parsedMovie.extrasUrl = watcMovie.url
             }
-        } else {
+            loadingExtras = false
+            break
+
+        default:
             console.debug('Unknown action response: ', messageObject.action)
+            break
         }
     }
 

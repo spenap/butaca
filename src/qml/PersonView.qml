@@ -49,7 +49,7 @@ Page {
         MenuLayout {
             MenuItem {
                 text: qsTr('View in IMDb')
-                onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + parsedPerson.imdbId)
+                onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + 'name/' + parsedPerson.imdbId)
             }
             MenuItem {
                 text: qsTr('View in TMDb')
@@ -69,23 +69,24 @@ Page {
         // Part of the lightweight person
         property string tmdbId: ''
         property string name: ''
-        property string biography: ''
-        property string url: ''
         property string profile: 'qrc:/resources/person-placeholder.svg'
+        property string url: '' // implicit: base url + person id
+        // also available: popularity
 
         // Part of the full person object
-        property variant alsoKnownAs: ''
         property string birthday: ''
         property string birthplace: ''
-        property int knownMovies: 0
+        property string biography: ''
+        property string imdbId: ''
+        // also available: adult, also_known_as, deathday, homepage
 
         function updateWithLightWeightPerson(person) {
             tmdbId = person.id
             name = person.name
-            biography = person.biography
-            url = person.url
-            if (person.image)
-                profile = person.image
+            url = 'http://www.themoviedb.org/person/' + tmdbId
+            if (person.profile_path)
+                profile = TMDB.image(TMDB.IMAGE_PROFILE, 1,
+                                     person.profile_path, { app_locale: appLocale })
         }
 
         function updateWithFullWeightPerson(person) {
@@ -94,26 +95,59 @@ Page {
             }
             personView.person = ''
 
-            if (person.known_as)
-                alsoKnownAs = person.known_as
+            if (person.biography)
+                biography = person.biography
             if (person.birthday)
                 birthday = person.birthday
-            if (person.birthplace)
-                birthplace = person.birthplace
-            if (person.known_movies)
-                knownMovies = person.known_movies
+            if (person.place_of_birth)
+                birthplace = person.place_of_birth
+            if (person.imdb_id)
+                imdbId = person.imdb_id
 
-            Util.populateModelFromArray(person, 'filmography', filmographyModel)
-            Util.populateImagesModelFromArray(person, 'profile', picturesModel)
+            if (person.movie_credits.cast) {
+                person.movie_credits.cast.sort(sortByDate)
+                Util.populateModelFromArray(person.movie_credits, 'cast', castModel)
+            }
+            if (person.movie_credits.crew) {
+                person.movie_credits.crew.sort(sortByDepartmentAndYear)
+                Util.populateModelFromArray(person.movie_credits, 'crew', crewModel)
+            }
+            Util.populateModelFromArray(person.images, 'profiles', picturesModel)
+        }
 
-            if (picturesModel.count > 0 &&
-                    picturesModel.get(0).sizes['h632'].url)
-                profile = picturesModel.get(0).sizes['h632'].url
+        function sortByDate(oneItem, theOther) {
+            var oneDate = Util.getDateFromString(oneItem.release_date)
+            var theOtherDate = Util.getDateFromString(theOther.release_date)
+
+            return (oneDate > theOtherDate ? -1 : 1)
+        }
+
+        function sortByDepartmentAndYear(oneItem, theOther) {
+            var result = oneItem.department.localeCompare(theOther.department)
+            if (result !== 0) {
+                // pull directors and writers to the top
+                if (oneItem.department === 'Directing')
+                    return -1
+                else if (theOther.department === 'Directing')
+                    return 1
+                else if (oneItem.department === 'Writing')
+                    return -1
+                else if (theOther.department === 'Writing')
+                    return 1
+            } else {
+                result = sortByDate(oneItem, theOther)
+            }
+
+            return result
         }
     }
 
     ListModel {
-        id: filmographyModel
+        id: castModel
+    }
+
+    ListModel {
+        id: crewModel
     }
 
     ListModel {
@@ -124,9 +158,10 @@ Page {
         id: galleryView
 
         MediaGalleryView {
-            gridSize: 'profile'
-            fullSize: 'h632'
-            saveSize: 'original'
+            imgType: TMDB.IMAGE_PROFILE
+            gridSize: 1
+            fullSize: 2
+            saveSize: 100
         }
     }
 
@@ -138,16 +173,17 @@ Page {
             parsedPerson.updateWithLightWeightPerson(thePerson)
         }
 
-        if (tmdbId !== -1) fetchExtendedContent()
+        if (tmdbId)
+            fetchExtendedContent()
     }
 
     function fetchExtendedContent() {
         loadingExtended = true
         Util.asyncQuery({
-                              url: TMDB.person_info(tmdbId, { app_locale: appLocale, format: 'json' }),
-                              response_action: Util.REMOTE_FETCH_RESPONSE
-                          },
-                          handleMessage)
+                            url: TMDB.person_info(tmdbId, 'movie_credits,images', { app_locale: appLocale }), // tv_credits?
+                            response_action: Util.FETCH_RESPONSE_TMDB_PERSON
+                        },
+                        handleMessage)
     }
 
     Flickable {
@@ -225,6 +261,7 @@ Page {
                             right: parent.right
                             margins: UIConstants.DEFAULT_MARGIN
                         }
+                        visible: parsedPerson.birthday
                         //: Header shown for the born details of a person
                         text: qsTr('Born')
                     }
@@ -277,7 +314,7 @@ Page {
                         wrapMode: Text.WordWrap
                         text: qsTr('Known for %Ln movie(s)',
                                    'Text shown in the person view displaying the number of movies a person is known for',
-                                   parsedPerson.knownMovies).arg(parsedPerson.knownMovies)
+                                   castModel.count + crewModel.count)
                     }
                 }
             }
@@ -292,8 +329,7 @@ Page {
                 width: parent.width
 
                 galleryPreviewerModel: picturesModel
-                previewerDelegateIcon: 'url'
-                previewerDelegateSize: 'thumb'
+                previewerDelegateType: TMDB.IMAGE_PROFILE
                 visible: picturesModel.count > 0
 
                 onClicked: {
@@ -318,23 +354,23 @@ Page {
 
             MyModelPreviewer {
                 width: parent.width
-                previewedModel: filmographyModel
+                previewedModel: castModel
                 previewerHeaderText:
                     //: Header for the filmography preview shown in the person view
-                    qsTr('Filmography')
-                previewerDelegateTitle: 'name'
-                previewerDelegateSubtitle: 'job'
-                previewerDelegateIcon: 'poster'
+                    qsTr('Filmography') + ' - ' + qsTr('Actor')
+                previewerDelegateTitle: 'title'
+                previewerDelegateSubtitle: 'character'
+                previewerDelegateIcon: 'poster_path'
                 previewerDelegatePlaceholder: 'qrc:/resources/movie-placeholder.svg'
                 previewerFooterText:
                     //: Footer for the filmography preview shown in the person view. When clicked, shows the full filmography
-                    qsTr('Full filmography')
-                visible: filmographyModel.count > 0
+                    qsTr('View full list')
+                visible: castModel.count > 0
 
                 onClicked: {
                     appWindow.pageStack.push(movieView,
                                              {
-                                                 tmdbId: filmographyModel.get(modelIndex).id,
+                                                 tmdbId: castModel.get(modelIndex).id,
                                                  loading: true
                                              })
                 }
@@ -343,7 +379,40 @@ Page {
                     appWindow.pageStack.push(filmographyView,
                                              {
                                                  personName: parsedPerson.name,
-                                                 filmographyModel: filmographyModel
+                                                 filmographyModel: castModel,
+                                                 listModelSubTitle: 'character'
+                                             })
+                }
+            }
+
+            MyModelPreviewer {
+                width: parent.width
+                previewedModel: crewModel
+                previewerHeaderText:
+                    //: Header for the crew filmography preview shown in the person view
+                    qsTr('Filmography') + ' - ' + qsTr('Crew')
+                previewerDelegateTitle: 'title'
+                previewerDelegateSubtitle: 'job'
+                previewerDelegateIcon: 'poster_path'
+                previewerDelegatePlaceholder: 'qrc:/resources/movie-placeholder.svg'
+                previewerFooterText:
+                    //: Footer for the crew filmography preview shown in the person view. When clicked, shows the full crew filmography
+                    qsTr('View full list')
+                visible: crewModel.count > 0
+
+                onClicked: {
+                    appWindow.pageStack.push(movieView,
+                                             {
+                                                 tmdbId: crewModel.get(modelIndex).id,
+                                                 loading: true
+                                             })
+                }
+                onFooterClicked: {
+                    appWindow.pageStack.push(filmographyView,
+                                             {
+                                                 personName: parsedPerson.name,
+                                                 filmographyModel: crewModel,
+                                                 listModelSubTitle: 'job'
                                              })
                 }
             }
@@ -356,10 +425,15 @@ Page {
     }
 
     function handleMessage(messageObject) {
-        if (messageObject.action === Util.REMOTE_FETCH_RESPONSE) {
+        var objectArray = JSON.parse(messageObject.response)
+        if (objectArray.errors !== undefined) {
+            console.debug("Error parsing JSON: " + objectArray.errors[0].message)
+            return
+        }
+
+        if (messageObject.action === Util.FETCH_RESPONSE_TMDB_PERSON) {
+            parsedPerson.updateWithFullWeightPerson(objectArray)
             loading = loadingExtended = false
-            var fullPerson = JSON.parse(messageObject.response)[0]
-            parsedPerson.updateWithFullWeightPerson(fullPerson)
         } else {
             console.debug('Unknown action response: ', messageObject.action)
         }

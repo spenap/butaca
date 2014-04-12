@@ -19,10 +19,11 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import com.nokia.extras 1.0
+import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
 import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TheMovieDb
+import 'storage.js' as Storage
 
 Page {
     id: searchView
@@ -38,7 +39,6 @@ Page {
     property alias searchTerm: searchInput.text
     property bool useSimpleDelegate : searchCategory.checkedButton !== movieSearch
     property bool loading: false
-
     property ListModel localModel: ListModel { }
 
     Component.onCompleted: {
@@ -128,26 +128,38 @@ Page {
         }
     }
 
-    PeopleModel {
+    JSONListModel {
         id: peopleModel
-        onStatusChanged: {
-            if (status == XmlListModel.Ready) {
-                Util.populateModelFromModel(peopleModel, localModel, Util.TMDbPerson)
+        property string personName: ''
+        property int page: 1
+        source: personName ? TheMovieDb.search('person', personName, {
+                                                   app_locale: appLocale,
+                                                   'page_value': page,
+                                                   'includeAdult_value': Storage.getSetting('includeAdult', 'true')
+                                               }) : ''
+        query: TheMovieDb.query_path(TheMovieDb.SEARCH)
+        onJsonChanged: {
+            if (json !== "")
                 loading = false
-            }
+            Util.populateModelFromModel(peopleModel.model, localModel, Util.TMDbPerson)
         }
     }
 
-    MultipleMoviesModel {
+    JSONListModel {
         id: moviesModel
         property string movieName: ''
-        source: movieName ? TheMovieDb.movie_search(movieName, { app_locale: appLocale }) : ''
-        query: TheMovieDb.query_path(TheMovieDb.MOVIE_SEARCH)
-        onStatusChanged: {
-            if (status == XmlListModel.Ready) {
-                Util.populateModelFromModel(moviesModel, localModel, Util.TMDbMovie)
+        property int page: 1
+        source: movieName ? TheMovieDb.search('movie', movieName, {
+                                                  app_locale: appLocale,
+                                                  'page_value': page,
+                                                  'includeAdult_value': Storage.getSetting('includeAdult', 'true')
+                                              }) : ''
+        query: TheMovieDb.query_path(TheMovieDb.SEARCH)
+        onJsonChanged: {
+            if (json !== "")
                 loading = false
-            }
+            if (count !== 0)
+                Util.populateModelFromModel(moviesModel.model, localModel, Util.TMDbMovie)
         }
     }
 
@@ -166,6 +178,11 @@ Page {
                     width: parent.width
                     title: model.title
                     onClicked: searchView.handleClicked(index)
+                }
+
+                onMovementEnded: {
+                    if (atYEnd)
+                        peopleModel.page++
                 }
             }
 
@@ -188,13 +205,18 @@ Page {
                 anchors.fill: parent
                 model: searchView.localModel
                 delegate: MultipleMoviesDelegate {
-                    iconSource: model.poster
-                    name: model.name
-                    rating: model.rating
-                    votes: model.votes
-                    year: Util.getYearFromDate(model.released)
+                    iconSource: model.poster_path
+                    name: model.title
+                    rating: model.vote_average
+                    votes: model.vote_count
+                    year: Util.getYearFromDate(model.release_date)
 
                     onClicked: searchView.handleClicked(index)
+                }
+
+                onMovementEnded: {
+                    if (atYEnd)
+                        moviesModel.page++
                 }
             }
 
@@ -229,29 +251,17 @@ Page {
     states: [
         State {
             name: 'loadingState'
-            when: peopleModel.status == XmlListModel.Loading ||
-                  moviesModel.status == XmlListModel.Loading
+            when: (peopleModel.source != '' && peopleModel.json == '') ||
+                  (moviesModel.source != '' && moviesModel.json == '')
             PropertyChanges {
                 target: busyIndicator
                 running: true
             }
         },
         State {
-            name: 'errorState'
-            when: peopleModel.status == XmlListModel.Error ||
-                  moviesModel.status == XmlListModel.Error
-            PropertyChanges {
-                target: noResults
-                visible: true
-                //: Shown in the search results area when an error ocurred
-                text: qsTr('There was an error performing the search')
-            }
-        },
-        State {
             name: 'notFoundState'
-            when: (peopleModel.status == XmlListModel.Ready ||
-                   moviesModel.status == XmlListModel.Ready) &&
-                  (peopleModel.source != '' || moviesModel.source != '') &&
+            when: ((peopleModel.source != '' && peopleModel.json != '' ) ||
+                   (moviesModel.source != '' && moviesModel.json != '')) &&
                   localModel.count === 0
             PropertyChanges {
                 target: noResults
@@ -262,9 +272,7 @@ Page {
         },
         State {
             name: 'emptyState'
-            when: (peopleModel.status == XmlListModel.Ready ||
-                   moviesModel.status == XmlListModel.Ready) &&
-                  (peopleModel.source  == '' && moviesModel.source == '') &&
+            when: peopleModel.source  == '' && moviesModel.source == '' &&
                   !searchInput.text
             PropertyChanges {
                 target: noResults
@@ -300,8 +308,10 @@ Page {
         if (searchTerm) {
             loading = true
             if (searchCategory.checkedButton === movieSearch) {
+                moviesModel.page = 1
                 moviesModel.movieName = searchTerm
             } else if (searchCategory.checkedButton === peopleSearch) {
+                peopleModel.page = 1
                 peopleModel.personName = searchTerm
             }
             resultsListLoader.forceActiveFocus()

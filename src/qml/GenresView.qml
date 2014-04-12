@@ -19,8 +19,9 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
-import com.nokia.extras 1.0
+import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
+import 'moviedbwrapper.js' as TMDB
 
 Page {
     tools: ToolBarLayout {
@@ -35,13 +36,15 @@ Page {
 
     Component { id: multipleMovieView; MultipleMoviesView {  } }
 
-    GenresModel {
+    JSONListModel {
         id: genresModel
+        source: TMDB.genres_list({ app_locale: appLocale })
+        query: TMDB.query_path(TMDB.GENRES_LIST)
     }
 
     ListView {
         id: list
-        model: genresModel
+        model: genresModel.model
         anchors.fill: parent
         header: Header {
             //: This appears in the browse view header
@@ -49,11 +52,11 @@ Page {
         }
         delegate: MyListDelegate {
             width: parent.width
-            title: model.title
+            title: model.name
 
             onClicked: {
                 pageStack.push(multipleMovieView ,
-                               {genre: genreId, genreName: title})
+                               {genre: id, genreName: name})
             }
         }
     }
@@ -65,7 +68,7 @@ Page {
     BusyIndicator {
         id: busyIndicator
         visible: running
-        running: genresModel.status === XmlListModel.Loading
+        running: genresModel.json === ""
         anchors.centerIn: parent
         platformStyle: BusyIndicatorStyle { size: 'large' }
     }

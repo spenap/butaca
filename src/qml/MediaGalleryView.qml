@@ -21,6 +21,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
+import 'moviedbwrapper.js' as TMDB
 
 Page {
     id: galleryView
@@ -29,15 +30,19 @@ Page {
     property int currentIndex: -1
     property bool expanded: false
 
-    property string gridSize: ''
-    property string fullSize: ''
-    property string saveSize: ''
+    property int imgType: TMDB.IMAGE_POSTER
+    property int gridSize: 1
+    property int fullSize: 4
+    property int saveSize: 100
 
     tools: ToolBarLayout {
         ToolIcon {
             iconId: 'toolbar-back'
             onClicked: {
-                appWindow.pageStack.pop()
+                if (expanded)
+                    expanded = !expanded
+                else
+                    appWindow.pageStack.pop()
             }
         }
 
@@ -80,7 +85,10 @@ Page {
                         fill: parent
                         margins: UIConstants.PADDING_XSMALL
                     }
-                    source: sizes[gridSize].url
+                    source: TMDB.image(imgType,
+                                       gridSize,
+                                       file_path,
+                                       { app_locale: appLocale })
                     fillMode: Image.PreserveAspectCrop
                 }
 
@@ -122,9 +130,12 @@ Page {
                 currentPage: galleryView.currentIndex + 1
             }
 
-            Image {
+            ZoomableImage {
                 id: detailedDelegateImage
-                source: galleryView.galleryViewModel.get(galleryView.currentIndex).sizes[fullSize].url
+                remoteSource: TMDB.image(imgType,
+                                         fullSize,
+                                         galleryView.galleryViewModel.get(galleryView.currentIndex).file_path,
+                                         { app_locale: appLocale })
                 anchors {
                     top: detailedDelegateIndicator.bottom
                     topMargin: UIConstants.DEFAULT_MARGIN
@@ -132,7 +143,17 @@ Page {
                     right: parent.right
                     bottom: parent.bottom
                 }
-                fillMode: Image.PreserveAspectFit
+
+                onSwipeLeft: {
+                    galleryView.currentIndex = (galleryView.currentIndex + 1) %
+                            galleryView.galleryViewModel.count
+                }
+                onSwipeRight: {
+                    galleryView.currentIndex =
+                            (galleryView.currentIndex - 1 +
+                             galleryView.galleryViewModel.count) %
+                            galleryView.galleryViewModel.count
+                }
             }
 
             ProgressBar {
@@ -144,65 +165,6 @@ Page {
                 value: detailedDelegateImage.progress
                 visible: detailedDelegateImage.status === Image.Loading
             }
-
-            MouseArea {
-                id: detailedDelegateMouseArea
-                anchors.fill : parent
-                property bool swipeDone: false
-                property int startX
-                property int startY
-
-                Timer {
-                    id: clickTimer
-                    interval: 350
-                    running: false
-                    repeat:  false
-                    onTriggered: {
-                        if (!parent.swipeDone) {
-                            galleryView.expanded = !galleryView.expanded
-                        }
-                        parent.swipeDone = false
-                    }
-                }
-
-                onClicked: {
-                    // There's a bug in Qt Components emitting a clicked signal
-                    // when a double click is done.
-                    clickTimer.start()
-                }
-
-                onPressed: {
-                    startX = mouse.x
-                    startY = mouse.y
-                }
-
-                onReleased: {
-                        var deltaX = mouse.x - startX
-                        var deltaY = mouse.y - startY
-
-                        // Swipe is only allowed when we're not zoomed in
-                        if (Math.abs(deltaX) > 50 || Math.abs(deltaY) > 50) {
-                            swipeDone = true
-
-                            if (deltaX > 30) {
-                                detailedDelegate.swipeRight()
-                            } else if (deltaX < -30) {
-                                detailedDelegate.swipeLeft()
-                            }
-                        }
-                }
-            }
-
-            function swipeRight() {
-                galleryView.currentIndex = (galleryView.currentIndex - 1 +
-                                            galleryView.galleryViewModel.count) %
-                        galleryView.galleryViewModel.count
-            }
-
-            function swipeLeft() {
-                galleryView.currentIndex = (galleryView.currentIndex + 1) %
-                        galleryView.galleryViewModel.count
-            }
         }
     }
 
@@ -210,7 +172,10 @@ Page {
         id: saveImageSheet
 
         property string imageUrl: galleryView.currentIndex >= 0 ?
-                                      galleryView.galleryViewModel.get(galleryView.currentIndex).sizes[saveSize].url :
+                                      TMDB.image(imgType,
+                                                 saveSize,
+                                                 galleryView.galleryViewModel.get(galleryView.currentIndex).file_path,
+                                                 { app_locale: appLocale }) :
                                       ''
 
         acceptButtonText:
@@ -236,13 +201,12 @@ Page {
             color: '#2d2d2d'
             anchors.fill: parent
 
-            Image {
+            ZoomableImage {
                 id: savingImage
-                source: saveImageSheet.visible ?
-                            saveImageSheet.imageUrl :
-                            ''
+                remoteSource: saveImageSheet.visible ?
+                                  saveImageSheet.imageUrl :
+                                  ''
                 anchors.fill: parent
-                fillMode: Image.PreserveAspectFit
             }
 
             ProgressBar {

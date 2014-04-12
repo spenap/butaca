@@ -24,7 +24,7 @@ var STINGERS_DURING_CREDITS = 1
 var STINGERS_AFTER_CREDITS  = 2
 
 function movie_extras(movie_name) {
-    var url = 'http://aftercredits.com/api/get_search_results?search=' + movie_name
+    var url = 'http://aftercredits.com/api/get_search_results?search=' + encodeURI(movie_name)
     console.debug('** MOVIE EXTRAS:', url)
     return url
 }

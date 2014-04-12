@@ -2,12 +2,11 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>qml/MultipleMoviesDelegate.qml</file>
-        <file>qml/MultipleMoviesModel.qml</file>
         <file>qml/MultipleMoviesView.qml</file>
         <file>qml/ButacaToolBar.qml</file>
         <file>qml/GenresView.qml</file>
-        <file>qml/GenresModel.qml</file>
-        <file>qml/PeopleModel.qml</file>
+        <file>qml/JSONListModel.qml</file>
+        <file>qml/jsonpath.js</file>
         <file>qml/SearchView.qml</file>
         <file>qml/WelcomeView.qml</file>
         <file>qml/MyMoreIndicator.qml</file>
@@ -45,6 +44,7 @@
         <file>l10n/butaca.pt.qm</file>
         <file>qml/MovieView.qml</file>
         <file>qml/MediaGalleryView.qml</file>
+        <file>qml/ZoomableImage.qml</file>
         <file>qml/MyGalleryPreviewer.qml</file>
         <file>qml/MyModelFlowPreviewer.qml</file>
         <file>qml/MyTextExpander.qml</file>

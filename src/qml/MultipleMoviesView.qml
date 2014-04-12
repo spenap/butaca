@@ -20,7 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import 'butacautils.js' as Util
-import 'moviedbwrapper.js' as TheMovieDb
+import 'moviedbwrapper.js' as TMDB
 import "storage.js" as Storage
 import 'constants.js' as UIConstants
 
@@ -33,22 +33,28 @@ Page {
             }
         }
         ToolIcon {
-            enabled: moviesModel.status !== XmlListModel.Loading
+            enabled: moviesModel.json !== ""
             iconId: 'toolbar-refresh' + (enabled ? '' : '-dimmed')
+            anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
-                var source = TheMovieDb.movie_browse({
-                                                         'browse_orderBy_value' : Storage.getSetting('orderBy', 'rating'),
-                                                         'browse_order_value' : Storage.getSetting('order', 'desc'),
-                                                         'browse_page_value' : 1,
-                                                         'browse_count_value' : Storage.getSetting('perPage', 10),
-                                                         'browse_minvotes_value' : Storage.getSetting('minVotes', 0),
-                                                         'browse_genres_value' : genre
-                                                     })
-                if (source.localeCompare(moviesModel.source) !== 0) {
-                    moviesModel.reload()
+                var page = 1
+                var includeAll = Storage.getSetting('includeAll', 'true')
+                var includeAdult = Storage.getSetting('includeAdult', 'true')
+
+                if (moviesModel.page !== page) {
+                    localModel.clear()
+                    moviesModel.json = ''
+                    moviesModel.page = page
+                } else if (moviesModel.includeAll !== includeAll) {
+                    localModel.clear()
+                    moviesModel.json = ''
+                    moviesModel.includeAll = includeAll
+                } else if (moviesModel.includeAdult !== includeAdult) {
+                    localModel.clear()
+                    moviesModel.json = ''
+                    moviesModel.includeAdult = includeAdult
                 }
             }
-            anchors.horizontalCenter: parent.horizontalCenter
         }
         ToolIcon {
             iconId: 'toolbar-settings'
@@ -63,22 +69,20 @@ Page {
     property string genre: ''
     property string genreName:  ''
 
-    MultipleMoviesModel {
+    JSONListModel {
         id: moviesModel
-        source: TheMovieDb.movie_browse({
-                                            'browse_orderBy_value' : Storage.getSetting('orderBy', 'rating'),
-                                            'browse_order_value' : Storage.getSetting('order', 'desc'),
-                                            'browse_page_value' : 1,
-                                            'browse_count_value' : Storage.getSetting('perPage', 10),
-                                            'browse_minvotes_value' : Storage.getSetting('minVotes', 0),
-                                            'browse_genres_value' : genre
-                                        })
-        query: TheMovieDb.query_path(TheMovieDb.MOVIE_BROWSE)
-        onStatusChanged: {
-            if (status === XmlListModel.Ready) {
-                localModel.clear()
-                Util.populateModelFromModel(moviesModel, localModel, Util.TMDbMovie)
-            }
+        property int page: 1
+        property string includeAll: Storage.getSetting('includeAll', 'true')
+        property string includeAdult: Storage.getSetting('includeAdult', 'true')
+        source: TMDB.movie_browse(genre, {
+                                      app_locale: appLocale,
+                                      'page_value': page,
+                                      'includeAll_value': includeAll,
+                                      'includeAdult_value': includeAdult
+                                      })
+        query: TMDB.query_path(TMDB.MOVIE_BROWSE)
+        onJsonChanged: {
+            Util.populateModelFromModel(model, localModel, Util.TMDbMovie)
         }
     }
 
@@ -93,11 +97,11 @@ Page {
         anchors.fill: parent
         model: localModel
         delegate: MultipleMoviesDelegate {
-            iconSource: model.poster
-            name: model.name
-            rating: model.rating
-            votes: model.votes
-            year: Util.getYearFromDate(model.released)
+            iconSource: model.poster_path
+            name: model.title
+            rating: model.vote_average
+            votes: model.vote_count
+            year: Util.getYearFromDate(model.release_date)
 
             onClicked: {
                 pageStack.push(movieView,
@@ -109,6 +113,11 @@ Page {
         header: Header {
             text: genreName
         }
+
+        onMovementEnded: {
+            if (atYEnd)
+                moviesModel.page++
+        }
     }
 
     NoContentItem {
@@ -119,13 +128,15 @@ Page {
         }
         //: When browsing movies, shown when no movies matched the browse criteria
         text: qsTr('No content found')
-        visible: moviesModel.status === XmlListModel.Ready && moviesModel.count === 0
+        visible: moviesModel.json !== "" &&
+                 moviesModel.count === 0 &&
+                 localModel.count === 0
     }
 
     BusyIndicator {
         id: busyIndicator
         visible: running
-        running: moviesModel.status === XmlListModel.Loading
+        running: moviesModel.json === ""
         anchors.centerIn: parent
         platformStyle: BusyIndicatorStyle { size: 'large' }
     }

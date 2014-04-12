@@ -52,12 +52,9 @@ OTHER_FILES += \
     qml/WelcomeView.qml \
     qml/SearchView.qml \
     qml/PersonView.qml \
-    qml/PeopleModel.qml \
     qml/GenresView.qml \
-    qml/GenresModel.qml \
     qml/ButacaToolBar.qml \
     qml/MultipleMoviesView.qml \
-    qml/MultipleMoviesModel.qml \
     qml/MultipleMoviesDelegate.qml \
     qml/Header.qml \
     qml/NoContentItem.qml \
@@ -83,6 +80,7 @@ OTHER_FILES += \
     resources/tmdb-logo.png \
     resources/indicator-rating-inverted-star.svg \
     qml/MediaGalleryView.qml \
+    qml/ZoomableImage.qml \
     qml/MyGalleryPreviewer.qml \
     qml/MyModelFlowPreviewer.qml \
     qml/MyTextExpander.qml \
@@ -90,7 +88,9 @@ OTHER_FILES += \
     qml/moviedbwrapper.js \
     qml/ShowtimesView.qml \
     qml/FavoritesView.qml \
-    qml/ListsView.qml
+    qml/ListsView.qml \
+    qml/JSONListModel.qml \
+    qml/jsonpath.js
 
 RESOURCES += \
     res.qrc

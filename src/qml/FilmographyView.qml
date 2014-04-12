@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import 'constants.js' as UIConstants
+import 'butacautils.js' as Util
 
 Page {
     id: filmographyView
@@ -36,6 +37,7 @@ Page {
 
     property string personName: ''
     property ListModel filmographyModel
+    property string listModelSubTitle: ''
 
     ListView {
         id: filmographyList
@@ -51,8 +53,9 @@ Page {
         }
         delegate: MyListDelegate {
             width: parent.width
-            title: model.name
-            subtitle: model.job
+            title: model.title +
+                   (model.release_date ? ' (' + Util.getYearFromDate(model.release_date) + ')' : '')
+            subtitle: model[listModelSubTitle]
 
             onClicked: {
                 pageStack.push(movieView,
@@ -63,7 +66,7 @@ Page {
             }
         }
 
-        section.property: 'name'
+        section.property: 'department'
         section.delegate: ListSectionDelegate { sectionName: section }
     }
 

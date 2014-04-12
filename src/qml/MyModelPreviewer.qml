@@ -20,6 +20,7 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
 import 'constants.js' as UIConstants
+import 'moviedbwrapper.js' as TMDB
 
 Column {
     id: modelPreviewer
@@ -48,11 +49,13 @@ Column {
         width: parent.width
         model: Math.min(previewedItems, previewedModel.count)
         delegate: MyListDelegate {
-            width: parent.width
+            width: modelPreviewer.width
             smallSize: true
 
             iconSource: previewedModel.get(index)[previewerDelegateIcon] ?
-                            previewedModel.get(index)[previewerDelegateIcon] :
+                            TMDB.image(TMDB.IMAGE_PROFILE, 0,
+                                       previewedModel.get(index)[previewerDelegateIcon],
+                                       { app_locale: appLocale }) :
                             previewerDelegatePlaceholder
 
             title: previewedModel.get(index)[previewerDelegateTitle]

@@ -20,12 +20,14 @@
 .pragma library
 
 var GENRES_LIST         = 'genres_get_list'
-var MOVIE_SEARCH        = 'movie_search'
+var SEARCH              = 'search'
 var MOVIE_BROWSE        = 'movie_browse'
-var MOVIE_IMDB_LOOKUP   = 'movie_imdb_lookup'
 var MOVIE_GET_INFO      = 'movie_get_info'
-var PERSON_SEARCH       = 'person_search'
 var PERSON_GET_INFO     = 'person_get_info'
+
+var IMAGE_POSTER = 0
+var IMAGE_PROFILE = 1
+var IMAGE_BACKDROP = 2
 
 var _wrapper = ''
 
@@ -54,41 +56,37 @@ function TMDb(app_locale) {
     this.query = new Object
 
     this.config['baseUrl'] = 'http://api.themoviedb.org'
-    this.config['version'] = '2.1'
-    this.config['lang'] = app_locale ? app_locale : 'en'
-    this.config['key'] = '249e1a42df9bee09fac5e92d3a51396b'
-    this.config['format'] = 'xml'
-    this.config['browse_orderBy_param'] = 'order_by'
-    this.config['browse_orderBy_value'] = ''
-    this.config['browse_order_param'] = 'order'
-    this.config['browse_order_value'] = ''
-    this.config['browse_page_param'] = 'page'
-    this.config['browse_page_value'] = 1
-    this.config['browse_count_param'] = 'per_page'
-    this.config['browse_count_value'] = 20
-    this.config['browse_minvotes_param'] = 'min_votes'
-    this.config['browse_minvotes_value'] = 5
-    this.config['browse_genres_param'] = 'genres'
-    this.config['browse_genres_value'] = ''
+    this.config['version'] = '3'
+    this.config['lang_param'] = 'country'
+    this.config['lang_value'] = app_locale ? app_locale : 'en'
+    this.config['key_param'] = 'api_key'
+    this.config['key_value'] = '249e1a42df9bee09fac5e92d3a51396b'
+    this.config['page_param'] = 'page'
+    this.config['page_value'] = 1
+    this.config['includeAll_param'] = 'include_all_movies'
+    this.config['includeAll_value'] = 'true'
+    this.config['includeAdult_param'] = 'include_adult'
+    this.config['includeAdult_value'] = 'true'
+    this.config['image_baseUrl'] = 'http://image.tmdb.org/t/p'
+    this.config[IMAGE_POSTER] = [ 'w92', 'w154', 'w185', 'w342', 'w500', 'original' ]
+    this.config[IMAGE_PROFILE] = [ 'w45', 'w185', 'h632', 'original' ]
+    this.config[IMAGE_BACKDROP] = [ 'w300', 'w780', 'w1280', 'original' ]
 
-    this.method['movie_search'] = this.config['baseUrl'] +
-         _addField(this.config['version']) + _addField('Movie.search')
+    this.method['search'] = this.config['baseUrl'] +
+         _addField(this.config['version']) + _addField('search')
     this.method['movie_browse'] = this.config['baseUrl'] +
-         _addField(this.config['version']) + _addField('Movie.browse')
+         _addField(this.config['version']) + _addField('genre')
     this.method['movie_get_info'] = this.config['baseUrl'] +
-         _addField(this.config['version']) + _addField('Movie.getInfo')
-    this.method['movie_imdb_lookup'] = this.config['baseUrl'] +
-         _addField(this.config['version']) + _addField('Movie.imdbLookup')
-    this.method['person_search'] = this.config['baseUrl'] +
-         _addField(this.config['version']) + _addField('Person.search')
+         _addField(this.config['version']) + _addField('movie')
     this.method['person_get_info'] = this.config['baseUrl'] +
-         _addField(this.config['version']) + _addField('Person.getInfo')
+         _addField(this.config['version']) + _addField('person')
     this.method['genres_get_list'] = this.config['baseUrl'] +
-         _addField(this.config['version']) + _addField('Genres.getList')
+         _addField(this.config['version']) + _addField('genre') + _addField('list')
+    this.method['configuration'] = this.config['baseUrl'] +
+         _addField(this.config['version']) + _addField('configuration')
 
-    this.query['movie_browse'] = this.query['movie_search'] = '/OpenSearchDescription/movies/movie'
-    this.query['person_search'] = '/OpenSearchDescription/people/person'
-    this.query['genres_get_list'] = '/OpenSearchDescription/genres/genre'
+    this.query['movie_browse'] = this.query['search'] = '$..results[*]'
+    this.query['genres_get_list'] = '$.genres[*]'
 
     this.getCommonUrl = _getCommonUrl
     this.toString = _toString
@@ -118,13 +116,13 @@ function _addArgument(param, value, separator) {
  * @return The parameter, starting with a "/"
  */
 function _addField(param) {
-    var field = '/' + param
+    var field = param ? '/' + param : ''
     return field
 }
 
 /**
  * Helper method which creates the common part of a query url: base url, api version,
- * method name, language, format and api key
+ * method name
  *
  * @param {string} The method name
  * @param {object} The custom configuration. If empty, the default one is used
@@ -133,10 +131,7 @@ function _addField(param) {
 function _getCommonUrl(method_name, config) {
     if (!config)
         config = { }
-    var url = this.method[method_name] +
-            _addField(config['lang'] ? config['lang'] : this.config['lang']) +
-            _addField(config['format'] ? config['format'] : this.config['format']) +
-            _addField(this.config['key'])
+    var url = this.method[method_name]
     return url
 }
 
@@ -169,17 +164,33 @@ function _dumpObject(theObject) {
 }
 
 /**
- * Wrapper method which provides the API url for a movie search, and accepts
- * a movie name and a custom configuration
+ * Wrapper method which provides the API url for a search, and accepts
+ * a custom configuration
  *
- * @param {string} The movie name to look for
- * @param {object} The custom configuration for the search
- * @return {string} API url for searching a movie
+ * @param {string} the object to search for
+ * @param {string} the search query
+ * @param {object} The custom configuration for the search accepting the following
+ * parameters: app_locale, page_value. Custom values are used when not provided.
+ * @return {string} API url for searching
  */
-function movie_search(movie_name, config) {
-    if (!config) config = { }
-    var url = instance(config.app_locale).getCommonUrl('movie_search', config) +
-            _addField(movie_name)
+function search(type, query, config) {
+    if (!config)
+        config = { }
+    var wrapper = instance(config.app_locale)
+    var page = config['page_value'] ?
+                config['page_value'] :
+                wrapper.config['page_value']
+    var includeAdult = config['includeAdult_value'] ?
+                config['includeAdult_value'] :
+                wrapper.config['includeAdult_value']
+
+    var url = wrapper.getCommonUrl('search', config) +
+            _addField(type) +
+            _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?') +
+            _addArgument(wrapper.config['lang_param'], wrapper.config['lang_value']) +
+            _addArgument(wrapper.config['page_param'], page) +
+            _addArgument(wrapper.config['includeAdult_param'], includeAdult) +
+            _addArgument('query', encodeURI(query))
     console.debug('** SEARCH URL:', url)
     return url
 }
@@ -188,41 +199,32 @@ function movie_search(movie_name, config) {
  * Wrapper method which provides the API url for browsing movies, and accepts
  * a custom configuration
  *
+ * @param {string} the genre to browse
  * @param {object} The custom configuration for the search, accepting the following
- * parameters: browse_orderBy_value, browse_order_value, browse_page_value, browse_count_value,
- * browse_genres_value. Custom values are used when not provided.
+ * parameters: app_locale, page_value, includeAll_value, includeAdult_value.
+ * Custom values are used when not provided.
  * @return {string} API url for browsing movies
  */
-function movie_browse(browse_config) {
-    if (!browse_config)
-        browse_config = { }
-    var wrapper = instance(browse_config.app_locale)
-    var orderBy = browse_config['browse_orderBy_value'] ?
-                browse_config['browse_orderBy_value'] :
-                wrapper.config['browse_orderBy_value']
-    var order = browse_config['browse_order_value'] ?
-                browse_config['browse_order_value'] :
-                wrapper.config['browse_order_value']
-    var page = browse_config['browse_page_value'] ?
-                browse_config['browse_page_value'] :
-                wrapper.config['browse_page_value']
-    var count = browse_config['browse_count_value'] ?
-                browse_config['browse_count_value'] :
-                wrapper.config['browse_count_value']
-    var minVotes = browse_config['browse_minvotes_value'] ?
-                browse_config['browse_minvotes_value'] :
-                wrapper.config['browse_minvotes_value']
-    var genres = browse_config['browse_genres_value'] ?
-                browse_config['browse_genres_value'] :
-                wrapper.config['browse_genres_value']
+function movie_browse(genre, config) {
+    if (!config)
+        config = { }
+    var wrapper = instance(config.app_locale)
+    var page = config['page_value'] ?
+                config['page_value'] :
+                wrapper.config['page_value']
+    var includeAll = config['includeAll_value'] ?
+                config['includeAll_value'] :
+                wrapper.config['includeAll_value']
+    var includeAdult = config['includeAdult_value'] ?
+                config['includeAdult_value'] :
+                wrapper.config['includeAdult_value']
 
-    var url = wrapper.getCommonUrl('movie_browse', browse_config) +
-            _addArgument(wrapper.config['browse_orderBy_param'], orderBy, '?') +
-            _addArgument(wrapper.config['browse_order_param'], order) +
-            _addArgument(wrapper.config['browse_page_param'], page) +
-            _addArgument(wrapper.config['browse_count_param'], count) +
-            _addArgument(wrapper.config['browse_minvotes_param'], minVotes) +
-            _addArgument(wrapper.config['browse_genres_param'], genres)
+    var url = wrapper.getCommonUrl('movie_browse', config) + _addField(genre) + _addField('movies') +
+            _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?') +
+            _addArgument(wrapper.config['page_param'], page) +
+            _addArgument(wrapper.config['lang_param'], wrapper.config['lang_value']) +
+            _addArgument(wrapper.config['includeAll_param'], includeAll) +
+            _addArgument(wrapper.config['includeAdult_param'], includeAdult)
     console.debug('** BROWSE URL:', url)
     return url
 }
@@ -232,50 +234,28 @@ function movie_browse(browse_config) {
  * and accepts the movie TMDB id and the custom configuration
  *
  * @param {string} The movie TMDB id to look up
+ * @param {string} The comma-separated movie details to look for, leave empty for general info
  * @param {object} The custom configuration for the look up. Values typically
- * changed could be the app_locale and the return format.
+ * changed could be the app_locale.
  * @return {string} API url for looking up movie information
  */
-function movie_info(movie_id, config) {
+function movie_info(movie_id, details, config) {
     if (!config)
-        config = { format: 'json' }
-    var url = instance(config.app_locale).getCommonUrl('movie_get_info', config) +
-            _addField(movie_id)
+        config = { }
+    var wrapper = instance(config.app_locale)
+    var url = ''
+    if (details.indexOf(',') > -1)
+        url = wrapper.getCommonUrl('movie_get_info', config) +
+                _addField(movie_id) +
+                _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?') +
+                _addArgument(wrapper.config['lang_param'], wrapper.config['lang_value']) +
+                _addArgument('append_to_response', encodeURI(details))
+    else
+        url = wrapper.getCommonUrl('movie_get_info', config) +
+                _addField(movie_id) + _addField(details) +
+                _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?') +
+                _addArgument(wrapper.config['lang_param'], wrapper.config['lang_value'])
     console.debug('** MOVIE GET INFO URL:', url)
-    return url
-}
-
-/**
- * Wrapper method which provides the API url for getting the full movie info,
- * and accepts the movie IMDB id and the custom configuration
- *
- * @param {string} The movie IMDB id to look up
- * @param {object} The custom configuration for the look up. Values typically
- * changed could be the app_locale and the return format.
- * @return {string} API url for looking up movie information
- */
-function movie_imdb_lookup(imdb_id, config) {
-    if (!config)
-        config = { format: 'json' }
-    var url = instance(config.app_locale).getCommonUrl('movie_imdb_lookup', config) +
-            _addField(imdb_id)
-    console.debug('** IMDB LOOKUP URL:', url)
-    return url
-}
-
-/**
- * Wrapper method which provides the API url for searching people, and accepts
- * the person name and a custom configuration
- *
- * @param {string} The person name to search
- * @param {object} The custom configuration for the search
- * @return {string} API url for searching people
- */
-function person_search(person_name, config) {
-    if (!config) config = { }
-    var url = instance(config.app_locale).getCommonUrl('person_search', config) +
-            _addField(person_name)
-    console.debug('** PERSON SEARCH URL:', url)
     return url
 }
 
@@ -284,14 +264,27 @@ function person_search(person_name, config) {
  * and accepts the person TMDB id and the custom configuration
  *
  * @param {string} The person TMDB id to look up
+ * @param {string} The comma-separated person details to look for, leave empty for general info
  * @param {object} The custom configuration for the look up. Values typically
- * changed could be the app_locale and the return format.
+ * changed could be the app_locale.
  * @return {string} API url for looking up person information
  */
-function person_info(person_id, config) {
-    if (!config) config = { format: 'json' }
-    var url = instance(config.app_locale).getCommonUrl('person_get_info', config) +
-            _addField(person_id)
+function person_info(person_id, details, config) {
+    if (!config)
+        config = { }
+    var wrapper = instance(config.app_locale)
+    var url = ''
+    if (details.indexOf(',') > -1)
+        url = wrapper.getCommonUrl('person_get_info', config) +
+                _addField(person_id) +
+                _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?') +
+                _addArgument(wrapper.config['lang_param'], wrapper.config['lang_value']) +
+                _addArgument('append_to_response', encodeURI(details))
+    else
+        url = wrapper.getCommonUrl('person_get_info', config) +
+                _addField(person_id) + _addField(details) +
+                _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?') +
+                _addArgument(wrapper.config['lang_param'], wrapper.config['lang_value'])
     console.debug('** PERSON GET INFO URL:', url)
     return url
 }
@@ -305,9 +298,77 @@ function person_info(person_id, config) {
  */
 function genres_list(config) {
     if (!config) config = { }
-    var url = instance(config.app_locale).getCommonUrl('genres_get_list', config)
+    var wrapper = instance(config.app_locale)
+    var url = wrapper.getCommonUrl('genres_get_list', config) +
+            _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?') +
+            _addArgument(wrapper.config['lang_param'], wrapper.config['lang_value'])
     console.debug('** GENRES GET LIST:', url)
     return url
+}
+
+/**
+ * Wrapper method which provides the API url for the configuration,
+ * and accepts a custom configuration
+ *
+ * @param {object} The custom configuration for the search
+ * @return {string} API url for the configuration
+ */
+function configuration_getUrl(config) {
+    if (!config)
+        config = { }
+    var wrapper = instance(config.app_locale)
+    var url = wrapper.getCommonUrl('configuration', config) +
+            _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?')
+    console.debug('** CONFIGURATION GET URL:', url)
+    return url
+}
+
+/**
+ * Wrapper method which saves the givne API configuration,
+ * and accepts a custom configuration
+ *
+ * @param {object} parsed JSON response object
+ * @param {object} The custom configuration for the search
+ */
+function configuration_set(jsonResponse, config) {
+    if (!config)
+        config = { }
+    var wrapper = instance(config.app_locale)
+    wrapper.config['image_baseUrl'] = jsonResponse.images.base_url
+    wrapper.config[IMAGE_POSTER] = jsonResponse.images.poster_sizes
+    wrapper.config[IMAGE_PROFILE] = jsonResponse.images.profile_sizes
+    console.debug('** CONFIGURATION SET, e.g.', wrapper.config['image_baseUrl'],
+                  wrapper.config[IMAGE_POSTER])
+}
+
+/**
+ * Wrapper method which provides the API url for images, and accepts
+ * the image type, size index, the file name and a custom configuration
+ *
+ * @param {integer} The type of image intented, e.g. IMAGE_POSTER
+ * @param {integer} the size index as number
+ * @param {string} The file name as given by the API
+ * @param {object} The custom configuration for the search
+ * @return {string} API url for the poster
+ */
+function image(type, index, imagePath, config) {
+   switch (type) {
+    case IMAGE_POSTER:
+    case IMAGE_PROFILE:
+    case IMAGE_BACKDROP:
+        if (!config)
+            config = { }
+        var wrapper = instance(config.app_locale)
+        if (index >= wrapper.config[type].length)
+            index = wrapper.config[type].length - 1
+        var url = wrapper.config['image_baseUrl'] +
+                _addField(wrapper.config[type][index]) +
+                _addField(imagePath)
+        console.debug('** IMAGE URL:', url)
+        return url
+    default:
+        return ''
+    }
 }
 
 /**
@@ -320,11 +381,9 @@ function genres_list(config) {
 function query_path(method) {
     switch (method) {
     case GENRES_LIST:
-    case MOVIE_SEARCH:
+    case SEARCH:
     case MOVIE_BROWSE:
-    case PERSON_SEARCH:
         return instance().query[method]
-    case MOVIE_IMDB_LOOKUP:
     case MOVIE_GET_INFO:
     case PERSON_GET_INFO:
     default:
