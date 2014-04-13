@@ -42,7 +42,8 @@ Page {
                              '<br /><p>Adrian Perez, Amit Singh, Nik Rolls, ' +
                              'Christoph Keller, Janne Makinen, Tuomas Siipola, ' +
                              'Alexandre Mazari, Petru Motrescu, Oytun Şengül, ' +
-                             'Ismail Coskuner, Aras Ergus, Joaquim Rocha</p>')
+                             'Ismail Coskuner, Aras Ergus, Joaquim Rocha, ' +
+                             'Marco Porsch</p>')
     property string styleSheets: "<style type='text/css'>a:link {color:#FFFFFF}</style>"
 
     tools: ToolBarLayout {

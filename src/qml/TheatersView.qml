@@ -187,7 +187,7 @@ Page {
                 }
             }
             delegate: MyListDelegate {
-                width: parent.width
+                width: list.width
                 title: model.name
                 subtitle: model.playing
                 subtitleSize: UIConstants.FONT_XSMALL

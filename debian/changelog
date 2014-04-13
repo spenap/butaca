@@ -1,3 +1,12 @@
+butaca (0.9.1) unstable; urgency=low
+
+  * update to TMDB API v3
+  * sort Filmography by department and release date
+  * show release year in Filmography View
+  * make fullscreen gallery images zoomable
+
+ -- Marco Porsch <marco.porsch@etit.tu-chemnitz.de>  Sun, 13 Apr 2014 13:20:02 +0200
+
 butaca (0.9.0) unstable UNRELEASED; urgency=low
 
   * Unreleased 0.9.0 version
