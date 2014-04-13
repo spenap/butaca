@@ -7,6 +7,7 @@
  * [Adrian Perez](mailto:aperez@igalia.com)
  * [Amit Singh](mailto:amit_paul_singh@hotmail.com)
  * [Christoph Keller](mailto:gri@not-censored.com)
+ * [Marco Porsch](mailto:marco.porsch@etit.tu-chemnitz.de)
 
 ## UX ##
 
