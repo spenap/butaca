@@ -220,7 +220,7 @@ Page {
             }
         }
         onAccepted: {
-            controller.saveImage(savingImage, saveImageSheet.imageUrl)
+            controller.saveImage(savingImage.image, saveImageSheet.imageUrl)
         }
     }
 }

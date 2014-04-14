@@ -30,6 +30,7 @@ Flickable {
     contentWidth: imageContainer.width
     onHeightChanged: image.calculateSize()
 
+    property alias image: image
     property alias source: image.source
     property alias status: image.status
     property alias progress: image.progress
