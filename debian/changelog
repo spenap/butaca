@@ -1,3 +1,9 @@
+butaca (0.9.2) unstable; urgency=low
+
+  * fix image saving
+
+ -- Marco Porsch <marco.porsch@etit.tu-chemnitz.de>  Mon, 14 Apr 2014 13:00:02 +0200
+
 butaca (0.9.1) unstable; urgency=low
 
   * update to TMDB API v3
