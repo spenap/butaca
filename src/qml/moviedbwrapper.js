@@ -337,6 +337,7 @@ function configuration_set(jsonResponse, config) {
     wrapper.config['image_baseUrl'] = jsonResponse.images.base_url
     wrapper.config[IMAGE_POSTER] = jsonResponse.images.poster_sizes
     wrapper.config[IMAGE_PROFILE] = jsonResponse.images.profile_sizes
+    wrapper.config[IMAGE_BACKDROP] = jsonResponse.images.backdrop_sizes
     console.debug('** CONFIGURATION SET, e.g.', wrapper.config['image_baseUrl'],
                   wrapper.config[IMAGE_POSTER])
 }
