@@ -59,7 +59,7 @@ Page {
     }
 
     property variant person: ''
-    property string tmdbId: parsedPerson.tmdbId
+    property alias tmdbId: parsedPerson.tmdbId
     property bool loading: false
     property bool loadingExtended: false
 
@@ -80,21 +80,23 @@ Page {
         property string imdbId: ''
         // also available: adult, also_known_as, deathday, homepage
 
+        // parses TMDBObject
         function updateWithLightWeightPerson(person) {
             tmdbId = person.id
+            name = person.name
+            url = 'http://www.themoviedb.org/person/' + tmdbId
+            if (person.img)
+                profile = TMDB.image(TMDB.IMAGE_PROFILE, 1,
+                                     person.img, { app_locale: appLocale })
+        }
+
+        // parses JSON response
+        function updateWithFullWeightPerson(person) {
             name = person.name
             url = 'http://www.themoviedb.org/person/' + tmdbId
             if (person.profile_path)
                 profile = TMDB.image(TMDB.IMAGE_PROFILE, 1,
                                      person.profile_path, { app_locale: appLocale })
-        }
-
-        function updateWithFullWeightPerson(person) {
-            if (!personView.person) {
-                updateWithLightWeightPerson(person)
-            }
-            personView.person = ''
-
             if (person.biography)
                 biography = person.biography
             if (person.birthday)
@@ -104,25 +106,25 @@ Page {
             if (person.imdb_id)
                 imdbId = person.imdb_id
 
-            if (person.movie_credits.cast) {
-                person.movie_credits.cast.sort(sortByDate)
-                Util.populateModelFromArray(person.movie_credits, 'cast', castModel)
-            }
-            if (person.movie_credits.crew) {
-                person.movie_credits.crew.sort(sortByDepartmentAndYear)
-                Util.populateModelFromArray(person.movie_credits, 'crew', crewModel)
-            }
-            Util.populateModelFromArray(person.images, 'profiles', picturesModel)
+            var credits = new Array()
+            Util.populateArrayFromArray(person.movie_credits.cast, credits, Util.TMDbFilmographyMovie)
+            Util.populateArrayFromArray(person.tv_credits.cast, credits, Util.TMDbFilmographyTv)
+            Util.populateArrayFromArray(person.movie_credits.crew, credits, Util.TMDbFilmographyMovie)
+            Util.populateArrayFromArray(person.tv_credits.crew, credits, Util.TMDbFilmographyTv)
+            credits.sort(sortByDepartmentAndDate)
+            Util.populateModelFromArray(credits, filmographyModel)
+
+            Util.populateModelFromArray(person.images.profiles, picturesModel)
         }
 
         function sortByDate(oneItem, theOther) {
-            var oneDate = Util.getDateFromString(oneItem.release_date)
-            var theOtherDate = Util.getDateFromString(theOther.release_date)
+            var oneDate = Util.getDateFromString(oneItem.date)
+            var theOtherDate = Util.getDateFromString(theOther.date)
 
             return (oneDate > theOtherDate ? -1 : 1)
         }
 
-        function sortByDepartmentAndYear(oneItem, theOther) {
+        function sortByDepartmentAndDate(oneItem, theOther) {
             var result = oneItem.department.localeCompare(theOther.department)
             if (result !== 0) {
                 // pull directors and writers to the top
@@ -143,11 +145,7 @@ Page {
     }
 
     ListModel {
-        id: castModel
-    }
-
-    ListModel {
-        id: crewModel
+        id: filmographyModel
     }
 
     ListModel {
@@ -168,10 +166,8 @@ Page {
     Component { id: filmographyView; FilmographyView { } }
 
     Component.onCompleted: {
-        if (person) {
-            var thePerson = new Util.TMDbPerson(person)
-            parsedPerson.updateWithLightWeightPerson(thePerson)
-        }
+        if (person)
+            parsedPerson.updateWithLightWeightPerson(person)
 
         if (tmdbId)
             fetchExtendedContent()
@@ -314,7 +310,7 @@ Page {
                         wrapMode: Text.WordWrap
                         text: qsTr('Known for %Ln movie(s)',
                                    'Text shown in the person view displaying the number of movies a person is known for',
-                                   castModel.count + crewModel.count)
+                                   filmographyModel.count)
                     }
                 }
             }
@@ -354,23 +350,23 @@ Page {
 
             MyModelPreviewer {
                 width: parent.width
-                previewedModel: castModel
+                previewedModel: filmographyModel
                 previewerHeaderText:
                     //: Header for the filmography preview shown in the person view
-                    qsTr('Filmography') + ' - ' + qsTr('Actor')
-                previewerDelegateTitle: 'title'
-                previewerDelegateSubtitle: 'character'
-                previewerDelegateIcon: 'poster_path'
+                    qsTr('Filmography')
+                previewerDelegateTitle: 'name'
+                previewerDelegateSubtitle: 'subtitle'
+                previewerDelegateIcon: 'img'
                 previewerDelegatePlaceholder: 'qrc:/resources/movie-placeholder.svg'
                 previewerFooterText:
                     //: Footer for the filmography preview shown in the person view. When clicked, shows the full filmography
-                    qsTr('View full list')
-                visible: castModel.count > 0
+                    qsTr('Full filmography')
+                visible: filmographyModel.count > 0
 
                 onClicked: {
                     appWindow.pageStack.push(movieView,
                                              {
-                                                 tmdbId: castModel.get(modelIndex).id,
+                                                 movie: filmographyModel.get(modelIndex),
                                                  loading: true
                                              })
                 }
@@ -379,40 +375,7 @@ Page {
                     appWindow.pageStack.push(filmographyView,
                                              {
                                                  personName: parsedPerson.name,
-                                                 filmographyModel: castModel,
-                                                 listModelSubTitle: 'character'
-                                             })
-                }
-            }
-
-            MyModelPreviewer {
-                width: parent.width
-                previewedModel: crewModel
-                previewerHeaderText:
-                    //: Header for the crew filmography preview shown in the person view
-                    qsTr('Filmography') + ' - ' + qsTr('Crew')
-                previewerDelegateTitle: 'title'
-                previewerDelegateSubtitle: 'job'
-                previewerDelegateIcon: 'poster_path'
-                previewerDelegatePlaceholder: 'qrc:/resources/movie-placeholder.svg'
-                previewerFooterText:
-                    //: Footer for the crew filmography preview shown in the person view. When clicked, shows the full crew filmography
-                    qsTr('View full list')
-                visible: crewModel.count > 0
-
-                onClicked: {
-                    appWindow.pageStack.push(movieView,
-                                             {
-                                                 tmdbId: crewModel.get(modelIndex).id,
-                                                 loading: true
-                                             })
-                }
-                onFooterClicked: {
-                    appWindow.pageStack.push(filmographyView,
-                                             {
-                                                 personName: parsedPerson.name,
-                                                 filmographyModel: crewModel,
-                                                 listModelSubTitle: 'job'
+                                                 filmographyModel: filmographyModel
                                              })
                 }
             }

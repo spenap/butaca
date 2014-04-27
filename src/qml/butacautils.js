@@ -106,40 +106,6 @@ function sanitizeText(text) {
     return text.replace(/<br \/>/g, '&lt;br /&gt;').replace(/<.*?>/g, '').replace(/&lt;br \/&gt;/g, '<br />')
 }
 
-function TMDbMovie(obj) {
-    this.id = obj.id
-    this.title = obj.title
-    this.original_title = obj.original_title
-    this.release_date = obj.release_date
-    this.vote_average = obj.vote_average
-    this.vote_count = obj.vote_count
-    this.poster_path = obj.poster_path
-
-    this.type = 'TMDbMovie'
-
-    this.toString = movie_toString
-}
-
-function TMDbPerson(obj) {
-    this.id = obj.id
-    this.name = obj.name
-    this.profile_path = obj.profile_path
-
-    this.title = this.name
-    this.type = 'TMDbPerson'
-}
-
-function movie_toString() {
-    var str = 'TMDB Movie:' +
-            '\tid: ' + this.id + '\n' +
-            '\ttitle: ' + this.title + '\n' +
-            '\trelease_date: ' + this.release_date + '\n' +
-            '\tvote_average: ' + this.vote_average + '\n' +
-            '\tvote_count: ' + this.vote_count + '\n' +
-            '\tposter_path: ' + this.poster_path
-    return str
-}
-
 function TMDbImage(obj) {
     this.id = obj.image.id
     this.type = obj.image.type
@@ -166,6 +132,56 @@ function image_addSize(obj) {
     this.sizes[obj.size].url = obj.url
 }
 
+/**
+ * basic content of TMDB movie/TV/person that is passed around from view to view
+ */
+function TMDBObject(obj) {
+    this.id = obj.id
+    this.name = obj.name || obj.title
+    this.img = obj.poster_path || obj.profile_path
+}
+
+function TMDbCredit(obj) {
+    this.base = TMDBObject
+    this.base(obj)
+
+    this.credit_id = obj.credit_id
+    this.department = obj.department || 'Actors'
+    this.subtitle = obj.job || obj.character
+}
+
+function TMDbFilmography(obj) {
+    this.base = TMDBObject
+    this.base(obj)
+
+    this.department = obj.department || 'Acting'
+    this.subtitle = obj.character || obj.job || ''
+    this.date = obj.release_date || obj.first_air_date
+}
+
+function TMDbFilmographyTv(obj) {
+    this.base = TMDbFilmography
+    this.base(obj)
+
+    this.type = 'TMDbFilmographyTv'
+}
+
+function TMDbFilmographyMovie(obj) {
+    this.base = TMDbFilmography
+    this.base(obj)
+
+    this.type = 'TMDbFilmographyMovie'
+}
+
+function TMDBSearchresult(obj) {
+    this.base = TMDBObject
+    this.base(obj)
+
+    this.date = obj.release_date || obj.first_air_date || ''
+    this.vote_avg = obj.vote_average || ''
+    this.vote_cnt = obj.vote_count || ''
+}
+
 function populateModelFromModel(sourceModel, destinationModel, ObjectConstructor) {
     if (sourceModel.count > 0) {
         for (var i = 0; i < sourceModel.count; i ++) {
@@ -174,30 +190,18 @@ function populateModelFromModel(sourceModel, destinationModel, ObjectConstructor
     }
 }
 
-/*
- * example use:
- * Util.populateModelFromArray(creditsResponse, 'cast', crewModel,
- * {
- *     filteringProperty: 'job',
- *     filteredValue: 'Actor',
- *     secondaryModel: castModel,
- *     Delegate: Util.TMDbCrewPerson
- * })
-*/
-function populateModelFromArray(entity, entityProperty, model, filterRules) {
-    model.clear()
-    if (filterRules) filterRules.secondaryModel.clear()
-    if (entity && entity[entityProperty]) {
-        for (var i = 0; i < entity[entityProperty].length; i ++) {
-            if (filterRules) {
-                var theObject = new filterRules.Delegate(entity[entityProperty][i])
-                if (theObject[filterRules.filteringProperty] === filterRules.filteredValue) {
-                    filterRules.secondaryModel.append(theObject)
-                }
-                model.append(theObject)
-            } else {
-                model.append(entity[entityProperty][i])
-            }
+function populateModelFromArray(entity, model) {
+    if (entity) {
+        for (var i = 0; i < entity.length; i ++) {
+            model.append(entity[i])
+        }
+    }
+}
+
+function populateArrayFromArray(srcArray, dstArray, ObjectConstructor) {
+    if (srcArray) {
+        for (var i = 0; i < srcArray.length; i ++) {
+            dstArray.push(new ObjectConstructor(srcArray[i]))
         }
     }
 }

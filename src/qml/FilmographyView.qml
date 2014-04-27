@@ -21,6 +21,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.1
 import 'constants.js' as UIConstants
 import 'butacautils.js' as Util
+import 'moviedbwrapper.js' as TMDB
 
 Page {
     id: filmographyView
@@ -37,7 +38,6 @@ Page {
 
     property string personName: ''
     property ListModel filmographyModel
-    property string listModelSubTitle: ''
 
     ListView {
         id: filmographyList
@@ -52,15 +52,18 @@ Page {
             showDivider: false
         }
         delegate: MyListDelegate {
-            width: parent.width
-            title: model.title +
-                   (model.release_date ? ' (' + Util.getYearFromDate(model.release_date) + ')' : '')
-            subtitle: model[listModelSubTitle]
+            width: filmographyList.width
+            title: model.name +
+                   (model.date ? ' (' + Util.getYearFromDate(model.date) + ')' : '')
+            subtitle: model.subtitle
+            iconSource: model.img ?
+                            TMDB.image(TMDB.IMAGE_POSTER, 0, model.img, { app_locale: appLocale }) :
+                            'qrc:/resources/movie-placeholder.svg'
 
             onClicked: {
                 pageStack.push(movieView,
                                {
-                                   tmdbId: model.id,
+                                   movie: model,
                                    loading: true
                                })
             }

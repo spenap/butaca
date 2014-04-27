@@ -100,8 +100,8 @@ Page {
     }
 
     property variant movie: ''
-    property string tmdbId: parsedMovie.tmdbId
-    property string imdbId: parsedMovie.imdbId
+    property alias tmdbId: parsedMovie.tmdbId
+    property alias imdbId: parsedMovie.imdbId
     property bool loading: false
     property bool loadingExtended: false
     property bool loadingExtras: false
@@ -113,15 +113,15 @@ Page {
         // Part of the lightweight movie object
         property string tmdbId: ''
         property string name: ''
-        property string originalName: ''
-        property string released: ''
-        property double rating: 0
-        property int votes: 0
         property string poster: 'qrc:/resources/movie-placeholder.svg'
         property string url: '' // implicit: base url + movie id
         // also available: backdrop, adult, popularity
 
         // Part of the full movie object
+        property string originalName: ''
+        property string released: ''
+        property double rating: 0
+        property int votes: 0
         property string imdbId: ''
         property string overview: ''
         property string tagline: ''
@@ -138,25 +138,31 @@ Page {
         property bool extrasFetched: false
         // also available: belongs_to_collection, spoken_languages, status
 
+        // parses TMDBObject
         function updateWithLightWeightMovie(movie) {
             tmdbId = movie.id
+            name = movie.name
+            url = 'http://www.themoviedb.org/movie/' + tmdbId
+            if (movie.img)
+                poster = TMDB.image(TMDB.IMAGE_POSTER, 2,
+                                    movie.img, { app_locale: appLocale })
+        }
+
+        // parses JSON response
+        function updateWithFullWeightMovie(movie) {
             name = movie.title
-            originalName = movie.original_title
-            released = movie.release_date
-            rating = movie.vote_average
-            votes = movie.vote_count
             url = 'http://www.themoviedb.org/movie/' + tmdbId
             if (movie.poster_path)
                 poster = TMDB.image(TMDB.IMAGE_POSTER, 2,
                                     movie.poster_path, { app_locale: appLocale })
-        }
-
-        function updateWithFullWeightMovie(movie) {
-            if (!movieView.movie) {
-                updateWithLightWeightMovie(movie)
-            }
-            movieView.movie = ''
-
+            if (movie.original_title)
+                originalName = movie.original_title
+            if (movie.release_date)
+                released = movie.release_date
+            if (movie.vote_average)
+                rating = movie.vote_average
+            if (movie.vote_count)
+                votes = movie.vote_count
             if (movie.imdb_id)
                 imdbId = movie.imdb_id
             if (movie.overview)
@@ -174,24 +180,28 @@ Page {
             if (movie.runtime)
                 runtime = movie.runtime
 
-            Util.populateModelFromArray(movie.alternative_titles, 'titles', altTitlesModel)
-            Util.populateModelFromArray(movie, 'genres', genresModel)
-            Util.populateModelFromArray(movie, 'production_companies', studiosModel)
-            Util.populateModelFromArray(movie.images, 'posters', postersModel)
-            Util.populateModelFromArray(movie.images, 'backdrops', backdropsModel)
+            Util.populateModelFromArray(movie.alternative_titles.titles, altTitlesModel)
+            Util.populateModelFromArray(movie.genres, genresModel)
+            Util.populateModelFromArray(movie.production_companies, studiosModel)
+            Util.populateModelFromArray(movie.images.posters, postersModel)
+            Util.populateModelFromArray(movie.images.backdrops, backdropsModel)
 
             for (var i = 0; i < movie.releases['countries'].length; i++)
                 if (movie.releases.countries[i].iso_3166_1 == appLocale.toUpperCase())
                     certification = movie.releases.countries[i].certification
 
-            if (movie.credits.cast) {
-                movie.credits.cast.sort(sortByCastId)
-                Util.populateModelFromArray(movie.credits, 'cast', castModel)
-            }
-            if (movie.credits.crew) {
-                movie.credits.crew.sort(sortByDepartment)
-                Util.populateModelFromArray(movie.credits, 'crew', crewModel)
-            }
+            var cast = new Array()
+            Util.populateArrayFromArray(movie.credits.cast, cast, Util.TMDbCredit)
+            cast.sort(sortByCastId)
+            Util.populateModelFromArray(cast, castModel)
+
+            var crew = new Array()
+            Util.populateArrayFromArray(movie.credits.crew, crew, Util.TMDbCredit)
+            crew.sort(sortByDepartmentAndCastId)
+            Util.populateModelFromArray(crew, crewModel)
+
+            Util.populateModelFromArray(crew, creditsModel)
+            Util.populateModelFromArray(cast, creditsModel)
 
             if (!loadingExtras && !parsedMovie.extrasFetched)
                 fetchExtras()
@@ -202,7 +212,7 @@ Page {
         return oneItem.cast_id - theOther.cast_id
     }
 
-    function sortByDepartment(oneItem, theOther) {
+    function sortByDepartmentAndCastId(oneItem, theOther) {
         var result = oneItem.department.localeCompare(theOther.department)
         if (result !== 0) {
             // pull directors and writers to the top
@@ -214,15 +224,15 @@ Page {
                 return -1
             else if (theOther.department === 'Writing')
                 return 1
+        } else {
+            result = sortByCastId(oneItem, theOther)
         }
         return result
     }
 
     Component.onCompleted: {
-        if (movie) {
-            var theMovie = new Util.TMDbMovie(movie)
-            parsedMovie.updateWithLightWeightMovie(theMovie)
-        }
+        if (movie)
+            parsedMovie.updateWithLightWeightMovie(movie)
 
         if (tmdbId)
             fetchExtendedContent(TMDB.movie_info(tmdbId,
@@ -260,6 +270,10 @@ Page {
 
     ListModel {
         id: backdropsModel
+    }
+
+    ListModel {
+        id: creditsModel
     }
 
     ListModel {
@@ -667,8 +681,8 @@ Page {
                     //: Header for the cast preview shown in the movie view
                     qsTr('Cast')
                 previewerDelegateTitle: 'name'
-                previewerDelegateSubtitle: 'character'
-                previewerDelegateIcon: 'profile_path'
+                previewerDelegateSubtitle: 'subtitle'
+                previewerDelegateIcon: 'img'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText:
                     //: Footer for the cast preview shown in the movie view. When clicked, shows the full cast.
@@ -698,12 +712,12 @@ Page {
                     //: Header for the crew preview shown in the movie view
                     qsTr('Crew')
                 previewerDelegateTitle: 'name'
-                previewerDelegateSubtitle: 'job'
-                previewerDelegateIcon: 'profile_path'
+                previewerDelegateSubtitle: 'subtitle'
+                previewerDelegateIcon: 'img'
                 previewerDelegatePlaceholder: 'qrc:/resources/person-placeholder.svg'
                 previewerFooterText:
                     //: Footer for the crew preview shown in the movie view. When clicked, shows the full cast and crew.
-                    qsTr('Full crew')
+                    qsTr('Full cast & crew')
                 visible: crewModel.count > 0
 
                 onClicked: {
@@ -717,7 +731,7 @@ Page {
                     appWindow.pageStack.push(castView,
                                              {
                                                  movieName: parsedMovie.name,
-                                                 castModel: crewModel,
+                                                 castModel: creditsModel,
                                                  showsCast: false
                                              })
                 }

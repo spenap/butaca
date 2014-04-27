@@ -80,7 +80,9 @@ Item {
                 width: 95
                 height: 140
                 fillMode: Image.PreserveAspectFit
-                source: iconSource ? TMDB.image(TMDB.IMAGE_POSTER, 0, iconSource, { app_locale: appLocale }) : placeholderSource
+                source: iconSource ?
+                            TMDB.image(TMDB.IMAGE_POSTER, 0, iconSource, { app_locale: appLocale }) :
+                            placeholderSource
                 onStatusChanged: {
                     if (moviePoster.status == Image.Error) {
                         moviePoster.source = placeholderSource
