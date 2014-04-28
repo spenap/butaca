@@ -61,11 +61,19 @@ Page {
                             'qrc:/resources/movie-placeholder.svg'
 
             onClicked: {
-                pageStack.push(movieView,
-                               {
-                                   movie: model,
-                                   loading: true
-                               })
+                if (model.type === 'TMDbFilmographyMovie')
+                    pageStack.push(movieView,
+                                   {
+                                       movie: model,
+                                       loading: true
+                                   })
+                else
+
+                    pageStack.push(tvView,
+                                   {
+                                       movie: model,
+                                       loading: true
+                                   })
             }
         }
 

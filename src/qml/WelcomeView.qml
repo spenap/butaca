@@ -105,6 +105,8 @@ Page {
 
     Component { id: movieView; MovieView { } }
 
+    Component { id: tvView; TvView { } }
+
     Component { id: personView; PersonView { } }
 
     Component { id: aboutView; AboutView { } }
@@ -213,6 +215,10 @@ Page {
                 onClicked: {
                     if (type == Util.MOVIE) {
                         appWindow.pageStack.push(movieView,
+                                                 { tmdbId: id,
+                                                   loading: true })
+                    } else if (type == Util.TV) {
+                        appWindow.pageStack.push(tvView,
                                                  { tmdbId: id,
                                                    loading: true })
                     } else {

@@ -176,7 +176,7 @@ Page {
     function fetchExtendedContent() {
         loadingExtended = true
         Util.asyncQuery({
-                            url: TMDB.person_info(tmdbId, 'movie_credits,images', { app_locale: appLocale }), // tv_credits?
+                            url: TMDB.person_info(tmdbId, 'movie_credits,tv_credits,images', { app_locale: appLocale }),
                             response_action: Util.FETCH_RESPONSE_TMDB_PERSON
                         },
                         handleMessage)
@@ -364,11 +364,18 @@ Page {
                 visible: filmographyModel.count > 0
 
                 onClicked: {
-                    appWindow.pageStack.push(movieView,
-                                             {
-                                                 movie: filmographyModel.get(modelIndex),
-                                                 loading: true
-                                             })
+                    if (filmographyModel.get(modelIndex).type === 'TMDbFilmographyMovie')
+                        appWindow.pageStack.push(movieView,
+                                                 {
+                                                     movie: filmographyModel.get(modelIndex),
+                                                     loading: true
+                                                 })
+                    else
+                        appWindow.pageStack.push(tvView,
+                                                 {
+                                                     movie: filmographyModel.get(modelIndex),
+                                                     loading: true
+                                                 })
                 }
 
                 onFooterClicked: {

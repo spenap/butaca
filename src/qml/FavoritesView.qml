@@ -76,8 +76,11 @@ Page {
                 var pageConfig = { tmdbId: id, loading: true }
                 var thePage = movieView
 
-                if (holdsMixedContent && type == Util.PERSON) {
-                    thePage = personView
+                if (holdsMixedContent) {
+                    if (type == Util.PERSON)
+                        thePage = personView
+                    else if (type == Util.TV)
+                        thePage = tvView
                 }
 
                 appWindow.pageStack.push(thePage, pageConfig)

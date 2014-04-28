@@ -21,6 +21,7 @@
 
 var PERSON = 0
 var MOVIE = 1
+var TV = 2
 
 var IMDB_BASE_URL = 'http://www.imdb.com/'
 
