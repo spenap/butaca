@@ -37,7 +37,7 @@ Page {
     orientationLock: PageOrientation.LockPortrait
 
     property alias searchTerm: searchInput.text
-    property bool useSimpleDelegate : searchCategory.checkedButton !== movieSearch
+    property bool useSimpleDelegate : searchCategory.checkedButton === peopleSearch
     property bool loading: false
     property ListModel localModel: ListModel { }
 
@@ -106,6 +106,12 @@ Page {
         }
 
         Button {
+            id: tvSearch
+            //: Shown in the button selecting TV search
+            text: qsTr('TV')
+        }
+
+        Button {
             id: peopleSearch
             //: Shown in the button selecting celebrities search
             text: qsTr('Celebrities')
@@ -118,30 +124,13 @@ Page {
 
     Loader {
         id: resultsListLoader
-        sourceComponent: useSimpleDelegate ? peopleListWrapper : moviesListWrapper
+        sourceComponent: useSimpleDelegate ? peopleListWrapper : filmListWrapper
         anchors {
             topMargin: UIConstants.DEFAULT_MARGIN
             top: searchCategory.bottom
             bottom: parent.bottom
             left: parent.left
             right: parent.right
-        }
-    }
-
-    JSONListModel {
-        id: peopleModel
-        property string personName: ''
-        property int page: 1
-        source: personName ? TheMovieDb.search('person', personName, {
-                                                   app_locale: appLocale,
-                                                   'page_value': page,
-                                                   'includeAdult_value': Storage.getSetting('includeAdult', 'true')
-                                               }) : ''
-        query: TheMovieDb.query_path(TheMovieDb.SEARCH)
-        onJsonChanged: {
-            if (json !== "")
-                loading = false
-            Util.populateModelFromModel(peopleModel.model, localModel, Util.TMDbPerson)
         }
     }
 
@@ -159,7 +148,79 @@ Page {
             if (json !== "")
                 loading = false
             if (count !== 0)
-                Util.populateModelFromModel(moviesModel.model, localModel, Util.TMDbMovie)
+                Util.populateModelFromModel(moviesModel.model, localModel, Util.TMDBSearchresult)
+        }
+    }
+
+    JSONListModel {
+        id: tvModel
+        property string tvName: ''
+        property int page: 1
+        source: tvName ? TheMovieDb.search('tv', tvName, {
+                                                   app_locale: appLocale,
+                                                   'page_value': page
+                                               }) : ''
+        query: TheMovieDb.query_path(TheMovieDb.SEARCH)
+        onJsonChanged: {
+            if (json !== "")
+                loading = false
+            Util.populateModelFromModel(tvModel.model, localModel, Util.TMDBSearchresult)
+        }
+    }
+
+    JSONListModel {
+        id: peopleModel
+        property string personName: ''
+        property int page: 1
+        source: personName ? TheMovieDb.search('person', personName, {
+                                                   app_locale: appLocale,
+                                                   'page_value': page,
+                                                   'includeAdult_value': Storage.getSetting('includeAdult', 'true')
+                                               }) : ''
+        query: TheMovieDb.query_path(TheMovieDb.SEARCH)
+        onJsonChanged: {
+            if (json !== "")
+                loading = false
+            Util.populateModelFromModel(peopleModel.model, localModel, Util.TMDBSearchresult)
+        }
+    }
+
+    Component {
+        id: filmListWrapper
+
+        Item {
+            id: innerWrapper
+
+            ListView {
+                id: filmList
+                clip: true
+                anchors.fill: parent
+                model: searchView.localModel
+                delegate: MultipleMoviesDelegate {
+                    iconSource: model.img
+                    name: model.name
+                    rating: model.vote_avg
+                    votes: model.vote_cnt
+                    year: Util.getYearFromDate(model.date)
+
+                    onClicked: searchView.handleClicked(index)
+                }
+
+                onMovementEnded: {
+                    if (atYEnd) {
+                        if (searchCategory.checkedButton === movieSearch) {
+                            moviesModel.page++
+                        } else if (searchCategory.checkedButton === tvSearch) {
+                            tvModel.page++
+                        }
+                    }
+                }
+            }
+
+            ScrollDecorator {
+                id: scrollDecorator
+                flickableItem: filmList
+            }
         }
     }
 
@@ -176,7 +237,7 @@ Page {
                 model: searchView.localModel
                 delegate: MyListDelegate {
                     width: parent.width
-                    title: model.title
+                    title: model.name
                     onClicked: searchView.handleClicked(index)
                 }
 
@@ -189,40 +250,6 @@ Page {
             ScrollDecorator {
                 id: scrollDecorator
                 flickableItem: peopleList
-            }
-        }
-    }
-
-    Component {
-        id: moviesListWrapper
-
-        Item {
-            id: innerWrapper
-
-            ListView {
-                id: moviesList
-                clip: true
-                anchors.fill: parent
-                model: searchView.localModel
-                delegate: MultipleMoviesDelegate {
-                    iconSource: model.poster_path
-                    name: model.title
-                    rating: model.vote_average
-                    votes: model.vote_count
-                    year: Util.getYearFromDate(model.release_date)
-
-                    onClicked: searchView.handleClicked(index)
-                }
-
-                onMovementEnded: {
-                    if (atYEnd)
-                        moviesModel.page++
-                }
-            }
-
-            ScrollDecorator {
-                id: scrollDecorator
-                flickableItem: moviesList
             }
         }
     }
@@ -251,8 +278,9 @@ Page {
     states: [
         State {
             name: 'loadingState'
-            when: (peopleModel.source != '' && peopleModel.json == '') ||
-                  (moviesModel.source != '' && moviesModel.json == '')
+            when: (moviesModel.source != '' && moviesModel.json == '') ||
+                  (tvModel.source != '' && tvModel.json == '') ||
+                  (peopleModel.source != '' && peopleModel.json == '')
             PropertyChanges {
                 target: busyIndicator
                 running: true
@@ -260,8 +288,9 @@ Page {
         },
         State {
             name: 'notFoundState'
-            when: ((peopleModel.source != '' && peopleModel.json != '' ) ||
-                   (moviesModel.source != '' && moviesModel.json != '')) &&
+            when: ((moviesModel.source != '' && moviesModel.json != '') ||
+                   (tvModel.source != '' && tvModel.json != '') ||
+                   (peopleModel.source != '' && peopleModel.json != '' )) &&
                   localModel.count === 0
             PropertyChanges {
                 target: noResults
@@ -272,7 +301,9 @@ Page {
         },
         State {
             name: 'emptyState'
-            when: peopleModel.source  == '' && moviesModel.source == '' &&
+            when: moviesModel.source == '' &&
+                  tvModel.source == '' &&
+                  peopleModel.source  == '' &&
                   !searchInput.text
             PropertyChanges {
                 target: noResults
@@ -285,31 +316,28 @@ Page {
 
     function handleClicked(index) {
         var element = localModel.get(index)
-        switch (element.type) {
-        case 'TMDbMovie':
-            pageStack.push(movieView,
-                           {
-                               movie: element
-                           })
-            break
-        case 'TMDbPerson':
-            pageStack.push(personView,
-                           {
-                               person: element
-                           })
-            break
+        if (searchCategory.checkedButton === movieSearch) {
+            pageStack.push(movieView, { movie: element })
+        } else if (searchCategory.checkedButton === tvSearch) {
+            pageStack.push(tvView, { movie: element })
+        } else if (searchCategory.checkedButton === peopleSearch) {
+            pageStack.push(personView, { person: element })
         }
     }
 
     function doSearch() {
-        peopleModel.personName = ''
         moviesModel.movieName = ''
+        tvModel.tvName = ''
+        peopleModel.personName = ''
         localModel.clear()
         if (searchTerm) {
             loading = true
             if (searchCategory.checkedButton === movieSearch) {
                 moviesModel.page = 1
                 moviesModel.movieName = searchTerm
+            } else if (searchCategory.checkedButton === tvSearch) {
+                tvModel.page = 1
+                tvModel.tvName = searchTerm
             } else if (searchCategory.checkedButton === peopleSearch) {
                 peopleModel.page = 1
                 peopleModel.personName = searchTerm
