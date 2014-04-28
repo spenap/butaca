@@ -26,6 +26,7 @@ import 'storage.js' as Storage
 
 Page {
     id: favoritesView
+    orientationLock: PageOrientation.LockPortrait
 
     tools: ToolBarLayout {
         ToolIcon {

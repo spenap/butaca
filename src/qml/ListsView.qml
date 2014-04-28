@@ -5,6 +5,7 @@ import 'storage.js' as Storage
 
 Page {
     id: listsView
+    orientationLock: PageOrientation.LockPortrait
 
     tools: ToolBarLayout {
         ToolIcon {
