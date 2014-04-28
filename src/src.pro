@@ -90,7 +90,8 @@ OTHER_FILES += \
     qml/FavoritesView.qml \
     qml/ListsView.qml \
     qml/JSONListModel.qml \
-    qml/jsonpath.js
+    qml/jsonpath.js \
+    qml/TvView.qml
 
 RESOURCES += \
     res.qrc

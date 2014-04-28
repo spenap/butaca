@@ -43,6 +43,7 @@
         <file>l10n/butaca.tr.qm</file>
         <file>l10n/butaca.pt.qm</file>
         <file>qml/MovieView.qml</file>
+        <file>qml/TvView.qml</file>
         <file>qml/MediaGalleryView.qml</file>
         <file>qml/ZoomableImage.qml</file>
         <file>qml/MyGalleryPreviewer.qml</file>
