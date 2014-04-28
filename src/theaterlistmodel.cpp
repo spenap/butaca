@@ -111,7 +111,7 @@ MovieListModel* TheaterListModel::showtimes(const QModelIndex& index)
     const Cinema& cinema = m_cinemas.at(index.row());
 
     if (m_currentMovieListModel) {
-        delete m_currentMovieListModel;
+//        delete m_currentMovieListModel; // ugly workaround for segfault in ShowtimesView
     }
 
     m_currentMovieListModel = cinema.showtimesModel();
