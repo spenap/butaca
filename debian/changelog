@@ -1,3 +1,13 @@
+butaca (0.9.3) unstable; urgency=low
+
+  * workaround for crash in ShowtimesView
+  * add option to check showtimes on future dates
+  * revert credits/filmography GUI changes
+  * add TV and Series Information
+  * remove obsolete WATC support
+
+ -- Marco Porsch <marco.porsch@etit.tu-chemnitz.de>  Tue, 29 Apr 2014 21:00:02 +0200
+
 butaca (0.9.2) unstable; urgency=low
 
   * fix image saving
