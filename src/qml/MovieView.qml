@@ -314,7 +314,7 @@ Page {
             spacing: UIConstants.DEFAULT_MARGIN
 
             Header {
-                text: parsedMovie.name + ' (' + Util.getYearFromDate(parsedMovie.released) + ')'
+                text: parsedMovie.name
             }
 
             Label {
@@ -360,7 +360,8 @@ Page {
                             margins: UIConstants.DEFAULT_MARGIN
                         }
                         headerFontSize: UIConstants.FONT_SLARGE
-                        text: parsedMovie.originalName + ' (' + Util.getYearFromDate(parsedMovie.released) + ')'
+                        text: parsedMovie.originalName +
+                              (parsedMovie.released ? ' (' + Util.getYearFromDate(parsedMovie.released) + ')' : '')
                     }
 
                     Label {
