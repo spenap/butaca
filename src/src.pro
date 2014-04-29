@@ -84,7 +84,6 @@ OTHER_FILES += \
     qml/MyGalleryPreviewer.qml \
     qml/MyModelFlowPreviewer.qml \
     qml/MyTextExpander.qml \
-    qml/aftercredits.js \
     qml/moviedbwrapper.js \
     qml/ShowtimesView.qml \
     qml/FavoritesView.qml \

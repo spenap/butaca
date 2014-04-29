@@ -49,7 +49,6 @@
         <file>qml/MyGalleryPreviewer.qml</file>
         <file>qml/MyModelFlowPreviewer.qml</file>
         <file>qml/MyTextExpander.qml</file>
-        <file>qml/aftercredits.js</file>
         <file>qml/moviedbwrapper.js</file>
         <file>resources/round-corners.png</file>
         <file>qml/ShowtimesView.qml</file>

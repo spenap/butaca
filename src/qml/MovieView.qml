@@ -20,7 +20,6 @@
 import QtQuick 1.1
 import com.nokia.meego 1.1
 import 'butacautils.js' as Util
-import 'aftercredits.js'as WATC
 import 'moviedbwrapper.js' as TMDB
 import 'constants.js' as UIConstants
 import 'storage.js' as Storage
@@ -81,12 +80,6 @@ Page {
                 onClicked: Qt.openUrlExternally(parsedMovie.homepage)
             }
             MenuItem {
-                //: This opens a website displaying movie's extras after or during credits
-                text: qsTr('View extras')
-                visible: parsedMovie.extrasUrl
-                onClicked: Qt.openUrlExternally(parsedMovie.extrasUrl)
-            }
-            MenuItem {
                 //: This visits the Internet Movie Database page of this content (movie or person)
                 text: qsTr('View in IMDb')
                 onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + 'title/' + parsedMovie.imdbId)
@@ -104,7 +97,6 @@ Page {
     property alias imdbId: parsedMovie.imdbId
     property bool loading: false
     property bool loadingExtended: false
-    property bool loadingExtras: false
     property bool inWatchlist: tmdbId ? Storage.inWatchlist({ 'id': tmdbId }) : false
 
     QtObject {
@@ -131,11 +123,6 @@ Page {
         property int runtime: 0
         property string certification: '-'
         property string homepage: ''
-        property string extras:
-            //: This indicates that no extra content after or during the credits was found
-            qsTr('Not found')
-        property string extrasUrl: ''
-        property bool extrasFetched: false
         // also available: belongs_to_collection, spoken_languages, status
 
         // parses TMDBObject
@@ -202,9 +189,6 @@ Page {
 
             Util.populateModelFromArray(crew, creditsModel)
             Util.populateModelFromArray(cast, creditsModel)
-
-            if (!loadingExtras && !parsedMovie.extrasFetched)
-                fetchExtras()
         }
     }
 
@@ -239,9 +223,6 @@ Page {
                                                  'alternative_titles,credits,images,trailers,releases',
                                                  { app_locale: appLocale }),
                                  Util.FETCH_RESPONSE_TMDB_MOVIE)
-
-        if (imdbId && parsedMovie.originalName)
-            fetchExtras()
     }
 
     // Several ListModels are used.
@@ -641,40 +622,6 @@ Page {
                 }
             }
 
-            Column {
-                id: movieExtrasSection
-                width: parent.width
-
-                MyEntryHeader {
-                    width: parent.width
-                    //: Label acting as the header for the extra information after / during credits
-                    text: qsTr('Extras after or during credits?')
-
-                    BusyIndicator {
-                        visible: running
-                        running: loadingExtras
-                        anchors {
-                            right: parent.right
-                            rightMargin: UIConstants.DEFAULT_MARGIN
-                            verticalCenter: parent.verticalCenter
-                        }
-                        platformStyle: BusyIndicatorStyle {
-                            size: 'small'
-                        }
-                    }
-                }
-
-                Label {
-                    width: parent.width
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_LSMALL
-                        fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                    }
-                    text: parsedMovie.extras
-                    visible: !loadingExtras
-                }
-            }
-
             MyModelPreviewer {
                 width: parent.width
                 previewedModel: castModel
@@ -754,15 +701,6 @@ Page {
                         handleMessage)
     }
 
-    function fetchExtras() {
-        loadingExtras = true
-        Util.asyncQuery({
-                            url: WATC.movie_extras(parsedMovie.originalName),
-                            response_action: Util.FETCH_RESPONSE_WATC
-                        },
-                        handleMessage)
-    }
-
     function handleMessage(messageObject) {
         var objectArray = JSON.parse(messageObject.response)
         if (objectArray.errors !== undefined) {
@@ -774,16 +712,6 @@ Page {
         case Util.FETCH_RESPONSE_TMDB_MOVIE:
             parsedMovie.updateWithFullWeightMovie(objectArray)
             loading = loadingExtended = false
-            break
-
-        case Util.FETCH_RESPONSE_WATC:
-            parsedMovie.extrasFetched = true
-            var watcMovie = WATC.parseACResponse(objectArray, parsedMovie.imdbId)
-            if (watcMovie) {
-                parsedMovie.extras = watcMovie.subtitle
-                parsedMovie.extrasUrl = watcMovie.url
-            }
-            loadingExtras = false
             break
 
         default:

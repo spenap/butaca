@@ -26,8 +26,7 @@ var TV = 2
 var IMDB_BASE_URL = 'http://www.imdb.com/'
 
 var FETCH_RESPONSE_TMDB_MOVIE = 0
-var FETCH_RESPONSE_WATC = 1
-var FETCH_RESPONSE_TMDB_PERSON = 2
+var FETCH_RESPONSE_TMDB_PERSON = 1
 
 /**
  * Gets the year from a string containing a date
@@ -94,17 +93,6 @@ function getTrailerThumbnail(trailerUrl) {
         return 'http://img.youtube.com/vi/' + videoId + THUMB_SIZE
     }
     return ''
-}
-
-/**
- * Processes a text to remove undesirable HTML tags
- * @param {string} text with the HTML tags
- * @return {string} Text with only the newline tags respected
- */
-function sanitizeText(text) {
-    // "Save" existing <br /> into &lt;br /&gt;, remove all tags
-    // and put the <br /> back there
-    return text.replace(/<br \/>/g, '&lt;br /&gt;').replace(/<.*?>/g, '').replace(/&lt;br \/&gt;/g, '<br />')
 }
 
 function TMDbImage(obj) {

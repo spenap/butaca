@@ -234,22 +234,6 @@ Page {
                 }
 
                 Label {
-                    id: aboutACDisclaimer
-                    //: Disclaimer about After Credits API usage
-                    text: styleSheets + qsTr('This product uses <a href="http://aftercredits.com/">' +
-                               'What\'s After The Credits?</a> API but is not ' +
-                               'endorsed or certified by them.')
-                    width: parent.width
-                    horizontalAlignment: Text.AlignJustify
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_LSMALL
-                        fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                    }
-                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
-                    onLinkActivated: Qt.openUrlExternally(link)
-                }
-
-                Label {
                     id: aboutShowtimesDisclaimer
                     //: Disclaimer about Google Showtimes usage
                     text: styleSheets + qsTr('This product presents showtimes from ' +
