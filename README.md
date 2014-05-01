@@ -5,7 +5,7 @@
 Butaca is a movie database application for MeeGo Harmattan, the operating
 system running on the [Nokia N9][1]. You can use it to:
 
- * Get all details about a movies: release date, overview, cast & crew, trailer...
+ * Get all details about movies and TV shows: release date, overview, cast & crew, trailer...
  * Get all details about a celebrity: birth details, biography, filmography...
  * Check showtimes -when available- for cinemas around you
 
@@ -16,9 +16,9 @@ Download Butaca at [openrepos.net][9]
 ## How does it work? ##
 
 Butaca uses different data sources to present its content. It gets the
-information about movies and celebrities from [The Movie Database][2], an open
-movie database where everybody can collaborate. It shows movie showtimes -when
-available- using results from [Google Showtimes][3].
+information about movies, TV shows and celebrities from [The Movie Database][2], 
+an open movie database where everybody can collaborate. It shows movie showtimes
+-when available- using results from [Google Showtimes][3].
 
 ## Bugs & Feedback ##
 
