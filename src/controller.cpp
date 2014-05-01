@@ -134,22 +134,3 @@ void Controller::saveImage(QObject* item, const QString& remoteSource)
     ImageSaver::save(item, sourceUrl.toLocalFile());
 #endif
 }
-
-void Controller::openStoreClient(const QString& url) const
-{
-    // Based on
-    // https://gitorious.org/n9-apps-client/n9-apps-client/blobs/master/daemon/notificationhandler.cpp#line178
-#ifdef QT_SIMULATOR
-    Q_UNUSED(url)
-#else
-    QDBusInterface dbusInterface(STORE_DBUS_IFACE,
-                                 "/",
-                                 STORE_DBUS_IFACE,
-                                 QDBusConnection::sessionBus());
-
-    QStringList callParams;
-    callParams << url;
-
-    dbusInterface.asyncCall("LaunchWithLink", QVariant::fromValue(callParams));
-#endif
-}

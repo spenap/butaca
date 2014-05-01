@@ -11,7 +11,7 @@ system running on the [Nokia N9][1]. You can use it to:
 
 ## Get Butaca ##
 
-Download Butaca at the [Nokia Store][9]
+Download Butaca at [openrepos.net][9]
 
 ## How does it work? ##
 
@@ -36,7 +36,7 @@ there are several ways you can contribute to it:
  * [Translate Butaca][8] to your language
  * File bugs or write feature requests in the [bug tracker][5]
  * Spread the word, and recommend it to your friends
- * Rate us on the [Nokia Store][9]
+ * Rate us on [openrepos.net][9]
 
 ## Awards ##
 
@@ -59,7 +59,7 @@ used inside `ListElement`
 [6]: https://github.com/spenap/butaca "Butaca on GitHub"
 [7]: http://www.gnu.org/licenses/gpl.html "GPL License"
 [8]: https://www.transifex.net/projects/p/butaca/ "Butaca: cinema information localization"
-[9]: http://store.nokia.com/content/195876 "Butaca at the Nokia Store"
+[9]: https://openrepos.net/content/whisk4s/butaca "Butaca at openrepos.net"
 [10]: http://qt.nokia.com/qt-in-use/ambassadors/project?id=a0F20000006N9pVEAS "Butaca"
 [11]: https://bugreports.qt-project.org/browse/QTBUG-17327
 [12]: https://bugreports.qt-project.org/browse/QTBUG-11403

@@ -32,8 +32,8 @@ class SortFilterModel;
 //!
 //! This class exposes several methods, not available in pure QML, to the
 //! context, such as sharing using the share-ui interface, retrieving movie
-//! showtimes, accessing the current location, formatting a currency, saving
-//! images or opening Nokia Store links in the Nokia Store client
+//! showtimes, accessing the current location, formatting a currency or saving
+//! images
 //!
 //! \mainpage
 //! Butaca is a movie database application
@@ -86,10 +86,6 @@ public slots:
     //! \param item The item containing the QML image, as a QObject pointer
     //! \param remoteSource The url pointing to the image
     void saveImage(QObject* item, const QString& remoteSource);
-
-    //! Opens a link in the Nokia Store client
-    //! \param link The link to open in the Nokia Store client
-    void openStoreClient(const QString& url) const;
 
 signals:
     //! Emitted when the theater showtimes have been fetched
