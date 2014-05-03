@@ -18,9 +18,10 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import 'butacautils.js' as BUTACA
 import 'constants.js' as UIConstants
+import 'moviedbwrapper.js' as TMDB
 
 Page {
     id: castView
@@ -74,19 +75,22 @@ Page {
             text: showsCast ?
                       //: This appears in the cast view when the cast is shown
                       qsTr('Full cast in %1').arg(movieName) :
-                      //: This appears in the cast view when the crew is shown
-                      qsTr('Full crew in %1').arg(movieName)
+                      //: This appears in the cast view when cast and crew are shown
+                      qsTr('Cast and crew in %1').arg(movieName)
             showDivider: false
         }
         delegate: MyListDelegate {
-            width: parent.width
+            width: castList.width
             title: model.name
-            subtitle: showsCast ? model.character : model.job
+            subtitle: model.subtitle || ''
+            iconSource: model.img ?
+                            TMDB.image(TMDB.IMAGE_PROFILE, 0, model.img, { app_locale: appLocale }) :
+                            'qrc:/resources/person-placeholder.svg'
 
             onClicked: {
                 appWindow.pageStack.push(personView,
                                          {
-                                             tmdbId: model.id,
+                                             person: model,
                                              loading: true
                                          })
             }

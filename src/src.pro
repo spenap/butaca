@@ -84,13 +84,13 @@ OTHER_FILES += \
     qml/MyGalleryPreviewer.qml \
     qml/MyModelFlowPreviewer.qml \
     qml/MyTextExpander.qml \
-    qml/aftercredits.js \
     qml/moviedbwrapper.js \
     qml/ShowtimesView.qml \
     qml/FavoritesView.qml \
     qml/ListsView.qml \
     qml/JSONListModel.qml \
-    qml/jsonpath.js
+    qml/jsonpath.js \
+    qml/TvView.qml
 
 RESOURCES += \
     res.qrc

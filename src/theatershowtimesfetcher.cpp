@@ -41,7 +41,7 @@ TheaterShowtimesFetcher::~TheaterShowtimesFetcher()
     delete m_webView;
 }
 
-void TheaterShowtimesFetcher::fetchTheaters(QString location)
+void TheaterShowtimesFetcher::fetchTheaters(QString location, QString daysAhead)
 {
     // TODO: This is currently hardcoded to Google Showtimes. It would be
     // better if several services could be used.
@@ -56,6 +56,7 @@ void TheaterShowtimesFetcher::fetchTheaters(QString location)
     if (!location.isEmpty()) {
         m_showtimesBaseUrl.addQueryItem("near", location);
     }
+    m_showtimesBaseUrl.addQueryItem("date", daysAhead);
 
     m_webView->load(m_showtimesBaseUrl);
 }

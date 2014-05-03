@@ -43,12 +43,12 @@
         <file>l10n/butaca.tr.qm</file>
         <file>l10n/butaca.pt.qm</file>
         <file>qml/MovieView.qml</file>
+        <file>qml/TvView.qml</file>
         <file>qml/MediaGalleryView.qml</file>
         <file>qml/ZoomableImage.qml</file>
         <file>qml/MyGalleryPreviewer.qml</file>
         <file>qml/MyModelFlowPreviewer.qml</file>
         <file>qml/MyTextExpander.qml</file>
-        <file>qml/aftercredits.js</file>
         <file>qml/moviedbwrapper.js</file>
         <file>resources/round-corners.png</file>
         <file>qml/ShowtimesView.qml</file>

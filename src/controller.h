@@ -32,8 +32,8 @@ class SortFilterModel;
 //!
 //! This class exposes several methods, not available in pure QML, to the
 //! context, such as sharing using the share-ui interface, retrieving movie
-//! showtimes, accessing the current location, formatting a currency, saving
-//! images or opening Nokia Store links in the Nokia Store client
+//! showtimes, accessing the current location, formatting a currency or saving
+//! images
 //!
 //! \mainpage
 //! Butaca is a movie database application
@@ -65,11 +65,16 @@ public slots:
     //! Fetches theater showtimes for the given location.
     //! tries to autoresolve it when it is empty
     //! \param location Specific location to fetch theater showtimes
-    void fetchTheaters(QString location = QString());
+    //! \param daysAhead Offset from the current date
+    void fetchTheaters(QString location = QString(), QString daysAhead = QString("0"));
 
     //! Retrieves the location currently used
     //! \return Location currently used
     QString currentLocation();
+
+    //! Retrieves the days ahead currently used
+    //! \return Days ahead currently used
+    QString currentDaysAhead();
 
     //! Formats the given value as a currency
     //! \param value Value to be formatted
@@ -81,10 +86,6 @@ public slots:
     //! \param item The item containing the QML image, as a QObject pointer
     //! \param remoteSource The url pointing to the image
     void saveImage(QObject* item, const QString& remoteSource);
-
-    //! Opens a link in the Nokia Store client
-    //! \param link The link to open in the Nokia Store client
-    void openStoreClient(const QString& url) const;
 
 signals:
     //! Emitted when the theater showtimes have been fetched
@@ -100,6 +101,7 @@ private:
     TheaterListModel* m_theaterListModel;
     SortFilterModel* m_sortFilterModel;
     QString m_location;
+    QString m_daysAhead;
     QString m_packageVersion;
 };
 

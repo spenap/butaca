@@ -18,7 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import com.nokia.extras 1.1
 
 // Zoom features support (both pinch gesture and double click) taken from xkcdMeegoReader
@@ -30,6 +30,7 @@ Flickable {
     contentWidth: imageContainer.width
     onHeightChanged: image.calculateSize()
 
+    property alias image: image
     property alias source: image.source
     property alias status: image.status
     property alias progress: image.progress

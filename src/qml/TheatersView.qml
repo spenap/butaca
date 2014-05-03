@@ -18,10 +18,11 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
 import "storage.js" as Storage
+import "butacautils.js" as Util
 
 Page {
     id: cinemasView
@@ -37,9 +38,15 @@ Page {
             enabled: theatersContent.state !== 'Loading'
             iconId: 'toolbar-refresh' + (enabled ? '' : '-dimmed')
             onClicked: {
+                var date = new Date(Storage.getSetting('showtimesDate', Date.now().toString()))
+                if (date < new Date())
+                    date = new Date() // now
+
                 location = Storage.getSetting('location', '')
-                if (location.localeCompare(controller.currentLocation()) !== 0) {
-                    controller.fetchTheaters(location)
+                daysAhead = Util.dateDiffInDays(new Date(), date)
+                if (location.localeCompare(controller.currentLocation()) !== 0 ||
+                        daysAhead.localeCompare(controller.currentDaysAhead()) !== 0) {
+                    controller.fetchTheaters(location, daysAhead)
                     theatersContent.state = 'Loading'
                 }
             }
@@ -58,16 +65,23 @@ Page {
 
     property string extendedSection: ''
     property string location
+    property string daysAhead
     property bool showShowtimesFilter: false
     property real contentYPos: list.visibleArea.yPosition *
                                    Math.max(list.height, list.contentHeight)
 
     Component.onCompleted: {
+        var date = new Date(Storage.getSetting('showtimesDate', Date.now().toString()))
+        if (date < new Date())
+            date = new Date() // now
+
         location = Storage.getSetting('location', '')
+        daysAhead = Util.dateDiffInDays(new Date(), date)
         theaterModel.setFilterWildcard('')
         if (list.model.count === 0 ||
-                location.localeCompare(controller.currentLocation()) !== 0) {
-            controller.fetchTheaters(location)
+                location.localeCompare(controller.currentLocation()) !== 0 ||
+                daysAhead.localeCompare(controller.currentDaysAhead()) !== 0) {
+            controller.fetchTheaters(location, daysAhead)
             theatersContent.state = 'Loading'
         } else {
             theatersContent.state = 'Ready'

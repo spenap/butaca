@@ -18,7 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
 import 'butacautils.js' as Util
@@ -26,6 +26,7 @@ import 'storage.js' as Storage
 
 Page {
     id: favoritesView
+    orientationLock: PageOrientation.LockPortrait
 
     tools: ToolBarLayout {
         ToolIcon {
@@ -76,8 +77,11 @@ Page {
                 var pageConfig = { tmdbId: id, loading: true }
                 var thePage = movieView
 
-                if (holdsMixedContent && type == Util.PERSON) {
-                    thePage = personView
+                if (holdsMixedContent) {
+                    if (type == Util.PERSON)
+                        thePage = personView
+                    else if (type == Util.TV)
+                        thePage = tvView
                 }
 
                 appWindow.pageStack.push(thePage, pageConfig)

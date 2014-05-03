@@ -18,7 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TMDB
 import "storage.js" as Storage
@@ -82,7 +82,7 @@ Page {
                                       })
         query: TMDB.query_path(TMDB.MOVIE_BROWSE)
         onJsonChanged: {
-            Util.populateModelFromModel(model, localModel, Util.TMDbMovie)
+            Util.populateModelFromModel(model, localModel, Util.TMDBSearchresult)
         }
     }
 
@@ -97,11 +97,11 @@ Page {
         anchors.fill: parent
         model: localModel
         delegate: MultipleMoviesDelegate {
-            iconSource: model.poster_path
-            name: model.title
-            rating: model.vote_average
-            votes: model.vote_count
-            year: Util.getYearFromDate(model.release_date)
+            iconSource: model.img
+            name: model.name
+            rating: model.vote_avg
+            votes: model.vote_cnt
+            year: Util.getYearFromDate(model.date)
 
             onClicked: {
                 pageStack.push(movieView,

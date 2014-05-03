@@ -1,10 +1,11 @@
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import 'constants.js' as UIConstants
 import 'storage.js' as Storage
 
 Page {
     id: listsView
+    orientationLock: PageOrientation.LockPortrait
 
     tools: ToolBarLayout {
         ToolIcon {

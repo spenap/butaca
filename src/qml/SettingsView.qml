@@ -18,7 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
 import "storage.js" as Storage
@@ -38,9 +38,13 @@ Page {
         Storage.initialize()
         var includeAll = Storage.getSetting('includeAll', 'true')
         var includeAdult = Storage.getSetting('includeAdult', 'true')
+        var date = new Date(Storage.getSetting('showtimesDate', new Date().toString()))
 
         includeAllSwitch.checked = (includeAll === 'true')
         includeAdultSwitch.checked = (includeAdult === 'true')
+        if (date < new Date())
+            date = new Date() // now
+        setDate(date)
     }
 
     Component.onDestruction: {
@@ -128,6 +132,40 @@ Page {
                         }
                     }
                 }
+
+                Row {
+                    id: showtimesDateItem
+                    width: parent.width
+                    spacing: UIConstants.DEFAULT_MARGIN
+
+                    Label {
+                        id: showtimesDateLabel
+                        width: locationText.width
+                        anchors.verticalCenter: showtimesDateButton.verticalCenter
+                        platformStyle: LabelStyle {
+                            fontPixelSize: UIConstants.FONT_DEFAULT
+                        }
+                        color: UIConstants.COLOR_INVERTED_FOREGROUND
+                        //: Label for the showtimes date setting
+                        text: qsTr('Date')
+                    }
+
+                    Button {
+                        id: showtimesDateButton
+                        width: parent.width - showtimesDateLabel.width - parent.spacing
+                        onClicked: showtimesDateDialog.open()
+
+                        Image {
+                           anchors {
+                               right: parent.right
+                               rightMargin: UIConstants.DEFAULT_MARGIN
+                               verticalCenter: parent.verticalCenter
+                           }
+                           height: parent.height - UIConstants.DEFAULT_MARGIN
+                           source: "image://theme/meegotouch-combobox-indicator-inverted"
+                       }
+                    }
+                }
             }
 
             Column {
@@ -208,6 +246,20 @@ Page {
         }
     }
 
+    DatePickerDialog {
+        id: showtimesDateDialog
+        titleText: "Showtimes date"
+        onAccepted: {
+            var date = new Date(showtimesDateDialog.year,
+                                showtimesDateDialog.month - 1, // months are 0-based
+                                showtimesDateDialog.day)
+            if (date < new Date()) // accept future dates only
+                date = new Date()
+            Storage.setSetting('showtimesDate', date.toString())
+            setDate(date)
+        }
+    }
+
     states: [
         State {
             name: 'showBrowsingSection'
@@ -224,4 +276,17 @@ Page {
             }
         }
     ]
+
+    function setDate(date) {
+        showtimesDateDialog.year = date.getFullYear()
+        showtimesDateDialog.month = date.getMonth() + 1 // months are 0-based
+        showtimesDateDialog.day = date.getDate()
+
+        if (date.toDateString() === new Date().toDateString()) {
+            //: Shown in a button when the date is set to Today.
+            showtimesDateButton.text = qsTr('Today')
+        } else {
+            showtimesDateButton.text = Qt.formatDate(date, Qt.DefaultLocaleShortDate)
+        }
+    }
 }

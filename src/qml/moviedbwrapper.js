@@ -78,6 +78,8 @@ function TMDb(app_locale) {
          _addField(this.config['version']) + _addField('genre')
     this.method['movie_get_info'] = this.config['baseUrl'] +
          _addField(this.config['version']) + _addField('movie')
+    this.method['tv_get_info'] = this.config['baseUrl'] +
+         _addField(this.config['version']) + _addField('tv')
     this.method['person_get_info'] = this.config['baseUrl'] +
          _addField(this.config['version']) + _addField('person')
     this.method['genres_get_list'] = this.config['baseUrl'] +
@@ -260,6 +262,36 @@ function movie_info(movie_id, details, config) {
 }
 
 /**
+ * Wrapper method which provides the API url for getting the full TV show info,
+ * and accepts the movie TMDB id and the custom configuration
+ *
+ * @param {string} The tv show's TMDB id to look up
+ * @param {string} The comma-separated TV show details to look for, leave empty for general info
+ * @param {object} The custom configuration for the look up. Values typically
+ * changed could be the app_locale.
+ * @return {string} API url for looking up TV show information
+ */
+function tv_info(id, details, config) {
+    if (!config)
+        config = { }
+    var wrapper = instance(config.app_locale)
+    var url = ''
+    if (details.indexOf(',') > -1)
+        url = wrapper.getCommonUrl('tv_get_info', config) +
+                _addField(id) +
+                _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?') +
+                _addArgument(wrapper.config['lang_param'], wrapper.config['lang_value']) +
+                _addArgument('append_to_response', encodeURI(details))
+    else
+        url = wrapper.getCommonUrl('tv_get_info', config) +
+                _addField(id) + _addField(details) +
+                _addArgument(wrapper.config['key_param'], wrapper.config['key_value'], '?') +
+                _addArgument(wrapper.config['lang_param'], wrapper.config['lang_value'])
+    console.debug('** TV GET INFO URL:', url)
+    return url
+}
+
+/**
  * Wrapper method which provides the API url for getting the full person info,
  * and accepts the person TMDB id and the custom configuration
  *
@@ -337,6 +369,7 @@ function configuration_set(jsonResponse, config) {
     wrapper.config['image_baseUrl'] = jsonResponse.images.base_url
     wrapper.config[IMAGE_POSTER] = jsonResponse.images.poster_sizes
     wrapper.config[IMAGE_PROFILE] = jsonResponse.images.profile_sizes
+    wrapper.config[IMAGE_BACKDROP] = jsonResponse.images.backdrop_sizes
     console.debug('** CONFIGURATION SET, e.g.', wrapper.config['image_baseUrl'],
                   wrapper.config[IMAGE_POSTER])
 }

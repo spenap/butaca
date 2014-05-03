@@ -49,7 +49,8 @@ public slots:
     //! automatic location
     //! \param location The location to search for cinemas, will try automatically
     //! if empty
-    void fetchTheaters(QString location = QString());
+    //! \param daysAhead Offset from the current date
+    void fetchTheaters(QString location = QString(), QString daysAhead = QString("0"));
 
 signals:
     //! Signal notifying that the cinemas have been fetched, and their number

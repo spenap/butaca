@@ -27,25 +27,23 @@ although it is currently based on the [IMDB client for iOS][1]
 ## BACKENDS ##
 
  * [The Movie Database][3]
- * [What's After The Credits][4]
- * [Google Movies][5]
+ * [Google Movies][4]
 
 ## ART AND GRAPHICS ##
 
- * [Clapperboard icon][6]
- * The launcher icon was initially generated using the [Harmattan Icon Generator][7],
+ * [Clapperboard icon][5]
+ * The launcher icon was initially generated using the [Harmattan Icon Generator][6],
    by Javier De San Pedro Martin.
- * Launcher icons are currently created using the [Nokia Icon Toolkit][8], as instructed
-   in [Launcher icon templates for Nokia N9][9]
+ * Launcher icons are currently created using the [Nokia Icon Toolkit][7], as instructed
+   in [Launcher icon templates for Nokia N9][8]
  * The placeholders for person and movie view have been contributed by
    Tuomas Siipola.
 
 [1]: http://itunes.apple.com/us/app/imdb-movies-tv/id342792525?mt=8
 [2]: https://www.transifex.net/projects/p/butaca/
 [3]: http://www.themoviedb.org
-[4]: http://aftercredits.com
-[5]: http://www.google.com/movies
-[6]: http://commons.wikimedia.org/wiki/File:Clap_cinema.svg
-[7]: http://depot.javispedro.com/nit/hicg/
-[8]: http://www.developer.nokia.com/Resources/Library/Design_and_UX/designing-for-nokia-platforms/Nokia%20Icon%20Toolkit.zip
-[9]: http://www.developer.nokia.com/Resources/Library/Design_and_UX/designing-for-nokia-platforms/designing-for-meego-12-harmattan/meego-launcher-icon-templates.html
+[4]: http://www.google.com/movies
+[5]: http://commons.wikimedia.org/wiki/File:Clap_cinema.svg
+[6]: http://depot.javispedro.com/nit/hicg/
+[7]: http://www.developer.nokia.com/Resources/Library/Design_and_UX/designing-for-nokia-platforms/Nokia%20Icon%20Toolkit.zip
+[8]: http://www.developer.nokia.com/Resources/Library/Design_and_UX/designing-for-nokia-platforms/designing-for-meego-12-harmattan/meego-launcher-icon-templates.html

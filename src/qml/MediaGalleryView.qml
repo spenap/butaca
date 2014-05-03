@@ -18,7 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
 import 'moviedbwrapper.js' as TMDB
@@ -220,7 +220,7 @@ Page {
             }
         }
         onAccepted: {
-            controller.saveImage(savingImage, saveImageSheet.imageUrl)
+            controller.saveImage(savingImage.image, saveImageSheet.imageUrl)
         }
     }
 }

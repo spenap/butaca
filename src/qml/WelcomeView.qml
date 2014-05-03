@@ -18,7 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
 import 'butacautils.js' as Util
@@ -104,6 +104,8 @@ Page {
     Component { id: settingsView; SettingsView { } }
 
     Component { id: movieView; MovieView { } }
+
+    Component { id: tvView; TvView { } }
 
     Component { id: personView; PersonView { } }
 
@@ -213,6 +215,10 @@ Page {
                 onClicked: {
                     if (type == Util.MOVIE) {
                         appWindow.pageStack.push(movieView,
+                                                 { tmdbId: id,
+                                                   loading: true })
+                    } else if (type == Util.TV) {
+                        appWindow.pageStack.push(tvView,
                                                  { tmdbId: id,
                                                    loading: true })
                     } else {

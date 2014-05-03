@@ -18,7 +18,7 @@
  **************************************************************************/
 
 import QtQuick 1.1
-import com.nokia.meego 1.0
+import com.nokia.meego 1.1
 import com.nokia.extras 1.1
 import 'constants.js' as UIConstants
 
@@ -59,12 +59,10 @@ Page {
         aboutOptions.get(0).title = qsTr('Recommend this app')
         //: Short text inviting to provide application feedback
         aboutOptions.get(1).title = qsTr('Tell us what you think')
-        //: Short text inviting to rate us in the Nokia Store
-        aboutOptions.get(2).title = qsTr('Rate us in the Nokia Store')
+        //: Short text inviting to rate us at openrepos.net
+        aboutOptions.get(2).title = qsTr('Rate us at openrepos.net')
         //: Short text inviting to follow us on Twitter
         aboutOptions.get(3).title = qsTr('Follow us on Twitter')
-        //: Short text inviting to check our other apps
-        aboutOptions.get(4).title = qsTr('Check our other apps')
     }
 
     ListModel {
@@ -72,7 +70,7 @@ Page {
         ListElement {
             title: 'Recomienda esta aplicación'
             action: 'openExternally'
-            data: 'mailto:?subject=Download%20Butaca&body=Available%20at%20http://store.ovi.com/content/195876'
+            data: 'mailto:?subject=Download%20Butaca&body=Available%20at%20https://openrepos.net/content/whisk4s/butaca'
         }
         ListElement {
             title: 'Cuéntanos tu opinión'
@@ -80,19 +78,14 @@ Page {
             data: 'mailto:spena@igalia.com?subject=Butaca'
         }
         ListElement {
-            title: 'Valóranos en la Nokia Store'
-            action: 'openStore'
-            data: 'http://store.ovi.com/content/195876'
+            title: 'Valóranos en openrepos.net'
+            action: 'openExternally'
+            data: 'https://openrepos.net/content/whisk4s/butaca'
         }
         ListElement {
             title: 'Síguenos en Twitter'
             action: 'openExternally'
             data: 'https://twitter.com/#!/spenap'
-        }
-        ListElement {
-            title: 'Otras de nuestras aplicaciones'
-            action: 'openStore'
-            data: 'http://store.ovi.com/publisher/Simon%20Pena/'
         }
     }
 
@@ -178,11 +171,8 @@ Page {
                                 id: mouseArea
                                 anchors.fill: parent
                                 onClicked: {
-                                    if (model.action === 'openStore') {
-                                        controller.openStoreClient(model.data)
-                                    } else if (model.action === 'openExternally') {
+                                    if (model.action === 'openExternally')
                                         Qt.openUrlExternally(model.data)
-                                    }
                                 }
                             }
                         }
@@ -223,22 +213,6 @@ Page {
                     text: styleSheets + qsTr('This product uses the ' +
                                '<a href="http://www.themoviedb.org/">TMDb</a> ' +
                                'API but is not endorsed or certified by TMDb.')
-                    width: parent.width
-                    horizontalAlignment: Text.AlignJustify
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_LSMALL
-                        fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                    }
-                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
-                    onLinkActivated: Qt.openUrlExternally(link)
-                }
-
-                Label {
-                    id: aboutACDisclaimer
-                    //: Disclaimer about After Credits API usage
-                    text: styleSheets + qsTr('This product uses <a href="http://aftercredits.com/">' +
-                               'What\'s After The Credits?</a> API but is not ' +
-                               'endorsed or certified by them.')
                     width: parent.width
                     horizontalAlignment: Text.AlignJustify
                     platformStyle: LabelStyle {

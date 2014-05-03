@@ -25,7 +25,7 @@ import 'constants.js' as UIConstants
 import 'storage.js' as Storage
 
 Page {
-    id: movieView
+    id: tvView
 
     orientationLock: PageOrientation.LockPortrait
 
@@ -35,11 +35,11 @@ Page {
                       url: parsedMovie.url,
                       title: parsedMovie.name,
                       icon: parsedMovie.poster,
-                      type: Util.MOVIE
+                      type: Util.TV
                   })
         isFavorite: welcomeView.indexOf({
                                             id: tmdbId,
-                                            type: Util.MOVIE
+                                            type: Util.TV
                                         }) >= 0
         menu: movieMenu
     }
@@ -50,39 +50,10 @@ Page {
 
         MenuLayout {
             MenuItem {
-                enabled: !loading
-                text: !inWatchlist ?
-                          //: This adds the movie to the watch list
-                          qsTr('Add to watchlist') :
-                          //: This removes the movie from the watch list
-                          qsTr('Remove from watchlist')
-                onClicked: {
-                    if (inWatchlist) {
-                        Storage.removeFromWatchlist({
-                                                        'id': tmdbId
-                                                    })
-                    } else {
-                        Storage.addToWatchlist({
-                                                   'id': tmdbId,
-                                                   'name': parsedMovie.name,
-                                                   'year': Util.getYearFromDate(parsedMovie.released),
-                                                   'iconSource': parsedMovie.poster,
-                                                   'rating': parsedMovie.rating,
-                                                   'votes': parsedMovie.votes
-                                               })
-                    }
-                }
-            }
-            MenuItem {
                 //: This opens a website displaying the movie homepage
                 text: qsTr('Open homepage')
                 visible: parsedMovie.homepage
                 onClicked: Qt.openUrlExternally(parsedMovie.homepage)
-            }
-            MenuItem {
-                //: This visits the Internet Movie Database page of this content (movie or person)
-                text: qsTr('View in IMDb')
-                onClicked: Qt.openUrlExternally(Util.IMDB_BASE_URL + 'title/' + parsedMovie.imdbId)
             }
             MenuItem {
                 //: This visits the The Movie Database page of this content (movie or person)
@@ -94,7 +65,6 @@ Page {
 
     property variant movie: ''
     property alias tmdbId: parsedMovie.tmdbId
-    property alias imdbId: parsedMovie.imdbId
     property bool loading: false
     property bool loadingExtended: false
     property bool inWatchlist: tmdbId ? Storage.inWatchlist({ 'id': tmdbId }) : false
@@ -111,19 +81,20 @@ Page {
 
         // Part of the full movie object
         property string originalName: ''
-        property string released: ''
+        property string started: ''
+        property string ended: ' - '
         property double rating: 0
         property int votes: 0
-        property string imdbId: ''
         property string overview: ''
-        property string tagline: ''
+        property int numSeasons: 0
+        property int numEpisodes: 0
         property string trailer: ''
-        property string revenue: ''
-        property string budget: ''
-        property int runtime: 0
-        property string certification: '-'
+        property string runtime: ''
         property string homepage: ''
-        // also available: belongs_to_collection, spoken_languages, status
+        property bool in_production: false
+        property string status: ''
+
+        // also available:
 
         // parses TMDBObject
         function updateWithLightWeightMovie(movie) {
@@ -137,45 +108,45 @@ Page {
 
         // parses JSON response
         function updateWithFullWeightMovie(movie) {
-            name = movie.title
-            url = 'http://www.themoviedb.org/movie/' + tmdbId
+            name = movie.name
+            url = 'http://www.themoviedb.org/tv/' + tmdbId
             if (movie.poster_path)
                 poster = TMDB.image(TMDB.IMAGE_POSTER, 2,
                                     movie.poster_path, { app_locale: appLocale })
-            if (movie.original_title)
-                originalName = movie.original_title
-            if (movie.release_date)
-                released = movie.release_date
+            if (movie.original_name)
+                originalName = movie.original_name
+            if (movie.first_air_date)
+                started = movie.first_air_date
+            if (movie.last_air_date)
+                ended = movie.last_air_date
             if (movie.vote_average)
                 rating = movie.vote_average
             if (movie.vote_count)
                 votes = movie.vote_count
-            if (movie.imdb_id)
-                imdbId = movie.imdb_id
             if (movie.overview)
                 overview = movie.overview
-            if (movie.trailers.youtube[0]) // can't deal with quicktime
-                trailer = 'http://www.youtube.com/watch?v=' + movie.trailers.youtube[0].source
+            if (movie.number_of_seasons)
+                numSeasons = movie.number_of_seasons
+            if (movie.number_of_episodes)
+                numEpisodes = movie.number_of_episodes
+            if (movie.videos.results[0] &&
+                    movie.videos.results[0].site === 'YouTube') // can't deal with quicktime
+                trailer = 'http://www.youtube.com/watch?v=' + movie.videos.results[0].key
             if (movie.homepage)
                 homepage = movie.homepage
-            if (movie.revenue)
-                revenue = movie.revenue
-            if (movie.budget)
-                budget = movie.budget
-            if (movie.tagline)
-                tagline = movie.tagline
-            if (movie.runtime)
-                runtime = movie.runtime
+            if (movie.in_production)
+                in_production = movie.in_production
+            if (movie.status)
+                status = movie.status
+            if (movie.episode_run_time[0]) {
+                runtime = Util.parseRuntime(movie.episode_run_time[0])
+                for (var i = 1; i < movie.episode_run_time.length; i ++)
+                    runtime += ' / ' + Util.parseRuntime(movie.episode_run_time[i])
+            }
 
-            Util.populateModelFromArray(movie.alternative_titles.titles, altTitlesModel)
             Util.populateModelFromArray(movie.genres, genresModel)
-            Util.populateModelFromArray(movie.production_companies, studiosModel)
             Util.populateModelFromArray(movie.images.posters, postersModel)
             Util.populateModelFromArray(movie.images.backdrops, backdropsModel)
-
-            for (var i = 0; i < movie.releases['countries'].length; i++)
-                if (movie.releases.countries[i].iso_3166_1 == appLocale.toUpperCase())
-                    certification = movie.releases.countries[i].certification
 
             var cast = new Array()
             Util.populateArrayFromArray(movie.credits.cast, cast, Util.TMDbCredit)
@@ -219,8 +190,8 @@ Page {
             parsedMovie.updateWithLightWeightMovie(movie)
 
         if (tmdbId)
-            fetchExtendedContent(TMDB.movie_info(tmdbId,
-                                                 'alternative_titles,credits,images,trailers,releases',
+            fetchExtendedContent(TMDB.tv_info(tmdbId,
+                                                 'credits,images,videos',
                                                  { app_locale: appLocale }),
                                  Util.FETCH_RESPONSE_TMDB_MOVIE)
     }
@@ -235,14 +206,9 @@ Page {
     //   resolutions in the API configuration, all quality levels can be accessed
     // * Cast and crew are separated from each other, so we can be more specific
     //   in the movie preview
-    // * AltTitles stores the alternative titles of the film
 
     ListModel {
         id: genresModel
-    }
-
-    ListModel {
-        id: studiosModel
     }
 
     ListModel {
@@ -263,10 +229,6 @@ Page {
 
     ListModel {
         id: crewModel
-    }
-
-    ListModel {
-        id: altTitlesModel
     }
 
     Component {
@@ -342,22 +304,22 @@ Page {
                         }
                         headerFontSize: UIConstants.FONT_SLARGE
                         text: parsedMovie.originalName +
-                              (parsedMovie.released ? ' (' + Util.getYearFromDate(parsedMovie.released) + ')' : '')
+                              (parsedMovie.started ? ' (' + Util.getYearFromDate(parsedMovie.started) + ')' : '')
                     }
 
                     Label {
-                        id: ratedAndRuntimeLabel
+                        id: episodeSeasonLabel
                         anchors {
                             left: parent.left
                             right: parent.right
                             margins: UIConstants.DEFAULT_MARGIN
                         }
                         platformStyle: LabelStyle {
-                            fontPixelSize: UIConstants.FONT_LSMALL
+                            fontPixelSize: UIConstants.FONT_DEFAULT
                         }
                         wrapMode: Text.WordWrap
-                        //: This shows the classification of a movie and its runtime (duration)
-                        text: qsTr('Rated %1, %2').arg(parsedMovie.certification).arg(Util.parseRuntime(parsedMovie.runtime))
+                        //: This shows the TV show's number of episodes and seasons
+                        text: qsTr('%1 Episodes, %2 Seasons').arg(parsedMovie.numEpisodes).arg(parsedMovie.numSeasons)
                     }
 
                     Item {
@@ -366,19 +328,21 @@ Page {
                     }
 
                     Label {
-                        id: taglineLabel
+                        id: statusLabel
                         anchors {
                             left: parent.left
                             right: parent.right
                             margins: UIConstants.DEFAULT_MARGIN
                         }
                         platformStyle: LabelStyle {
-                            fontPixelSize: UIConstants.FONT_DEFAULT
+                            fontPixelSize: UIConstants.FONT_LSMALL
                             fontFamily: UIConstants.FONT_FAMILY_LIGHT
                         }
-                        font.italic: true
                         wrapMode: Text.WordWrap
-                        text: parsedMovie.tagline
+                        //: This shows whether the TV show is currently in the means of producing further episodes or not
+                        text: parsedMovie.status + ', ' +
+                              (parsedMovie.in_production ? qsTr('in Production') :
+                                                           qsTr('currently not in Production'))
                     }
                 }
             }
@@ -522,7 +486,8 @@ Page {
                         fontPixelSize: UIConstants.FONT_LSMALL
                         fontFamily: UIConstants.FONT_FAMILY_LIGHT
                     }
-                    text: Qt.formatDate(Util.parseDate(parsedMovie.released), Qt.DefaultLocaleLongDate)
+                    text: Qt.formatDate(Util.parseDate(parsedMovie.started), Qt.DefaultLocaleLongDate) + ' -\n' +
+                          Qt.formatDate(Util.parseDate(parsedMovie.ended), Qt.DefaultLocaleLongDate)
                 }
             }
 
@@ -545,80 +510,24 @@ Page {
             }
 
             Column {
-                id: movieAltTitlesSection
+                id: runtimeSection
                 width: parent.width
-                visible: altTitlesModel.count > 0
+                visible: parsedMovie.runtime !== ''
 
                 MyEntryHeader {
                     width: parent.width
-                    //: Label acting as the header for the alternative titles
-                    text: qsTr('Alternative titles')
-                }
-
-                MyModelFlowPreviewer {
-                    width: parent.width
-                    flowModel: altTitlesModel
-                    previewedField: 'title'
-                }
-            }
-
-            Column {
-                id: movieStudiosSection
-                width: parent.width
-                visible: studiosModel.count > 0
-
-                MyEntryHeader {
-                    width: parent.width
-                    //: Label acting as the header for the studios
-                    text: qsTr('Studios')
-                }
-
-                MyModelFlowPreviewer {
-                    width: parent.width
-                    flowModel: studiosModel
-                    previewedField: 'name'
-                }
-            }
-
-            Column {
-                id: movieBudgetSection
-                width: parent.width
-                visible: parsedMovie.budget
-
-                MyEntryHeader {
-                    width: parent.width
-                    //: Label acting as the header for the movie budget
-                    text: qsTr('Budget')
+                    //: Label acting as the header for the episode runtime (duration)
+                    text: qsTr('Episode runtime')
                 }
 
                 Label {
+                    id: runtimeLabel
                     width: parent.width
                     platformStyle: LabelStyle {
                         fontPixelSize: UIConstants.FONT_LSMALL
                         fontFamily: UIConstants.FONT_FAMILY_LIGHT
                     }
-                    text: controller.formatCurrency(parsedMovie.budget)
-                }
-            }
-
-            Column {
-                id: movieRevenueSection
-                width: parent.width
-                visible: parsedMovie.revenue
-
-                MyEntryHeader {
-                    width: parent.width
-                    //: Label acting as the header for the movie revenue
-                    text: qsTr('Revenue')
-                }
-
-                Label {
-                    width: parent.width
-                    platformStyle: LabelStyle {
-                        fontPixelSize: UIConstants.FONT_LSMALL
-                        fontFamily: UIConstants.FONT_FAMILY_LIGHT
-                    }
-                    text: controller.formatCurrency(parsedMovie.revenue)
+                    text: parsedMovie.runtime
                 }
             }
 
