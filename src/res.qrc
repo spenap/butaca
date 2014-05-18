@@ -41,7 +41,13 @@
         <file>l10n/butaca.fr_FR.qm</file>
         <file>l10n/butaca.ro.qm</file>
         <file>l10n/butaca.tr.qm</file>
-        <file>l10n/butaca.pt.qm</file>
+        <file>l10n/butaca.pt_PT.qm</file>
+        <file>l10n/butaca.pt_BR.qm</file>
+        <file>l10n/butaca.cs.qm</file>
+        <file>l10n/butaca.it_IT.qm</file>
+        <file>l10n/butaca.vi.qm</file>
+        <file>l10n/butaca.en_GB.qm</file>
+        <file>l10n/butaca.nl.qm</file>
         <file>qml/MovieView.qml</file>
         <file>qml/TvView.qml</file>
         <file>qml/MediaGalleryView.qml</file>

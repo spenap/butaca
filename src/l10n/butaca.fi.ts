@@ -1,492 +1,842 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="fi">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.0">
+<defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
     <message>
-        <location filename="../qml/AboutView.qml" line="143"/>
-        <source>btc-themoviedb-disclaimer</source>
-        <extracomment>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</extracomment>
-        <translation>Tämä tuote käyttää &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt;-palvelua, mutta ei ole TMDb:n virallisesti tukema tuote.</translation>
+        <location filename="../qml/AboutView.qml" line="41"/>
+        <source>Thanks a lot to all contributors: %1</source>
+        <extracomment>Header introducing the list of contributors</extracomment>
+        <translation>Kiitos paljon kaikille avustajille: %1</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="158"/>
-        <source>btc-aftercredits-disclaimer</source>
-        <extracomment>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What\&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</extracomment>
-        <translation>Tämä tuote käyttää &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt;-palvelua, mutta ei ole heidän virallisesti tukema tuote.</translation>
+        <location filename="../qml/AboutView.qml" line="59"/>
+        <source>Recommend this app</source>
+        <extracomment>Short text inviting to recommend the application</extracomment>
+        <translation>Suosittele tätä sovellusta</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="172"/>
-        <source>btc-showtimes-disclaimer</source>
-        <extracomment>This product presents showtimes from &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; but is not endorsed or certified by Google.</extracomment>
-        <translation>Tämä tuote käyttää &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt;-palvelua, mutta ei ole Googlen virallisesti tukema tuote.</translation>
+        <location filename="../qml/AboutView.qml" line="61"/>
+        <source>Tell us what you think</source>
+        <extracomment>Short text inviting to provide application feedback</extracomment>
+        <translation>Kerro meille mitä mieltä olet</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="179"/>
-        <location filename="../qml/AboutView.qml" line="181"/>
-        <source>Credits</source>
-        <translation>Laajuus</translation>
+        <source>Rate us in the Nokia Store</source>
+        <extracomment>Short text inviting to rate us in the Nokia Store</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="189"/>
-        <location filename="../qml/AboutView.qml" line="191"/>
+        <location filename="../qml/AboutView.qml" line="65"/>
+        <source>Follow us on Twitter</source>
+        <extracomment>Short text inviting to follow us on Twitter</extracomment>
+        <translation>Seuraa meitä Twitterissä</translation>
+    </message>
+    <message>
+        <source>Check our other apps</source>
+        <extracomment>Short text inviting to check our other apps</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="213"/>
+        <source>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</source>
+        <extracomment>Disclaimer about The Movie Database API usage</extracomment>
+        <translation>Tämä sovellus käyttää &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API:a, mutta ei ole TMDb:n tukema tai sertifioima.</translation>
+    </message>
+    <message>
+        <source>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</source>
+        <extracomment>Disclaimer about After Credits API usage</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="63"/>
+        <source>Rate us at openrepos.net</source>
+        <extracomment>Short text inviting to rate us at openrepos.net</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="229"/>
+        <source>This product presents showtimes from &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; but is not endorsed or certified by Google.</source>
+        <extracomment>Disclaimer about Google Showtimes usage</extracomment>
+        <translation>Tämä sovellus hakee elokuvien esitysajat &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt;-palvelusta, mutta ei ole googlen tukema tai sertifioima.</translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="246"/>
+        <location filename="../qml/AboutView.qml" line="261"/>
         <source>License</source>
-        <translation>Lupa</translation>
+        <extracomment>Shown in a button. When clicked, the application license is shown</extracomment>
+        <translation>Lisenssi</translation>
     </message>
     <message>
-        <location filename="../qml/AboutView.qml" line="206"/>
+        <location filename="../qml/AboutView.qml" line="253"/>
+        <location filename="../qml/AboutView.qml" line="269"/>
+        <source>Credits</source>
+        <extracomment>Shown in a button. When clicked, the application credits are shown</extracomment>
+        <translation>Lopputekstit</translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutView.qml" line="264"/>
+        <location filename="../qml/AboutView.qml" line="271"/>
         <source>OK</source>
+        <extracomment>OK button</extracomment>
         <translation>OK</translation>
-    </message>
-</context>
-<context>
-    <name>BrowseGenresView</name>
-    <message>
-        <location filename="../qml/BrowseGenresView.qml" line="57"/>
-        <source>btc-browse-genres</source>
-        <extracomment>Movie genres</extracomment>
-        <translation>Lajityypit</translation>
-    </message>
-</context>
-<context>
-    <name>CastModel</name>
-    <message>
-        <location filename="../qml/CastModel.qml" line="30"/>
-        <source>Camera</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="31"/>
-        <source>Crew</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="32"/>
-        <source>Sound</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="33"/>
-        <source>Directing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="34"/>
-        <source>Writing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="35"/>
-        <source>Production</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="36"/>
-        <source>Actors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="37"/>
-        <source>Editing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="38"/>
-        <source>Art</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="39"/>
-        <source>Costume &amp; Make-Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/CastModel.qml" line="40"/>
-        <source>Visual Effects</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CastView</name>
     <message>
-        <location filename="../qml/CastView.qml" line="68"/>
-        <source>btc-full-cast</source>
-        <extracomment>Full cast in %1</extracomment>
-        <translation>Koko näyttelijäkaarti elokuvassa %1</translation>
+        <location filename="../qml/CastView.qml" line="41"/>
+        <source>Camera</source>
+        <translation>Kuvaus</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="42"/>
+        <source>Crew</source>
+        <translation>Tekijät</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="43"/>
+        <source>Sound</source>
+        <translation>Ääni</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="44"/>
+        <source>Directing</source>
+        <translation>Ohjaus</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="45"/>
+        <source>Writing</source>
+        <translation>Käsikirjoitus</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="46"/>
+        <source>Production</source>
+        <translation>Tuotanto</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="47"/>
+        <source>Actors</source>
+        <translation>Näyttelijät</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="48"/>
+        <source>Editing</source>
+        <translation>Leikkaus</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="49"/>
+        <source>Art</source>
+        <translation>Taide</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="50"/>
+        <source>Costume &amp; Make-Up</source>
+        <translation>Puvustus &amp; maskeeraus</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="51"/>
+        <source>Visual Effects</source>
+        <translation>Erikoistehosteet</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="77"/>
+        <source>Full cast in %1</source>
+        <extracomment>This appears in the cast view when the cast is shown</extracomment>
+        <translation>Kaikki näyttelijät elokuvassa %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/CastView.qml" line="79"/>
+        <source>Cast and crew in %1</source>
+        <extracomment>This appears in the cast view when cast and crew are shown</extracomment>
+        <translation>Näyttelijät ja avustajat elokuvassa %1</translation>
     </message>
 </context>
 <context>
     <name>Controller</name>
     <message>
-        <location filename="../controller.cpp" line="46"/>
+        <location filename="../controller.cpp" line="82"/>
         <source>btc-shared-with-butaca</source>
         <extracomment>Shared with #Butaca</extracomment>
-        <translation>Jaettu ohjelmalla #Butaca</translation>
+        <translation>Jaettu sovelluksesta #Butaca</translation>
     </message>
 </context>
 <context>
-    <name>DetailedView</name>
+    <name>FavoritesView</name>
     <message>
-        <location filename="../qml/DetailedView.qml" line="45"/>
-        <source>btc-open-homepage</source>
-        <extracomment>Open homepage</extracomment>
-        <translation>Avaa kotisivu</translation>
+        <location filename="../qml/FavoritesView.qml" line="130"/>
+        <source>Movies in your watchlist will appear here</source>
+        <extracomment>Shown as a placeholder in the watchlist view, when empty</extracomment>
+        <translation>Tarkkailulistalla olevat elokuvat ilmestyvät tähän</translation>
     </message>
     <message>
-        <location filename="../qml/DetailedView.qml" line="52"/>
-        <source>btc-open-tmdb</source>
-        <extracomment>View in TMDb</extracomment>
-        <translation>Katso TMDb:ssä</translation>
-    </message>
-    <message>
-        <location filename="../qml/DetailedView.qml" line="58"/>
-        <source>btc-open-imdb</source>
-        <extracomment>View in IMDb</extracomment>
-        <translation>Katso IMDb:ssä</translation>
+        <location filename="../qml/FavoritesView.qml" line="144"/>
+        <source>Your favorite content will appear here</source>
+        <translation>Suosikkisisältösi ilmestyy tähän</translation>
     </message>
 </context>
 <context>
     <name>FilmographyView</name>
     <message>
-        <location filename="../qml/FilmographyView.qml" line="68"/>
-        <source>btc-person-filmography</source>
-        <extracomment>%1&apos;s filmography</extracomment>
+        <location filename="../qml/FilmographyView.qml" line="41"/>
+        <source>Camera</source>
+        <translation>Kuvaus</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="42"/>
+        <source>Crew</source>
+        <translation>Avustajat</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="43"/>
+        <source>Sound</source>
+        <translation>Ääni</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="44"/>
+        <source>Directing</source>
+        <translation>Ohjaus</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="45"/>
+        <source>Writing</source>
+        <translation>Käsikirjoitus</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="46"/>
+        <source>Production</source>
+        <translation>Tuotanto</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="47"/>
+        <source>Acting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Actors</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="48"/>
+        <source>Editing</source>
+        <translation>Leikkaus</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="49"/>
+        <source>Art</source>
+        <translation>Taide</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="50"/>
+        <source>Costume &amp; Make-Up</source>
+        <translation>Puvustus &amp; maskeeraus</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="51"/>
+        <source>Visual Effects</source>
+        <translation>Erikoistehosteet</translation>
+    </message>
+    <message>
+        <location filename="../qml/FilmographyView.qml" line="75"/>
+        <source>%1&apos;s filmography</source>
+        <extracomment>This appears in the filmography view header</extracomment>
         <translation>Henkilön %1 filmografia</translation>
     </message>
 </context>
 <context>
-    <name>PersonDelegate</name>
+    <name>GenresView</name>
     <message>
-        <location filename="../qml/PersonDelegate.qml" line="36"/>
-        <source>btc-filmography</source>
-        <extracomment>Filmography:</extracomment>
-        <translation>Filmografia:</translation>
+        <location filename="../qml/GenresView.qml" line="51"/>
+        <source>Movie genres</source>
+        <extracomment>This appears in the browse view header</extracomment>
+        <translation>Lajityypit</translation>
+    </message>
+</context>
+<context>
+    <name>ListsView</name>
+    <message>
+        <location filename="../qml/ListsView.qml" line="24"/>
+        <source>Favorites</source>
+        <extracomment>Shown as the title for the favorites menu entry</extracomment>
+        <translation>Suosikit</translation>
     </message>
     <message>
-        <location filename="../qml/PersonDelegate.qml" line="113"/>
-        <source>btc-also-known-as</source>
-        <extracomment>Also known as:</extracomment>
-        <translation>Muita nimiä:</translation>
+        <location filename="../qml/ListsView.qml" line="26"/>
+        <source>Your favorite movies and celebrities</source>
+        <extracomment>Shown as the subtitle for the favorites menu entry</extracomment>
+        <translation>Suosikkielokuvasi ja tähtesi</translation>
     </message>
     <message>
-        <location filename="../qml/PersonDelegate.qml" line="126"/>
-        <source>btc-birthday</source>
-        <extracomment>Birthday:</extracomment>
-        <translation>Syntymäaika:</translation>
+        <location filename="../qml/ListsView.qml" line="29"/>
+        <source>Watchlist</source>
+        <extracomment>Shown as the title for the watchlist menu entry</extracomment>
+        <translation>Tarkkailulista</translation>
     </message>
     <message>
-        <location filename="../qml/PersonDelegate.qml" line="140"/>
-        <source>btc-birthplace</source>
-        <extracomment>Birthplace:</extracomment>
-        <translation>Syntymäpaikka:</translation>
+        <location filename="../qml/ListsView.qml" line="31"/>
+        <source>Movies you&apos;ve saved to watch later</source>
+        <extracomment>Shown as the subtitle for the watchlist menu entry</extracomment>
+        <translation>Myöhemmin katsottavaksi tallenetut elokuvat</translation>
+    </message>
+</context>
+<context>
+    <name>MediaGalleryView</name>
+    <message>
+        <location filename="../qml/MediaGalleryView.qml" line="53"/>
+        <source>Save image</source>
+        <extracomment>Placed on a tool button, when clicked opens a sheet to save the image</extracomment>
+        <translation>Tallenna kuva</translation>
     </message>
     <message>
-        <location filename="../qml/PersonDelegate.qml" line="154"/>
-        <source>btc-known-movies</source>
-        <extracomment>Known movies:</extracomment>
-        <translation>Tunnettuja elokuvia:</translation>
+        <location filename="../qml/MediaGalleryView.qml" line="183"/>
+        <source>Save</source>
+        <extracomment>Placed on the save image sheet, when clicked actually saves the image</extracomment>
+        <translation>Tallenna</translation>
     </message>
     <message>
-        <location filename="../qml/PersonDelegate.qml" line="204"/>
-        <source>btc-biography</source>
-        <extracomment>Biography:</extracomment>
-        <translation>Elämäkerta:</translation>
+        <location filename="../qml/MediaGalleryView.qml" line="186"/>
+        <source>Cancel</source>
+        <extracomment>Placed on the save image sheet, when clicked closes the sheet and doesn't save</extracomment>
+        <translation>Peruuta</translation>
+    </message>
+</context>
+<context>
+    <name>MovieView</name>
+    <message>
+        <location filename="../qml/MovieView.qml" line="56"/>
+        <source>Add to watchlist</source>
+        <extracomment>This adds the movie to the watch list</extracomment>
+        <translation>Lisää tarkkailulistalle</translation>
     </message>
     <message>
-        <location filename="../qml/PersonDelegate.qml" line="206"/>
-        <source>btc-biography-not-found</source>
-        <extracomment>Biography not found</extracomment>
-        <translation>Elämäkertaa ei löydy</translation>
+        <location filename="../qml/MovieView.qml" line="58"/>
+        <source>Remove from watchlist</source>
+        <extracomment>This removes the movie from the watch list</extracomment>
+        <translation>Poista tarkkailulistalta</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="78"/>
+        <source>Open homepage</source>
+        <extracomment>This opens a website displaying the movie homepage</extracomment>
+        <translation>Avaa kotisivu</translation>
+    </message>
+    <message>
+        <source>View extras</source>
+        <extracomment>This opens a website displaying movie's extras after or during credits</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="84"/>
+        <source>View in IMDb</source>
+        <extracomment>This visits the Internet Movie Database page of this content (movie or person)</extracomment>
+        <translation>Näytä IMDb:ssä</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="89"/>
+        <source>View in TMDb</source>
+        <extracomment>This visits the The Movie Database page of this content (movie or person)</extracomment>
+        <translation>Näytä TMDb:ssä</translation>
+    </message>
+    <message>
+        <source>Not found</source>
+        <extracomment>This indicates that no extra content after or during the credits was found</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="304"/>
+        <source>Loading content</source>
+        <extracomment>This indicates that the extended info for a content (person or movie) is still loading</extracomment>
+        <translation>Ladataan sisältöä</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="360"/>
+        <source>Rated %1, %2</source>
+        <extracomment>This shows the classification of a movie and its runtime (duration)</extracomment>
+        <translation>Arvioitu %1, %2</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="483"/>
+        <source>Watch trailer</source>
+        <extracomment>Opens the movie trailer for viewing</extracomment>
+        <translation>Katso traileri</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="504"/>
+        <source>Overview</source>
+        <extracomment>Label acting as the header for the overview</extracomment>
+        <translation>Yleiskuvaus</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="515"/>
+        <source>Release date</source>
+        <extracomment>Label acting as the header for the release date</extracomment>
+        <translation>Julkaisupäivämäärä</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="537"/>
+        <source>Genre</source>
+        <extracomment>Label acting as the header for the genres</extracomment>
+        <translation>Lajityyppi</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="555"/>
+        <source>Alternative titles</source>
+        <extracomment>Label acting as the header for the alternative titles</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="573"/>
+        <source>Studios</source>
+        <extracomment>Label acting as the header for the studios</extracomment>
+        <translation>Studiot</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="591"/>
+        <source>Budget</source>
+        <extracomment>Label acting as the header for the movie budget</extracomment>
+        <translation>Budjetti</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="612"/>
+        <source>Revenue</source>
+        <extracomment>Label acting as the header for the movie revenue</extracomment>
+        <translation>Tuotto</translation>
+    </message>
+    <message>
+        <source>Extras after or during credits?</source>
+        <extracomment>Label acting as the header for the extra information after / during credits</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="630"/>
+        <source>Cast</source>
+        <extracomment>Header for the cast preview shown in the movie view</extracomment>
+        <translation>Näyttelijät</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="637"/>
+        <source>Full cast</source>
+        <extracomment>Footer for the cast preview shown in the movie view. When clicked, shows the full cast.</extracomment>
+        <translation>Kaikki näyttelijät</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="661"/>
+        <source>Crew</source>
+        <extracomment>Header for the crew preview shown in the movie view</extracomment>
+        <translation>Avustajat</translation>
+    </message>
+    <message>
+        <location filename="../qml/MovieView.qml" line="668"/>
+        <source>Full cast &amp; crew</source>
+        <extracomment>Footer for the crew preview shown in the movie view. When clicked, shows the full cast and crew.</extracomment>
+        <translation>Kaikki näyttelijät ja avustajat</translation>
+    </message>
+</context>
+<context>
+    <name>MultipleMoviesView</name>
+    <message>
+        <location filename="../qml/MultipleMoviesView.qml" line="130"/>
+        <source>No content found</source>
+        <extracomment>When browsing movies, shown when no movies matched the browse criteria</extracomment>
+        <translation>Sisältöä ei löytynyt</translation>
+    </message>
+</context>
+<context>
+    <name>PersonView</name>
+    <message>
+        <location filename="../qml/PersonView.qml" line="51"/>
+        <source>View in IMDb</source>
+        <translation>Näytä IMDb:ssä</translation>
+    </message>
+    <message>
+        <location filename="../qml/PersonView.qml" line="55"/>
+        <source>View in TMDb</source>
+        <translation>Näytä TMDb:ssä</translation>
+    </message>
+    <message>
+        <location filename="../qml/PersonView.qml" line="206"/>
+        <source>Loading content</source>
+        <translation>Ladataan sisältöä</translation>
+    </message>
+    <message>
+        <location filename="../qml/PersonView.qml" line="262"/>
+        <source>Born</source>
+        <extracomment>Header shown for the born details of a person</extracomment>
+        <translation>Syntynyt</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../qml/PersonView.qml" line="311"/>
+        <source>Known for %Ln movie(s)</source>
+        <comment>Text shown in the person view displaying the number of movies a person is known for</comment>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message>
+        <location filename="../qml/PersonView.qml" line="347"/>
+        <source>Biography</source>
+        <extracomment>Label acting as the header for the biography</extracomment>
+        <translation>Biografia</translation>
+    </message>
+    <message>
+        <location filename="../qml/PersonView.qml" line="356"/>
+        <source>Filmography</source>
+        <extracomment>Header for the filmography preview shown in the person view</extracomment>
+        <translation>Filmografia</translation>
+    </message>
+    <message>
+        <location filename="../qml/PersonView.qml" line="363"/>
+        <source>Full filmography</source>
+        <extracomment>Footer for the filmography preview shown in the person view. When clicked, shows the full filmography</extracomment>
+        <translation>Täydellinen filmografia</translation>
     </message>
 </context>
 <context>
     <name>SearchView</name>
     <message>
-        <location filename="../qml/SearchView.qml" line="64"/>
-        <source>btc-search-header</source>
-        <extracomment>Search</extracomment>
-        <translation>Haku</translation>
+        <location filename="../qml/SearchView.qml" line="51"/>
+        <source>Search</source>
+        <extracomment>Header shown in the search view</extracomment>
+        <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="70"/>
-        <source>btc-search-placeholder</source>
-        <extracomment>Enter search terms</extracomment>
-        <translation>Kirjoita hakuehdot</translation>
+        <location filename="../qml/SearchView.qml" line="57"/>
+        <source>Enter search terms</source>
+        <extracomment>Placeholder text shown in the search input field</extracomment>
+        <translation>Syötä hakutermit</translation>
     </message>
     <message>
-        <source>btc-search-button</source>
-        <extracomment>Search</extracomment>
-        <translation type="obsolete">Hae</translation>
-    </message>
-    <message>
-        <location filename="../qml/SearchView.qml" line="126"/>
-        <source>btc-movies</source>
-        <extracomment>Movies</extracomment>
+        <location filename="../qml/SearchView.qml" line="105"/>
+        <source>Movies</source>
+        <extracomment>Shown in the button selecting movie search</extracomment>
         <translation>Elokuvat</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="137"/>
-        <source>btc-people</source>
-        <extracomment>People</extracomment>
-        <translation>Henkilöt</translation>
+        <location filename="../qml/SearchView.qml" line="111"/>
+        <source>TV</source>
+        <extracomment>Shown in the button selecting TV search</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="148"/>
-        <source>btc-shows</source>
-        <extracomment>Shows</extracomment>
-        <translation>Esitykset</translation>
+        <location filename="../qml/SearchView.qml" line="117"/>
+        <source>Celebrities</source>
+        <extracomment>Shown in the button selecting celebrities search</extracomment>
+        <translation>Kuuluisuudet</translation>
     </message>
     <message>
-        <location filename="../qml/SearchView.qml" line="292"/>
-        <source>btc-no-results</source>
-        <extracomment>No results found</extracomment>
+        <source>There was an error performing the search</source>
+        <extracomment>Shown in the search results area when an error ocurred</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/SearchView.qml" line="299"/>
+        <source>No results found</source>
+        <extracomment>Shown in the search results area when no results were found</extracomment>
         <translation>Ei tuloksia</translation>
+    </message>
+    <message>
+        <location filename="../qml/SearchView.qml" line="312"/>
+        <source>Introduce search terms</source>
+        <extracomment>Shown in the search results area when no terms have been introduced</extracomment>
+        <translation>Anna hakutermit</translation>
     </message>
 </context>
 <context>
     <name>SettingsView</name>
     <message>
-        <location filename="../qml/SettingsView.qml" line="87"/>
-        <source>btc-settings</source>
-        <extracomment>Settings</extracomment>
+        <location filename="../qml/SettingsView.qml" line="73"/>
+        <source>Settings</source>
+        <extracomment>Text shown in the settings view header</extracomment>
         <translation>Asetukset</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="96"/>
-        <source>btc-showtimes</source>
-        <extracomment>Showtimes</extracomment>
+        <location filename="../qml/SettingsView.qml" line="86"/>
+        <source>Showtimes</source>
+        <extracomment>Label for the showtimes section in the settings view</extracomment>
         <translation>Esitysajat</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="107"/>
-        <source>btc-default-location</source>
-        <extracomment>Default location</extracomment>
+        <location filename="../qml/SettingsView.qml" line="102"/>
+        <source>Default location</source>
+        <extracomment>Label for the default location setting to try for showtimes</extracomment>
         <translation>Oletussijainti</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="117"/>
-        <source>btc-try-automatically</source>
-        <extracomment>Try automatically</extracomment>
-        <translation>Yritä automaattisesti</translation>
+        <location filename="../qml/SettingsView.qml" line="108"/>
+        <source>Try automatically</source>
+        <extracomment>Placeholder text for the default location. When visible, automatic location will be attempted</extracomment>
+        <translation>Hae automaattisesti</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="148"/>
-        <source>btc-browsing</source>
-        <extracomment>Browsing</extracomment>
-        <translation>Selataan</translation>
+        <location filename="../qml/SettingsView.qml" line="150"/>
+        <source>Date</source>
+        <extracomment>Label for the showtimes date setting</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="160"/>
-        <source>btc-order-criteria</source>
-        <extracomment>Order criteria</extracomment>
-        <translation>Järjestelykriteria</translation>
+        <location filename="../qml/SettingsView.qml" line="181"/>
+        <source>Browsing</source>
+        <extracomment>Label for the browsing section in the settings view</extracomment>
+        <translation>Selailu</translation>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="174"/>
-        <source>btc-order-by-rating</source>
-        <extracomment>Rating</extracomment>
-        <translation>Arvosana</translation>
+        <location filename="../qml/SettingsView.qml" line="199"/>
+        <source>Include content with &lt;10 votes</source>
+        <extracomment>Label for the include criteria setting for adult content used when browsing</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="180"/>
-        <source>btc-order-by-release</source>
-        <extracomment>Release</extracomment>
-        <translation>Julkaisu</translation>
+        <location filename="../qml/SettingsView.qml" line="230"/>
+        <source>Include adult content</source>
+        <extracomment>Label for the include criteria setting for adult content used when browsing</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="186"/>
-        <source>btc-order-by-title</source>
-        <extracomment>Title</extracomment>
-        <translation>Otsikko</translation>
+        <location filename="../qml/SettingsView.qml" line="287"/>
+        <source>Today</source>
+        <extracomment>Shown in a button when the date is set to Today.</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="201"/>
-        <source>btc-sort-order</source>
-        <extracomment>Sort order</extracomment>
-        <translation>Järjestelytapa</translation>
+        <source>Order criteria</source>
+        <extracomment>Label for the order criteria setting used when browsing</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="215"/>
-        <source>btc-sort-ascending</source>
-        <extracomment>Ascending</extracomment>
-        <translation>Nouseva</translation>
+        <source>Rating</source>
+        <extracomment>Label for the &quot;order by rating&quot; setting</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="221"/>
-        <source>btc-sort-descending</source>
-        <extracomment>Descending</extracomment>
-        <translation>Laskeva</translation>
+        <source>Release</source>
+        <extracomment>Label for the &quot;order by release date&quot; setting</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="235"/>
-        <source>btc-results-per-page</source>
-        <extracomment>Results per page</extracomment>
-        <translation>Tuloksia per sivu</translation>
+        <source>Title</source>
+        <extracomment>Label for the &quot;order by title&quot; setting</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SettingsView.qml" line="263"/>
-        <source>btc-minimum-votes</source>
-        <extracomment>Minimum votes</extracomment>
-        <translation>Minimimäärä ääniä</translation>
-    </message>
-</context>
-<context>
-    <name>SingleMovieDelegate</name>
-    <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="36"/>
-        <source>btc-director</source>
-        <extracomment>Director:</extracomment>
-        <translation>Ohjaaja:</translation>
+        <source>Sort order</source>
+        <extracomment>Label for the sort order setting used when browsing</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="38"/>
-        <source>btc-director-not-found</source>
-        <extracomment>not found</extracomment>
-        <translation>ei löydy</translation>
+        <source>Ascending</source>
+        <extracomment>Label for the &quot;sort ascending&quot; setting</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="40"/>
-        <source>btc-cast-preview</source>
-        <extracomment>Cast:</extracomment>
-        <translation>Näyttelijät:</translation>
+        <source>Descending</source>
+        <extracomment>Label for the &quot;sort descending&quot; setting</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="113"/>
-        <source>btc-also-known-as</source>
-        <extracomment>Also known as:</extracomment>
-        <translation>Tunnetaan myös nimellä:</translation>
+        <source>Results per page</source>
+        <extracomment>Label for the results per page setting used when browsing</extracomment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="127"/>
-        <source>btc-certification</source>
-        <extracomment>Certification:</extracomment>
-        <translation>Ikäraja:</translation>
-    </message>
-    <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="141"/>
-        <source>btc-release-date</source>
-        <extracomment>Release date:</extracomment>
-        <translation>Julkaisupäivämäärä:</translation>
-    </message>
-    <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="155"/>
-        <source>btc-budget</source>
-        <extracomment>Budget:</extracomment>
-        <translation>Budjetti:</translation>
-    </message>
-    <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="169"/>
-        <source>btc-revenue</source>
-        <extracomment>Revenue:</extracomment>
-        <translation>Tuotto:</translation>
-    </message>
-    <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="224"/>
-        <source>btc-overview</source>
-        <extracomment>Overview:</extracomment>
-        <translation>Yleiskuvaus:</translation>
-    </message>
-    <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="226"/>
-        <source>btc-overview-not-found</source>
-        <extracomment>Overview not found</extracomment>
-        <translation>Yleiskuvausta ei löydy</translation>
-    </message>
-    <message>
-        <location filename="../qml/SingleMovieDelegate.qml" line="243"/>
-        <source>btc-movie-trailer</source>
-        <extracomment>Movie trailer</extracomment>
-        <translation>Elokuvan mainospätkä</translation>
+        <source>Minimum votes</source>
+        <extracomment>Label for the minimum votes setting used when browsing</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TheatersView</name>
     <message>
-        <location filename="../qml/TheatersView.qml" line="84"/>
-        <source>btc-search</source>
-        <extracomment>Search</extracomment>
-        <translation>Haku</translation>
+        <location filename="../qml/TheatersView.qml" line="126"/>
+        <source>Search</source>
+        <extracomment>Placeholder text for the search field in the showtimes view</extracomment>
+        <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../qml/TheatersView.qml" line="136"/>
-        <source>btc-theaters</source>
-        <extracomment>On theaters</extracomment>
-        <translation>Elokuvissa</translation>
+        <location filename="../qml/TheatersView.qml" line="185"/>
+        <source>In theaters</source>
+        <extracomment>Header shown in the showtimes view</extracomment>
+        <translation>Teattereissa</translation>
     </message>
     <message>
-        <location filename="../qml/TheatersView.qml" line="184"/>
-        <source>btc-no-results-given-location</source>
-        <extracomment>No results for %1</extracomment>
-        <translation>Ei tuloksia haulle %1</translation>
+        <location filename="../qml/TheatersView.qml" line="200"/>
+        <source>Pull to filter by cinema or movie</source>
+        <extracomment>Hint shown to tell users that they can filter by pulling</extracomment>
+        <translation>Suodata vetämällä teatterin tai elokuvan mukaan</translation>
     </message>
     <message>
-        <location filename="../qml/TheatersView.qml" line="186"/>
-        <source>btc-no-results-automatic-location</source>
-        <extracomment>No results for your location</extracomment>
+        <location filename="../qml/TheatersView.qml" line="261"/>
+        <source>No results for %1</source>
+        <extracomment>Message shown when no results are found for a given location</extracomment>
+        <translation>Ei tuloksia: %1</translation>
+    </message>
+    <message>
+        <location filename="../qml/TheatersView.qml" line="263"/>
+        <source>No results for your location</source>
+        <extracomment>Message shown when no results are found for the automatic location</extracomment>
         <translation>Ei tuloksia sijainnillesi</translation>
+    </message>
+</context>
+<context>
+    <name>TvView</name>
+    <message>
+        <location filename="../qml/TvView.qml" line="54"/>
+        <source>Open homepage</source>
+        <extracomment>This opens a website displaying the movie homepage</extracomment>
+        <translation>Avaa kotisivu</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="60"/>
+        <source>View in TMDb</source>
+        <extracomment>This visits the The Movie Database page of this content (movie or person)</extracomment>
+        <translation>Näytä TMDb:ssä</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="266"/>
+        <source>Loading content</source>
+        <extracomment>This indicates that the extended info for a content (person or movie) is still loading</extracomment>
+        <translation>Ladataan sisältöä</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="322"/>
+        <source>%1 Episodes, %2 Seasons</source>
+        <extracomment>This shows the TV show's number of episodes and seasons</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="344"/>
+        <source>in Production</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="345"/>
+        <source>currently not in Production</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="447"/>
+        <source>Watch trailer</source>
+        <extracomment>Opens the movie trailer for viewing</extracomment>
+        <translation>Katso traileri</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="468"/>
+        <source>Overview</source>
+        <extracomment>Label acting as the header for the overview</extracomment>
+        <translation>Yleiskuvaus</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="479"/>
+        <source>Release date</source>
+        <extracomment>Label acting as the header for the release date</extracomment>
+        <translation>Julkaisupäivämäärä</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="502"/>
+        <source>Genre</source>
+        <extracomment>Label acting as the header for the genres</extracomment>
+        <translation>Lajityyppi</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="520"/>
+        <source>Episode runtime</source>
+        <extracomment>Label acting as the header for the episode runtime (duration)</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="539"/>
+        <source>Cast</source>
+        <extracomment>Header for the cast preview shown in the movie view</extracomment>
+        <translation>Näyttelijät</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="546"/>
+        <source>Full cast</source>
+        <extracomment>Footer for the cast preview shown in the movie view. When clicked, shows the full cast.</extracomment>
+        <translation>Kaikki näyttelijät</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="570"/>
+        <source>Crew</source>
+        <extracomment>Header for the crew preview shown in the movie view</extracomment>
+        <translation>Avustajat</translation>
+    </message>
+    <message>
+        <location filename="../qml/TvView.qml" line="577"/>
+        <source>Full cast &amp; crew</source>
+        <extracomment>Footer for the crew preview shown in the movie view. When clicked, shows the full cast and crew.</extracomment>
+        <translation>Kaikki näyttelijät ja avustajat</translation>
     </message>
 </context>
 <context>
     <name>WelcomeView</name>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="60"/>
-        <source>btc-browse-genres</source>
-        <extracomment>Movie genres</extracomment>
-        <translation>Lajityypit</translation>
+        <location filename="../qml/WelcomeView.qml" line="44"/>
+        <source>Movie genres</source>
+        <extracomment>Shown as the title for the browse view menu entry</extracomment>
+        <translation>Elokuvien lajityypit</translation>
     </message>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="62"/>
-        <source>btc-browse-genres-description</source>
-        <extracomment>Explore movie genres</extracomment>
-        <translation>Selaa lajityyppejä</translation>
+        <location filename="../qml/WelcomeView.qml" line="46"/>
+        <source>Explore movie genres</source>
+        <extracomment>Shown as the subtitle for the browse view menu entry</extracomment>
+        <translation>Tutki lajityyppejä</translation>
     </message>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="64"/>
-        <source>btc-showtimes</source>
-        <extracomment>Showtimes</extracomment>
+        <location filename="../qml/WelcomeView.qml" line="49"/>
+        <source>Showtimes</source>
+        <extracomment>Shown as the title for the showtimes menu entry</extracomment>
         <translation>Esitysajat</translation>
     </message>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="66"/>
-        <source>btc-showtimes-description</source>
-        <extracomment>What\&apos;s on cinemas near you</extracomment>
-        <translation>Elokuvissa lähelläsi</translation>
+        <location filename="../qml/WelcomeView.qml" line="51"/>
+        <source>What&apos;s on in cinemas near you</source>
+        <extracomment>Shown as the subtitle for the browse view menu entry</extracomment>
+        <translation>Lähelläsi esitettävät elokuvat</translation>
     </message>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="68"/>
-        <source>btc-search</source>
-        <extracomment>Search</extracomment>
+        <location filename="../qml/WelcomeView.qml" line="54"/>
+        <source>Search</source>
+        <extracomment>Shown as the title for the search view menu entry</extracomment>
         <translation>Haku</translation>
     </message>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="70"/>
-        <source>btc-search-description</source>
-        <extracomment>Search people, movies and shows</extracomment>
-        <translation>Etsi henkilöitä, elokuvia ja esitysaikoja</translation>
+        <location filename="../qml/WelcomeView.qml" line="56"/>
+        <source>Search movies and celebrities</source>
+        <extracomment>Shown as the subtitle for the search view menu entry</extracomment>
+        <translation>Etsi elokuvia ja näyttelijöitä</translation>
     </message>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="79"/>
-        <source>btc-settings</source>
-        <extracomment>Settings</extracomment>
+        <location filename="../qml/WelcomeView.qml" line="59"/>
+        <source>Lists</source>
+        <extracomment>Shown as the title for the lists view menu entry</extracomment>
+        <translation>Listat</translation>
+    </message>
+    <message>
+        <location filename="../qml/WelcomeView.qml" line="61"/>
+        <source>Favorites and watchlist</source>
+        <extracomment>Shown as the subtitle for the lists view menu entry</extracomment>
+        <translation>Suosikit ja katsotavien lista</translation>
+    </message>
+    <message>
+        <location filename="../qml/WelcomeView.qml" line="86"/>
+        <source>Settings</source>
+        <extracomment>Title for the settings entry in the main page object menu</extracomment>
         <translation>Asetukset</translation>
     </message>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="85"/>
-        <source>btc-about</source>
-        <extracomment>About</extracomment>
+        <location filename="../qml/WelcomeView.qml" line="92"/>
+        <source>About</source>
+        <extracomment>Title for the about entry in the main page object menu</extracomment>
         <translation>Tietoja ohjelmasta</translation>
     </message>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="166"/>
-        <source>btc-welcome-header</source>
-        <extracomment>Enjoy the show!</extracomment>
+        <location filename="../qml/WelcomeView.qml" line="185"/>
+        <source>Enjoy the show!</source>
+        <extracomment>Shown in the main view header</extracomment>
         <translation>Nauti esityksestä!</translation>
     </message>
     <message>
-        <location filename="../qml/WelcomeView.qml" line="200"/>
-        <source>btc-mark-favorite</source>
-        <extracomment>Mark content as favorite</extracomment>
-        <translation>Merkkaa sisältö suosikiksesi</translation>
+        <location filename="../qml/WelcomeView.qml" line="243"/>
+        <source>Your favorite content will appear here</source>
+        <extracomment>Shown as a placeholder in the favorites area of the main view while no favorites are there</extracomment>
+        <translation>Suosikkisi ilmestyvät tähän</translation>
     </message>
 </context>
 </TS>

@@ -104,7 +104,13 @@ TRANSLATIONS += \
     l10n/butaca.fr_FR.ts \
     l10n/butaca.ro.ts \
     l10n/butaca.tr.ts \
-    l10n/butaca.pt.ts
+    l10n/butaca.pt_PT.ts \
+    l10n/butaca.pt_BR.ts \
+    l10n/butaca.cs.ts \
+    l10n/butaca.it_IT.ts \
+    l10n/butaca.vi.ts \
+    l10n/butaca.en_GB.ts \
+    l10n/butaca.nl.ts
 
 unix {
     #VARIABLES
