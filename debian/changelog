@@ -1,3 +1,10 @@
+butaca (0.9.4) unstable; urgency=low
+
+  * update translations: cs, de, es, fi, fr_FR, it_IT, nl, pt_BR, pt_PT, ro, tr, vi
+  * fix PersonView counting of "known-for"
+
+ -- Marco Porsch <marco.porsch@etit.tu-chemnitz.de>  Mon, 26 May 2014 21:00:02 +0200
+
 butaca (0.9.3) unstable; urgency=low
 
   * workaround for crash in ShowtimesView
