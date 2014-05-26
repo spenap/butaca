@@ -36,8 +36,32 @@ Page {
         }
     }
 
+    // Dummy function for translations (found no other way to add them to the file)
+    function dummy() {
+        qsTr('Camera');
+        qsTr("Crew");
+        qsTr("Sound");
+        qsTr("Directing");
+        qsTr("Writing");
+        qsTr("Production");
+        qsTr("Acting");
+        qsTr("Editing");
+        qsTr("Art");
+        qsTr("Costume & Make-Up");
+        qsTr("Visual Effects");
+    }
+
     property string personName: ''
     property ListModel filmographyModel
+
+    Component {
+        id: listSectionDelegate
+
+        ListSectionDelegate {
+            // Translate the section name. See dummy() for translations
+            sectionName: qsTranslate("FilmographyView", section)
+        }
+    }
 
     ListView {
         id: filmographyList
@@ -78,7 +102,7 @@ Page {
         }
 
         section.property: 'department'
-        section.delegate: ListSectionDelegate { sectionName: section }
+        section.delegate: listSectionDelegate
     }
 
     ScrollDecorator {

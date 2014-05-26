@@ -326,6 +326,10 @@ Page {
     }
 
     function doSearch() {
+        // avoid keyboard hiding when pre-selecting category
+        if (searchTerm === '')
+            searchInput.forceActiveFocus()
+
         moviesModel.movieName = ''
         tvModel.tvName = ''
         peopleModel.personName = ''

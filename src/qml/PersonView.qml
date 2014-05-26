@@ -78,6 +78,7 @@ Page {
         property string birthplace: ''
         property string biography: ''
         property string imdbId: ''
+        property int knownFor: 0
         // also available: adult, also_known_as, deathday, homepage
 
         // parses TMDBObject
@@ -113,6 +114,7 @@ Page {
             Util.populateArrayFromArray(person.tv_credits.crew, credits, Util.TMDbFilmographyTv)
             credits.sort(sortByDepartmentAndDate)
             Util.populateModelFromArray(credits, filmographyModel)
+            knownFor = countUnique(credits, 'name')
 
             Util.populateModelFromArray(person.images.profiles, picturesModel)
         }
@@ -141,6 +143,19 @@ Page {
             }
 
             return result
+        }
+
+        // counts elements in array which have a unique 'key' property
+        function countUnique(array, key) {
+            var o = {}, i, l = array.length, r = 0
+
+            for(i = 0; i < l; i++)
+                o[array[i][key]] = array[i]
+
+            for(i in o)
+                r++
+
+            return r
         }
     }
 
@@ -310,7 +325,7 @@ Page {
                         wrapMode: Text.WordWrap
                         text: qsTr('Known for %Ln movie(s)',
                                    'Text shown in the person view displaying the number of movies a person is known for',
-                                   filmographyModel.count)
+                                   parsedPerson.knownFor)
                     }
                 }
             }

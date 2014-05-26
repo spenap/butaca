@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ro" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="vi" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
@@ -6,19 +6,19 @@
         <location filename="../qml/AboutView.qml" line="41"/>
         <source>Thanks a lot to all contributors: %1</source>
         <extracomment>Header introducing the list of contributors</extracomment>
-        <translation type="unfinished"/>
+        <translation>Xin cám ơn những đóng góp từ: %1</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="59"/>
         <source>Recommend this app</source>
         <extracomment>Short text inviting to recommend the application</extracomment>
-        <translation type="unfinished"/>
+        <translation>Đề cử ứng dụng này</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="61"/>
         <source>Tell us what you think</source>
         <extracomment>Short text inviting to provide application feedback</extracomment>
-        <translation type="unfinished"/>
+        <translation>Cho chúng tôi biết bạn nghĩ gì</translation>
     </message>
     <message>
         <source>Rate us in the Nokia Store</source>
@@ -29,7 +29,7 @@
         <location filename="../qml/AboutView.qml" line="65"/>
         <source>Follow us on Twitter</source>
         <extracomment>Short text inviting to follow us on Twitter</extracomment>
-        <translation type="unfinished"/>
+        <translation>Theo dõi qua Twitter</translation>
     </message>
     <message>
         <source>Check our other apps</source>
@@ -40,7 +40,7 @@
         <location filename="../qml/AboutView.qml" line="213"/>
         <source>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</source>
         <extracomment>Disclaimer about The Movie Database API usage</extracomment>
-        <translation>Acest produs utilizează servicii &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; dar nu este sprijinit sau certificat de TMDb.</translation>
+        <translation>Sản phẩm này sử dụng &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API nhưng không được bảo đảm hay xác nhận bởi TMDb.</translation>
     </message>
     <message>
         <source>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</source>
@@ -57,28 +57,28 @@
         <location filename="../qml/AboutView.qml" line="229"/>
         <source>This product presents showtimes from &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; but is not endorsed or certified by Google.</source>
         <extracomment>Disclaimer about Google Showtimes usage</extracomment>
-        <translation>Acest produs prezintă ore de difuzare din &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; dar nu este sprijinit sau certificat de Google.</translation>
+        <translation>Sản phẩm này lấy thời gian chiếu từ &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; nhưng không được bảo đảm hay xác nhận bởi Google.</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="246"/>
         <location filename="../qml/AboutView.qml" line="261"/>
         <source>License</source>
         <extracomment>Shown in a button. When clicked, the application license is shown</extracomment>
-        <translation>Licenţă</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="253"/>
         <location filename="../qml/AboutView.qml" line="269"/>
         <source>Credits</source>
         <extracomment>Shown in a button. When clicked, the application credits are shown</extracomment>
-        <translation>Credite</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="264"/>
         <location filename="../qml/AboutView.qml" line="271"/>
         <source>OK</source>
         <extracomment>OK button</extracomment>
-        <translation>Bine</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -86,27 +86,27 @@
     <message>
         <location filename="../qml/CastView.qml" line="41"/>
         <source>Camera</source>
-        <translation type="unfinished"/>
+        <translation>Quay phim</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="42"/>
         <source>Crew</source>
-        <translation type="unfinished"/>
+        <translation>Đoàn phim</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="43"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>Âm thanh</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="44"/>
         <source>Directing</source>
-        <translation type="unfinished"/>
+        <translation>Đạo diễn</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="45"/>
         <source>Writing</source>
-        <translation type="unfinished"/>
+        <translation>Biên kịch</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="46"/>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../qml/CastView.qml" line="47"/>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Diễn viên</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="48"/>
@@ -131,18 +131,18 @@
     <message>
         <location filename="../qml/CastView.qml" line="50"/>
         <source>Costume &amp; Make-Up</source>
-        <translation type="unfinished"/>
+        <translation>Phục trang</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="51"/>
         <source>Visual Effects</source>
-        <translation type="unfinished"/>
+        <translation>Hiệu ứng</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="77"/>
         <source>Full cast in %1</source>
         <extracomment>This appears in the cast view when the cast is shown</extracomment>
-        <translation>Întreaga distribuţie în %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="79"/>
@@ -157,7 +157,7 @@
         <location filename="../controller.cpp" line="82"/>
         <source>btc-shared-with-butaca</source>
         <extracomment>Shared with #Butaca</extracomment>
-        <translation>Distribuit de #Butaca</translation>
+        <translation>Chia sẻ bằng #Butaca</translation>
     </message>
 </context>
 <context>
@@ -179,27 +179,27 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="41"/>
         <source>Camera</source>
-        <translation type="unfinished"/>
+        <translation>Quay phim</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="42"/>
         <source>Crew</source>
-        <translation type="unfinished"/>
+        <translation>Đoàn phim</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="43"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>Âm thanh</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="44"/>
         <source>Directing</source>
-        <translation type="unfinished"/>
+        <translation>Đạo diễn</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="45"/>
         <source>Writing</source>
-        <translation type="unfinished"/>
+        <translation>Biên kịch</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="46"/>
@@ -228,18 +228,18 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="50"/>
         <source>Costume &amp; Make-Up</source>
-        <translation type="unfinished"/>
+        <translation>Phục trang</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="51"/>
         <source>Visual Effects</source>
-        <translation type="unfinished"/>
+        <translation>Hiệu ứng</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="75"/>
         <source>%1&apos;s filmography</source>
         <extracomment>This appears in the filmography view header</extracomment>
-        <translation>Filmografia %1</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -248,7 +248,7 @@
         <location filename="../qml/GenresView.qml" line="51"/>
         <source>Movie genres</source>
         <extracomment>This appears in the browse view header</extracomment>
-        <translation>Genuri de filme</translation>
+        <translation>Thể loại</translation>
     </message>
 </context>
 <context>
@@ -269,7 +269,7 @@
         <location filename="../qml/ListsView.qml" line="29"/>
         <source>Watchlist</source>
         <extracomment>Shown as the title for the watchlist menu entry</extracomment>
-        <translation type="unfinished"/>
+        <translation>Danh sách theo dõi</translation>
     </message>
     <message>
         <location filename="../qml/ListsView.qml" line="31"/>
@@ -284,19 +284,19 @@
         <location filename="../qml/MediaGalleryView.qml" line="53"/>
         <source>Save image</source>
         <extracomment>Placed on a tool button, when clicked opens a sheet to save the image</extracomment>
-        <translation type="unfinished"/>
+        <translation>Lưu hình</translation>
     </message>
     <message>
         <location filename="../qml/MediaGalleryView.qml" line="183"/>
         <source>Save</source>
         <extracomment>Placed on the save image sheet, when clicked actually saves the image</extracomment>
-        <translation type="unfinished"/>
+        <translation>Lưu</translation>
     </message>
     <message>
         <location filename="../qml/MediaGalleryView.qml" line="186"/>
         <source>Cancel</source>
         <extracomment>Placed on the save image sheet, when clicked closes the sheet and doesn't save</extracomment>
-        <translation type="unfinished"/>
+        <translation>Thoát</translation>
     </message>
 </context>
 <context>
@@ -305,19 +305,19 @@
         <location filename="../qml/MovieView.qml" line="56"/>
         <source>Add to watchlist</source>
         <extracomment>This adds the movie to the watch list</extracomment>
-        <translation type="unfinished"/>
+        <translation>Theo dõi </translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="58"/>
         <source>Remove from watchlist</source>
         <extracomment>This removes the movie from the watch list</extracomment>
-        <translation type="unfinished"/>
+        <translation>Xóa Theo dõi</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="78"/>
         <source>Open homepage</source>
         <extracomment>This opens a website displaying the movie homepage</extracomment>
-        <translation>Deschide pagina</translation>
+        <translation>Mở trang chủ</translation>
     </message>
     <message>
         <source>View extras</source>
@@ -328,13 +328,13 @@
         <location filename="../qml/MovieView.qml" line="84"/>
         <source>View in IMDb</source>
         <extracomment>This visits the Internet Movie Database page of this content (movie or person)</extracomment>
-        <translation>Vizualizează în IMDb</translation>
+        <translation>Xem ở IMDb</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="89"/>
         <source>View in TMDb</source>
         <extracomment>This visits the The Movie Database page of this content (movie or person)</extracomment>
-        <translation>Vizualizează în TMDb</translation>
+        <translation>Xem ở TMDb</translation>
     </message>
     <message>
         <source>Not found</source>
@@ -345,19 +345,19 @@
         <location filename="../qml/MovieView.qml" line="304"/>
         <source>Loading content</source>
         <extracomment>This indicates that the extended info for a content (person or movie) is still loading</extracomment>
-        <translation type="unfinished"/>
+        <translation>Tải nội dung</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="360"/>
         <source>Rated %1, %2</source>
         <extracomment>This shows the classification of a movie and its runtime (duration)</extracomment>
-        <translation type="unfinished"/>
+        <translation>Đánh giá %1, %2</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="483"/>
         <source>Watch trailer</source>
         <extracomment>Opens the movie trailer for viewing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Xem video trailer</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="504"/>
@@ -369,13 +369,13 @@
         <location filename="../qml/MovieView.qml" line="515"/>
         <source>Release date</source>
         <extracomment>Label acting as the header for the release date</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ngày trình chiếu:</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="537"/>
         <source>Genre</source>
         <extracomment>Label acting as the header for the genres</extracomment>
-        <translation type="unfinished"/>
+        <translation>Thể loại</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="555"/>
@@ -422,7 +422,7 @@
         <location filename="../qml/MovieView.qml" line="661"/>
         <source>Crew</source>
         <extracomment>Header for the crew preview shown in the movie view</extracomment>
-        <translation type="unfinished"/>
+        <translation>Đoàn phim</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="668"/>
@@ -445,17 +445,17 @@
     <message>
         <location filename="../qml/PersonView.qml" line="51"/>
         <source>View in IMDb</source>
-        <translation>Vizualizează în IMDb</translation>
+        <translation>Xem ở IMDb</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="55"/>
         <source>View in TMDb</source>
-        <translation>Vizualizează în TMDb</translation>
+        <translation>Xem ở TMDb</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="206"/>
         <source>Loading content</source>
-        <translation type="unfinished"/>
+        <translation>Tải nội dung</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="262"/>
@@ -467,7 +467,7 @@
         <location filename="../qml/PersonView.qml" line="311"/>
         <source>Known for %Ln movie(s)</source>
         <comment>Text shown in the person view displaying the number of movies a person is known for</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="347"/>
@@ -494,19 +494,19 @@
         <location filename="../qml/SearchView.qml" line="51"/>
         <source>Search</source>
         <extracomment>Header shown in the search view</extracomment>
-        <translation>Caută</translation>
+        <translation>Tìm kiếm</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="57"/>
         <source>Enter search terms</source>
         <extracomment>Placeholder text shown in the search input field</extracomment>
-        <translation>Introduceţi termenii de căutare</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="105"/>
         <source>Movies</source>
         <extracomment>Shown in the button selecting movie search</extracomment>
-        <translation>Filme</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="111"/>
@@ -529,7 +529,7 @@
         <location filename="../qml/SearchView.qml" line="299"/>
         <source>No results found</source>
         <extracomment>Shown in the search results area when no results were found</extracomment>
-        <translation>Niciun rezultat găsit</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="312"/>
@@ -544,25 +544,25 @@
         <location filename="../qml/SettingsView.qml" line="73"/>
         <source>Settings</source>
         <extracomment>Text shown in the settings view header</extracomment>
-        <translation>Setări</translation>
+        <translation>Cài đặt</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="86"/>
         <source>Showtimes</source>
         <extracomment>Label for the showtimes section in the settings view</extracomment>
-        <translation>Ore de difuzare</translation>
+        <translation>Thời gian chiếu</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="102"/>
         <source>Default location</source>
         <extracomment>Label for the default location setting to try for showtimes</extracomment>
-        <translation>Amplasare implicită</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="108"/>
         <source>Try automatically</source>
         <extracomment>Placeholder text for the default location. When visible, automatic location will be attempted</extracomment>
-        <translation>Încearcă în mod automat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="150"/>
@@ -574,7 +574,7 @@
         <location filename="../qml/SettingsView.qml" line="181"/>
         <source>Browsing</source>
         <extracomment>Label for the browsing section in the settings view</extracomment>
-        <translation>Navigare</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="199"/>
@@ -646,31 +646,31 @@
         <location filename="../qml/TheatersView.qml" line="126"/>
         <source>Search</source>
         <extracomment>Placeholder text for the search field in the showtimes view</extracomment>
-        <translation>Caută</translation>
+        <translation>Tìm kiếm</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="185"/>
         <source>In theaters</source>
         <extracomment>Header shown in the showtimes view</extracomment>
-        <translation type="unfinished"/>
+        <translation>Đang trình chiếu</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="200"/>
         <source>Pull to filter by cinema or movie</source>
         <extracomment>Hint shown to tell users that they can filter by pulling</extracomment>
-        <translation type="unfinished"/>
+        <translation>Kéo để lọc bằng rạp hoặc phim</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="261"/>
         <source>No results for %1</source>
         <extracomment>Message shown when no results are found for a given location</extracomment>
-        <translation>Niciun rezultat pentru %1</translation>
+        <translation>Không có kết quả cho từ khóa %1</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="263"/>
         <source>No results for your location</source>
         <extracomment>Message shown when no results are found for the automatic location</extracomment>
-        <translation>Niciun rezultat pentru amplasarea actuală</translation>
+        <translation>Không có kết quả cho vị trí của bạn</translation>
     </message>
 </context>
 <context>
@@ -679,19 +679,19 @@
         <location filename="../qml/TvView.qml" line="54"/>
         <source>Open homepage</source>
         <extracomment>This opens a website displaying the movie homepage</extracomment>
-        <translation>Deschide pagina</translation>
+        <translation>Mở trang chủ</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="60"/>
         <source>View in TMDb</source>
         <extracomment>This visits the The Movie Database page of this content (movie or person)</extracomment>
-        <translation>Vizualizează în TMDb</translation>
+        <translation>Xem ở TMDb</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="266"/>
         <source>Loading content</source>
         <extracomment>This indicates that the extended info for a content (person or movie) is still loading</extracomment>
-        <translation type="unfinished"/>
+        <translation>Tải nội dung</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="322"/>
@@ -713,7 +713,7 @@
         <location filename="../qml/TvView.qml" line="447"/>
         <source>Watch trailer</source>
         <extracomment>Opens the movie trailer for viewing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Xem video trailer</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="468"/>
@@ -725,13 +725,13 @@
         <location filename="../qml/TvView.qml" line="479"/>
         <source>Release date</source>
         <extracomment>Label acting as the header for the release date</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ngày trình chiếu:</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="502"/>
         <source>Genre</source>
         <extracomment>Label acting as the header for the genres</extracomment>
-        <translation type="unfinished"/>
+        <translation>Thể loại</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="520"/>
@@ -755,7 +755,7 @@
         <location filename="../qml/TvView.qml" line="570"/>
         <source>Crew</source>
         <extracomment>Header for the crew preview shown in the movie view</extracomment>
-        <translation type="unfinished"/>
+        <translation>Đoàn phim</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="577"/>
@@ -770,43 +770,43 @@
         <location filename="../qml/WelcomeView.qml" line="44"/>
         <source>Movie genres</source>
         <extracomment>Shown as the title for the browse view menu entry</extracomment>
-        <translation>Genuri de filme</translation>
+        <translation>Thể loại phim</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="46"/>
         <source>Explore movie genres</source>
         <extracomment>Shown as the subtitle for the browse view menu entry</extracomment>
-        <translation>Explorează genuri de filme</translation>
+        <translation>Dò các thể loại phim</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="49"/>
         <source>Showtimes</source>
         <extracomment>Shown as the title for the showtimes menu entry</extracomment>
-        <translation>Ore de difuzare</translation>
+        <translation>Thời gian chiếu</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="51"/>
         <source>What&apos;s on in cinemas near you</source>
         <extracomment>Shown as the subtitle for the browse view menu entry</extracomment>
-        <translation type="unfinished"/>
+        <translation>Phim chiếu tại các rạp gần bạn</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="54"/>
         <source>Search</source>
         <extracomment>Shown as the title for the search view menu entry</extracomment>
-        <translation>Caută</translation>
+        <translation>Tìm kiếm</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="56"/>
         <source>Search movies and celebrities</source>
         <extracomment>Shown as the subtitle for the search view menu entry</extracomment>
-        <translation type="unfinished"/>
+        <translation>Tìm phim và diễn viên</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="59"/>
         <source>Lists</source>
         <extracomment>Shown as the title for the lists view menu entry</extracomment>
-        <translation type="unfinished"/>
+        <translation>Danh sách</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="61"/>
@@ -818,19 +818,19 @@
         <location filename="../qml/WelcomeView.qml" line="86"/>
         <source>Settings</source>
         <extracomment>Title for the settings entry in the main page object menu</extracomment>
-        <translation>Setări</translation>
+        <translation>Cài đặt</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="92"/>
         <source>About</source>
         <extracomment>Title for the about entry in the main page object menu</extracomment>
-        <translation>Despre aplicaţie</translation>
+        <translation>Thông tin</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="185"/>
         <source>Enjoy the show!</source>
         <extracomment>Shown in the main view header</extracomment>
-        <translation>Vizionare plăcută!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="243"/>
