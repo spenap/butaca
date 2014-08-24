@@ -23,7 +23,12 @@
 #include "sortfiltermodel.h"
 #include "imagesaver.h"
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QDeclarativeContext>
+#else
+#include <QtQml/QQmlContext>
+#endif
+
 #include <QFileInfo>
 #ifndef QT_SIMULATOR
     #include <maemo-meegotouch-interfaces/shareuiinterface.h>
@@ -40,7 +45,12 @@ static const QString STORE_DBUS_IFACE("com.nokia.OviStoreClient");
 
 static const QString PICTURES_PATH("/home/user/MyDocs/Pictures/");
 
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 Controller::Controller(QDeclarativeContext* context) :
+#else
+Controller::Controller(QQmlContext* context) :
+#endif
     QObject(),
     m_declarativeContext(context),
     m_showtimesFetcher(0),
