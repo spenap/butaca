@@ -56,6 +56,9 @@ public:
     //! \reimp
     int rowCount(const QModelIndex& index = QModelIndex()) const;
 
+    //! \reimp
+    QHash<int, QByteArray> roleNames() const;
+
     //! Sets a cinema list to the model
     //! \param cinemas The list of cinemas to set to the model
     void setCinemaList(QList<Cinema> cinemas);
@@ -81,6 +84,7 @@ private:
     Q_DISABLE_COPY(TheaterListModel)
     QList<Cinema> m_cinemas;
     MovieListModel* m_currentMovieListModel;
+    QHash<int, QByteArray> m_roles;
 };
 
 #endif // THEATERLISTMODEL_H

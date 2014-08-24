@@ -59,6 +59,9 @@ public:
     //! \reimp
     int rowCount(const QModelIndex& index = QModelIndex()) const;
 
+    //! \reimp
+    QHash<int, QByteArray> roleNames() const;
+
     //! Convenience method which provides a QVariantMap for the movie
     //! at the given index
     //!
@@ -77,6 +80,7 @@ signals:
 private:
     Q_DISABLE_COPY(MovieListModel)
     QList<Movie> m_movies;
+    QHash<int, QByteArray> m_roles;
 };
 
 #endif // MOVIELISTMODEL_H

@@ -28,11 +28,9 @@ TheaterListModel::TheaterListModel(QObject* parent)
       m_cinemas(),
       m_currentMovieListModel(0)
 {
-    QHash<int, QByteArray> roles;
-    roles[TheaterNameRole] = "name";
-    roles[TheaterInfoRole] = "info";
-    roles[TheaterMovieListRole] = "playing";
-    setRoleNames(roles);
+    m_roles[TheaterNameRole] = "name";
+    m_roles[TheaterInfoRole] = "info";
+    m_roles[TheaterMovieListRole] = "playing";
 }
 
 TheaterListModel::~TheaterListModel()
@@ -44,6 +42,11 @@ int TheaterListModel::rowCount(const QModelIndex& index) const
 {
     Q_UNUSED(index)
     return m_cinemas.count();
+}
+
+QHash<int, QByteArray> TheaterListModel::roleNames() const
+{
+    return m_roles;
 }
 
 QVariant TheaterListModel::data(const QModelIndex& index, int role) const
