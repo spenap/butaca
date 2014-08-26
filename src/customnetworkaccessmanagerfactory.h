@@ -20,7 +20,12 @@
 #ifndef CUSTOMNETWORKACCESSMANAGERFACTORY_H
 #define CUSTOMNETWORKACCESSMANAGERFACTORY_H
 
+#include <QtGlobal>
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QDeclarativeNetworkAccessManagerFactory>
+#else
+#include <QtQml/QQmlNetworkAccessManagerFactory>
+#endif
 
 //! \class CustomNetworkAccessManagerFactory
 //! \brief Custom NetworkAccessManagerFactory to allow creating custom QNetworkAccessManagers
@@ -28,7 +33,12 @@
 //! In order to use a custom QNetworkAccessManager (which can use proxy settings),
 //! a custom NetworkAccessManagerFactory must be provided, and the create method,
 //! reimplemented
-class CustomNetworkAccessManagerFactory : public QDeclarativeNetworkAccessManagerFactory
+class CustomNetworkAccessManagerFactory :
+        #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+        public QDeclarativeNetworkAccessManagerFactory
+        #else
+        public QQmlNetworkAccessManagerFactory
+        #endif
 {
 public:
     //! \reimp

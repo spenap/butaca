@@ -22,7 +22,11 @@
 
 #include <QObject>
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 class QDeclarativeContext;
+#else
+class QQmlContext;
+#endif
 class TheaterShowtimesFetcher;
 class TheaterListModel;
 class SortFilterModel;
@@ -51,7 +55,11 @@ class Controller : public QObject
     Q_OBJECT
 public:
     //! Constructor
+    #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     explicit Controller(QDeclarativeContext *context);
+    #else
+    explicit Controller(QQmlContext *context);
+    #endif
 
     //! Destructor
     ~Controller();
@@ -96,7 +104,12 @@ private slots:
     void onTheatersFetched(int count);
 
 private:
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     QDeclarativeContext* m_declarativeContext;
+#else
+    QQmlContext* m_declarativeContext;
+#endif
+
     TheaterShowtimesFetcher* m_showtimesFetcher;
     TheaterListModel* m_theaterListModel;
     SortFilterModel* m_sortFilterModel;
