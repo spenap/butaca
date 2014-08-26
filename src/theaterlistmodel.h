@@ -56,8 +56,10 @@ public:
     //! \reimp
     int rowCount(const QModelIndex& index = QModelIndex()) const;
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     //! \reimp
     QHash<int, QByteArray> roleNames() const;
+#endif
 
     //! Sets a cinema list to the model
     //! \param cinemas The list of cinemas to set to the model

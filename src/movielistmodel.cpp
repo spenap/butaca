@@ -31,6 +31,9 @@ MovieListModel::MovieListModel(QObject* parent) :
     m_roles[MovieInfoRole] = "info";
     m_roles[MovieTimesRole] = "showtimes";
     m_roles[MovieDescriptionRole] = "description";
+    #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    setRoleNames(m_roles);
+    #endif
 }
 
 MovieListModel::~MovieListModel()
@@ -70,10 +73,12 @@ int MovieListModel::rowCount(const QModelIndex& index) const
     return m_movies.count();
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 QHash<int, QByteArray> MovieListModel::roleNames() const
 {
     return m_roles;
 }
+#endif
 
 QVariantMap MovieListModel::get(const QModelIndex& index) const
 {

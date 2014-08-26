@@ -31,6 +31,9 @@ TheaterListModel::TheaterListModel(QObject* parent)
     m_roles[TheaterNameRole] = "name";
     m_roles[TheaterInfoRole] = "info";
     m_roles[TheaterMovieListRole] = "playing";
+    #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    setRoleNames(m_roles);
+    #endif
 }
 
 TheaterListModel::~TheaterListModel()
@@ -44,10 +47,12 @@ int TheaterListModel::rowCount(const QModelIndex& index) const
     return m_cinemas.count();
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 QHash<int, QByteArray> TheaterListModel::roleNames() const
 {
     return m_roles;
 }
+#endif
 
 QVariant TheaterListModel::data(const QModelIndex& index, int role) const
 {
