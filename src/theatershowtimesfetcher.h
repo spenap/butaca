@@ -22,10 +22,13 @@
 
 #include <QObject>
 #include <QUrl>
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+#   include <QUrlQuery>
+#endif
 #include "movie.h"
 #include "cinema.h"
 
-class QWebView;
+class QWebPage;
 class TheaterListModel;
 
 //! \class TheaterShowtimesFetcher
@@ -61,9 +64,14 @@ private slots:
     void onLoadFinished(bool ok);
 
 private:
-    QWebView *m_webView;
+    QWebPage *m_webPage;
     TheaterListModel *m_theaterListModel;
     QUrl m_showtimesBaseUrl;
+#if (QT_VERSION < QT_VERSION_CHECK(5,0,0))
+    QUrl m_showtimesQuery;
+#else
+    QUrlQuery m_showtimesQuery;
+#endif
     int m_numPages;
     int m_parsedPages;
     QList<Cinema> m_cinemas;

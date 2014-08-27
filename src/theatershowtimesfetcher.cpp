@@ -20,7 +20,6 @@
 #include "theatershowtimesfetcher.h"
 #include "theaterlistmodel.h"
 
-#include <QWebView>
 #include <QWebPage>
 #include <QWebFrame>
 #include <QWebElement>
@@ -29,16 +28,16 @@
 #include <QDebug>
 
 TheaterShowtimesFetcher::TheaterShowtimesFetcher(TheaterListModel* model) :
-    m_webView(new QWebView),
+    m_webPage(new QWebPage),
     m_theaterListModel(model)
 {
-    connect(m_webView, SIGNAL(loadFinished(bool)),
+    connect(m_webPage, SIGNAL(loadFinished(bool)),
             this, SLOT(onLoadFinished(bool)), Qt::UniqueConnection);
 }
 
 TheaterShowtimesFetcher::~TheaterShowtimesFetcher()
 {
-    delete m_webView;
+    delete m_webPage;
 }
 
 void TheaterShowtimesFetcher::fetchTheaters(QString location, QString daysAhead)
@@ -46,26 +45,33 @@ void TheaterShowtimesFetcher::fetchTheaters(QString location, QString daysAhead)
     // TODO: This is currently hardcoded to Google Showtimes. It would be
     // better if several services could be used.
     m_showtimesBaseUrl = QUrl("http://www.google.com/movies");
+    #if (QT_VERSION < QT_VERSION_CHECK(5,0,0))
+    m_showtimesQuery = m_showtimesBaseUrl;
+    #endif
     m_cinemas.clear();
     m_parsedPages = 0;
 
     QString locale(QLocale::system().name());
     // The country code is ignored by the movies API
-    m_showtimesBaseUrl.addQueryItem("hl", locale.left(locale.indexOf("_")));
+    m_showtimesQuery.addQueryItem("hl", locale.left(locale.indexOf("_")));
 
     if (!location.isEmpty()) {
-        m_showtimesBaseUrl.addQueryItem("near", location);
+        m_showtimesQuery.addQueryItem("near", location);
     }
-    m_showtimesBaseUrl.addQueryItem("date", daysAhead);
+    m_showtimesQuery.addQueryItem("date", daysAhead);
 
-    m_webView->load(m_showtimesBaseUrl);
+    #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+    m_showtimesBaseUrl.setQuery(m_showtimesQuery);
+    #endif
+
+    m_webPage->mainFrame()->load(m_showtimesBaseUrl);
 }
 
 void TheaterShowtimesFetcher::onLoadFinished(bool ok)
 {
     if (ok) {
         m_parsedPages ++;
-        QWebElement document = m_webView->page()->mainFrame()->documentElement();
+        QWebElement document = m_webPage->mainFrame()->documentElement();
 
         // in case we need more pages loaded. "div.n" is the navigation bar. if it's present
         // we know there's more than 1 page. only need to do this once
@@ -93,7 +99,13 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
                     Movie movie;
                     QWebElement movieAnchor = movieElement.findFirst("div.name a");
                     QUrl anchorUrl(movieAnchor.attribute("href"));
-                    movie.setId(anchorUrl.queryItemValue("mid"));
+                    #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+                    QUrlQuery query(anchorUrl.query());
+                    QString midValue = query.queryItemValue("mid");
+                    #else
+                    QString midValue = anchorUrl.queryItemValue("mid");
+                    #endif
+                    movie.setId(midValue);
                     QString movieInfo(movieElement.findFirst("span.info").toInnerXml());
                     QRegExp imdbUrl("http://www\\.imdb\\.com/title/(tt\\d*)");
                     if (movieInfo.contains(imdbUrl)) {
@@ -115,11 +127,18 @@ void TheaterShowtimesFetcher::onLoadFinished(bool ok)
             m_theaterListModel->setCinemaList(m_cinemas);
             emit theatersFetched(m_cinemas.count());
         } else {
-            if (m_showtimesBaseUrl.hasQueryItem("start"))
-                m_showtimesBaseUrl.removeQueryItem("start");
+            if (m_showtimesQuery.hasQueryItem("start"))
+                m_showtimesQuery.removeQueryItem("start");
             // tell google to load page with offset numcalled * 10. this loads numcalled+1th page
-            m_showtimesBaseUrl.addQueryItem("start", QString::number((m_parsedPages) * 10));
-            m_webView->load(m_showtimesBaseUrl);
+            m_showtimesQuery.addQueryItem("start", QString::number((m_parsedPages) * 10));
+
+            #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+            m_showtimesBaseUrl.setQuery(m_showtimesQuery);
+            #else
+            m_showtimesBaseUrl = m_showtimesQuery;
+            #endif
+
+            m_webPage->mainFrame()->load(m_showtimesBaseUrl);
         }
 
     } else {
