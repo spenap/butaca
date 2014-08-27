@@ -25,14 +25,15 @@
 MovieListModel::MovieListModel(QObject* parent) :
     QAbstractListModel(parent)
 {
-    QHash<int, QByteArray> roles;
-    roles[MovieIdRole] = "id";
-    roles[MovieImdbIdRole] = "imdbId";
-    roles[MovieNameRole] = "name";
-    roles[MovieInfoRole] = "info";
-    roles[MovieTimesRole] = "showtimes";
-    roles[MovieDescriptionRole] = "description";
-    setRoleNames(roles);
+    m_roles[MovieIdRole] = "id";
+    m_roles[MovieImdbIdRole] = "imdbId";
+    m_roles[MovieNameRole] = "name";
+    m_roles[MovieInfoRole] = "info";
+    m_roles[MovieTimesRole] = "showtimes";
+    m_roles[MovieDescriptionRole] = "description";
+    #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    setRoleNames(m_roles);
+    #endif
 }
 
 MovieListModel::~MovieListModel()
@@ -71,6 +72,13 @@ int MovieListModel::rowCount(const QModelIndex& index) const
     Q_UNUSED(index)
     return m_movies.count();
 }
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+QHash<int, QByteArray> MovieListModel::roleNames() const
+{
+    return m_roles;
+}
+#endif
 
 QVariantMap MovieListModel::get(const QModelIndex& index) const
 {
