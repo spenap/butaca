@@ -17,34 +17,56 @@
  *
  **************************************************************************/
 
-#include "controller.h"
-#include "customnetworkaccessmanagerfactory.h"
+#include <QTranslator>
+#include <QLocale>
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
 #include <QtGui/QApplication>
 #include <QtDeclarative>
 #include <QDeclarativeContext>
+#include <QTextCodec>
 #include <QDesktopServices>
-#ifndef QT_SIMULATOR
+#define QMLVIEW QDeclarativeView
+#define QMLCONTEXT QDeclarativeContext
+#else
+#include <QtWidgets/QApplication>
+#include <QtQuick/QQuickView>
+#include <QtQml/QQmlContext>
+#include <QtQml/QQmlEngine>
+#include <QtCore/QStandardPaths>
+#define QMLVIEW QQuickView
+#define QMLCONTEXT QQmlContext
+#endif
+
+
+#ifdef BUILD_FOR_HARMATTAN
     #include <MDeclarativeCache>
 #endif
-#include <QTranslator>
-#include <QTextCodec>
-#include <QLocale>
+
+#ifdef BUILD_FOR_SAILFISH
+    #include <sailfishapp.h>
+#endif
+
+#include "controller.h"
+#include "customnetworkaccessmanagerfactory.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QApplication *app;
-#ifdef QT_SIMULATOR
-    app = new QApplication(argc, argv);
+#ifdef BUILD_FOR_HARMATTAN
+    QApplication *app = MDeclarativeCache::qApplication(argc, argv);
 #else
-    app = MDeclarativeCache::qApplication(argc, argv);
+    QGuiApplication *app = SailfishApp::application(argc, argv);
+    QQuickView::setDefaultAlphaBuffer(true);
 #endif
     app->setApplicationName("Butaca");
     app->setOrganizationDomain("com.simonpena");
     app->setOrganizationName("simonpena");
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    // In Qt5 this assumptions holds by default.
     // Assume that strings in source files are UTF-8
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+#endif
 
     QString locale(QLocale::system().name());
     QTranslator translator;
@@ -56,25 +78,38 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         app->installTranslator(&translator);
     }
 
-    QDeclarativeView *view;
-#ifdef QT_SIMULATOR
-    view = new QDeclarativeView();
-#else
+    QMLVIEW *view;
+
+#ifdef BUILD_FOR_HARMATTAN
     view = MDeclarativeCache::qDeclarativeView();
+#else
+    view = SailfishApp::createView();
 #endif
 
-    view->engine()->setOfflineStoragePath(
-                QDesktopServices::storageLocation(QDesktopServices::DataLocation));
+    QString storageLocation;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
+    storageLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#else
+    storageLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#endif
 
-    QDeclarativeContext *context = view->rootContext();
+    view->engine()->setOfflineStoragePath(storageLocation);
+
+    QMLCONTEXT *context = view->rootContext();
 
     // The Movie Database uses "-" as the divider between language and country code
     context->setContextProperty("appLocale", locale.left(locale.indexOf("_")));
     Controller *controller = new Controller(context);
 
     view->engine()->setNetworkAccessManagerFactory(new CustomNetworkAccessManagerFactory);
+
+#ifdef BUILD_FOR_SAILFISH
+    view->setSource(QUrl("qrc:/qml/sailfish/main.qml"));
+    view->show();
+#else
     view->setSource(QUrl("qrc:/qml/main.qml"));
     view->showFullScreen();
+#endif
 
     int result = app->exec();
 
