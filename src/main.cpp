@@ -29,7 +29,8 @@
 #define QMLVIEW QDeclarativeView
 #define QMLCONTEXT QDeclarativeContext
 #else
-#include <QtWidgets/QApplication>
+#include <QtCore/QCoreApplication>
+#include <QGuiApplication>
 #include <QtQuick/QQuickView>
 #include <QtQml/QQmlContext>
 #include <QtQml/QQmlEngine>
@@ -54,13 +55,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 {
 #ifdef BUILD_FOR_HARMATTAN
     QApplication *app = MDeclarativeCache::qApplication(argc, argv);
-#else
-    QGuiApplication *app = SailfishApp::application(argc, argv);
-    QQuickView::setDefaultAlphaBuffer(true);
-#endif
     app->setApplicationName("Butaca");
     app->setOrganizationDomain("com.simonpena");
     app->setOrganizationName("simonpena");
+#else
+    QCoreApplication::setApplicationName("Butaca");
+    QCoreApplication::setOrganizationDomain("com.simonpena");
+    QCoreApplication::setOrganizationName("simonpena");
+    QGuiApplication *app = SailfishApp::application(argc, argv);
+    QQuickView::setDefaultAlphaBuffer(true);
+#endif
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
     // In Qt5 this assumptions holds by default.
