@@ -136,7 +136,7 @@ Page {
                                          galleryView.galleryViewModel.get(galleryView.currentIndex).file_path,
                                          { app_locale: appLocale })
                 anchors {
-                    top: detailedDelegateIndicator.bottom
+                    top: parent.top//detailedDelegateIndicator.bottom
                     topMargin: UIConstants.DEFAULT_MARGIN
                     left: parent.left
                     right: parent.right

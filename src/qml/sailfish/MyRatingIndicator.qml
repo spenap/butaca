@@ -44,11 +44,11 @@ import Sailfish.Silica 1.0
 /*
    Class: RatingIndicator
    Component to indicate user specified ratings.
-
    A rating indicator is a component that shows the rating value within the maximum allowed range according
    to the user's specification.  The user can also specify the display type to select the positive/negative
    visual.  Optionally, the user can also specify a count value that will be displayed next to the images.
 */
+//ImplicitSizeItem {
 Item {
     id: root
 
@@ -56,13 +56,15 @@ Item {
      * Property: maximumValue
      * [double] The maximum rating.  The number should be larger or equal to 0.
      */
-    property alias maximumValue: model.maximumValue
+    property double maximumValue: 0.0
 
     /*
      * Property: ratingValue
      * [double] The rating value.  The number should be larger or equal to 0.
      */
-    property alias ratingValue: model.value
+    property double ratingValue: 0.0
+
+
 
     /*
      * Property: count
@@ -72,21 +74,22 @@ Item {
     property int count: -1
 
     /*
-     * Property: inverted
-     * [string] Specify whether the visual for the rating indicator uses the inverted color.  The value is
+     * Property: starsMax
+     * [integer] Specify whether the visual for the rating indicator uses the inverted color.  The value is
      * false for use with a light background and true for use with a dark background.
      */
-    property bool inverted: true
+    property int starsMax: 5
+    /*
+     * Property: starValue
+     * [integer] Specify whether the visual for the rating indicator uses the inverted color.  The value is
+     * false for use with a light background and true for use with a dark background.
+     */
+    property double starValue: roundHalf((ratingValue/maximumValue)*starsMax)
+    property int starValueInt: Math.floor(starValue)
+    property double starWidth: (starValue % 1)
 
     implicitHeight: Math.max(background.height, text.paintedHeight);
     implicitWidth: background.width + (count >= 0 ? internal.textSpacing + text.paintedWidth : 0);
-
-    Slider {
-        id: model
-        value: 0.0
-        minimumValue: 0.0
-        maximumValue: 0.0
-    }
 
     QtObject {
         id: internal
@@ -95,29 +98,57 @@ Item {
         property int imageHeight: 16
         property int indicatorSpacing: 5  // spacing between images
         property int textSpacing: 8  // spacing between image and text
-        property url backgroundImageSource: inverted ?
-                                                 "image://theme/meegotouch-indicator-rating-inverted-background-star" :
-                                                 "image://theme/meegotouch-indicator-rating-background-star"
-        property url indicatorImageSource: inverted ?
-                                             "qrc:/resources/indicator-rating-inverted-star.svg" :
-                                             "image://theme/meegotouch-indicator-rating-star"
-        property string textColor: inverted ? "#fafafa" : "#505050"
+        property url backgroundImageSource: "image://theme/icon-m-favorite"
+        property url indicatorImageSource: "image://theme/icon-m-favorite-selected"
     }
-
-    Image {
+    function roundHalf(num) {
+        num = Math.round(num*2)/2;
+        return num;
+    }
+    function round(n) {
+        var h = Math.floor((n % starsMax)*10);
+        console.log(h)
+        return h >= 7
+            ? n + (10 - h) * .01
+            : n;
+    }
+    Row {
         id: background
-        width: internal.imageWidth * maximumValue + (Math.max(Math.ceil(maximumValue-1), 0)) * internal.indicatorSpacing;
-        height: internal.imageHeight
+        anchors.bottom: parent.bottom
+        width: bgRepeater.model.count*Theme.iconSizeSmall
         anchors.verticalCenter: height < text.paintedHeight ? text.verticalCenter : undefined
-        fillMode: Image.Tile
-        source: internal.backgroundImageSource
-
-        Image {
-            id: indicator
-            width: internal.imageWidth * ratingValue + Math.max((Math.ceil(ratingValue) - 1), 0) * internal.indicatorSpacing
-            height: internal.imageHeight
-            fillMode: Image.Tile
-            source: internal.indicatorImageSource
+        Repeater {
+            id: bgRepeater
+            model: starsMax
+            Image {
+                width: Theme.iconSizeSmall; height: Theme.iconSizeSmall
+                source: internal.backgroundImageSource
+            }
+        }
+    }
+    Row {
+        id: indicator
+        anchors.bottom: parent.bottom
+        width: indRepeater.model.count*Theme.iconSizeSmall
+        anchors.verticalCenter: height < text.paintedHeight ? text.verticalCenter : undefined
+        Repeater {
+            id: indRepeater
+            model: starValueInt
+            Image {
+                width: Theme.iconSizeSmall; height: Theme.iconSizeSmall
+                source: internal.indicatorImageSource
+            }
+        }
+        Rectangle {
+            width: starWidth*Theme.iconSizeSmall; height: Theme.iconSizeSmall
+            color: 'transparent'
+            clip: true
+            Image {
+                anchors.left: parent.left
+                anchors.top: parent.top
+                width: Theme.iconSizeSmall; height: Theme.iconSizeSmall
+                source: internal.indicatorImageSource
+            }
         }
     }
 
@@ -125,8 +156,8 @@ Item {
         id: text
         visible: count >= 0
         text: "(" + count + ")"
-        color: internal.textColor
-        font { family: "Nokia Standard Light"; pixelSize: 18 }
+        color: Theme.primaryColor
+        font.pixelSize: Theme.fontSizeSmall
         anchors.left: background.right
         anchors.leftMargin: internal.textSpacing
     }

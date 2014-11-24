@@ -359,13 +359,12 @@ Page {
                     width: UIConstants.DEFAULT_MARGIN
                 }
 
-                // TODO fix rating indicator
-//                MyRatingIndicator {
-//                    anchors.verticalCenter: ratingLabel.verticalCenter
-//                    ratingValue: parsedMovie.rating
-//                    maximumValue: 10
-//                    count: parsedMovie.votes
-//                }
+                MyRatingIndicator {
+                    anchors.verticalCenter: ratingLabel.verticalCenter
+                    ratingValue: parsedMovie.rating
+                    maximumValue: 10
+                    count: parsedMovie.votes
+                }
             }
 
             Column {
