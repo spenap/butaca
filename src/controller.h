@@ -110,7 +110,9 @@ private:
     QQmlContext* m_declarativeContext;
 #endif
 
+#if defined(BUILD_FOR_HARMATTAN)
     TheaterShowtimesFetcher* m_showtimesFetcher;
+#endif
     TheaterListModel* m_theaterListModel;
     SortFilterModel* m_sortFilterModel;
     QString m_location;

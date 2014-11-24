@@ -18,7 +18,6 @@
  **************************************************************************/
 
 #include "controller.h"
-#include "theatershowtimesfetcher.h"
 #include "theaterlistmodel.h"
 #include "sortfiltermodel.h"
 #include "imagesaver.h"
@@ -30,20 +29,27 @@
 #endif
 
 #include <QFileInfo>
-#ifndef QT_SIMULATOR
+#if defined(BUILD_FOR_HARMATTAN)
     #include <maemo-meegotouch-interfaces/shareuiinterface.h>
     #include <MDataUri>
     #include <QDBusInterface>
     #include <QDBusPendingCall>
+
+    #include "theatershowtimesfetcher.h"
+
+    static const QString LAST_UPDATE_KEY("lastUpdate");
+    static const QString STORE_DBUS_IFACE("com.nokia.OviStoreClient");
+
+    static const QString PICTURES_PATH("/home/user/MyDocs/Pictures/");
+#elif defined(BUILD_FOR_SAILFISH)
+    #include <QDebug>
+    static const QString PICTURES_PATH("/home/nemo/Pictures/");
 #else
     #include <QDebug>
+    static const QString PICTURES_PATH("undefined");
 #endif
+
 #include <QStringList>
-
-static const QString LAST_UPDATE_KEY("lastUpdate");
-static const QString STORE_DBUS_IFACE("com.nokia.OviStoreClient");
-
-static const QString PICTURES_PATH("/home/user/MyDocs/Pictures/");
 
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0))
@@ -53,7 +59,6 @@ Controller::Controller(QQmlContext* context) :
 #endif
     QObject(),
     m_declarativeContext(context),
-    m_showtimesFetcher(0),
     m_theaterListModel(new TheaterListModel),
     m_sortFilterModel(new SortFilterModel),
     m_packageVersion(PACKAGEVERSION)
@@ -67,21 +72,25 @@ Controller::Controller(QQmlContext* context) :
     m_declarativeContext->setContextProperty("theaterModel", m_sortFilterModel);
     m_declarativeContext->setContextProperty("packageVersion", m_packageVersion);
 
+#if defined(BUILD_FOR_HARMATTAN)
     m_showtimesFetcher = new TheaterShowtimesFetcher(m_theaterListModel);
     connect(m_showtimesFetcher, SIGNAL(theatersFetched(int)),
             this, SLOT(onTheatersFetched(int)), Qt::UniqueConnection);
+#endif
 }
 
 Controller::~Controller()
 {
+#if defined(BUILD_FOR_HARMATTAN)
     delete m_showtimesFetcher;
+#endif
     delete m_sortFilterModel;
     delete m_theaterListModel;
 }
 
 void Controller::share(QString title, QString url)
 {
-#ifndef QT_SIMULATOR
+#ifdef BUILD_FOR_HARMATTAN
     // See https://meego.gitorious.org/meego-sharing-framework/share-ui/blobs/master/examples/link-share/page.cpp
     // and http://forum.meego.com/showthread.php?t=3768
     MDataUri dataUri;
@@ -108,7 +117,9 @@ void Controller::fetchTheaters(QString location, QString daysAhead)
 {
     m_location = location;
     m_daysAhead = daysAhead;
+#if defined(BUILD_FOR_HARMATTAN)
     m_showtimesFetcher->fetchTheaters(m_location, m_daysAhead);
+#endif
 }
 
 QString Controller::currentLocation()
@@ -134,6 +145,7 @@ QString Controller::formatCurrency(QString value)
 
 void Controller::saveImage(QObject* item, const QString& remoteSource)
 {
+    // FIXME: fix for SailfishOS
     QFileInfo imageUrl(remoteSource);
     QUrl sourceUrl = QUrl::fromUserInput(PICTURES_PATH +
                                          imageUrl.fileName());
@@ -141,6 +153,8 @@ void Controller::saveImage(QObject* item, const QString& remoteSource)
     Q_UNUSED(item)
     qDebug() << Q_FUNC_INFO << sourceUrl.toLocalFile();
 #else
+#if defined(BUILD_FOR_HARMATTAN)
     ImageSaver::save(item, sourceUrl.toLocalFile());
+#endif
 #endif
 }
