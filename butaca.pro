@@ -16,7 +16,7 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/postrm \
     qtc_packaging/debian_harmattan/postinst \
     qtc_packaging/debian_harmattan/butaca.aegis \
-    rpm/harbour-butaca.yaml \
+    rpm/harbour-butaca.spec \
     README.md \
     AUTHORS.md \
     COPYING

@@ -135,6 +135,9 @@ exists("/usr/include/sailfishapp/sailfishapp.h"): {
                    harbour-butaca.desktop \
                    ../data/harbour-butaca.png
 
+    DEFINES -= PACKAGEVERSION
+    DEFINES += PACKAGEVERSION=\\\"$$VERSION\\\"
+
     RESOURCES += \
         sailfish_res.qrc
 
