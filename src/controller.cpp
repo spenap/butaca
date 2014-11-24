@@ -43,7 +43,9 @@
     static const QString PICTURES_PATH("/home/user/MyDocs/Pictures/");
 #elif defined(BUILD_FOR_SAILFISH)
     #include <QDebug>
-    static const QString PICTURES_PATH("/home/nemo/Pictures/");
+    #include <QtCore/QStandardPaths>
+    static const QString PICTURES_PATH =
+            QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
 #else
     #include <QDebug>
     static const QString PICTURES_PATH("undefined");
