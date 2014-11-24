@@ -19,21 +19,18 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import 'constants.js' as UIConstants
 
 BackgroundItem {
     id: delegate
 
     property string title: ''
     property int titleSize: Theme.fontSizeMedium
-    property string titleFontFamily: UIConstants.FONT_FAMILY
-    property color titleColor: UIConstants.COLOR_INVERTED_FOREGROUND
+    property color titleColor: Theme.primaryColor
     property bool titleWraps: false
 
     property string subtitle: ''
     property int subtitleSize: Theme.fontSizeMedium
-    property string subtitleFontFamily: UIConstants.FONT_FAMILY_LIGHT
-    property color subtitleColor: UIConstants.COLOR_SECONDARY_FOREGROUND
+    property color subtitleColor: Theme.secondaryColor
     property bool subtitleWraps: false
 
     property string iconSource: ''
@@ -42,9 +39,7 @@ BackgroundItem {
     property bool expandable: false
     property bool expanded: false
 
-    property int defaultSize: smallSize ?
-                                  UIConstants.LIST_ITEM_HEIGHT_SMALL :
-                                  UIConstants.LIST_ITEM_HEIGHT_DEFAULT
+    property int defaultSize: smallSize ? Theme.itemSizeSmall : Theme.itemSizeMedium
     height: titleWraps || subtitleWraps ?
                 delegateColumn.height :
                 defaultSize
@@ -53,13 +48,13 @@ BackgroundItem {
         id: delegateImage
         anchors {
             left: parent.left
-            leftMargin: UIConstants.PADDING_LARGE
+            leftMargin: Theme.paddingMedium
             verticalCenter: parent.verticalCenter
         }
         source: iconSource
         fillMode: Image.PreserveAspectFit
-        width: UIConstants.SIZE_ICON_LARGE
-        height: UIConstants.SIZE_ICON_LARGE
+        width: Theme.iconSizeMedium
+        height: width
         visible: iconSource
     }
 
@@ -67,14 +62,14 @@ BackgroundItem {
         id: delegateColumn
         anchors {
             left: delegateImage.visible ? delegateImage.right : parent.left
-            leftMargin: UIConstants.DEFAULT_MARGIN
+            leftMargin: Theme.paddingLarge
             right: parent.right
-            rightMargin: UIConstants.DEFAULT_MARGIN
+            rightMargin: Theme.paddingLarge
             verticalCenter: parent.verticalCenter
         }
         width: parent.width -
-               (delegateImage.visible ? (delegateImage.width + UIConstants.DEFAULT_MARGIN) : 0) -
-               UIConstants.DEFAULT_MARGIN
+               (delegateImage.visible ? (delegateImage.width + Theme.paddingLarge) : 0) -
+               Theme.paddingLarge
 
         Label {
             id: delegateTitleLabel
@@ -103,7 +98,7 @@ BackgroundItem {
 //        anchors {
 //            verticalCenter: parent.verticalCenter
 //            right: parent.right
-//            rightMargin: UIConstants.DEFAULT_MARGIN
+//            rightMargin: Theme.paddingLarge
 //        }
 //        rotation: expandable ? (expanded ? -90 : 90) : 0
 

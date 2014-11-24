@@ -1,23 +1,14 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import 'constants.js' as UIConstants
-
-// collapsable details box
 BackgroundItem {
     id: detailsBackground
 
     property string textHeader: ''
     property string textContent: ''
 
-//    property real ellipsisDisplacement: detailsBox.opened ? 0 : Theme.paddingLarge
-//    Behavior on ellipsisDisplacement {
-//        NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
-//    }
-
     width: parent.width
-    //detailsBox.height + detailsBox.y + Theme.paddingMedium + ellipsisDisplacement
-    height: content.height + Theme.paddingMedium //+ ellipsisDisplacement
+    height: content.height + Theme.paddingMedium
 
     Column {
         id: content
@@ -69,9 +60,7 @@ BackgroundItem {
                 font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.WordWrap
             }
-
-        }//Item
-
+        }
     }
 
     Item {

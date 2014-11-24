@@ -19,7 +19,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import 'constants.js' as UIConstants
 import 'moviedbwrapper.js' as TMDB
 
 Page {
@@ -33,17 +32,6 @@ Page {
     property int gridSize: 1
     property int fullSize: 4
     property int saveSize: 100
-
-//    tools: ToolBarLayout {
-//        ToolIcon {
-//            iconId: 'toolbar-back'
-//            onClicked: {
-//                if (expanded)
-//                    expanded = !expanded
-//                else
-//                    appWindow.pageStack.pop()
-//            }
-//        }
 
 //        ToolButton {
 //            anchors.centerIn: parent
@@ -64,65 +52,49 @@ Page {
     Component {
         id: gridViewWrapper
 
-        GridView {
+        SilicaGridView {
             id: gridView
-            cellHeight: 160
-            cellWidth: 160
+            cellWidth: parent.width / 3
+            cellHeight: cellWidth
             cacheBuffer: 2 * height
             model: galleryView.galleryViewModel
-            delegate: Rectangle {
+            delegate: BackgroundItem {
                 id: gridViewDelegate
                 height: cellHeight
                 width: cellWidth
-                color: '#2d2d2d'
-                opacity: gridDelegateMouseArea.pressed ? 0.5 : 1
+                opacity: highlighted ? 0.5 : 1
 
                 Image {
                     id: gridDelegateImage
                     clip: true
-                    anchors {
-                        fill: parent
-                        margins: UIConstants.PADDING_XSMALL
-                    }
+                    anchors.fill: parent
                     source: TMDB.image(imgType,
                                        gridSize,
                                        file_path,
                                        { app_locale: appLocale })
                     fillMode: Image.PreserveAspectCrop
                 }
-
-                Rectangle {
-                    id: gridDelegateFrame
-                    anchors.fill: parent
-                    color: 'transparent'
-                    border.color: '#2d2d2d'
-                    border.width: UIConstants.PADDING_XSMALL
-                }
-
-                MouseArea {
-                    id: gridDelegateMouseArea
-                    anchors.fill: parent
-                    onClicked: {
-                        galleryView.currentIndex = index
-                        galleryView.expanded = !galleryView.expanded
-                    }
+                onClicked: {
+                    galleryView.currentIndex = index
+                    galleryView.expanded = !galleryView.expanded
                 }
             }
+            VerticalScrollDecorator { }
         }
     }
 
     Component {
         id: detailedView
 
-        Rectangle {
+        Item {
             id: detailedDelegate
-            color: '#2d2d2d'
+//            color: '#2d2d2d'
 
 //            PageIndicator {
 //                id: detailedDelegateIndicator
 //                anchors {
 //                    top: parent.top
-//                    topMargin: UIConstants.DEFAULT_MARGIN
+//                    topMargin: Theme.paddingLarge
 //                    horizontalCenter: parent.horizontalCenter
 //                }
 //                totalPages: galleryView.galleryViewModel.count
@@ -137,7 +109,7 @@ Page {
                                          { app_locale: appLocale })
                 anchors {
                     top: parent.top//detailedDelegateIndicator.bottom
-                    topMargin: UIConstants.DEFAULT_MARGIN
+                    topMargin: Theme.paddingLarge
                     left: parent.left
                     right: parent.right
                     bottom: parent.bottom

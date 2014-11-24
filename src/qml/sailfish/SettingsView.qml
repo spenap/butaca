@@ -19,8 +19,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
-import 'constants.js' as UIConstants
 import "storage.js" as Storage
 
 Page {
@@ -55,8 +53,8 @@ Page {
         id: settingsContent
         anchors {
             fill: parent
-            leftMargin: UIConstants.DEFAULT_MARGIN
-            rightMargin: UIConstants.DEFAULT_MARGIN
+            leftMargin: Theme.paddingLarge
+            rightMargin: Theme.paddingLarge
         }
         width: parent.width
         contentHeight: settingsColumnContent.height
@@ -64,7 +62,7 @@ Page {
         Column {
             id: settingsColumnContent
             width: parent.width
-            spacing: UIConstants.DEFAULT_MARGIN
+            spacing: Theme.paddingLarge
 
             PageHeader {
                 id: settingsHeader
@@ -76,7 +74,7 @@ Page {
                 id: showtimesSection
                 // TODO: showtimes
 //                width: parent.width
-//                spacing: UIConstants.DEFAULT_MARGIN
+//                spacing: Theme.paddingLarge
 
 //                SectionHeader {
 //                    id: showtimesSectionHeader
@@ -86,7 +84,7 @@ Page {
 
 //                Row {
 //                    id: showtimesLocation
-//                    spacing: UIConstants.DEFAULT_MARGIN
+//                    spacing: Theme.paddingLarge
 //                    width: parent.width
 
 //                    Label {
@@ -135,7 +133,7 @@ Page {
 //                Row {
 //                    id: showtimesDateItem
 //                    width: parent.width
-//                    spacing: UIConstants.DEFAULT_MARGIN
+//                    spacing: Theme.paddingLarge
 
 //                    Label {
 //                        id: showtimesDateLabel
@@ -154,10 +152,10 @@ Page {
 //                        Image {
 //                           anchors {
 //                               right: parent.right
-//                               rightMargin: UIConstants.DEFAULT_MARGIN
+//                               rightMargin: Theme.paddingLarge
 //                               verticalCenter: parent.verticalCenter
 //                           }
-//                           height: parent.height - UIConstants.DEFAULT_MARGIN
+//                           height: parent.height - Theme.paddingLarge
 //                           source: "image://theme/meegotouch-combobox-indicator-inverted"
 //                       }
 //                    }
@@ -167,7 +165,7 @@ Page {
             Column {
                 id: browsingSection
                 width: parent.width
-                spacing: UIConstants.DEFAULT_MARGIN
+                spacing: Theme.paddingLarge
 
                 SectionHeader {
                     id: browsingSectionHeader

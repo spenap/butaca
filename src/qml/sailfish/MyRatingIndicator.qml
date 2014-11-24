@@ -64,6 +64,8 @@ Item {
      */
     property double ratingValue: 0.0
 
+    property bool highlighted: false
+
 
 
     /*
@@ -98,8 +100,8 @@ Item {
         property int imageHeight: 16
         property int indicatorSpacing: 5  // spacing between images
         property int textSpacing: 8  // spacing between image and text
-        property url backgroundImageSource: "image://theme/icon-m-favorite"
-        property url indicatorImageSource: "image://theme/icon-m-favorite-selected"
+        property url backgroundImageSource: "image://theme/icon-m-favorite" + (highlighted ? "?" + Theme.highlightColor : "")
+        property url indicatorImageSource: "image://theme/icon-m-favorite-selected" + (highlighted ? "?" + Theme.highlightColor : "")
     }
     function roundHalf(num) {
         num = Math.round(num*2)/2;
@@ -156,7 +158,7 @@ Item {
         id: text
         visible: count >= 0
         text: "(" + count + ")"
-        color: Theme.primaryColor
+        color: highlighted ? Theme.highlightColor : Theme.primaryColor
         font.pixelSize: Theme.fontSizeSmall
         anchors.left: background.right
         anchors.leftMargin: internal.textSpacing

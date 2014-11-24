@@ -20,8 +20,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import 'constants.js' as UIConstants
-
 Page {
     property string license: 'This program is free software: you can redistribute it and/or modify ' +
                              'it under the terms of the GNU General Public License as published by ' +
@@ -43,7 +41,8 @@ Page {
                                  'Christoph Keller, Janne Makinen, Tuomas Siipola, ' +
                                  'Alexandre Mazari, Petru Motrescu, Oytun Şengül, ' +
                                  'Ismail Coskuner, Aras Ergus, Joaquim Rocha, ' +
-                                 'Marco Porsch</p>')
+                                 'Marco Porsch, Lukas Vogel, Stephan Beyerle, ' +
+                                 'Jakub Kožíšek</p>')
     property string styleSheets: "<style type='text/css'>a:link {color:%1}</style>".arg(Theme.highlightColor)
 
     Component.onCompleted: {
@@ -62,22 +61,22 @@ Page {
         ListElement {
             title: 'Recomienda esta aplicación'
             action: 'openExternally'
-            data: 'mailto:?subject=Download%20Butaca&body=Available%20at%20https://openrepos.net/content/whisk4s/butaca'
+            data: 'mailto:?subject=Download%20Butaca&body=Available%20at%20https://openrepos.net/content/lukedirtwalker/butaca'
         }
         ListElement {
             title: 'Cuéntanos tu opinión'
             action: 'openExternally'
-            data: 'mailto:spena@igalia.com?subject=Butaca'
+            data: 'mailto:lukedirtwalkerdev@gmail.com?subject=Butaca'
         }
         ListElement {
             title: 'Valóranos en openrepos.net'
             action: 'openExternally'
-            data: 'https://openrepos.net/content/whisk4s/butaca' // TODO fix link
+            data: 'https://openrepos.net/content/lukedirtwalker/butaca'
         }
         ListElement {
             title: 'Síguenos en Twitter'
             action: 'openExternally'
-            data: 'https://twitter.com/#!/spenap'
+            data: 'https://twitter.com/lukedirtwalker'
         }
     }
 
@@ -109,7 +108,7 @@ Page {
                     Label {
                         anchors {
                             left: parent.left
-                            leftMargin: UIConstants.DEFAULT_MARGIN
+                            leftMargin: Theme.paddingLarge
                             verticalCenter: parent.verticalCenter
                         }
                         text: model.title
@@ -129,7 +128,7 @@ Page {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: Theme.fontSizeSmall
-                color: UIConstants.COLOR_SECONDARY_FOREGROUND
+                color: Theme.secondaryColor
             }
 
             Image {
@@ -155,65 +154,47 @@ Page {
                 horizontalAlignment: Text.AlignJustify
                 font.pixelSize: Theme.fontSizeSmall
                 textFormat: Text.RichText
-                color: UIConstants.COLOR_SECONDARY_FOREGROUND
+                color: Theme.secondaryColor
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 
-// TODO: Showtimes
-//            Label {
-//                id: aboutShowtimesDisclaimer
-//                anchors {
-//                    left: parent.left
-//                    leftMargin: Theme.paddingLarge
-//                    right: parent.right
-//                    rightMargin: Theme.paddingLarge
-//                }
+            // TODO: Showtimes
+            //            Label {
+            //                id: aboutShowtimesDisclaimer
+            //                anchors {
+            //                    left: parent.left
+            //                    leftMargin: Theme.paddingLarge
+            //                    right: parent.right
+            //                    rightMargin: Theme.paddingLarge
+            //                }
 
-//                //: Disclaimer about Google Showtimes usage
-//                text: styleSheets + qsTr('This product presents showtimes from ' +
-//                                         '<a href="http://www.google.com/movies">Google ' +
-//                                         'Movies</a> but is not endorsed or certified by Google.')
-//                wrapMode: Text.WordWrap
-//                horizontalAlignment: Text.AlignJustify
-//                font.pixelSize: Theme.fontSizeSmall
-//                textFormat: Text.RichText
-//                color: UIConstants.COLOR_SECONDARY_FOREGROUND
-//                onLinkActivated: Qt.openUrlExternally(link)
-//            }
+            //                //: Disclaimer about Google Showtimes usage
+            //                text: styleSheets + qsTr('This product presents showtimes from ' +
+            //                                         '<a href="http://www.google.com/movies">Google ' +
+            //                                         'Movies</a> but is not endorsed or certified by Google.')
+            //                wrapMode: Text.WordWrap
+            //                horizontalAlignment: Text.AlignJustify
+            //                font.pixelSize: Theme.fontSizeSmall
+            //                textFormat: Text.RichText
+            //                color: Theme.secondaryColor
+            //                onLinkActivated: Qt.openUrlExternally(link)
+            //            }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 //: Shown in a button. When clicked, the application license is shown
                 text: qsTr('License')
-                onClicked: licenseDialog.open()
+                onClicked: pageStack.push(Qt.resolvedUrl("InfoPage.qml"),
+                                          {"title": text, "text": license})
             }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 //: Shown in a button. When clicked, the application credits are shown
                 text: qsTr('Credits')
-                onClicked: creditsDialog.open()
+                onClicked: pageStack.push(Qt.resolvedUrl("InfoPage.qml"),
+                                          {"title": text, "text": credits})
             }
         }
     }
-
-//        QueryDialog {
-//            id: licenseDialog
-//            titleText: qsTr('License')
-//            message: license
-//            //: OK button
-//            acceptButtonText: qsTr('OK')
-//        }
-
-    //    QueryDialog {
-    //        id: creditsDialog
-    //        titleText: qsTr('Credits')
-    //        message: credits
-    //        acceptButtonText: qsTr('OK')
-    //    }
-
-    //    ScrollDecorator {
-    //        flickableItem: flick
-    //        anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
-    //    }
 }

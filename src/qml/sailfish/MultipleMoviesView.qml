@@ -22,7 +22,6 @@ import Sailfish.Silica 1.0
 import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TMDB
 import "storage.js" as Storage
-import 'constants.js' as UIConstants
 
 Page {
     allowedOrientations: Orientation.Portrait

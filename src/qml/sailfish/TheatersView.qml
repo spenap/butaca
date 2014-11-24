@@ -19,7 +19,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import 'constants.js' as UIConstants
 import "storage.js" as Storage
 import "butacautils.js" as Util
 
@@ -102,7 +101,7 @@ Page {
             width: list.width
             title: model.name
             subtitle: model.playing
-            subtitleSize: UIConstants.FONT_XSMALL
+            subtitleSize: Theme.fontSizeSmall
 
             onClicked: {
                 appWindow.pageStack.push(showtimesView,

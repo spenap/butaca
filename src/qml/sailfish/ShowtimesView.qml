@@ -19,7 +19,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import 'constants.js' as UIConstants
 
 Page {
     allowedOrientations: Orientation.Portrait
@@ -41,18 +40,18 @@ Page {
             }
 
             Label {
-                color: UIConstants.COLOR_SECONDARY_FOREGROUND
+                color: Theme.secondaryColor
                 anchors.left: parent.left
-                anchors.leftMargin: UIConstants.DEFAULT_MARGIN
+                anchors.leftMargin: Theme.paddingLarge
                 anchors.right: parent.right
-                anchors.rightMargin: UIConstants.DEFAULT_MARGIN
+                anchors.rightMargin: Theme.paddingLarge
                 wrapMode: Text.WordWrap
 
                 text: cinemaInfo
             }
             // hack some space
             Item {
-                height: UIConstants.DEFAULT_MARGIN
+                height: Theme.paddingLarge
             }
         }
         delegate: MyListDelegate {
@@ -60,7 +59,7 @@ Page {
             title: model.name
             titleWraps: true
             subtitle: model.showtimes
-            subtitleSize: UIConstants.FONT_SMALL
+            subtitleSize: Theme.fontSizeSmall
             subtitleWraps: true
 
             onClicked: {

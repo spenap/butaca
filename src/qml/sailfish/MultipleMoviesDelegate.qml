@@ -19,8 +19,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
-import 'constants.js' as UIConstants
 import 'moviedbwrapper.js' as TMDB
 
 BackgroundItem {
@@ -34,25 +32,25 @@ BackgroundItem {
     property int votes: 0
 
     width: movieDelegate.ListView.view.width
-    height: 140 + UIConstants.DEFAULT_MARGIN
+    height: 140 + Theme.paddingLarge
 
     Item {
         anchors {
             fill: parent
-            leftMargin: UIConstants.DEFAULT_MARGIN
-            rightMargin: UIConstants.DEFAULT_MARGIN
+            leftMargin: Theme.paddingLarge
+            rightMargin: Theme.paddingLarge
         }
 
         Row {
             id: content
-            spacing: 15
+            spacing: Theme.paddingMedium
             anchors {
                 top: parent.top
-                topMargin: UIConstants.DEFAULT_MARGIN / 2
+                topMargin: Theme.paddingLarge / 2
                 bottom: parent.bottom
-                bottomMargin: UIConstants.DEFAULT_MARGIN / 2
+                bottomMargin: Theme.paddingLarge / 2
                 right: parent.right //viewDetails.left
-                rightMargin: UIConstants.DEFAULT_MARGIN
+                rightMargin: Theme.paddingLarge
                 left: parent.left
             }
 
@@ -72,7 +70,7 @@ BackgroundItem {
             }
 
             Column {
-                width: parent.width - moviePoster.width - 15
+                width: parent.width - moviePoster.width - Theme.paddingMedium
                 height: parent.height
                 spacing: 10
 
@@ -80,26 +78,25 @@ BackgroundItem {
                     id: titleText
                     color: movieDelegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                     width: parent.width
-                    elide: Text.ElideRight
-                    textFormat: Text.StyledText
-                    maximumLineCount: 2
-                    wrapMode: Text.WordWrap
+                    truncationMode: TruncationMode.Fade
+//                    textFormat: Text.StyledText
                     text: name
                 }
 
                 Label {
                     id: yearText
-                    font.pixelSize: UIConstants.FONT_LSMALL
+                    font.pixelSize: Theme.fontSizeSmall
                     color: movieDelegate.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                     width: parent.width
                     text: '(%1)'.arg(year)
                 }
 
-//                MyRatingIndicator {
-//                    ratingValue: rating / 2
-//                    maximumValue: 5
-//                    count: votes
-//                }
+                MyRatingIndicator {
+                    ratingValue: rating / 2
+                    maximumValue: 5
+                    count: votes
+                    highlighted: movieDelegate.highlighted
+                }
             }
         }
     }

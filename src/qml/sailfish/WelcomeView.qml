@@ -19,7 +19,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import 'constants.js' as UIConstants
 import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TMDB
 import 'storage.js' as Storage

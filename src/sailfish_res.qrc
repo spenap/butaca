@@ -8,13 +8,9 @@
         <file>qml/sailfish/jsonpath.js</file>
         <file>qml/sailfish/SearchView.qml</file>
         <file>qml/sailfish/WelcomeView.qml</file>
-        <file>qml/sailfish/MyMoreIndicator.qml</file>
-        <file>qml/sailfish/Header.qml</file>
-        <file>qml/sailfish/NoContentItem.qml</file>
         <file>qml/sailfish/CastView.qml</file>
         <file>qml/sailfish/FilmographyView.qml</file>
         <file>qml/sailfish/PersonView.qml</file>
-        <file>qml/sailfish/ListSectionDelegate.qml</file>
         <file>qml/sailfish/TheatersView.qml</file>
         <file>qml/sailfish/SettingsView.qml</file>
         <file>qml/sailfish/MyListDelegate.qml</file>
@@ -25,7 +21,6 @@
         <file>qml/sailfish/MyModelPreviewer.qml</file>
         <file>qml/sailfish/butacautils.js</file>
         <file>qml/sailfish/storage.js</file>
-        <file>qml/sailfish/constants.js</file>
         <file>resources/movie-placeholder.svg</file>
         <file>resources/person-placeholder.svg</file>
         <file>resources/butaca.svg</file>
@@ -61,5 +56,6 @@
         <file>qml/sailfish/ListsView.qml</file>
         <file>resources/icon-bg-cinema.png</file>
         <file>qml/sailfish/PropertyItem.qml</file>
+        <file>qml/sailfish/InfoPage.qml</file>
     </qresource>
 </RCC>

@@ -19,22 +19,12 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import 'constants.js' as UIConstants
 import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TMDB
 
 Page {
     id: filmographyView
     allowedOrientations: Orientation.Portrait
-
-//    tools: ToolBarLayout {
-//        ToolIcon {
-//            iconId: 'toolbar-back'
-//            onClicked: {
-//                appWindow.pageStack.pop()
-//            }
-//        }
-//    }
 
     // Dummy function for translations (found no other way to add them to the file)
     function dummy() {
@@ -57,23 +47,19 @@ Page {
     Component {
         id: listSectionDelegate
 
-        ListSectionDelegate {
+        SectionHeader {
             // Translate the section name. See dummy() for translations
-            sectionName: qsTranslate("FilmographyView", section)
+            text: qsTranslate("FilmographyView", section)
         }
     }
 
-    ListView {
+    SilicaListView {
         id: filmographyList
-        anchors {
-            fill: parent
-            margins: UIConstants.DEFAULT_MARGIN
-        }
+        anchors.fill: parent
         model: filmographyModel
-        header: Header {
+        header: PageHeader {
             //: This appears in the filmography view header
-            text: qsTr('%1\'s filmography').arg(personName)
-            showDivider: false
+            title: qsTr('%1\'s filmography').arg(personName)
         }
         delegate: MyListDelegate {
             width: filmographyList.width
@@ -103,10 +89,7 @@ Page {
 
         section.property: 'department'
         section.delegate: listSectionDelegate
-    }
 
-//    ScrollDecorator {
-//        flickableItem: filmographyList
-//        anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
-//    }
+        VerticalScrollDecorator { }
+    }
 }

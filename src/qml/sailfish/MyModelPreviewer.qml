@@ -19,7 +19,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import 'constants.js' as UIConstants
 import 'moviedbwrapper.js' as TMDB
 
 Column {
@@ -42,9 +41,9 @@ Column {
     MyEntryHeader {
         anchors {
             left: parent.left
-            leftMargin: UIConstants.DEFAULT_MARGIN
+            leftMargin: Theme.paddingLarge
             right: parent.right
-            rightMargin: UIConstants.DEFAULT_MARGIN
+            rightMargin: Theme.paddingLarge
         }
         text: previewerHeaderText
     }

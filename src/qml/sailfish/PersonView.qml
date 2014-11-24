@@ -21,7 +21,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TMDB
-import 'constants.js' as UIConstants
 
 Page {
     id: personView
@@ -224,7 +223,7 @@ Page {
         Column {
             id: personContent
             width: parent.width
-            spacing: UIConstants.DEFAULT_MARGIN
+            spacing: Theme.paddingLarge
 
             PageHeader {
                 title: parsedPerson.name
@@ -241,7 +240,7 @@ Page {
                     running: loadingExtended
                     anchors {
                         left: extendedContentLabel.right
-                        leftMargin: UIConstants.DEFAULT_MARGIN
+                        leftMargin: Theme.paddingLarge
                         verticalCenter: extendedContentLabel.verticalCenter
                     }
                 }
@@ -249,7 +248,12 @@ Page {
 
             Row {
                 id: row
-                width: parent.width
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.paddingLarge
+                    right: parent.right
+                    rightMargin: Theme.paddingLarge
+                }
 
                 Image {
                     id: image
@@ -266,13 +270,13 @@ Page {
                         anchors {
                             left: parent.left
                             right: parent.right
-                            margins: UIConstants.DEFAULT_MARGIN
+                            margins: Theme.paddingLarge
                         }
                         text: parsedPerson.name
                     }
 
                     Item {
-                        height: UIConstants.DEFAULT_MARGIN
+                        height: Theme.paddingLarge
                         width: parent.width
                     }
 
@@ -280,7 +284,7 @@ Page {
                         anchors {
                             left: parent.left
                             right: parent.right
-                            margins: UIConstants.DEFAULT_MARGIN
+                            margins: Theme.paddingLarge
                         }
                         visible: parsedPerson.birthday
                         //: Header shown for the born details of a person
@@ -293,7 +297,7 @@ Page {
                         anchors {
                             left: parent.left
                             right: parent.right
-                            margins: UIConstants.DEFAULT_MARGIN
+                            margins: Theme.paddingLarge
                         }
                         font.pixelSize: Theme.fontSizeSmall
                         wrapMode: Text.WordWrap
@@ -305,7 +309,7 @@ Page {
                         anchors {
                             left: parent.left
                             right: parent.right
-                            margins: UIConstants.DEFAULT_MARGIN
+                            margins: Theme.paddingLarge
                         }
                         font.pixelSize: Theme.fontSizeSmall
                         wrapMode: Text.WordWrap
@@ -313,7 +317,7 @@ Page {
                     }
 
                     Item {
-                        height: UIConstants.DEFAULT_MARGIN
+                        height: Theme.paddingLarge
                         width: parent.width
                     }
 
@@ -321,7 +325,7 @@ Page {
                         anchors {
                             left: parent.left
                             right: parent.right
-                            margins: UIConstants.DEFAULT_MARGIN
+                            margins: Theme.paddingLarge
                         }
                         font.pixelSize: Theme.fontSizeSmall
                         wrapMode: Text.WordWrap
@@ -330,12 +334,6 @@ Page {
                                    parsedPerson.knownFor)
                     }
                 }
-            }
-
-            Rectangle {
-                width: parent.width
-                height: 1
-                color: UIConstants.COLOR_SECONDARY_FOREGROUND
             }
 
             MyGalleryPreviewer {
@@ -348,13 +346,6 @@ Page {
                 onClicked: {
                     appWindow.pageStack.push(galleryView, { galleryViewModel: picturesModel })
                 }
-            }
-
-            Rectangle {
-                width: parent.width
-                height: 1
-                color: UIConstants.COLOR_SECONDARY_FOREGROUND
-                visible: picturesModel.count > 0
             }
 
             MyTextExpander {
