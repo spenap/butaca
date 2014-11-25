@@ -21,7 +21,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TMDB
-import 'constants.js' as UIConstants
 import 'storage.js' as Storage
 
 Page {
@@ -250,7 +249,7 @@ Page {
         Column {
             id: movieContent
             width: parent.width
-            spacing: UIConstants.DEFAULT_MARGIN
+            spacing: Theme.paddingLarge
 
             PageHeader {
                 title: parsedMovie.name
@@ -268,7 +267,7 @@ Page {
                     running: loadingExtended
                     anchors {
                         left: extendedContentLabel.right
-                        leftMargin: UIConstants.DEFAULT_MARGIN
+                        leftMargin: Theme.paddingLarge
                         verticalCenter: extendedContentLabel.verticalCenter
                     }
                 }
@@ -276,7 +275,12 @@ Page {
 
             Row {
                 id: row
-                width: parent.width
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.paddingLarge
+                    right: parent.right
+                    rightMargin: Theme.paddingLarge
+                }
 
                 Image {
                     id: image
@@ -293,7 +297,7 @@ Page {
                         anchors {
                             left: parent.left
                             right: parent.right
-                            margins: UIConstants.DEFAULT_MARGIN
+                            margins: Theme.paddingLarge
                         }
                         text: parsedMovie.originalName +
                               (parsedMovie.started ? ' (' + Util.getYearFromDate(parsedMovie.started) + ')' : '')
@@ -304,7 +308,7 @@ Page {
                         anchors {
                             left: parent.left
                             right: parent.right
-                            margins: UIConstants.DEFAULT_MARGIN
+                            margins: Theme.paddingLarge
                         }
                         font.pixelSize: Theme.fontSizeSmall
                         wrapMode: Text.WordWrap
@@ -313,7 +317,7 @@ Page {
                     }
 
                     Item {
-                        height: UIConstants.DEFAULT_MARGIN
+                        height: Theme.paddingLarge
                         width: parent.width
                     }
 
@@ -322,7 +326,7 @@ Page {
                         anchors {
                             left: parent.left
                             right: parent.right
-                            margins: UIConstants.DEFAULT_MARGIN
+                            margins: Theme.paddingLarge
                         }
                         font.pixelSize: Theme.fontSizeSmall
                         wrapMode: Text.WordWrap
@@ -339,8 +343,8 @@ Page {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    leftMargin: UIConstants.DEFAULT_MARGIN
-                    rightMargin: UIConstants.DEFAULT_MARGIN
+                    leftMargin: Theme.paddingLarge
+                    rightMargin: Theme.paddingLarge
                 }
 
                 Label {
@@ -350,13 +354,13 @@ Page {
 
                 Label {
                     anchors.verticalCenter: ratingLabel.verticalCenter
-                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
+                    color: Theme.secondaryColor
                     text: '/10'
                 }
 
                 Item {
-                    height: UIConstants.DEFAULT_MARGIN
-                    width: UIConstants.DEFAULT_MARGIN
+                    height: Theme.paddingLarge
+                    width: Theme.paddingLarge
                 }
 
                 MyRatingIndicator {
@@ -369,12 +373,6 @@ Page {
 
             Column {
                 width: parent.width
-
-                Rectangle {
-                    width: parent.width
-                    height: 1
-                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
-                }
 
                 MyGalleryPreviewer {
                     width: parent.width
@@ -391,13 +389,6 @@ Page {
                                                      fullSize: 3
                                                  })
                     }
-                }
-
-                Rectangle {
-                    width: parent.width
-                    height: 1
-                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
-                    visible: postersModel.count > 0
                 }
 
                 MyGalleryPreviewer {
@@ -419,30 +410,16 @@ Page {
                     }
                 }
 
-                Rectangle {
-                    width: parent.width
-                    height: 1
-                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
-                    visible: backdropsModel.count > 0
-                }
-
                 MyListDelegate {
                     width: parent.width
                     //: Opens the movie trailer for viewing
                     title: qsTr('Watch trailer')
-                    titleSize: UIConstants.FONT_SLARGE
+                    titleSize: Theme.fontSizeLarge
 
                     iconSource: 'qrc:/resources/icon-m-common-video-playback.png'
                     visible: parsedMovie.trailer
 
                     onClicked: Qt.openUrlExternally(parsedMovie.trailer)
-                }
-
-                Rectangle {
-                    width: parent.width
-                    height: 1
-                    color: UIConstants.COLOR_SECONDARY_FOREGROUND
-                    visible: parsedMovie.trailer
                 }
             }
 

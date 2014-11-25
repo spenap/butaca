@@ -19,8 +19,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
-import 'constants.js' as UIConstants
 import 'butacautils.js' as Util
 import 'moviedbwrapper.js' as TheMovieDb
 import 'storage.js' as Storage
@@ -90,7 +88,7 @@ Page {
         id: resultsListLoader
         sourceComponent: useSimpleDelegate ? peopleListWrapper : filmListWrapper
         anchors {
-            topMargin: UIConstants.DEFAULT_MARGIN
+            topMargin: Theme.paddingLarge
             top: searchCategory.bottom
             bottom: parent.bottom
             left: parent.left
@@ -212,16 +210,16 @@ Page {
         }
     }
 
-    NoContentItem {
+    ViewPlaceholder {
         id: noResults
         anchors {
             top: searchCategory.bottom
             bottom: parent.bottom
             left: parent.left
             right: parent.right
-            margins: UIConstants.DEFAULT_MARGIN
+            margins: Theme.paddingLarge
         }
-        visible: false
+        enabled: false
         text: ''
     }
 
@@ -252,7 +250,7 @@ Page {
                   localModel.count === 0
             PropertyChanges {
                 target: noResults
-                visible: true
+                enabled: true
                 //: Shown in the search results area when no results were found
                 text: qsTr('No results found')
             }
@@ -265,7 +263,7 @@ Page {
                   !searchInput.text
             PropertyChanges {
                 target: noResults
-                visible: true
+                enabled: true
                 //: Shown in the search results area when no terms have been introduced
                 text: qsTr('Introduce search terms')
             }

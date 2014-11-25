@@ -19,10 +19,9 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import 'constants.js' as UIConstants
 import 'moviedbwrapper.js' as TMDB
 
-Item {
+BackgroundItem {
     id: galleryPreviewer
     height: 140
 
@@ -34,25 +33,16 @@ Item {
     property int previewerDelegateIconWidth: 92
     property int previewerDelegateIconHeight: 138
 
-    signal clicked()
-
-//    BorderImage {
-//        id: galleryPreviewerBackground
-//        anchors.fill: parent
-//        visible: galleryPreviewerMouseArea.pressed
-//        source: 'image://theme/meegotouch-list-fullwidth-inverted-background-pressed-vertical-center'
-//    }
-
     Flow {
         id: galleryPreviewerFlow
         anchors {
             left: parent.left
-            leftMargin: UIConstants.PADDING_LARGE
+            leftMargin: Theme.paddingLarge
             verticalCenter: parent.verticalCenter
         }
         width: parent.width - galleryPreviewerMoreIndicator.width
         height: parent.height
-        spacing: UIConstants.PADDING_LARGE
+        spacing: Theme.paddingMedium
 
         Repeater {
             id: galleryPreviewerRepeater
@@ -60,7 +50,7 @@ Item {
             delegate: Image {
                 id: previewerDelegate
                 width: previewerDelegateIconWidth; height: previewerDelegateIconHeight
-                opacity: galleryPreviewerMouseArea.pressed ? 0.5 : 1
+                opacity: galleryPreviewer.highlighted ? 0.5 : 1
                 fillMode: Image.PreserveAspectFit
                 source: TMDB.image(previewerDelegateType,
                                    previewerDelegateSize,
@@ -70,18 +60,13 @@ Item {
         }
     }
 
-    MyMoreIndicator {
+    Image {
         id: galleryPreviewerMoreIndicator
+        source: "image://theme/icon-m-right" + (highlighted ? "?" + Theme.highlightColor : "")
         anchors {
             right: parent.right
-            rightMargin: UIConstants.DEFAULT_MARGIN
+            rightMargin: Theme.paddingLarge
             verticalCenter: parent.verticalCenter
         }
-    }
-
-    MouseArea {
-        id: galleryPreviewerMouseArea
-        anchors.fill: parent
-        onClicked: galleryPreviewer.clicked()
     }
 }

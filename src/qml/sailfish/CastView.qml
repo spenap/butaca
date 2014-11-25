@@ -20,21 +20,11 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import 'butacautils.js' as BUTACA
-import 'constants.js' as UIConstants
 import 'moviedbwrapper.js' as TMDB
 
 Page {
     id: castView
-//    allowedOrientations: Orientation.Portrait
-
-//    tools: ToolBarLayout {
-//        ToolIcon {
-//            iconId: 'toolbar-back'
-//            onClicked: {
-//                appWindow.pageStack.pop()
-//            }
-//        }
-//    }
+    allowedOrientations: Orientation.Portrait
 
     // Dummy function for translations (found no other way to add them to the file)
     function dummy() {
@@ -58,26 +48,22 @@ Page {
     Component {
         id: listSectionDelegate
 
-        ListSectionDelegate {
+        SectionHeader {
             // Translate the section name. See dummy() for translations
-            sectionName: qsTranslate("CastView", section)
+            text: qsTranslate("CastView", section)
         }
     }
 
-    ListView {
+    SilicaListView {
         id: castList
-        anchors {
-            fill: parent
-            margins: UIConstants.DEFAULT_MARGIN
-        }
+        anchors.fill: parent
         model: castModel
-        header: Header {
-            text: showsCast ?
+        header: PageHeader {
+            title: showsCast ?
                       //: This appears in the cast view when the cast is shown
                       qsTr('Full cast in %1').arg(movieName) :
                       //: This appears in the cast view when cast and crew are shown
                       qsTr('Cast and crew in %1').arg(movieName)
-            showDivider: false
         }
         delegate: MyListDelegate {
             width: castList.width
@@ -98,10 +84,7 @@ Page {
 
         section.property: !showsCast ? 'department' : ''
         section.delegate: listSectionDelegate
-    }
 
-//    ScrollDecorator {
-//        flickableItem: castList
-//        anchors.rightMargin: -UIConstants.DEFAULT_MARGIN
-//    }
+        VerticalScrollDecorator { }
+    }
 }

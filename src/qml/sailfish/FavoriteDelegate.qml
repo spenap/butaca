@@ -19,7 +19,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import 'constants.js' as UIConstants
 
 BackgroundItem {
     id: delegate
@@ -36,7 +35,7 @@ BackgroundItem {
         id: content
         width: parent.width
         height: parent.height
-        spacing: UIConstants.PADDING_SMALL
+        spacing: Theme.paddingSmall
 
         Image {
             id: delegateImage
@@ -51,9 +50,9 @@ BackgroundItem {
             elide: Text.ElideRight
             anchors {
                 left: parent.left
-                leftMargin: UIConstants.PADDING_SMALL
+                leftMargin: Theme.paddingSmallL
                 right: parent.right
-                rightMargin: UIConstants.PADDING_SMALL
+                rightMargin: Theme.paddingSmall
             }
             maximumLineCount: labelMaximumLineCount
             font.pixelSize: Theme.fontSizeTiny
