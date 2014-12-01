@@ -6,7 +6,7 @@
         <location filename="../qml/AboutView.qml" line="41"/>
         <source>Thanks a lot to all contributors: %1</source>
         <extracomment>Header introducing the list of contributors</extracomment>
-        <translation>Bedankt aan alle medewerkers: %1</translation>
+        <translation>Bedankt aan alle bijdragers: %1</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="59"/>
@@ -18,7 +18,7 @@
         <location filename="../qml/AboutView.qml" line="61"/>
         <source>Tell us what you think</source>
         <extracomment>Short text inviting to provide application feedback</extracomment>
-        <translation>Vertel ons wat je er van vind</translation>
+        <translation>Vertel ons wat u er van vindt</translation>
     </message>
     <message>
         <source>Rate us in the Nokia Store</source>
@@ -29,7 +29,7 @@
         <location filename="../qml/AboutView.qml" line="65"/>
         <source>Follow us on Twitter</source>
         <extracomment>Short text inviting to follow us on Twitter</extracomment>
-        <translation>Volg ons op twitter</translation>
+        <translation>Volg ons op Twitter</translation>
     </message>
     <message>
         <source>Check our other apps</source>
@@ -40,7 +40,7 @@
         <location filename="../qml/AboutView.qml" line="213"/>
         <source>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</source>
         <extracomment>Disclaimer about The Movie Database API usage</extracomment>
-        <translation>Dit product maakt gebruik van de &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt; TMDb &lt;/a&gt; API, maar wordt niet onderschreven of gecertificeerd door TMDb.</translation>
+        <translation>Dit product maakt gebruik van de &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt; TMDb &lt;/a&gt;-API, maar wordt niet onderschreven of gecertificeerd door TMDb.</translation>
     </message>
     <message>
         <source>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</source>
@@ -51,7 +51,7 @@
         <location filename="../qml/AboutView.qml" line="63"/>
         <source>Rate us at openrepos.net</source>
         <extracomment>Short text inviting to rate us at openrepos.net</extracomment>
-        <translation type="unfinished"/>
+        <translation>Laat een waardering achter op openrepos.net</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="229"/>
@@ -71,7 +71,7 @@
         <location filename="../qml/AboutView.qml" line="269"/>
         <source>Credits</source>
         <extracomment>Shown in a button. When clicked, the application credits are shown</extracomment>
-        <translation>Credits</translation>
+        <translation>Bedankt aan</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="264"/>
@@ -131,12 +131,12 @@
     <message>
         <location filename="../qml/CastView.qml" line="50"/>
         <source>Costume &amp; Make-Up</source>
-        <translation>Kleding &amp; Make-Up</translation>
+        <translation>Kleding &amp; make-up</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="51"/>
         <source>Visual Effects</source>
-        <translation>Visuele Effecten</translation>
+        <translation>Visuele effecten</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="77"/>
@@ -166,12 +166,12 @@
         <location filename="../qml/FavoritesView.qml" line="130"/>
         <source>Movies in your watchlist will appear here</source>
         <extracomment>Shown as a placeholder in the watchlist view, when empty</extracomment>
-        <translation>Je films in je volglijst worden hier weergegeven</translation>
+        <translation>De films in uw volglijst worden hier weergegeven</translation>
     </message>
     <message>
         <location filename="../qml/FavoritesView.qml" line="144"/>
         <source>Your favorite content will appear here</source>
-        <translation>Je favoriete inhoud wordt hier weergegeven</translation>
+        <translation>Uw favoriete inhoud wordt hier weergegeven</translation>
     </message>
 </context>
 <context>
@@ -209,7 +209,7 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="47"/>
         <source>Acting</source>
-        <translation type="unfinished"/>
+        <translation>Acteurs</translation>
     </message>
     <message>
         <source>Actors</source>
@@ -228,12 +228,12 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="50"/>
         <source>Costume &amp; Make-Up</source>
-        <translation>Kleding &amp; Make-Up</translation>
+        <translation>Kleding &amp; make-up</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="51"/>
         <source>Visual Effects</source>
-        <translation>Visuele Effecten</translation>
+        <translation>Visuele effecten</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="75"/>
@@ -248,7 +248,7 @@
         <location filename="../qml/GenresView.qml" line="51"/>
         <source>Movie genres</source>
         <extracomment>This appears in the browse view header</extracomment>
-        <translation>Film genres</translation>
+        <translation>Filmgenres</translation>
     </message>
 </context>
 <context>
@@ -263,7 +263,7 @@
         <location filename="../qml/ListsView.qml" line="26"/>
         <source>Your favorite movies and celebrities</source>
         <extracomment>Shown as the subtitle for the favorites menu entry</extracomment>
-        <translation>Je favoriete films en beroemdheden</translation>
+        <translation>Uw favoriete films en beroemdheden</translation>
     </message>
     <message>
         <location filename="../qml/ListsView.qml" line="29"/>
@@ -275,7 +275,7 @@
         <location filename="../qml/ListsView.qml" line="31"/>
         <source>Movies you&apos;ve saved to watch later</source>
         <extracomment>Shown as the subtitle for the watchlist menu entry</extracomment>
-        <translation>Films die je hebt opgeslagen om later te bekijken</translation>
+        <translation>Films die u hebt opgeslagen om later te bekijken</translation>
     </message>
 </context>
 <context>
@@ -296,7 +296,7 @@
         <location filename="../qml/MediaGalleryView.qml" line="186"/>
         <source>Cancel</source>
         <extracomment>Placed on the save image sheet, when clicked closes the sheet and doesn't save</extracomment>
-        <translation>Annuleer</translation>
+        <translation>Annuleren</translation>
     </message>
 </context>
 <context>
@@ -305,19 +305,19 @@
         <location filename="../qml/MovieView.qml" line="56"/>
         <source>Add to watchlist</source>
         <extracomment>This adds the movie to the watch list</extracomment>
-        <translation>Voeg to aan volglijst</translation>
+        <translation>Toevoegen aan volglijst</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="58"/>
         <source>Remove from watchlist</source>
         <extracomment>This removes the movie from the watch list</extracomment>
-        <translation>Verwijder van volglijst</translation>
+        <translation>Verwijderen uit volglijst</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="78"/>
         <source>Open homepage</source>
         <extracomment>This opens a website displaying the movie homepage</extracomment>
-        <translation>Open startpagina</translation>
+        <translation>Website openen</translation>
     </message>
     <message>
         <source>View extras</source>
@@ -328,13 +328,13 @@
         <location filename="../qml/MovieView.qml" line="84"/>
         <source>View in IMDb</source>
         <extracomment>This visits the Internet Movie Database page of this content (movie or person)</extracomment>
-        <translation>Bekijk op IMDb</translation>
+        <translation>Op IMDb weergeven</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="89"/>
         <source>View in TMDb</source>
         <extracomment>This visits the The Movie Database page of this content (movie or person)</extracomment>
-        <translation>Bekijk op TMDb</translation>
+        <translation>Op TMDb weergeven</translation>
     </message>
     <message>
         <source>Not found</source>
@@ -345,7 +345,7 @@
         <location filename="../qml/MovieView.qml" line="304"/>
         <source>Loading content</source>
         <extracomment>This indicates that the extended info for a content (person or movie) is still loading</extracomment>
-        <translation>Inhoud laden</translation>
+        <translation>Bezig met laden van inhoud</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="360"/>
@@ -357,7 +357,7 @@
         <location filename="../qml/MovieView.qml" line="483"/>
         <source>Watch trailer</source>
         <extracomment>Opens the movie trailer for viewing</extracomment>
-        <translation>Bekijk trailer</translation>
+        <translation>Trailer weergeven</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="504"/>
@@ -369,7 +369,7 @@
         <location filename="../qml/MovieView.qml" line="515"/>
         <source>Release date</source>
         <extracomment>Label acting as the header for the release date</extracomment>
-        <translation>Release datum</translation>
+        <translation>Uitgavedatum</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="537"/>
@@ -381,7 +381,7 @@
         <location filename="../qml/MovieView.qml" line="555"/>
         <source>Alternative titles</source>
         <extracomment>Label acting as the header for the alternative titles</extracomment>
-        <translation type="unfinished"/>
+        <translation>Alternatieve titels</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="573"/>
@@ -445,17 +445,17 @@
     <message>
         <location filename="../qml/PersonView.qml" line="51"/>
         <source>View in IMDb</source>
-        <translation>Bekijk op IMDb</translation>
+        <translation>Op IMDb weergeven</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="55"/>
         <source>View in TMDb</source>
-        <translation>Bekijk op TMDb</translation>
+        <translation>Op TMDb weergeven</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="206"/>
         <source>Loading content</source>
-        <translation>Inhoud laden</translation>
+        <translation>Bezig met laden van inhoud</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="262"/>
@@ -467,7 +467,7 @@
         <location filename="../qml/PersonView.qml" line="311"/>
         <source>Known for %Ln movie(s)</source>
         <comment>Text shown in the person view displaying the number of movies a person is known for</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Bekend door %Ln film</numerusform><numerusform>Bekend door %Ln films</numerusform></translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="347"/>
@@ -506,19 +506,19 @@
         <location filename="../qml/SearchView.qml" line="105"/>
         <source>Movies</source>
         <extracomment>Shown in the button selecting movie search</extracomment>
-        <translation>Film</translation>
+        <translation>Films</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="111"/>
         <source>TV</source>
         <extracomment>Shown in the button selecting TV search</extracomment>
-        <translation type="unfinished"/>
+        <translation>TV</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="117"/>
         <source>Celebrities</source>
         <extracomment>Shown in the button selecting celebrities search</extracomment>
-        <translation>Beroemdheid</translation>
+        <translation>Beroemdheden</translation>
     </message>
     <message>
         <source>There was an error performing the search</source>
@@ -535,7 +535,7 @@
         <location filename="../qml/SearchView.qml" line="312"/>
         <source>Introduce search terms</source>
         <extracomment>Shown in the search results area when no terms have been introduced</extracomment>
-        <translation>Zoektermen</translation>
+        <translation>Voer zoektermen i</translation>
     </message>
 </context>
 <context>
@@ -562,37 +562,37 @@
         <location filename="../qml/SettingsView.qml" line="108"/>
         <source>Try automatically</source>
         <extracomment>Placeholder text for the default location. When visible, automatic location will be attempted</extracomment>
-        <translation>Probeer automatisch</translation>
+        <translation>Automatisch proberen</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="150"/>
         <source>Date</source>
         <extracomment>Label for the showtimes date setting</extracomment>
-        <translation type="unfinished"/>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="181"/>
         <source>Browsing</source>
         <extracomment>Label for the browsing section in the settings view</extracomment>
-        <translation>Zoeken</translation>
+        <translation>Bladeren</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="199"/>
         <source>Include content with &lt;10 votes</source>
         <extracomment>Label for the include criteria setting for adult content used when browsing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Inclusief inhoud met &lt;10 stemmen</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="230"/>
         <source>Include adult content</source>
         <extracomment>Label for the include criteria setting for adult content used when browsing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Inclusief volwassenen-inhoud</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="287"/>
         <source>Today</source>
         <extracomment>Shown in a button when the date is set to Today.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Vandaag</translation>
     </message>
     <message>
         <source>Order criteria</source>
@@ -652,13 +652,13 @@
         <location filename="../qml/TheatersView.qml" line="185"/>
         <source>In theaters</source>
         <extracomment>Header shown in the showtimes view</extracomment>
-        <translation>In theaters</translation>
+        <translation>In bioscopen</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="200"/>
         <source>Pull to filter by cinema or movie</source>
         <extracomment>Hint shown to tell users that they can filter by pulling</extracomment>
-        <translation>Trek naar beneden om te filteren.</translation>
+        <translation>Trek naar beneden om te filteren</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="261"/>
@@ -670,7 +670,7 @@
         <location filename="../qml/TheatersView.qml" line="263"/>
         <source>No results for your location</source>
         <extracomment>Message shown when no results are found for the automatic location</extracomment>
-        <translation>Geen resultaten voor jouw locatie</translation>
+        <translation>Geen resultaten voor uw locatie</translation>
     </message>
 </context>
 <context>
@@ -679,41 +679,41 @@
         <location filename="../qml/TvView.qml" line="54"/>
         <source>Open homepage</source>
         <extracomment>This opens a website displaying the movie homepage</extracomment>
-        <translation>Open startpagina</translation>
+        <translation>Website openen</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="60"/>
         <source>View in TMDb</source>
         <extracomment>This visits the The Movie Database page of this content (movie or person)</extracomment>
-        <translation>Bekijk op TMDb</translation>
+        <translation>Op TMDb weergeven</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="266"/>
         <source>Loading content</source>
         <extracomment>This indicates that the extended info for a content (person or movie) is still loading</extracomment>
-        <translation>Inhoud laden</translation>
+        <translation>Bezig met laden van inhoud</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="322"/>
         <source>%1 Episodes, %2 Seasons</source>
         <extracomment>This shows the TV show's number of episodes and seasons</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 afleveringen, %2 seizoenen</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="344"/>
         <source>in Production</source>
-        <translation type="unfinished"/>
+        <translation>in productie</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="345"/>
         <source>currently not in Production</source>
-        <translation type="unfinished"/>
+        <translation>momenteel niet in productie</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="447"/>
         <source>Watch trailer</source>
         <extracomment>Opens the movie trailer for viewing</extracomment>
-        <translation>Bekijk trailer</translation>
+        <translation>Trailer weergeven</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="468"/>
@@ -725,7 +725,7 @@
         <location filename="../qml/TvView.qml" line="479"/>
         <source>Release date</source>
         <extracomment>Label acting as the header for the release date</extracomment>
-        <translation>Release datum</translation>
+        <translation>Uitgavedatum</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="502"/>
@@ -737,7 +737,7 @@
         <location filename="../qml/TvView.qml" line="520"/>
         <source>Episode runtime</source>
         <extracomment>Label acting as the header for the episode runtime (duration)</extracomment>
-        <translation type="unfinished"/>
+        <translation>Afleveringsduur</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="539"/>
@@ -770,13 +770,13 @@
         <location filename="../qml/WelcomeView.qml" line="44"/>
         <source>Movie genres</source>
         <extracomment>Shown as the title for the browse view menu entry</extracomment>
-        <translation>Film genre</translation>
+        <translation>Filmgenres</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="46"/>
         <source>Explore movie genres</source>
         <extracomment>Shown as the subtitle for the browse view menu entry</extracomment>
-        <translation>Bekijk de film genres</translation>
+        <translation>Blader door filmgenres</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="49"/>
@@ -788,7 +788,7 @@
         <location filename="../qml/WelcomeView.qml" line="51"/>
         <source>What&apos;s on in cinemas near you</source>
         <extracomment>Shown as the subtitle for the browse view menu entry</extracomment>
-        <translation>Wat is er te zien in de buurt</translation>
+        <translation>Wat draait er in bioscopen in uw omgeving</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="54"/>
@@ -836,7 +836,7 @@
         <location filename="../qml/WelcomeView.qml" line="243"/>
         <source>Your favorite content will appear here</source>
         <extracomment>Shown as a placeholder in the favorites area of the main view while no favorites are there</extracomment>
-        <translation>Je favoriete inhoud wordt hier weergegeven</translation>
+        <translation>Uw favoriete inhoud wordt hier weergegeven</translation>
     </message>
 </context>
 </TS>

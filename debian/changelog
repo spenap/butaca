@@ -1,3 +1,9 @@
+butaca (0.9.5) unstable; urgency=low
+
+  * update translations: es, it_IT, nl, ru, cs, sv, ca
+
+ -- Marco Porsch <marco.porsch@etit.tu-chemnitz.de>  Mon, 01 Dec 2014 21:00:02 +0200
+
 butaca (0.9.4) unstable; urgency=low
 
   * update translations: cs, de, es, fi, fr_FR, it_IT, nl, pt_BR, pt_PT, ro, tr, vi
