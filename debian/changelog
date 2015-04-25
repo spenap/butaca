@@ -1,3 +1,9 @@
+butaca (0.9.6) unstable; urgency=low
+
+  * fix image loading
+
+ -- Marco Porsch <marco.porsch@posteo.de>  Sat, 25 Apr 2015 16:00:00 +0200
+
 butaca (0.9.5) unstable; urgency=low
 
   * update translations: es, it_IT, nl, ru, cs, sv, ca
