@@ -394,9 +394,18 @@ function image(type, index, imagePath, config) {
         var wrapper = instance(config.app_locale)
         if (index >= wrapper.config[type].length)
             index = wrapper.config[type].length - 1
-        var url = wrapper.config['image_baseUrl'] +
-                _addField(wrapper.config[type][index]) +
-                _addField(imagePath)
+
+        // construct url without introducing doubled slashes
+        var url = wrapper.config['image_baseUrl']
+        if (url.slice(-1) === '/')
+            url = url + wrapper.config[type][index]
+        else
+            url = url + _addField(wrapper.config[type][index])
+        if (imagePath.charAt(0) === '/')
+            url = url + imagePath
+        else
+            url = url + _addField(imagePath)
+
         console.debug('** IMAGE URL:', url)
         return url
     default:

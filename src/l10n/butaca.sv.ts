@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="it_IT" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sv" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
@@ -6,19 +6,19 @@
         <location filename="../qml/AboutView.qml" line="41"/>
         <source>Thanks a lot to all contributors: %1</source>
         <extracomment>Header introducing the list of contributors</extracomment>
-        <translation>Grazie a tutti coloro che hanno contribuito: %1</translation>
+        <translation>Tack till alla bidragsgivare: %1</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="59"/>
         <source>Recommend this app</source>
         <extracomment>Short text inviting to recommend the application</extracomment>
-        <translation>Raccomanda questa applicazione</translation>
+        <translation>Rekommendera den här appen</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="61"/>
         <source>Tell us what you think</source>
         <extracomment>Short text inviting to provide application feedback</extracomment>
-        <translation>Dicci cosa ne pensi</translation>
+        <translation>Berätta vad du tycker</translation>
     </message>
     <message>
         <source>Rate us in the Nokia Store</source>
@@ -29,7 +29,7 @@
         <location filename="../qml/AboutView.qml" line="65"/>
         <source>Follow us on Twitter</source>
         <extracomment>Short text inviting to follow us on Twitter</extracomment>
-        <translation>Seguici su Twitter</translation>
+        <translation>Följ oss på Twitter</translation>
     </message>
     <message>
         <source>Check our other apps</source>
@@ -40,7 +40,7 @@
         <location filename="../qml/AboutView.qml" line="213"/>
         <source>This product uses the &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; API but is not endorsed or certified by TMDb.</source>
         <extracomment>Disclaimer about The Movie Database API usage</extracomment>
-        <translation>Questo prodotto usa le API di &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb&lt;/a&gt; ma non è approvato o certificato da TMDb.</translation>
+        <translation>Det här programmet använder &lt;a href=&quot;http://www.themoviedb.org/&quot;&gt;TMDb:s&lt;/a&gt; API, men är inte godkänt eller certifierat av TMDb.</translation>
     </message>
     <message>
         <source>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</source>
@@ -51,27 +51,27 @@
         <location filename="../qml/AboutView.qml" line="63"/>
         <source>Rate us at openrepos.net</source>
         <extracomment>Short text inviting to rate us at openrepos.net</extracomment>
-        <translation>Valuta l&apos;app su OpenRepos.net</translation>
+        <translation>Betygsätt oss på openrepos.net</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="229"/>
         <source>This product presents showtimes from &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; but is not endorsed or certified by Google.</source>
         <extracomment>Disclaimer about Google Showtimes usage</extracomment>
-        <translation>Questo prodotto ottiene gli orari degli spettacoli da &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; ma non è approvato o certificato da Google.</translation>
+        <translation>Det här programmet visar visningstider från &lt;a href=&quot;http://www.google.com/movies&quot;&gt;Google Movies&lt;/a&gt; men är inte godkänt eller certifierat av Google.</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="246"/>
         <location filename="../qml/AboutView.qml" line="261"/>
         <source>License</source>
         <extracomment>Shown in a button. When clicked, the application license is shown</extracomment>
-        <translation>Licenza</translation>
+        <translation>Licens</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="253"/>
         <location filename="../qml/AboutView.qml" line="269"/>
         <source>Credits</source>
         <extracomment>Shown in a button. When clicked, the application credits are shown</extracomment>
-        <translation>Crediti</translation>
+        <translation>Tack till...</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="264"/>
@@ -86,69 +86,69 @@
     <message>
         <location filename="../qml/CastView.qml" line="41"/>
         <source>Camera</source>
-        <translation>Fotografia</translation>
+        <translation>Kamera</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="42"/>
         <source>Crew</source>
-        <translation>Troupe</translation>
+        <translation>Besättning</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="43"/>
         <source>Sound</source>
-        <translation>Colonna sonora</translation>
+        <translation>Ljud</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="44"/>
         <source>Directing</source>
-        <translation>Regia</translation>
+        <translation>Regi</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="45"/>
         <source>Writing</source>
-        <translation>Sceneggiatura</translation>
+        <translation>Manus</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="46"/>
         <source>Production</source>
-        <translation>Produzione</translation>
+        <translation>Produktion</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="47"/>
         <source>Actors</source>
-        <translation>Attori</translation>
+        <translation>Skådespelare</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="48"/>
         <source>Editing</source>
-        <translation>Montaggio</translation>
+        <translation>Redigering</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="49"/>
         <source>Art</source>
-        <translation>Reparto artistico</translation>
+        <translation>Konst</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="50"/>
         <source>Costume &amp; Make-Up</source>
-        <translation>Costumi e trucco</translation>
+        <translation>Kostym &amp; make up</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="51"/>
         <source>Visual Effects</source>
-        <translation>Effetti speciali</translation>
+        <translation>Visuella effekter</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="77"/>
         <source>Full cast in %1</source>
         <extracomment>This appears in the cast view when the cast is shown</extracomment>
-        <translation>Cast completo di %1</translation>
+        <translation>Fullständig rollista i %1</translation>
     </message>
     <message>
         <location filename="../qml/CastView.qml" line="79"/>
         <source>Cast and crew in %1</source>
         <extracomment>This appears in the cast view when cast and crew are shown</extracomment>
-        <translation>Cast e troupe di %1</translation>
+        <translation>Roller och besättning i %1</translation>
     </message>
 </context>
 <context>
@@ -157,7 +157,7 @@
         <location filename="../controller.cpp" line="82"/>
         <source>btc-shared-with-butaca</source>
         <extracomment>Shared with #Butaca</extracomment>
-        <translation>Condiviso tramite #Butaca</translation>
+        <translation>Delad med #Butaca</translation>
     </message>
 </context>
 <context>
@@ -166,12 +166,12 @@
         <location filename="../qml/FavoritesView.qml" line="130"/>
         <source>Movies in your watchlist will appear here</source>
         <extracomment>Shown as a placeholder in the watchlist view, when empty</extracomment>
-        <translation>I film nella tua watchlist appariranno qui</translation>
+        <translation>Filmer i din bevakningslista visas här</translation>
     </message>
     <message>
         <location filename="../qml/FavoritesView.qml" line="144"/>
         <source>Your favorite content will appear here</source>
-        <translation>I tuoi contenuti preferiti appariranno qui</translation>
+        <translation>Ditt favoritinnehåll visas här</translation>
     </message>
 </context>
 <context>
@@ -179,37 +179,37 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="41"/>
         <source>Camera</source>
-        <translation>Fotografia</translation>
+        <translation>Kamera</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="42"/>
         <source>Crew</source>
-        <translation>Troupe</translation>
+        <translation>Besättning</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="43"/>
         <source>Sound</source>
-        <translation>Colonna sonora</translation>
+        <translation>Ljud</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="44"/>
         <source>Directing</source>
-        <translation>Regia</translation>
+        <translation>Regi</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="45"/>
         <source>Writing</source>
-        <translation>Sceneggiatura</translation>
+        <translation>Manus</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="46"/>
         <source>Production</source>
-        <translation>Produzione</translation>
+        <translation>Produktion</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="47"/>
         <source>Acting</source>
-        <translation>Recitazione</translation>
+        <translation>Skådespeleri</translation>
     </message>
     <message>
         <source>Actors</source>
@@ -218,28 +218,28 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="48"/>
         <source>Editing</source>
-        <translation>Montaggio</translation>
+        <translation>Redigering</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="49"/>
         <source>Art</source>
-        <translation>Direzione artistica</translation>
+        <translation>Konst</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="50"/>
         <source>Costume &amp; Make-Up</source>
-        <translation>Costumi e trucco</translation>
+        <translation>Kostym &amp; Make up</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="51"/>
         <source>Visual Effects</source>
-        <translation>Effetti speciali</translation>
+        <translation>Visuella effekter</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="75"/>
         <source>%1&apos;s filmography</source>
         <extracomment>This appears in the filmography view header</extracomment>
-        <translation>Filmografia di %1</translation>
+        <translation>%1 filmografi</translation>
     </message>
 </context>
 <context>
@@ -248,7 +248,7 @@
         <location filename="../qml/GenresView.qml" line="51"/>
         <source>Movie genres</source>
         <extracomment>This appears in the browse view header</extracomment>
-        <translation>Generi</translation>
+        <translation>Filmgenrer</translation>
     </message>
 </context>
 <context>
@@ -257,25 +257,25 @@
         <location filename="../qml/ListsView.qml" line="24"/>
         <source>Favorites</source>
         <extracomment>Shown as the title for the favorites menu entry</extracomment>
-        <translation>Preferiti</translation>
+        <translation>Favoriter</translation>
     </message>
     <message>
         <location filename="../qml/ListsView.qml" line="26"/>
         <source>Your favorite movies and celebrities</source>
         <extracomment>Shown as the subtitle for the favorites menu entry</extracomment>
-        <translation>I tuoi film e celebrità preferiti</translation>
+        <translation>Dina film- och kändisfavoriter</translation>
     </message>
     <message>
         <location filename="../qml/ListsView.qml" line="29"/>
         <source>Watchlist</source>
         <extracomment>Shown as the title for the watchlist menu entry</extracomment>
-        <translation>Watchlist</translation>
+        <translation>Bevakningslista</translation>
     </message>
     <message>
         <location filename="../qml/ListsView.qml" line="31"/>
         <source>Movies you&apos;ve saved to watch later</source>
         <extracomment>Shown as the subtitle for the watchlist menu entry</extracomment>
-        <translation>Film da vedere in seguito che hai salvato</translation>
+        <translation>Filmer du sparat för att se senare</translation>
     </message>
 </context>
 <context>
@@ -284,19 +284,19 @@
         <location filename="../qml/MediaGalleryView.qml" line="53"/>
         <source>Save image</source>
         <extracomment>Placed on a tool button, when clicked opens a sheet to save the image</extracomment>
-        <translation>Salva immagine</translation>
+        <translation>Spara bild</translation>
     </message>
     <message>
         <location filename="../qml/MediaGalleryView.qml" line="183"/>
         <source>Save</source>
         <extracomment>Placed on the save image sheet, when clicked actually saves the image</extracomment>
-        <translation>Salva</translation>
+        <translation>Spara</translation>
     </message>
     <message>
         <location filename="../qml/MediaGalleryView.qml" line="186"/>
         <source>Cancel</source>
         <extracomment>Placed on the save image sheet, when clicked closes the sheet and doesn't save</extracomment>
-        <translation>Annulla</translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
@@ -305,19 +305,19 @@
         <location filename="../qml/MovieView.qml" line="56"/>
         <source>Add to watchlist</source>
         <extracomment>This adds the movie to the watch list</extracomment>
-        <translation>Aggiungi alla watchlist</translation>
+        <translation>Lägg till i bevakningslistan</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="58"/>
         <source>Remove from watchlist</source>
         <extracomment>This removes the movie from the watch list</extracomment>
-        <translation>Rimuovi dalla watchlist</translation>
+        <translation>Ta bort från bevakningslistan</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="78"/>
         <source>Open homepage</source>
         <extracomment>This opens a website displaying the movie homepage</extracomment>
-        <translation>Apri homepage</translation>
+        <translation>Öppna hemsidan</translation>
     </message>
     <message>
         <source>View extras</source>
@@ -328,13 +328,13 @@
         <location filename="../qml/MovieView.qml" line="84"/>
         <source>View in IMDb</source>
         <extracomment>This visits the Internet Movie Database page of this content (movie or person)</extracomment>
-        <translation>Vedi su IMDb</translation>
+        <translation>Visa på IMDb</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="89"/>
         <source>View in TMDb</source>
         <extracomment>This visits the The Movie Database page of this content (movie or person)</extracomment>
-        <translation>Vedi su TMDb</translation>
+        <translation>Visa på TMDb</translation>
     </message>
     <message>
         <source>Not found</source>
@@ -345,49 +345,49 @@
         <location filename="../qml/MovieView.qml" line="304"/>
         <source>Loading content</source>
         <extracomment>This indicates that the extended info for a content (person or movie) is still loading</extracomment>
-        <translation>Caricamento dei contenuti</translation>
+        <translation>Läser in innehåll</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="360"/>
         <source>Rated %1, %2</source>
         <extracomment>This shows the classification of a movie and its runtime (duration)</extracomment>
-        <translation>Valutato %1, %2</translation>
+        <translation>Betyg %1, %2</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="483"/>
         <source>Watch trailer</source>
         <extracomment>Opens the movie trailer for viewing</extracomment>
-        <translation>Guarda il trailer</translation>
+        <translation>Se trailer</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="504"/>
         <source>Overview</source>
         <extracomment>Label acting as the header for the overview</extracomment>
-        <translation>Sinossi</translation>
+        <translation>Översikt</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="515"/>
         <source>Release date</source>
         <extracomment>Label acting as the header for the release date</extracomment>
-        <translation>Data di uscita</translation>
+        <translation>Premiärdatum</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="537"/>
         <source>Genre</source>
         <extracomment>Label acting as the header for the genres</extracomment>
-        <translation>Genere</translation>
+        <translation>Genre</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="555"/>
         <source>Alternative titles</source>
         <extracomment>Label acting as the header for the alternative titles</extracomment>
-        <translation>Titoli alternativi</translation>
+        <translation>Alternativa titlar</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="573"/>
         <source>Studios</source>
         <extracomment>Label acting as the header for the studios</extracomment>
-        <translation>Casa di produzione</translation>
+        <translation>Studior</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="591"/>
@@ -399,7 +399,7 @@
         <location filename="../qml/MovieView.qml" line="612"/>
         <source>Revenue</source>
         <extracomment>Label acting as the header for the movie revenue</extracomment>
-        <translation>Incassi</translation>
+        <translation>Intäkter</translation>
     </message>
     <message>
         <source>Extras after or during credits?</source>
@@ -410,25 +410,25 @@
         <location filename="../qml/MovieView.qml" line="630"/>
         <source>Cast</source>
         <extracomment>Header for the cast preview shown in the movie view</extracomment>
-        <translation>Cast</translation>
+        <translation>Roller</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="637"/>
         <source>Full cast</source>
         <extracomment>Footer for the cast preview shown in the movie view. When clicked, shows the full cast.</extracomment>
-        <translation>Cast completo</translation>
+        <translation>Fullständig rollista</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="661"/>
         <source>Crew</source>
         <extracomment>Header for the crew preview shown in the movie view</extracomment>
-        <translation>Troupe</translation>
+        <translation>Besättning</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="668"/>
         <source>Full cast &amp; crew</source>
         <extracomment>Footer for the crew preview shown in the movie view. When clicked, shows the full cast and crew.</extracomment>
-        <translation>Cast e troupe completi</translation>
+        <translation>Fullständig rollista &amp; besättning</translation>
     </message>
 </context>
 <context>
@@ -437,7 +437,7 @@
         <location filename="../qml/MultipleMoviesView.qml" line="130"/>
         <source>No content found</source>
         <extracomment>When browsing movies, shown when no movies matched the browse criteria</extracomment>
-        <translation>Nessun contenuto trovato</translation>
+        <translation>Inget innehåll hittades</translation>
     </message>
 </context>
 <context>
@@ -445,47 +445,47 @@
     <message>
         <location filename="../qml/PersonView.qml" line="51"/>
         <source>View in IMDb</source>
-        <translation>Vedi su IMDb</translation>
+        <translation>Visa på IMDb</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="55"/>
         <source>View in TMDb</source>
-        <translation>Vedi su TMDb</translation>
+        <translation>Visa på TMDb</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="206"/>
         <source>Loading content</source>
-        <translation>Caricamento del contenuto</translation>
+        <translation>Läser in innehåll</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="262"/>
         <source>Born</source>
         <extracomment>Header shown for the born details of a person</extracomment>
-        <translation>Nato</translation>
+        <translation>Född</translation>
     </message>
     <message numerus="yes">
         <location filename="../qml/PersonView.qml" line="311"/>
         <source>Known for %Ln movie(s)</source>
         <comment>Text shown in the person view displaying the number of movies a person is known for</comment>
-        <translation><numerusform>Conosciuto per %Ln film</numerusform><numerusform>Conosciuto per %Ln film</numerusform></translation>
+        <translation><numerusform>Känd från %Ln film(er)</numerusform><numerusform>Känd från %Ln filmer</numerusform></translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="347"/>
         <source>Biography</source>
         <extracomment>Label acting as the header for the biography</extracomment>
-        <translation>Biografia</translation>
+        <translation>Biografi</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="356"/>
         <source>Filmography</source>
         <extracomment>Header for the filmography preview shown in the person view</extracomment>
-        <translation>Filmografia</translation>
+        <translation>Filmografi</translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="363"/>
         <source>Full filmography</source>
         <extracomment>Footer for the filmography preview shown in the person view. When clicked, shows the full filmography</extracomment>
-        <translation>Filmografia completa</translation>
+        <translation>Fullständig filmografi</translation>
     </message>
 </context>
 <context>
@@ -494,13 +494,13 @@
         <location filename="../qml/SearchView.qml" line="51"/>
         <source>Search</source>
         <extracomment>Header shown in the search view</extracomment>
-        <translation>Cerca</translation>
+        <translation>Sök</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="57"/>
         <source>Enter search terms</source>
         <extracomment>Placeholder text shown in the search input field</extracomment>
-        <translation>Inserisci i termini di ricerca</translation>
+        <translation>Ange sökterm</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="105"/>
@@ -518,7 +518,7 @@
         <location filename="../qml/SearchView.qml" line="117"/>
         <source>Celebrities</source>
         <extracomment>Shown in the button selecting celebrities search</extracomment>
-        <translation>Celebrità</translation>
+        <translation>Kändisar</translation>
     </message>
     <message>
         <source>There was an error performing the search</source>
@@ -529,13 +529,13 @@
         <location filename="../qml/SearchView.qml" line="299"/>
         <source>No results found</source>
         <extracomment>Shown in the search results area when no results were found</extracomment>
-        <translation>Nessun risultato trovato</translation>
+        <translation>Inget sökresultat</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="312"/>
         <source>Introduce search terms</source>
         <extracomment>Shown in the search results area when no terms have been introduced</extracomment>
-        <translation>Inserisci i termini di ricerca</translation>
+        <translation>Sökterm saknas</translation>
     </message>
 </context>
 <context>
@@ -544,55 +544,55 @@
         <location filename="../qml/SettingsView.qml" line="73"/>
         <source>Settings</source>
         <extracomment>Text shown in the settings view header</extracomment>
-        <translation>Impostazioni</translation>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="86"/>
         <source>Showtimes</source>
         <extracomment>Label for the showtimes section in the settings view</extracomment>
-        <translation>Orari degli spettacoli</translation>
+        <translation>Visningstider</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="102"/>
         <source>Default location</source>
         <extracomment>Label for the default location setting to try for showtimes</extracomment>
-        <translation>Località predefinita</translation>
+        <translation>Standardplats</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="108"/>
         <source>Try automatically</source>
         <extracomment>Placeholder text for the default location. When visible, automatic location will be attempted</extracomment>
-        <translation>Prova automaticamente</translation>
+        <translation>Försök automatiskt</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="150"/>
         <source>Date</source>
         <extracomment>Label for the showtimes date setting</extracomment>
-        <translation>Data</translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="181"/>
         <source>Browsing</source>
         <extracomment>Label for the browsing section in the settings view</extracomment>
-        <translation>Ordinamento</translation>
+        <translation>Bläddring</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="199"/>
         <source>Include content with &lt;10 votes</source>
         <extracomment>Label for the include criteria setting for adult content used when browsing</extracomment>
-        <translation>Includi contenuti con &lt;10 voti</translation>
+        <translation>Visa innehåll med &lt;10 röster</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="230"/>
         <source>Include adult content</source>
         <extracomment>Label for the include criteria setting for adult content used when browsing</extracomment>
-        <translation>Includi contenuti per adulti</translation>
+        <translation>Visa vuxeninnehåll</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="287"/>
         <source>Today</source>
         <extracomment>Shown in a button when the date is set to Today.</extracomment>
-        <translation>Oggi</translation>
+        <translation>I dag</translation>
     </message>
     <message>
         <source>Order criteria</source>
@@ -646,31 +646,31 @@
         <location filename="../qml/TheatersView.qml" line="126"/>
         <source>Search</source>
         <extracomment>Placeholder text for the search field in the showtimes view</extracomment>
-        <translation>Cerca</translation>
+        <translation>Sök</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="185"/>
         <source>In theaters</source>
         <extracomment>Header shown in the showtimes view</extracomment>
-        <translation>nelle sale</translation>
+        <translation>På Bio</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="200"/>
         <source>Pull to filter by cinema or movie</source>
         <extracomment>Hint shown to tell users that they can filter by pulling</extracomment>
-        <translation>Tira per filtrare per cinema o film</translation>
+        <translation>Dra för att sortera efter bio eller film</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="261"/>
         <source>No results for %1</source>
         <extracomment>Message shown when no results are found for a given location</extracomment>
-        <translation>Nessun risultato per %1</translation>
+        <translation>Inget resultat för %1</translation>
     </message>
     <message>
         <location filename="../qml/TheatersView.qml" line="263"/>
         <source>No results for your location</source>
         <extracomment>Message shown when no results are found for the automatic location</extracomment>
-        <translation>Nessun risultato per la tua località</translation>
+        <translation>Inget resultat för din plats</translation>
     </message>
 </context>
 <context>
@@ -679,89 +679,89 @@
         <location filename="../qml/TvView.qml" line="54"/>
         <source>Open homepage</source>
         <extracomment>This opens a website displaying the movie homepage</extracomment>
-        <translation>Apri homepage</translation>
+        <translation>Öppna hemsidan</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="60"/>
         <source>View in TMDb</source>
         <extracomment>This visits the The Movie Database page of this content (movie or person)</extracomment>
-        <translation>Vedi su TMDb</translation>
+        <translation>Visa på TMDb</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="266"/>
         <source>Loading content</source>
         <extracomment>This indicates that the extended info for a content (person or movie) is still loading</extracomment>
-        <translation>Caricamento del contenuto</translation>
+        <translation>Läser in innehåll</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="322"/>
         <source>%1 Episodes, %2 Seasons</source>
         <extracomment>This shows the TV show's number of episodes and seasons</extracomment>
-        <translation>%1 Episodi, %2 Stagioni</translation>
+        <translation>%1 episoder, %2 säsonger</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="344"/>
         <source>in Production</source>
-        <translation>in produzione</translation>
+        <translation>i produktion</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="345"/>
         <source>currently not in Production</source>
-        <translation>attualmente non in produzione</translation>
+        <translation>för närvarande ej i produktion</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="447"/>
         <source>Watch trailer</source>
         <extracomment>Opens the movie trailer for viewing</extracomment>
-        <translation>Guarda il trailer</translation>
+        <translation>Visa trailer</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="468"/>
         <source>Overview</source>
         <extracomment>Label acting as the header for the overview</extracomment>
-        <translation>Sinossi</translation>
+        <translation>Översikt</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="479"/>
         <source>Release date</source>
         <extracomment>Label acting as the header for the release date</extracomment>
-        <translation>Data di uscita</translation>
+        <translation>Premiärdatum</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="502"/>
         <source>Genre</source>
         <extracomment>Label acting as the header for the genres</extracomment>
-        <translation>Genere</translation>
+        <translation>Genre</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="520"/>
         <source>Episode runtime</source>
         <extracomment>Label acting as the header for the episode runtime (duration)</extracomment>
-        <translation>Durata episodio</translation>
+        <translation>Episodlängd</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="539"/>
         <source>Cast</source>
         <extracomment>Header for the cast preview shown in the movie view</extracomment>
-        <translation>Cast</translation>
+        <translation>Roller</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="546"/>
         <source>Full cast</source>
         <extracomment>Footer for the cast preview shown in the movie view. When clicked, shows the full cast.</extracomment>
-        <translation>Cast completo</translation>
+        <translation>Fullständig rollista</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="570"/>
         <source>Crew</source>
         <extracomment>Header for the crew preview shown in the movie view</extracomment>
-        <translation>Troupe</translation>
+        <translation>Besättning</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="577"/>
         <source>Full cast &amp; crew</source>
         <extracomment>Footer for the crew preview shown in the movie view. When clicked, shows the full cast and crew.</extracomment>
-        <translation>Cast e troupe completi</translation>
+        <translation>Fullständig rollista &amp; besättning</translation>
     </message>
 </context>
 <context>
@@ -770,73 +770,73 @@
         <location filename="../qml/WelcomeView.qml" line="44"/>
         <source>Movie genres</source>
         <extracomment>Shown as the title for the browse view menu entry</extracomment>
-        <translation>Generi</translation>
+        <translation>Filmgenrer</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="46"/>
         <source>Explore movie genres</source>
         <extracomment>Shown as the subtitle for the browse view menu entry</extracomment>
-        <translation>Esplora per genere</translation>
+        <translation>Utforska filmgenrer</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="49"/>
         <source>Showtimes</source>
         <extracomment>Shown as the title for the showtimes menu entry</extracomment>
-        <translation>Orari degli spettacoli</translation>
+        <translation>Visningstider</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="51"/>
         <source>What&apos;s on in cinemas near you</source>
         <extracomment>Shown as the subtitle for the browse view menu entry</extracomment>
-        <translation>Cosa c&apos;è nei cinema vicino a te</translation>
+        <translation>Vad visas på bio nära dig</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="54"/>
         <source>Search</source>
         <extracomment>Shown as the title for the search view menu entry</extracomment>
-        <translation>Cerca</translation>
+        <translation>Sök</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="56"/>
         <source>Search movies and celebrities</source>
         <extracomment>Shown as the subtitle for the search view menu entry</extracomment>
-        <translation>Cerca film e celebrità</translation>
+        <translation>Sök efter filmer och kändisar</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="59"/>
         <source>Lists</source>
         <extracomment>Shown as the title for the lists view menu entry</extracomment>
-        <translation>Liste</translation>
+        <translation>Listor</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="61"/>
         <source>Favorites and watchlist</source>
         <extracomment>Shown as the subtitle for the lists view menu entry</extracomment>
-        <translation>Casa di produzione</translation>
+        <translation>Favoriter och bevakningslista</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="86"/>
         <source>Settings</source>
         <extracomment>Title for the settings entry in the main page object menu</extracomment>
-        <translation>Impostazioni</translation>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="92"/>
         <source>About</source>
         <extracomment>Title for the about entry in the main page object menu</extracomment>
-        <translation>Crediti</translation>
+        <translation>Om</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="185"/>
         <source>Enjoy the show!</source>
         <extracomment>Shown in the main view header</extracomment>
-        <translation>Goditi lo spettacolo!</translation>
+        <translation>Njut av showen!</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="243"/>
         <source>Your favorite content will appear here</source>
         <extracomment>Shown as a placeholder in the favorites area of the main view while no favorites are there</extracomment>
-        <translation>I tuoi contenuti preferiti appariranno qui</translation>
+        <translation>Ditt favoritinnehåll visas här</translation>
     </message>
 </context>
 </TS>

@@ -51,7 +51,7 @@
         <location filename="../qml/AboutView.qml" line="63"/>
         <source>Rate us at openrepos.net</source>
         <extracomment>Short text inviting to rate us at openrepos.net</extracomment>
-        <translation type="unfinished"/>
+        <translation>Califícanos en openrepos.net</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="229"/>
@@ -209,7 +209,7 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="47"/>
         <source>Acting</source>
-        <translation type="unfinished"/>
+        <translation>Actúa</translation>
     </message>
     <message>
         <source>Actors</source>
@@ -381,7 +381,7 @@
         <location filename="../qml/MovieView.qml" line="555"/>
         <source>Alternative titles</source>
         <extracomment>Label acting as the header for the alternative titles</extracomment>
-        <translation type="unfinished"/>
+        <translation>Títulos alternativos</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="573"/>
@@ -461,13 +461,13 @@
         <location filename="../qml/PersonView.qml" line="262"/>
         <source>Born</source>
         <extracomment>Header shown for the born details of a person</extracomment>
-        <translation>Nacimiento</translation>
+        <translation>Nació el</translation>
     </message>
     <message numerus="yes">
         <location filename="../qml/PersonView.qml" line="311"/>
         <source>Known for %Ln movie(s)</source>
         <comment>Text shown in the person view displaying the number of movies a person is known for</comment>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Conocido/a por %Ln película</numerusform><numerusform>Conocido/a por %Ln películas</numerusform></translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="347"/>
@@ -512,7 +512,7 @@
         <location filename="../qml/SearchView.qml" line="111"/>
         <source>TV</source>
         <extracomment>Shown in the button selecting TV search</extracomment>
-        <translation type="unfinished"/>
+        <translation>TV</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="117"/>
@@ -568,7 +568,7 @@
         <location filename="../qml/SettingsView.qml" line="150"/>
         <source>Date</source>
         <extracomment>Label for the showtimes date setting</extracomment>
-        <translation type="unfinished"/>
+        <translation>Fecha</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="181"/>
@@ -580,19 +580,19 @@
         <location filename="../qml/SettingsView.qml" line="199"/>
         <source>Include content with &lt;10 votes</source>
         <extracomment>Label for the include criteria setting for adult content used when browsing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Incluir contenido con &lt;10 votos</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="230"/>
         <source>Include adult content</source>
         <extracomment>Label for the include criteria setting for adult content used when browsing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Incluir contenido para adultos</translation>
     </message>
     <message>
         <location filename="../qml/SettingsView.qml" line="287"/>
         <source>Today</source>
         <extracomment>Shown in a button when the date is set to Today.</extracomment>
-        <translation type="unfinished"/>
+        <translation>Hoy</translation>
     </message>
     <message>
         <source>Order criteria</source>
@@ -697,17 +697,17 @@
         <location filename="../qml/TvView.qml" line="322"/>
         <source>%1 Episodes, %2 Seasons</source>
         <extracomment>This shows the TV show's number of episodes and seasons</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 Episodios, %2 Temporadas</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="344"/>
         <source>in Production</source>
-        <translation type="unfinished"/>
+        <translation>En producción</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="345"/>
         <source>currently not in Production</source>
-        <translation type="unfinished"/>
+        <translation>Ya no está en producción</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="447"/>
@@ -737,7 +737,7 @@
         <location filename="../qml/TvView.qml" line="520"/>
         <source>Episode runtime</source>
         <extracomment>Label acting as the header for the episode runtime (duration)</extracomment>
-        <translation type="unfinished"/>
+        <translation>Duración del episodio</translation>
     </message>
     <message>
         <location filename="../qml/TvView.qml" line="539"/>
@@ -788,7 +788,7 @@
         <location filename="../qml/WelcomeView.qml" line="51"/>
         <source>What&apos;s on in cinemas near you</source>
         <extracomment>Shown as the subtitle for the browse view menu entry</extracomment>
-        <translation>Explorar qué hay ahora en el cine</translation>
+        <translation>Que hay en los cines cercanos</translation>
     </message>
     <message>
         <location filename="../qml/WelcomeView.qml" line="54"/>

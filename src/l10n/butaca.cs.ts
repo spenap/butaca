@@ -209,7 +209,7 @@
     <message>
         <location filename="../qml/FilmographyView.qml" line="47"/>
         <source>Acting</source>
-        <translation type="unfinished"/>
+        <translation>Hrající</translation>
     </message>
     <message>
         <source>Actors</source>
