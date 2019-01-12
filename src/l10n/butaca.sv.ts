@@ -1,5 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sv" version="2.0">
-<defaultcodec>UTF-8</defaultcodec>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sv">
 <context>
     <name>AboutView</name>
     <message>
@@ -23,7 +24,7 @@
     <message>
         <source>Rate us in the Nokia Store</source>
         <extracomment>Short text inviting to rate us in the Nokia Store</extracomment>
-        <translation type="unfinished"/>
+        <translation>Betygsätt oss i Nokia Store</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="65"/>
@@ -34,7 +35,7 @@
     <message>
         <source>Check our other apps</source>
         <extracomment>Short text inviting to check our other apps</extracomment>
-        <translation type="unfinished"/>
+        <translation>Kolla våra andra appar</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="213"/>
@@ -45,7 +46,7 @@
     <message>
         <source>This product uses &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; API but is not endorsed or certified by them.</source>
         <extracomment>Disclaimer about After Credits API usage</extracomment>
-        <translation type="unfinished"/>
+        <translation>Denna produkt använder en API från &lt;a href=&quot;http://aftercredits.com/&quot;&gt;What&apos;s After The Credits?&lt;/a&gt; men är inte godkänd eller certifierad av dem.</translation>
     </message>
     <message>
         <location filename="../qml/AboutView.qml" line="63"/>
@@ -213,7 +214,7 @@
     </message>
     <message>
         <source>Actors</source>
-        <translation type="unfinished"/>
+        <translation>Skådespelare</translation>
     </message>
     <message>
         <location filename="../qml/FilmographyView.qml" line="48"/>
@@ -295,7 +296,7 @@
     <message>
         <location filename="../qml/MediaGalleryView.qml" line="186"/>
         <source>Cancel</source>
-        <extracomment>Placed on the save image sheet, when clicked closes the sheet and doesn't save</extracomment>
+        <extracomment>Placed on the save image sheet, when clicked closes the sheet and doesn&apos;t save</extracomment>
         <translation>Avbryt</translation>
     </message>
 </context>
@@ -321,8 +322,8 @@
     </message>
     <message>
         <source>View extras</source>
-        <extracomment>This opens a website displaying movie's extras after or during credits</extracomment>
-        <translation type="unfinished"/>
+        <extracomment>This opens a website displaying movie&apos;s extras after or during credits</extracomment>
+        <translation>Visa extramaterial</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="84"/>
@@ -339,7 +340,7 @@
     <message>
         <source>Not found</source>
         <extracomment>This indicates that no extra content after or during the credits was found</extracomment>
-        <translation type="unfinished"/>
+        <translation>Inget hittades</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="304"/>
@@ -404,7 +405,7 @@
     <message>
         <source>Extras after or during credits?</source>
         <extracomment>Label acting as the header for the extra information after / during credits</extracomment>
-        <translation type="unfinished"/>
+        <translation>Extramaterial efter eller före tacktexterna?</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="630"/>
@@ -467,7 +468,10 @@
         <location filename="../qml/PersonView.qml" line="311"/>
         <source>Known for %Ln movie(s)</source>
         <comment>Text shown in the person view displaying the number of movies a person is known for</comment>
-        <translation><numerusform>Känd från %Ln film(er)</numerusform><numerusform>Känd från %Ln filmer</numerusform></translation>
+        <translation>
+            <numerusform>Känd från %Ln film(er)</numerusform>
+            <numerusform>Känd från %Ln filmer</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="347"/>
@@ -523,7 +527,7 @@
     <message>
         <source>There was an error performing the search</source>
         <extracomment>Shown in the search results area when an error ocurred</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ett fel uppstod vid sökningen</translation>
     </message>
     <message>
         <location filename="../qml/SearchView.qml" line="299"/>
@@ -597,47 +601,47 @@
     <message>
         <source>Order criteria</source>
         <extracomment>Label for the order criteria setting used when browsing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Ordningskriterier</translation>
     </message>
     <message>
         <source>Rating</source>
         <extracomment>Label for the &quot;order by rating&quot; setting</extracomment>
-        <translation type="unfinished"/>
+        <translation>Betyg</translation>
     </message>
     <message>
         <source>Release</source>
         <extracomment>Label for the &quot;order by release date&quot; setting</extracomment>
-        <translation type="unfinished"/>
+        <translation>Publiceringsdatum</translation>
     </message>
     <message>
         <source>Title</source>
         <extracomment>Label for the &quot;order by title&quot; setting</extracomment>
-        <translation type="unfinished"/>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Sort order</source>
         <extracomment>Label for the sort order setting used when browsing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Sortera</translation>
     </message>
     <message>
         <source>Ascending</source>
         <extracomment>Label for the &quot;sort ascending&quot; setting</extracomment>
-        <translation type="unfinished"/>
+        <translation>Fallande</translation>
     </message>
     <message>
         <source>Descending</source>
         <extracomment>Label for the &quot;sort descending&quot; setting</extracomment>
-        <translation type="unfinished"/>
+        <translation>Stigande</translation>
     </message>
     <message>
         <source>Results per page</source>
         <extracomment>Label for the results per page setting used when browsing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Resultat per sida</translation>
     </message>
     <message>
         <source>Minimum votes</source>
         <extracomment>Label for the minimum votes setting used when browsing</extracomment>
-        <translation type="unfinished"/>
+        <translation>Minsta antal röster</translation>
     </message>
 </context>
 <context>
@@ -696,7 +700,7 @@
     <message>
         <location filename="../qml/TvView.qml" line="322"/>
         <source>%1 Episodes, %2 Seasons</source>
-        <extracomment>This shows the TV show's number of episodes and seasons</extracomment>
+        <extracomment>This shows the TV show&apos;s number of episodes and seasons</extracomment>
         <translation>%1 episoder, %2 säsonger</translation>
     </message>
     <message>
