@@ -405,7 +405,7 @@
     <message>
         <source>Extras after or during credits?</source>
         <extracomment>Label acting as the header for the extra information after / during credits</extracomment>
-        <translation>Extramaterial efter eller före tacktexterna?</translation>
+        <translation>Extramaterial efter eller under tacktexterna?</translation>
     </message>
     <message>
         <location filename="../qml/MovieView.qml" line="630"/>
@@ -469,7 +469,7 @@
         <source>Known for %Ln movie(s)</source>
         <comment>Text shown in the person view displaying the number of movies a person is known for</comment>
         <translation>
-            <numerusform>Känd från %Ln film(er)</numerusform>
+            <numerusform>Känd från %Ln film</numerusform>
             <numerusform>Känd från %Ln filmer</numerusform>
         </translation>
     </message>
