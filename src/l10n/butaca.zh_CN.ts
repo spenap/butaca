@@ -1,6 +1,7 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_cn" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS><TS language="zh_CN" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
-
+<context>
     <name>AboutView</name>
     <message>
         <location filename="../qml/AboutView.qml" line="41"/>
@@ -467,7 +468,7 @@
         <location filename="../qml/PersonView.qml" line="311"/>
         <source>Known for %Ln movie(s)</source>
         <comment>Text shown in the person view displaying the number of movies a person is known for</comment>
-        <translation>因 %Ln 电影得名</translation>
+        <translation><numerusform>因 %Ln 电影得名</numerusform></translation>
     </message>
     <message>
         <location filename="../qml/PersonView.qml" line="347"/>

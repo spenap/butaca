@@ -51,6 +51,7 @@
         <file>l10n/butaca.ru.qm</file>
         <file>l10n/butaca.sv.qm</file>
         <file>l10n/butaca.ca.qm</file>
+        <file>l10n/butaca.zh_CN.qm</file>
         <file>qml/MovieView.qml</file>
         <file>qml/TvView.qml</file>
         <file>qml/MediaGalleryView.qml</file>
